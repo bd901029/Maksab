@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout>
+
+    <data>
+
+        <variable
+            name="activity"
+            type="app.com.maksab.view.activity.ForgotActivity" />
+
+        <variable
+            name="model"
+            type="app.com.maksab.view.viewmodel.ForgotModel" />
+    </data>
+
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/bg_login"
+        android:orientation="vertical"
+        android:weightSum="1"
+        tools:context="com.fazza.fazzauser.view.activity.LoginActivity">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="0.3"
+                android:gravity="center">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="40dp"
+                    android:layout_marginRight="40dp"
+                    android:orientation="vertical"
+                    android:gravity="center">
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="40dp"
+                        android:src="@drawable/logo_big" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/label_forgot_your_password"
+                        app:font="@{@string/bold}"
+                        android:textColor="@color/colorPrimary"
+                        android:textSize="25dp" />
+
+
+                        <android.support.design.widget.TextInputLayout
+                            android:id="@+id/emailInputLayout"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_centerVertical="true"
+                            android:layout_marginLeft="16dp"
+                            android:layout_marginRight="16dp"
+                            android:layout_marginTop="10dp"
+                            android:textColorHint="@color/divider_color"
+                            >
+
+                            <EditText
+                                android:id="@+id/email_edt"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:drawablePadding="16dp"
+                                android:hint="@string/hint_email"
+                                android:imeOptions="actionNext"
+                                android:drawableLeft="@drawable/mail3x"
+                                android:inputType="textEmailAddress"
+                                android:text="@={model.email}"
+                                android:lines="1"
+                                android:maxLength="50"
+                                android:textColor="@color/gray_text"
+                                android:textColorHint="@color/divider_color"
+                                android:textSize="@dimen/form_text_size"
+                                android:theme="@style/MyEditText"
+                                app:font="@{@string/regular}"
+                                />
+                        </android.support.design.widget.TextInputLayout>
+
+                        <Button
+                            android:onClick="@{()->activity.onForgotButtonClick(model)}"
+                            android:layout_marginTop="5dp"
+                            android:layout_width="match_parent"
+                            android:layout_height="@dimen/button_height_size"
+                            android:background="@drawable/button_blue_corner"
+                            android:text="@string/label_submit"
+                            android:textColor="@color/white"
+                            android:textSize="14dp"
+                            app:font="@{@string/regular}"/>
+
+
+                </LinearLayout>
+            </LinearLayout>
+        </LinearLayout>
+
+    </LinearLayout>
+</layout>

@@ -1,0 +1,321 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <variable
+                name="activity"
+                type="app.com.maksab.view.activity.PaymentActivity"/>
+
+        <variable
+                name="model"
+                type="app.com.maksab.view.viewmodel.PaymentModel"/>
+    </data>
+
+    <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="#EEEEEE"
+            android:orientation="vertical">
+
+        <LinearLayout
+                android:layout_margin="15dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+            <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/error_coupon_code"
+                    app:font="@{@string/regular}"/>
+
+            <LinearLayout
+                    android:id="@+id/llCoupon"
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:gravity="center"
+                    android:orientation="horizontal">
+
+                <EditText
+                        android:id="@+id/etCoupon"
+                        android:layout_width="0dp"
+                        android:layout_weight="1"
+                        android:layout_height="match_parent"
+                        android:background="@drawable/radius_card"
+                        android:padding="8dp"
+                        android:hint="@string/error_coupon_code"
+                        android:imeOptions="actionNext"
+                        android:inputType="textPersonName"
+                        android:lines="1"
+                        android:maxLength="20"
+                        android:textColor="@color/gray_text"
+                        android:textColorHint="@color/divider_color"
+                        android:textSize="@dimen/form_text_size"
+                        android:theme="@style/MyEditText"
+                        app:font="@{@string/regular}"/>
+
+                <TextView
+                        android:onClick="@{()->activity.applyCouponCode()}"
+                        android:layout_width="100sp"
+                        android:layout_height="match_parent"
+                        android:gravity="center"
+                        android:layout_gravity="center_horizontal"
+                        android:background="@color/colorAccent"
+                        android:text="@string/apply"
+                        android:textColor="@color/white"
+                        app:font="@{@string/bold}"/>
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <ScrollView
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:fillViewport="true">
+
+            <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                <LinearLayout
+                        android:layout_margin="15dp"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                    <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:lines="1"
+                            android:gravity="center"
+                            android:text="@string/grand_total"
+                            android:textSize="18sp"
+                            app:font="@{@string/bold}"/>
+
+                    <TextView
+                            android:layout_marginStart="20dp"
+                            android:id="@+id/payTotal"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:lines="1"
+                            android:gravity="center"
+                            android:text="500"
+                            android:textColor="@color/black"
+                            android:textSize="18sp"
+                            app:font="@{@string/bold}"/>
+
+                </LinearLayout>
+
+                <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginEnd="15dp"
+                        android:layout_marginStart="15dp"
+                        android:background="@drawable/alert_diolog_bg_white"
+                        android:orientation="vertical"
+                        android:padding="10dp">
+
+                    <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="40dp"
+                            android:gravity="center_vertical"
+                            android:orientation="horizontal"
+                            android:background="@drawable/card_bg">
+
+                        <TextView
+                                android:layout_marginStart="10dp"
+                                android:layout_width="0dp"
+                                android:layout_weight="1"
+                                android:layout_height="wrap_content"
+                                android:text="@string/mada_creditcard"
+                                android:textColor="@color/black"
+                                app:font="@{@string/regular}"/>
+
+                        <ImageView
+                                tools:ignore="ContentDescription"
+                                android:layout_margin="6dp"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:src="@drawable/cards"/>
+
+                    </LinearLayout>
+
+
+                    <TextView
+                            android:layout_marginTop="8dp"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/label_card_number"
+                            app:font="@{@string/regular}"/>
+
+                    <EditText
+                            android:id="@+id/etCardNumber"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:background="@drawable/radius_card"
+                            android:padding="8dp"
+                            android:hint="@string/hint_card_number"
+                            android:text="@={model.cardNumber}"
+                            android:maxLength="19"
+                            android:textSize="@dimen/form_text_size"
+                            android:inputType="phone"
+                            android:imeOptions="actionNext"
+                            android:theme="@style/MyEditText"
+                            android:textColor="@color/gray_text"
+                            android:textColorHint="@color/divider_color"
+                            app:font="@{@string/regular}"/>
+
+                    <TextView
+                            android:layout_marginTop="8dp"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/card_holder"/>
+
+                    <EditText
+                            android:id="@+id/cardHolder"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:background="@drawable/radius_card"
+                            android:padding="8dp"
+                            android:hint="@string/card_holder"
+                            android:text="@={model.cardName}"
+                            android:imeOptions="actionNext"
+                            android:inputType="textPersonName"
+                            android:lines="1"
+                            android:maxLength="15"
+                            android:textColor="@color/gray_text"
+                            android:textColorHint="@color/divider_color"
+                            android:textSize="@dimen/form_text_size"
+                            android:theme="@style/MyEditText"
+                            app:font="@{@string/regular}"/>
+
+                    <LinearLayout
+                            android:layout_marginTop="8dp"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal">
+
+                        <LinearLayout
+                                android:layout_width="0dp"
+                                android:layout_weight="1"
+                                android:layout_height="wrap_content"
+                                android:orientation="vertical">
+
+                            <TextView android:layout_width="wrap_content"
+                                      android:layout_height="wrap_content"
+                                      android:text="@string/expiry_month"/>
+
+                            <EditText
+                                    android:id="@+id/month"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:background="@drawable/radius_card"
+                                    android:padding="8dp"
+                                    android:hint="@string/expiry_month"
+                                    android:text="@={model.expiryMonth}"
+                                    android:imeOptions="actionNext"
+                                    android:inputType="date"
+                                    android:lines="1"
+                                    android:maxLength="2"
+                                    android:textColor="@color/gray_text"
+                                    android:textColorHint="@color/divider_color"
+                                    android:textSize="@dimen/form_text_size"
+                                    android:theme="@style/MyEditText"
+                                    app:font="@{@string/regular}"/>
+                        </LinearLayout>
+
+                        <LinearLayout
+                                android:layout_marginStart="15dp"
+                                android:layout_marginEnd="15dp"
+                                android:layout_width="0dp"
+                                android:layout_weight="1"
+                                android:layout_height="wrap_content"
+                                android:orientation="vertical">
+
+                            <TextView android:layout_width="wrap_content"
+                                      android:layout_height="wrap_content"
+                                      android:text="@string/expiry_year"/>
+
+                            <EditText
+                                    android:id="@+id/year"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:background="@drawable/radius_card"
+                                    android:padding="8dp"
+                                    android:hint="@string/expiry_year"
+                                    android:text="@={model.expiryYear}"
+                                    android:imeOptions="actionNext"
+                                    android:inputType="date"
+                                    android:lines="1"
+                                    android:maxLength="2"
+                                    android:textColor="@color/gray_text"
+                                    android:textColorHint="@color/divider_color"
+                                    android:textSize="@dimen/form_text_size"
+                                    android:theme="@style/MyEditText"
+                                    app:font="@{@string/regular}"/>
+                        </LinearLayout>
+
+                        <LinearLayout
+                                android:layout_width="0dp"
+                                android:layout_weight="1"
+                                android:layout_height="wrap_content"
+                                android:orientation="vertical">
+
+                            <TextView android:layout_width="wrap_content"
+                                      android:layout_height="wrap_content"
+                                      android:text="@string/label_cvv_code"/>
+
+                            <EditText
+                                    android:id="@+id/cvv"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:background="@drawable/radius_card"
+                                    android:padding="8dp"
+                                    android:hint="@string/label_cvv_code"
+                                    android:text="@={model.cvv}"
+                                    android:imeOptions="actionDone"
+                                    android:inputType="numberPassword"
+                                    android:lines="1"
+                                    android:maxLength="4"
+                                    android:textColor="@color/gray_text"
+                                    android:textColorHint="@color/divider_color"
+                                    android:textSize="@dimen/form_text_size"
+                                    android:theme="@style/MyEditText"
+                                    app:font="@{@string/regular}"/>
+                        </LinearLayout>
+                    </LinearLayout>
+
+                </LinearLayout>
+
+            </LinearLayout>
+        </ScrollView>
+
+        <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="45dp"
+                android:background="@color/colorAccent"
+                android:orientation="horizontal">
+
+            <TextView
+                    android:onClick="@{()->activity.onPayment(model)}"
+                    android:id="@+id/tvCountryName"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_centerInParent="true"
+                    android:lines="1"
+                    android:gravity="center"
+                    android:text="@string/pay_now"
+                    android:textColor="@color/white"
+                    android:textSize="16sp"
+                    app:font="@{@string/bold}"/>
+
+        </RelativeLayout>
+    </LinearLayout>
+</layout>

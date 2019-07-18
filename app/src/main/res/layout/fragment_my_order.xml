@@ -1,0 +1,17 @@
+<layout>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    tools:context="com.fazza.fazzauser.view.fragment.MyOrderFragment">
+
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/recyclerView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:padding="10dp" />
+
+</RelativeLayout>
+</layout>

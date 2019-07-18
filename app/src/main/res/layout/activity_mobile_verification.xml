@@ -1,0 +1,182 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout>
+
+    <data>
+
+        <variable
+            name="activity"
+            type="app.com.maksab.view.activity.MobileVerificationActivity" />
+
+        <variable
+            name="model"
+            type="app.com.maksab.view.viewmodel.MobileModel" />
+    </data>
+
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/bg_login"
+        android:orientation="vertical"
+        android:weightSum="1"
+        tools:context="com.fazza.fazzauser.view.activity.LoginActivity">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="0.3"
+                android:gravity="center">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="40dp"
+                    android:layout_marginRight="40dp"
+                    android:orientation="vertical"
+                    android:gravity="center">
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="20dp"
+                        android:src="@drawable/logo_big" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/verification_code"
+                        app:font="@{@string/bold}"
+                        android:textColor="@color/colorPrimaryDark"
+                        android:textSize="25sp" />
+
+                    <TextView
+                        android:layout_marginTop="10sp"
+                        android:id="@+id/number"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/verification_code_msg"
+                        app:font="@{@string/bold}"
+                        android:textColor="@color/colorPrimaryDark"
+                        android:textSize="14sp" />
+
+
+                    <EditText
+                        android:layout_marginTop="10dp"
+                        android:layout_marginBottom="10dp"
+                        android:id="@+id/edtOTP"
+                        android:layout_width="match_parent"
+                        android:layout_height="40sp"
+                        android:imeOptions="actionDone"
+                        android:inputType="text"
+                        android:text="@={model.otp}"
+                        android:gravity="center"
+                        android:hint="@string/hint_otp"
+                        android:lines="1"
+                        android:maxLength="50"
+                        android:background="@drawable/button_grey_corner"
+                        android:textColor="@color/black"
+                        android:textColorHint="@color/divider_color"
+                        android:textSize="@dimen/form_text_size"
+                        app:font="@{@string/regular}" />
+
+                        <!--<android.support.design.widget.TextInputLayout
+                            android:id="@+id/otpInputLayout"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_centerVertical="true"
+                            android:layout_marginLeft="16dp"
+                            android:layout_marginRight="16dp"
+                            android:layout_marginTop="10dp"
+                            android:textColorHint="@color/divider_color"
+                            >
+
+
+
+                            <EditText
+                                android:id="@+id/edtOTP"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:drawablePadding="16dp"
+                                android:hint="@string/hint_otp"
+                                android:imeOptions="actionNext"
+                                android:drawableLeft="@drawable/phone3x"
+                                android:inputType="textEmailAddress"
+                                android:text="@={model.otp}"
+                                android:lines="1"
+                                android:maxLength="50"
+                                android:textColor="@color/gray_text"
+                                android:textColorHint="@color/divider_color"
+                                android:textSize="@dimen/form_text_size"
+                                android:theme="@style/MyEditText"
+                                app:font="@{@string/regular}"
+                                />
+                        </android.support.design.widget.TextInputLayout>-->
+
+                        <Button
+                            android:onClick="@{()->activity.onClickSendOTP(model)}"
+                            android:layout_marginTop="5dp"
+                            android:layout_width="match_parent"
+                            android:layout_height="@dimen/button_height_size"
+                            android:background="@drawable/button_blue_corner"
+                            android:text="@string/label_submit"
+                            android:textColor="@color/white"
+                            android:textSize="14dp"
+                            app:font="@{@string/regular}"/>
+
+
+                    <TextView
+                        android:layout_marginTop="10sp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/didnt_get_otp"
+                        app:font="@{@string/bold}"
+                        android:textColor="@color/colorPrimaryDark"
+                        android:textSize="14sp" />
+
+                    <LinearLayout
+                        android:layout_marginTop="5dp"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:orientation="horizontal">
+
+                        <Button
+                            android:id="@+id/resendCode"
+                            android:onClick="@{()->activity.onClickResendOTP()}"
+                            android:paddingStart="10dp"
+                            android:paddingEnd="10dp"
+                            android:layout_width="wrap_content"
+                            android:layout_height="40dp"
+                            android:background="@drawable/button_grey_corner"
+                            android:text="@string/resend_otp"
+                            android:textColor="@color/black"
+                            android:textSize="14sp"
+                            app:font="@{@string/regular}"/>
+
+                        <TextView
+                            android:id="@+id/timer"
+                            android:layout_marginStart="10dp"
+                            android:layout_marginEnd="10dp"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/in"
+                            app:font="@{@string/regular}"
+                            android:textColor="@color/black"
+                            android:textSize="16sp" />
+
+                    </LinearLayout>
+
+
+                </LinearLayout>
+            </LinearLayout>
+        </LinearLayout>
+
+    </LinearLayout>
+</layout>

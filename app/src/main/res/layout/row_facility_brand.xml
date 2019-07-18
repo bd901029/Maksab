@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <variable
+            name="adapter"
+            type="app.com.maksab.view.adapter.FacilityBrandAdapter" />
+
+        <variable
+            name="model"
+            type="app.com.maksab.api.dao.BrandDetailsResponse.FacilityList" />
+    </data>
+
+    <LinearLayout
+        android:padding="5dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:onClick="@{()->adapter.onItemClick(model)}"
+        android:orientation="horizontal"
+        android:gravity="center"
+        >
+
+        <ImageView
+            android:id="@+id/image"
+            android:layout_width="22dp"
+            android:layout_height="22dp"
+            android:scaleType="fitXY"
+            app:imageUrl="@{model.facilityImg}" />
+
+        <TextView
+            android:id="@+id/storeNameTxt"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:lines="2"
+            android:padding="2dp"
+            android:text="@{model.facilityName}"
+            android:textColor="@color/black"
+            android:textSize="12sp"
+            app:font="@{@string/regular}" />
+
+    </LinearLayout>
+
+</layout>

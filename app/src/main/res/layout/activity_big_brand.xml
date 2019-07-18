@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="activity"
+            type="app.com.maksab.view.activity.BigBrandActivity" />
+
+        <!--<variable
+            name="model"
+            type="app.com.maksab.view.viewmodel.ForgotModel" />-->
+    </data>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/light_gray"
+        android:clickable="true"
+        android:orientation="vertical"
+        tools:context="com.borrow.android.view.fragment.SavedFragment">
+
+        <RelativeLayout
+            android:id="@+id/header"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:background="@color/white"
+            android:padding="03dp">
+
+            <ImageView
+                android:id="@+id/back"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_alignParentStart="true"
+                android:layout_margin="5dp"
+                android:onClick="@{()->activity.onBackPressed()}"
+                android:src="@drawable/ic_chevron" />
+
+            <ImageView
+                android:layout_margin="5dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:layout_centerVertical="true"
+                android:src="@drawable/logo_small"/>
+
+        </RelativeLayout>
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/recyclerViewAlphabet"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/colorAccent">
+
+        </android.support.v7.widget.RecyclerView>
+
+        <android.support.v4.widget.SwipeRefreshLayout
+            android:id="@+id/swifeRefresh"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="6dp"
+            >
+
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/recyclerView"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                />
+        </android.support.v4.widget.SwipeRefreshLayout>
+
+    </LinearLayout>
+</layout>

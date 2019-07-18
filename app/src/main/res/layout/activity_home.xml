@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout>
+
+    <android.support.v4.widget.DrawerLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:id="@+id/drawer"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fitsSystemWindows="true"
+        tools:openDrawer="start">
+
+        <include
+            android:id="@+id/appBarLayout"
+            layout="@layout/app_bar_home"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_gravity="start"
+            android:background="#EFEDF8"
+            android:fitsSystemWindows="true"
+            android:orientation="vertical">
+
+            <include
+                android:id="@+id/appBarHeader"
+                layout="@layout/nav_header_home" />
+
+            <android.support.v4.widget.NestedScrollView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:fillViewport="true"
+                >
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical">
+
+
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/recyclerView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/white"/>
+
+                <LinearLayout
+                    android:layout_marginTop="10dp"
+                    android:layout_marginBottom="10dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:background="@color/white">
+
+                    <LinearLayout
+                        android:id="@+id/llCountryLanguage"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center_vertical"
+                        android:orientation="horizontal"
+                        android:layout_marginTop="4dp"
+                        android:layout_marginBottom="4dp"
+                        android:padding="8dp">
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_weight="1"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="16dp"
+                            android:lines="1"
+                            android:text="@string/country_languages"
+                            app:font="@{@string/regular}"
+                            android:textColor="@color/black"
+                            android:textSize="16sp" />
+
+                        <ImageView
+                            android:visibility="visible"
+                            android:id="@+id/countryFlag"
+                            android:layout_width="50dp"
+                            android:layout_height="30dp"
+                            android:src="@drawable/logo_small"
+                            />
+
+                    </LinearLayout>
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="0.5sp"
+                        android:background="@color/divider_color"/>
+
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/recyclerView2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
+                </LinearLayout>
+
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/recyclerView3"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/white"/>
+
+                </LinearLayout>
+            </android.support.v4.widget.NestedScrollView>
+
+        </LinearLayout>
+    </android.support.v4.widget.DrawerLayout>
+</layout>

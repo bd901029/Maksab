@@ -1,0 +1,321 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <variable
+                name="activity"
+                type="app.com.maksab.view.activity.BrandDetailActivity"/>
+
+        <variable
+                name="model"
+                type="app.com.maksab.api.dao.BrandDetailsResponse.BrandDetails"/>
+    </data>
+
+    <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+
+        <android.support.v4.widget.NestedScrollView
+                android:id="@+id/NestedScrollView"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_below="@id/recyclerView"
+                android:fillViewport="true">
+
+            <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="#EEEEEE"
+                    android:orientation="vertical">
+
+                <RelativeLayout
+                        android:id="@+id/elSlidesPager"
+                        android:layout_width="match_parent"
+                        android:layout_height="150dp">
+
+
+                    <ProgressBar
+                            android:id="@+id/progressBar2"
+                            android:layout_width="23dp"
+                            android:layout_height="23dp"
+                            android:layout_centerInParent="true"/>
+
+                    <android.support.v4.view.ViewPager
+                            xmlns:android="http://schemas.android.com/apk/res/android"
+                            android:id="@+id/imageSlider"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                    />
+
+                    <me.relex.circleindicator.CircleIndicator
+                            android:visibility="gone"
+                            android:id="@+id/indicator"
+                            android:layout_width="wrap_content"
+                            android:layout_height="48dp"
+                            app:ci_drawable="@drawable/circleindicator_round"
+                            android:layout_alignParentBottom="true"
+                            android:layout_centerHorizontal="true"
+
+                    />
+
+                    <RelativeLayout
+                            android:id="@+id/header"
+                            android:layout_width="match_parent"
+                            android:layout_height="50dp"
+                            android:padding="03dp">
+
+                        <ImageView
+                                android:id="@+id/back"
+                                android:layout_width="wrap_content"
+                                android:layout_height="match_parent"
+                                android:layout_alignParentStart="true"
+                                android:onClick="@{()->activity.onBackPressed()}"
+                                android:src="@drawable/ic_chevron"/>
+
+                        <TextView
+                                android:id="@+id/title_tv"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_centerInParent="true"
+                                android:layout_weight="1"
+                                android:text="@string/brand_detail"
+                                android:textColor="@color/white"
+                                android:textSize="16sp"
+                                android:textStyle="bold"
+                                app:font="@{@string/regular}"/>
+
+                    </RelativeLayout>
+
+                    <ImageView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentBottom="true"
+                            android:scaleType="centerInside"
+                    android:src="@drawable/maksab_pattern_white"/>
+
+                    <ImageView
+                            android:layout_width="75dp"
+                            android:layout_height="75dp"
+                            android:layout_alignParentBottom="true"
+                            android:layout_margin="10dp"
+                            android:scaleType="fitXY"
+                            app:imageUrl="@{model.brandImg}"
+                            android:id="@+id/imageView2"/>
+
+
+                    <TextView
+                            android:visibility="gone"
+                            android:layout_margin="10dp"
+                            android:id="@+id/imgCount"
+                            android:layout_alignParentBottom="true"
+                            android:layout_alignParentEnd="true"
+                            android:layout_width="20dp"
+                            android:layout_height="wrap_content"
+                            app:font="@{@string/bold}"
+                            android:textStyle="bold"
+                            android:textSize="16sp"
+                            android:text="6/10"/>
+
+                </RelativeLayout>
+
+                <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:background="#EEEEEE"
+                        android:orientation="vertical"
+                        android:paddingStart="10dp"
+                        android:paddingEnd="10dp"
+                        android:paddingBottom="10dp">
+
+
+                    <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical"
+                            android:paddingLeft="10dp"
+                            android:paddingRight="10dp"
+                            android:paddingTop="10dp"
+                            android:visibility="visible">
+
+                        <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:maxLines="2"
+                                android:text="@{model.brandName}"
+                                android:textColor="@color/black"
+                                android:textSize="20sp"
+                                app:font="@{@string/regular}"/>
+
+                        <TextView
+                                android:id="@+id/brandDescription"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:textColor="@color/gray_dark"
+                                android:textSize="14sp"
+                                app:font="@{@string/regular}"/>
+
+
+                        <LinearLayout
+                                android:layout_marginTop="10dp"
+                                android:layout_width="match_parent"
+                                android:layout_height="33dp"
+                                android:orientation="horizontal">
+
+                            <LinearLayout
+                                    android:onClick="@{()->activity.onClickViewMenu()}"
+                                    android:id="@+id/viewMenu"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="30dp"
+                                    android:gravity="center"
+                                    android:orientation="horizontal"
+                                    android:background="@drawable/button_blue_corner"
+                            >
+
+                                <TextView
+                                        android:layout_marginStart="10dp"
+                                        android:layout_marginEnd="10dp"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:lines="1"
+                                        android:text="@string/view_menu"
+                                        android:textColor="@color/white"
+                                        android:textSize="12sp"
+                                        app:font="@{@string/regular}"/>
+                            </LinearLayout>
+
+                            <LinearLayout
+                                    android:onClick="@{()->activity.onClickFavorites()}"
+                                    android:layout_marginStart="10dp"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="30dp"
+                                    android:gravity="center"
+                                    android:orientation="horizontal"
+                                    android:background="@drawable/button_blue_corner">
+
+                                <TextView
+                                        android:id="@+id/addWishlist"
+                                        android:layout_marginStart="10dp"
+                                        android:layout_marginEnd="10dp"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:lines="1"
+                                        android:text="@string/add_to_wishlist"
+                                        android:textColor="@color/white"
+                                        android:textSize="12sp"
+                                        app:font="@{@string/regular}"/>
+
+                            </LinearLayout>
+
+                        </LinearLayout>
+                    </LinearLayout>
+
+
+                    <LinearLayout
+                            android:id="@+id/llAvailableFacilities"
+                            android:layout_marginTop="10dp"
+                            android:padding="10dp"
+                            android:background="@drawable/bg_corner_white"
+                            android:visibility="visible"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical">
+
+                        <TextView
+                                android:layout_margin="5dp"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:lines="1"
+                                android:text="@string/available_facilities"
+                                android:textSize="14dp"
+                                android:textColor="@color/black"
+                                app:font="@{@string/bold}"/>
+
+                        <android.support.v7.widget.RecyclerView
+                                android:id="@+id/recyclerViewFacilitys"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"/>
+
+                    </LinearLayout>
+
+
+                    <LinearLayout
+                            android:id="@+id/llOfferBy"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="10dp"
+                            android:orientation="vertical"
+                            android:visibility="visible">
+
+
+                        <LinearLayout
+                                android:id="@+id/llRedeem"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:orientation="vertical"
+                                android:background="@drawable/bg_corner_white"
+                                android:visibility="visible">
+                            <TextView
+                                    android:id="@+id/offerBy"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:lines="1"
+                                    android:padding="10dp"
+                                    android:text="@string/offers_by"
+                                    android:textColor="@color/black"
+                                    app:font="@{@string/bold}"/>
+
+
+                            <android.support.v7.widget.RecyclerView
+                                    android:id="@+id/recyclerViewOffers"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent"/>
+
+                        </LinearLayout>
+
+                        <LinearLayout
+                                android:layout_marginTop="10dp"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:orientation="vertical"
+                                android:visibility="visible">
+                            <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:lines="1"
+                                    android:padding="10dp"
+                                    android:text="@string/vendor_location"
+                                    android:textColor="@color/black"
+                                    app:font="@{@string/bold}"/>
+
+
+                            <android.support.v7.widget.RecyclerView
+                                    android:id="@+id/recyclerViewLocations"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"/>
+
+                        </LinearLayout>
+
+
+                    </LinearLayout>
+
+                    <!-- <fragment
+                         android:layout_width="1dp"
+                         android:layout_height="1dp"
+                         android:id="@+id/current_location"
+                         android:name="com.google.android.gms.maps.SupportMapFragment"
+                         app:layout_constraintLeft_toLeftOf="parent"
+                         app:layout_constraintRight_toRightOf="parent"
+                         app:layout_constraintTop_toBottomOf="@+id/toolbar"/>-->
+
+
+                </LinearLayout>
+            </LinearLayout>
+        </android.support.v4.widget.NestedScrollView>
+
+    </LinearLayout>
+</layout>

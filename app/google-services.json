@@ -1,0 +1,63 @@
+{
+  "project_info": {
+    "project_number": "901106292321",
+    "firebase_url": "https://maksab-214811.firebaseio.com",
+    "project_id": "maksab-214811",
+    "storage_bucket": "maksab-214811.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:901106292321:android:2db6a7a7316e9d56",
+        "android_client_info": {
+          "package_name": "app.com.maksab"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "901106292321-dila4ij9g7dpl6ji5a8en7v8f10riuj9.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "app.com.maksab",
+            "certificate_hash": "69ed76f7478b364bc1483fc988980e2e3cdd8517"
+          }
+        },
+        {
+          "client_id": "901106292321-uqccufb3nvlotln73l9f6pi1ihkibh25.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "app.com.maksab",
+            "certificate_hash": "51c3a3fb8d35e4c32a5ca24fcd01144b5e07998c"
+          }
+        },
+        {
+          "client_id": "901106292321-dkh27s85ivsgs5mf20g71qfoqaou2cnr.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBYbZk4NSBI1FddOfel4lm3-QCz9IQdQAQ"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "901106292321-dkh27s85ivsgs5mf20g71qfoqaou2cnr.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

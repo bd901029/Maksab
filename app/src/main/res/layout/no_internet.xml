@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="5dip"
+    android:background="#00000000"
+    android:orientation="vertical">
+
+    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dip"
+        android:background="@drawable/alert_diolog_bg_white"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="start|left"
+            android:padding="12dip"
+            android:text="@string/alert"
+            android:textColor="@color/colorAccent"
+            android:textSize="17sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/msg"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/title"
+            android:padding="14dip"
+            android:gravity="center"
+            android:textSize="14sp"
+            android:text="@string/error_no_internet"
+            android:textColor="@color/colorAccent" />
+
+        <LinearLayout
+            android:id="@+id/linLayBottom"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/msg"
+            android:gravity="right|end"
+            android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/okBtn"
+                style="@style/Widget.AppCompat.Button.Borderless"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/ok"
+                android:textSize="17dp"
+                android:textColor="@color/colorPrimary" />
+        </LinearLayout>
+
+    </RelativeLayout>
+</RelativeLayout>

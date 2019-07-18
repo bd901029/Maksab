@@ -1,0 +1,281 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout>
+    <data>
+        <variable
+            name="activity"
+            type="app.com.maksab.view.activity.CountryLanguageActivity" />
+
+        <!--<variable
+            name="model"
+            type="app.com.minimall.view.viewmodel.LoginModel" />-->
+    </data>
+
+    <LinearLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/white"
+        android:orientation="vertical">
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_weight="1"
+            android:layout_height="match_parent">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical" >
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="5dp"
+                    android:orientation="vertical">
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+                        <ImageView
+                            android:id="@+id/back"
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:layout_alignParentStart="true"
+                            android:padding="10dp"
+                            android:onClick="@{()->activity.onBackPressed()}"
+                            android:src="@drawable/ic_chevron" />
+
+                        <TextView
+                            android:id="@+id/pageName"
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:layout_centerInParent="true"
+                            android:text="@string/select_country_city"
+                            android:textColor="@color/gray_dark"
+                            android:textSize="16sp"
+                            app:font="@{@string/regular}" />
+
+                    </RelativeLayout>
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="0.5dp"
+                        android:background="@color/divider_color" />
+
+                    <ImageView
+                        android:id="@+id/onMap"
+                        android:layout_margin="10dp"
+                        android:layout_width="match_parent"
+                        android:layout_height="150dp"
+                        android:src="@drawable/world_map3x" />
+
+
+                    <RelativeLayout
+                        android:visibility="gone"
+                        android:id="@+id/llCountry"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+                        <android.support.v7.widget.RecyclerView
+                            android:layout_margin="15dp"
+                            android:id="@+id/recyclerView"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            />
+                    </RelativeLayout>
+
+
+
+                    <LinearLayout
+                        android:id="@+id/llLanguage"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="15dp"
+                        android:orientation="vertical"
+                        android:visibility="gone">
+
+                        <LinearLayout
+                            android:visibility="gone"
+                            android:id="@+id/lnEnglish"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:gravity="center_vertical"
+                            android:orientation="horizontal">
+
+                            <ImageView
+                                android:layout_width="35dp"
+                                android:layout_height="35dp"
+                                android:src="@drawable/en" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:lines="1"
+                                android:layout_margin="3dp"
+                                android:text="@string/english"
+                                android:textColor="@color/black"
+                                android:textSize="15dp"
+                                app:font="@{@string/regular}" />
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:gravity="end"
+                                android:orientation="horizontal">
+
+                                <ImageView
+                                    android:visibility="gone"
+                                    android:id="@+id/checkEn"
+                                    android:padding="5dp"
+                                    android:layout_width="25dp"
+                                    android:layout_height="25dp"
+                                    android:src="@drawable/check" />
+                            </LinearLayout>
+
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:visibility="gone"
+                            android:id="@+id/lnArabic"
+                            android:layout_marginTop="10dp"
+                            android:layout_marginBottom="10dp"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:gravity="center_vertical"
+                            android:orientation="horizontal">
+
+                            <ImageView
+                                android:layout_width="35dp"
+                                android:layout_height="35dp"
+                                android:src="@drawable/ar" />
+
+                           <!-- <RelativeLayout
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:padding="7sp"
+                                android:background="@drawable/circle">
+
+                                <TextView
+                                    android:layout_centerInParent="true"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text=" ع‎ "
+                                    android:textColor="@color/black"
+                                    android:textSize="17sp"
+                                    android:gravity="center" />
+
+                            </RelativeLayout>-->
+
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:lines="1"
+                                android:layout_margin="3dp"
+                                android:text="@string/arabic"
+                                android:textColor="@color/black"
+                                android:textSize="15dp"
+                                app:font="@{@string/regular}" />
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:gravity="end"
+                                android:orientation="horizontal">
+
+                                <ImageView
+                                    android:visibility="gone"
+                                    android:id="@+id/checkAr"
+                                    android:padding="5dp"
+                                    android:layout_width="25dp"
+                                    android:layout_height="25dp"
+                                    android:src="@drawable/check" />
+                            </LinearLayout>
+
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:visibility="gone"
+                            android:id="@+id/lnTurkce"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:gravity="center_vertical"
+                            android:orientation="horizontal">
+
+                            <ImageView
+                                android:layout_width="35dp"
+                                android:layout_height="35dp"
+                                android:src="@drawable/tu" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:lines="1"
+                                android:layout_margin="3dp"
+                                android:text="@string/turkce"
+                                android:textColor="@color/black"
+                                android:textSize="15dp"
+                                app:font="@{@string/regular}" />
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:gravity="end"
+                                android:orientation="horizontal">
+
+                                <ImageView
+                                    android:visibility="gone"
+                                    android:id="@+id/checkTu"
+                                    android:padding="5dp"
+                                    android:layout_width="25dp"
+                                    android:layout_height="25dp"
+                                    android:src="@drawable/check" />
+                            </LinearLayout>
+
+                        </LinearLayout>
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+        </ScrollView>
+
+        <Button
+            android:id="@+id/btnNext"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:background="@color/colorPrimaryDark"
+            android:text="@string/next"
+            android:textColor="@color/white"
+            android:textSize="16sp"
+            app:font="@{@string/regular}"/>
+        <LinearLayout
+            android:id="@+id/llSignup"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <Button
+                android:id="@+id/btnCencel"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="50dp"
+                android:background="@color/colorAccent"
+                android:text="@string/cancel"
+                android:textColor="@color/white"
+                android:textSize="16sp"
+                app:font="@{@string/regular}"/>
+            <Button
+                android:id="@+id/btnDone"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="50dp"
+                android:background="@color/colorPrimaryDark"
+                android:text="@string/done"
+                android:textColor="@color/white"
+                android:textSize="16sp"
+                app:font="@{@string/regular}"/>
+        </LinearLayout>
+
+
+    </LinearLayout>
+
+</layout>

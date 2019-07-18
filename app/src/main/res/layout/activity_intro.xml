@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout>
+    <data>
+        <variable
+            name="activity"
+            type="app.com.maksab.view.activity.IntroActivity" />
+        <!--<variable
+            name="model"
+            type="app.com.minimall.view.viewmodel.LoginModel" />-->
+    </data>
+
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/bg_login"
+        android:orientation="vertical"
+        android:weightSum="1"
+        tools:context="app.com.minimall.view.activity.IntroActivity">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="25dp"
+            android:layout_marginEnd="25dp"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/logo_big" />
+
+            <TextView
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="10dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/label_intro_msg"
+                android:textColor="@color/gray_text"
+                android:textSize="16sp"
+                app:font="@{@string/regular}" />
+
+            <Button
+                android:layout_marginStart="15dp"
+                android:layout_marginEnd="15dp"
+                android:onClick="@{()->activity.onClickRegister()}"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/button_height_size"
+                android:background="@drawable/button_primary_dark"
+                android:text="@string/label_register_now"
+                android:textColor="@color/white"
+                android:textSize="16sp"
+                app:font="@{@string/regular}" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="25dp"
+            android:layout_marginEnd="25dp"
+            android:layout_marginBottom="25dp"
+            android:gravity="center"
+            android:orientation="horizontal">
+
+            <Button
+                android:onClick="@{()->activity.onClickLater()}"
+                android:layout_width="0dp"
+                android:layout_height="@dimen/button_height_size"
+                android:layout_marginEnd="10dp"
+                android:layout_weight="1"
+                android:background="@drawable/round_corner_border"
+                android:text="@string/label_later"
+                android:textColor="@color/gray_text"
+                android:textSize="16sp"
+                app:font="@{@string/regular}" />
+
+            <Button
+                android:onClick="@{()->activity.onClickSignIn()}"
+                android:layout_width="0dp"
+                android:layout_height="@dimen/button_height_size"
+                android:layout_marginStart="10dp"
+                android:layout_weight="1"
+                android:background="@drawable/button_blue_corner"
+                android:text="@string/label_signin"
+                android:textColor="@color/white"
+                android:textSize="16sp"
+                app:font="@{@string/regular}" />
+
+        </LinearLayout>
+
+    </LinearLayout>
+</layout>

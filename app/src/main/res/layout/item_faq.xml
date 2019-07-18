@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout>
+    <data>
+        <variable
+            name="adapter"
+            type="app.com.maksab.view.adapter.FaqAdapter"/>
+
+        <variable
+            name="model"
+            type="app.com.maksab.view.viewmodel.FaqModel.FaqList"/>
+    </data>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_margin="10dp">
+
+    <LinearLayout
+        android:id="@+id/card_"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/rectangle_yellow"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:id="@+id/top_ll"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center"
+            android:padding="10dp">
+
+            <TextView
+                android:id="@+id/group_title"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:textSize="16sp"
+                android:layout_weight="1"
+                android:text="@{model.faqTitle}"
+                android:textColor="@color/black"
+                android:textStyle="normal"/>
+
+            <ImageView
+                android:id="@+id/faq_iv"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:src="@drawable/faq_closed"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/bottom_ll"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_below="@+id/card_"
+            android:visibility="gone"
+            android:padding="10dp">
+
+            <TextView
+                android:id="@+id/child_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/black"
+                android:textSize="14sp"
+                android:text="@{model.faqDescription}"
+                android:textStyle="normal"/>
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+
+
+
+
+</RelativeLayout>
+</layout>

@@ -1,0 +1,220 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="5dip"
+        android:background="#00000000"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="5dp"
+            android:background="@drawable/alert_diolog_bg_white"
+            android:orientation="vertical"
+            android:gravity="center">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_margin="10dp"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:text="@string/send_as_gift"
+                    android:textColor="@color/colorAccent"
+                    android:textSize="16dp"
+                    app:font="@{@string/regular}" />
+
+                <!--<View
+                    android:layout_width="0.4dp"
+                    android:layout_height="match_parent"
+                    android:background="@color/colorPrimary" />-->
+
+                <ImageView
+                    android:visibility="gone"
+                    android:id="@+id/close"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:padding="14dp"
+                    app:srcCompat="@drawable/ic_close_white" />
+
+            </LinearLayout>
+
+            <!--<RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:gravity="center"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/txCancel"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="10dp"
+                    android:gravity="center"
+                    android:text="@string/redeem_now"
+                    android:textColor="@color/colorAccent"
+                    android:textSize="16dp"
+                    app:font="@{@string/bold}" />
+
+
+                <ImageView
+                    android:id="@+id/dialogClose"
+                    android:padding="5dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_alignParentEnd="true"
+                    android:src="@drawable/ic_close_white"/>
+
+
+            </RelativeLayout>-->
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="0.5dp"
+                android:background="@color/divider_color" />
+
+        <LinearLayout
+            android:layout_marginStart="20dp"
+            android:layout_marginEnd="20dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:orientation="vertical">
+
+
+        <LinearLayout
+            android:layout_marginTop="12dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/circle_grey">
+
+                <ImageView
+                    android:layout_margin="6dp"
+                    android:id="@+id/image"
+                    android:layout_width="70dp"
+                    android:layout_height="70dp"
+                    android:scaleType="centerInside"
+                    android:src="@drawable/cash"
+                    />
+
+            </RelativeLayout>
+
+            <TextView
+                android:id="@+id/name"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_margin="8dp"
+                android:lines="2"
+                android:gravity="center_vertical"
+                android:text="Love gifting? Gift this Deal to your favorite persion!"
+                android:textColor="@color/black"
+                android:textSize="16dp"
+                app:font="@{@string/regular}" />
+            
+        </LinearLayout>
+
+            <TextView
+                android:id="@+id/giftMassage"
+                android:layout_marginTop="10dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:lines="2"
+                android:text="You've send 9 already, so you can send a further -4 offer...."
+                android:textSize="15dp"
+                app:font="@{@string/regular}" />
+
+            <TextView
+                android:layout_marginTop="10dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:lines="1"
+                android:text="You want to ping 1 offer"
+                android:textColor="@color/black"
+                android:textSize="16dp"
+                app:font="@{@string/regular}" />
+
+            <android.support.design.widget.TextInputLayout
+                android:id="@+id/nameInputLayout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginTop="10dp"
+                android:textColorHint="@color/divider_color"
+                >
+
+                <EditText
+                        android:id="@+id/etName"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:drawablePadding="16dp"
+                    android:hint="@string/name"
+                    android:imeOptions="actionNext"
+                    android:inputType="text"
+                    android:lines="1"
+                    android:maxLength="50"
+                    android:textColor="@color/gray_text"
+                    android:textColorHint="@color/divider_color"
+                    android:textSize="@dimen/form_text_size"
+                    android:theme="@style/MyEditText"
+                    app:font="@{@string/regular}"
+                    />
+            </android.support.design.widget.TextInputLayout>
+
+            <android.support.design.widget.TextInputLayout
+                android:id="@+id/emailInputLayout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginTop="10dp"
+                android:textColorHint="@color/divider_color"
+                >
+
+                <EditText
+                    android:id="@+id/etEmail"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:drawablePadding="16dp"
+                    android:hint="@string/hint_email"
+                    android:imeOptions="actionDone"
+                    android:inputType="text"
+                    android:lines="1"
+                    android:maxLength="50"
+                    android:textColor="@color/gray_text"
+                    android:textColorHint="@color/divider_color"
+                    android:textSize="@dimen/form_text_size"
+                    android:theme="@style/MyEditText"
+                    app:font="@{@string/regular}"
+
+                    />
+            </android.support.design.widget.TextInputLayout>
+
+            <Button
+                android:id="@+id/btSubmit"
+               android:layout_margin="15dp"
+                android:layout_width="wrap_content"
+                android:layout_height="35dp"
+                android:text="@string/label_submit"
+                android:textSize="12dp"
+                android:textColor="@color/white"
+                android:background="@drawable/button_blue_corner"/>
+
+        </LinearLayout>
+
+        </LinearLayout>
+
+    </RelativeLayout>
+
+</layout>

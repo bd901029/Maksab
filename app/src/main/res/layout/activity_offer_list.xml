@@ -1,0 +1,144 @@
+<layout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <variable
+            name="activity"
+            type="app.com.maksab.view.activity.OfferListActivity" />
+
+        <!--<variable
+            name="model"
+            type="com.app.rokape.model.LoginModel" />-->
+    </data>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="#EEEEEE"
+            android:orientation="vertical">
+
+            <RelativeLayout
+                android:id="@+id/titleLayout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/white">
+
+                <ImageView
+                    android:onClick="@{()->activity.onClickBack()}"
+                    android:layout_alignParentStart="true"
+                    android:id="@+id/back"
+                    android:layout_width="wrap_content"
+                    android:layout_height="50dp"
+                    android:src="@drawable/ic_chevron" />
+
+                    <ImageView
+                        android:onClick="@{()->activity.getOfferFilter()}"
+                        android:layout_alignParentEnd="true"
+                        android:padding="10dp"
+                        android:id="@+id/filter"
+                        android:layout_width="50dp"
+                        android:layout_height="50dp"
+                        android:src="@drawable/filter" />
+
+                <TextView
+                    android:id="@+id/pageTitle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerInParent="true"
+                    android:text="@string/offer_list" />
+
+            </RelativeLayout>
+
+
+            <android.support.v7.widget.RecyclerView
+                android:background="@color/white"
+                android:id="@+id/recyclerView"
+                android:layout_width="match_parent"
+                android:layout_height="75dp">
+
+            </android.support.v7.widget.RecyclerView>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/catName"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="match_parent"
+                    android:gravity="center_vertical"
+                    android:layout_marginStart="10dp"
+                    android:text="@string/view_all"/>
+
+                <LinearLayout
+                    android:onClick="@{()->activity.onClickGrid()}"
+                    android:padding="10dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:orientation="horizontal">
+                    <ImageView
+                        android:id="@+id/gridImg"
+                        android:layout_width="16dp"
+                        android:layout_height="16dp"
+                        android:src="@drawable/grid_hover3x"/>
+                    <TextView
+                        android:layout_marginStart="3dp"
+                        android:id="@+id/gridText"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textSize="14dp"
+                        android:text="@string/grid"/>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:onClick="@{()->activity.onClickList()}"
+                    android:padding="10dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:orientation="horizontal">
+                    <ImageView
+                        android:id="@+id/listImg"
+                        android:layout_width="16dp"
+                        android:layout_height="16dp"
+                        android:src="@drawable/list3x"/>
+                    <TextView
+                        android:layout_marginStart="3dp"
+                        android:id="@+id/listText"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textSize="14dp"
+                        android:text="@string/list"/>
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <RelativeLayout
+                android:layout_margin="1dp"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+                <android.support.v4.widget.SwipeRefreshLayout
+                    android:id="@+id/swifeRefresh"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <android.support.v7.widget.RecyclerView
+                        android:id="@+id/recyclerViewOffer"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        />
+                </android.support.v4.widget.SwipeRefreshLayout>
+
+            </RelativeLayout>
+
+        </LinearLayout>
+
+</layout>

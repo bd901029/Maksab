@@ -1,0 +1,294 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="5dip"
+        android:background="#00000000"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="5dp"
+            android:background="@drawable/alert_diolog_bg_white"
+            android:orientation="vertical">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:gravity="center"
+                android:orientation="horizontal">
+
+
+                <TextView
+                    android:id="@+id/txDone"
+                    android:layout_centerInParent="true"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_margin="10dp"
+                    android:gravity="center"
+                    android:text="@string/search_filter"
+                    android:textColor="@color/colorAccent"
+                    android:textSize="16dp"
+                    app:font="@{@string/bold}" />
+
+                <ImageView
+                    android:id="@+id/dialogClose"
+                    android:padding="5dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_alignParentEnd="true"
+                    android:src="@drawable/ic_close_white"/>
+
+
+            </RelativeLayout>
+
+
+            <android.support.v4.widget.NestedScrollView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:fillViewport="true">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@color/white"
+                android:orientation="vertical"
+                android:padding="10dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:layout_gravity="center_vertical">
+
+                    <TextView
+                        android:id="@+id/category"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:gravity="center"
+                        android:text="@string/category"
+                        android:textSize="14dp"
+                        android:textColor="@color/black"
+                        app:font="@{@string/bold}"/>
+
+
+
+                </LinearLayout>
+
+
+                <android.support.v7.widget.RecyclerView
+                    android:id="@+id/recyclerViewCategory"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    />
+
+
+            </LinearLayout>
+
+                <View
+                    android:layout_marginTop="4dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="0.5dp"
+                    android:background="@color/gray_dark" />
+
+            <LinearLayout
+                android:layout_marginTop="5dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:layout_gravity="center_vertical">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:gravity="center"
+                        android:text="@string/price_range"
+                        android:textSize="14dp"
+                        android:textColor="@color/black"
+                        app:font="@{@string/bold}"/>
+
+
+
+                </LinearLayout>
+
+
+                <LinearLayout
+                    android:id="@+id/seekbarLayout"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    >
+
+                    <com.crystal.crystalrangeseekbar.widgets.CrystalRangeSeekbar
+                        android:id="@+id/rangeSeekbar4"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        app:corner_radius="10"
+                        app:min_value="0"
+                        app:max_value="100"
+                        app:bar_color="#EE88F7"
+                        app:bar_highlight_color="#D810EA"
+                        app:left_thumb_color="#8D0D99"
+                        app:right_thumb_color="#8D0D99"
+                        app:left_thumb_color_pressed="#56005E"
+                        app:right_thumb_color_pressed="#56005E"
+                        app:data_type="_integer"/>
+
+                    <!--app:fix_gap=""-->
+
+
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+                        <TextView
+                            android:id="@+id/priceRangeStart"
+                            android:layout_alignParentStart="true"
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:gravity="center"
+                            android:text="@string/price_range"
+                            android:textSize="14dp"
+                            android:textColor="@color/colorAccent"
+                            app:font="@{@string/bold}"/>
+
+                        <TextView
+                            android:id="@+id/priceRangeEnd"
+                            android:layout_alignParentEnd="true"
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:gravity="center"
+                            android:text="@string/price_range"
+                            android:textSize="14dp"
+                            android:textColor="@color/colorAccent"
+                            app:font="@{@string/bold}"/>
+
+                    </RelativeLayout>
+
+
+                </LinearLayout>
+
+
+
+
+            </LinearLayout>
+                <View
+                    android:layout_marginTop="4dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="0.5dp"
+                    android:background="@color/gray_dark" />
+            <LinearLayout
+                android:layout_marginTop="5dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:layout_gravity="center_vertical">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:gravity="center"
+                        android:text="@string/location"
+                        android:textSize="14dp"
+                        android:textColor="@color/black"
+                        app:font="@{@string/bold}"/>
+
+
+
+                </LinearLayout>
+
+
+                <android.support.v7.widget.RecyclerView
+                    android:id="@+id/recyclerViewLocation"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    />
+            </LinearLayout>
+                <View
+                    android:layout_marginTop="4dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="0.5dp"
+                    android:background="@color/gray_dark" />
+            <LinearLayout
+                android:id="@+id/llSortBy"
+                android:layout_marginTop="5dp"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/sortBy"
+                    android:layout_width="wrap_content"
+                    android:layout_weight="1"
+                    android:layout_height="match_parent"
+                    android:gravity="center_vertical"
+                    android:text="@string/sort_by"
+                    android:textSize="14dp"
+                    android:textColor="@color/black"
+                    app:font="@{@string/bold}"/>
+
+                <ImageView
+                    android:layout_marginEnd="5sp"
+                    android:layout_width="20dp"
+                    android:layout_height="match_parent"
+                    android:src="@drawable/ic_arrow_drop_down"/>
+
+            </LinearLayout>
+
+
+
+                <LinearLayout
+                    android:layout_marginTop="10dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:orientation="horizontal">
+
+                    <Button
+                        android:id="@+id/reset"
+                        android:layout_marginEnd="10dp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="35dp"
+                        android:textColor="@color/white"
+                        android:textSize="14sp"
+                        android:background="@drawable/button_blue_corner"
+                        android:text="@string/reset"/>
+
+                    <Button
+                        android:layout_marginStart="10dp"
+                        android:id="@+id/search"
+                        android:layout_width="wrap_content"
+                        android:layout_height="35dp"
+                        android:textColor="@color/white"
+                        android:textSize="14sp"
+                        android:background="@drawable/button_primary_dark"
+                        android:text="@string/search"/>
+
+
+
+
+                </LinearLayout>
+
+            </LinearLayout>
+            </android.support.v4.widget.NestedScrollView>
+
+        </LinearLayout>
+
+    </RelativeLayout>
+
+</layout>

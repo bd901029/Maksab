@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout>
+
+    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="5dip"
+        android:background="#00000000"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="5dp"
+            android:background="@drawable/alert_diolog_bg_white"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/two_round_bg"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_margin="10dp"
+                    android:layout_weight="1"
+                    android:gravity="center_vertical"
+                    android:text="@string/otp"
+                    android:textColor="@color/white"
+                    android:textSize="16dp"
+                    app:font="@{@string/bold}" />
+                <View
+                    android:layout_width="0.4dp"
+                    android:layout_height="match_parent"
+                    android:background="@color/white"/>
+                <ImageView
+                    android:id="@+id/close"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:padding="14dp"
+                    app:srcCompat="@drawable/ic_close_white" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:orientation="vertical"
+                android:padding="20dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="20dp"
+                    android:orientation="horizontal">
+
+                    <android.support.design.widget.TextInputLayout
+                        android:id="@+id/mobileInputLayout"
+                        android:layout_width="match_parent"
+                        android:layout_weight="1"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:layout_marginTop="10dp"
+                        android:textColorHint="@color/divider_color">
+
+                        <EditText
+                            android:id="@+id/etOTP"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:drawableLeft="@drawable/phone3x"
+                            android:drawablePadding="16dp"
+                            android:hint="@string/otp"
+                            android:imeOptions="actionDone"
+                            android:inputType="phone"
+                            android:lines="1"
+                            android:maxLength="50"
+                            android:textColor="@color/gray_text"
+                            android:textColorHint="@color/divider_color"
+                            android:textSize="@dimen/form_text_size"
+                            android:theme="@style/MyEditText"
+                            app:font="@{@string/regular}" />
+                    </android.support.design.widget.TextInputLayout>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="bottom">
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1">
+
+                        <Button
+                            android:id="@+id/btnCancel"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:layout_margin="10dp"
+                            android:background="@drawable/button_red"
+                            android:gravity="center"
+                            android:lines="1"
+                            android:text="@string/cancel"
+                            android:textAllCaps="false"
+                            android:textColor="@color/white"
+                            android:textSize="16sp"
+                            app:font="@{@string/regular}" />
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/viewProducts"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1">
+
+                        <Button
+                            android:id="@+id/btnNext"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:layout_margin="10dp"
+                            android:background="@drawable/button_blue"
+                            android:gravity="center"
+                            android:lines="1"
+                            android:text="@string/next"
+                            android:textAllCaps="false"
+                            android:textColor="@color/white"
+                            android:textSize="16sp"
+                            app:font="@{@string/regular}" />
+                    </LinearLayout>
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+        </LinearLayout>
+    </RelativeLayout>
+
+</layout>

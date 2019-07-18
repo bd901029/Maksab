@@ -1,0 +1,208 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout>
+    <data>
+        <variable
+            name="activity"
+            type="app.com.maksab.view.activity.GiftHistoryActivity"/>
+
+        <variable
+            name="model"
+            type="app.com.maksab.api.dao.GetOrderAmount"/>
+    </data>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="#F1F1F1">
+
+    <RelativeLayout
+        android:id="@+id/header"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:background="@color/white"
+        android:padding="03dp">
+
+        <ImageView
+            android:id="@+id/back"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_alignParentStart="true"
+            android:layout_margin="5dp"
+            android:onClick="@{()->activity.onClickBack()}"
+            android:src="@drawable/ic_chevron" />
+
+        <TextView
+            android:id="@+id/title_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:layout_weight="1"
+            android:text="@string/gift_history"
+            android:textColor="@color/gray_dark" />
+
+    </RelativeLayout>
+
+    <LinearLayout
+        android:id="@+id/top_ll"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/header"
+        android:orientation="horizontal"
+        android:layout_margin="10dp">
+
+        <android.support.v7.widget.CardView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            app:cardCornerRadius="05dp"
+            android:layout_weight="1"
+            android:layout_margin="03dp"
+            app:cardBackgroundColor="@color/white">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:paddingTop="10dp"
+                android:paddingBottom="10dp"
+                android:orientation="vertical">
+
+                <ImageView
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:src="@drawable/confirm_purchase"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/total_purchase"
+                    android:textSize="12sp"
+                    android:layout_marginTop="05dp"
+                    app:font="@{@string/bold}"
+                    android:textColor="#4B4B4B" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@{model.totalPurchaseAmount}"
+                    android:layout_marginTop="05dp"
+                    app:font="@{@string/bold}"
+                    android:textSize="16sp"
+                    android:textColor="#09C39C" />
+
+
+
+            </LinearLayout>
+
+
+        </android.support.v7.widget.CardView>
+
+        <android.support.v7.widget.CardView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            app:cardCornerRadius="05dp"
+            android:layout_weight="1"
+            android:layout_marginStart="10dp"
+            android:layout_margin="03dp"
+            android:layout_marginEnd="10dp"
+            app:cardBackgroundColor="@color/white">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:paddingTop="10dp"
+            android:paddingBottom="10dp"
+            android:orientation="vertical">
+
+            <ImageView
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:src="@drawable/cash"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/redeme_offers"
+                android:textSize="12sp"
+                android:layout_marginTop="05dp"
+                app:font="@{@string/bold}"
+                android:textColor="#4B4B4B" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@{model.noOfRedeemOffers}"
+                android:layout_marginTop="05dp"
+                app:font="@{@string/bold}"
+                android:textSize="16sp"
+                android:textColor="#24B1E7" />
+
+
+
+        </LinearLayout>
+
+        </android.support.v7.widget.CardView>
+
+        <android.support.v7.widget.CardView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            app:cardCornerRadius="05dp"
+            android:layout_weight="1"
+            android:layout_margin="03dp"
+            app:cardBackgroundColor="@color/white">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:paddingTop="10dp"
+            android:paddingBottom="10dp"
+            android:orientation="vertical">
+
+            <ImageView
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:src="@drawable/investment"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/total_savings"
+                android:textSize="12sp"
+                android:layout_marginTop="05dp"
+                app:font="@{@string/bold}"
+                android:textColor="#4B4B4B" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@{model.totalSavingThisYear}"
+                android:layout_marginTop="05dp"
+                app:font="@{@string/bold}"
+                android:textSize="16sp"
+                android:textColor="#E5812C" />
+
+
+
+        </LinearLayout>
+
+        </android.support.v7.widget.CardView>
+
+    </LinearLayout>
+
+    <android.support.v4.widget.SwipeRefreshLayout
+        android:id="@+id/swifeRefresh"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/top_ll">
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/gift_history"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+    </android.support.v7.widget.RecyclerView>
+
+    </android.support.v4.widget.SwipeRefreshLayout>
+
+</RelativeLayout>
+</layout>

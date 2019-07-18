@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <variable
+            name="adapter"
+            type="app.com.maksab.view.adapter.VenderLocationAdapter" />
+
+        <variable
+            name="model"
+            type="app.com.maksab.api.dao.OfferDetailsResponse.VenderLocationList" />
+    </data>
+
+    <LinearLayout
+        android:padding="5dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:onClick="@{()->adapter.onItemClick(model)}"
+        android:orientation="horizontal"
+        android:background="#FFF"
+        android:gravity="center"
+        >
+
+        <ImageView
+            android:id="@+id/image"
+            android:layout_margin="10dp"
+            android:layout_width="25dp"
+            android:layout_height="25dp"
+            android:src="@drawable/ic_location_yellow"
+            />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center_vertical"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:lines="1"
+                android:text="@{model.venderName}"
+                android:textColor="@color/black"
+                android:textSize="16sp"
+                app:font="@{@string/regular}" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:lines="1"
+                android:text="@{model.venderLocation}"
+                android:textColor="@color/colorAccent"
+                android:textSize="14sp"
+                app:font="@{@string/regular}" />
+
+        </LinearLayout>
+
+
+
+    </LinearLayout>
+
+</layout>

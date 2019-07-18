@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout >
+
+    <data>
+        <variable
+            name="activity"
+            type="app.com.maksab.view.activity.DirectionActivity" />
+
+       <!-- <variable
+            name="model"
+            type="app.com.maksab.api.dao.BrandDetailsResponse.BrandDetails" />-->
+    </data>
+
+
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+
+
+    <fragment xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:id="@+id/driver_location_map"
+        android:layout_above="@id/driver_status_toggle_btn"
+        android:name="com.google.android.gms.maps.SupportMapFragment"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".activity.DriverDashBoardActivity" />
+
+</LinearLayout>
+
+</layout>

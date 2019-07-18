@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout>
+    <data>
+        <variable
+            name="activity"
+            type="app.com.maksab.view.activity.MyGiftsActivity"/>
+
+        <variable
+            name="model"
+            type="app.com.maksab.api.dao.GetOrderAmount"/>
+    </data>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="#F1F1F1">
+
+    <RelativeLayout
+        android:id="@+id/header"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:background="@color/white"
+        android:padding="03dp">
+
+        <ImageView
+            android:id="@+id/back"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_alignParentStart="true"
+            android:layout_margin="5dp"
+            android:onClick="@{()->activity.onClickBack()}"
+            android:src="@drawable/ic_chevron" />
+
+        <TextView
+            android:id="@+id/title_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:layout_weight="1"
+            android:text="@string/my_gifts"
+            android:textColor="@color/gray_dark" />
+
+    </RelativeLayout>
+
+    <android.support.design.widget.TabLayout
+        android:layout_below="@+id/header"
+        android:layout_marginTop="2dp"
+        android:id="@+id/tabLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:background="@color/white"
+        android:overScrollMode="never"
+        app:tabGravity="fill"
+        app:tabMode="fixed"
+        app:tabSelectedTextColor="@color/black"
+        style="@style/MyTabLayout"
+        app:tabTextColor="#99B6C4"/>
+
+    <android.support.v4.view.ViewPager
+        android:layout_below="@+id/tabLayout"
+        android:id="@+id/viewPager"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior" />
+
+    <FrameLayout
+        android:layout_below="@+id/viewPager"
+        android:id="@+id/content"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1">
+
+    </FrameLayout>
+
+    <View
+        android:layout_below="@+id/header"
+        android:layout_width="1sp"
+        android:layout_height="55sp"
+        android:layout_centerHorizontal="true"
+        android:background="@color/bg"/>
+
+
+</RelativeLayout>
+</layout>

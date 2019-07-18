@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    >
+
+    <data>
+
+        <variable
+            name="adapter"
+            type="app.com.maksab.view.adapter.AlphabetItemAdapter" />
+
+         <variable
+             name="model"
+             type="app.com.maksab.api.dao.AlphabetResponse"/>
+    </data>
+
+
+        <LinearLayout
+            android:onClick="@{()->adapter.onItemClick(model)}"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/alphabetName"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:lines="1"
+                android:padding="10sp"
+                android:textColor="@color/white"
+                android:textSize="16sp"
+                android:text="@{model.alphabet}"
+                app:font="@{@string/regular}"
+                />
+
+
+        </LinearLayout>
+
+</layout>

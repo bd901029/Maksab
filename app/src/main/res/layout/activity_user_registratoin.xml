@@ -1,0 +1,394 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout>
+
+    <data>
+
+        <variable
+            name="activity"
+            type="app.com.maksab.view.activity.UserRegistrationActivity" />
+
+        <variable
+            name="model"
+            type="app.com.maksab.view.viewmodel.UserRegistrationModel" />
+    </data>
+
+    <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/bg_login"
+        android:fillViewport="true">
+
+        <LinearLayout
+            android:id="@+id/llScrollView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:orientation="vertical">
+
+                <ImageView
+                    android:layout_width="120dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="15dp"
+                    android:src="@drawable/logo_small" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="15dp"
+                    android:text="@string/label_sign_up"
+                    android:textColor="@color/colorPrimaryDark"
+                    android:textSize="25sp"
+                    android:textStyle="bold"
+                    app:font="@{@string/bold}" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
+                    android:gravity="center"
+                    android:text="@string/label_login_offer_msg"
+                    android:textColor="@color/black"
+                    android:textSize="14sp"
+                    app:font="@{@string/bold}" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:paddingEnd="30dp"
+                android:paddingStart="30dp">
+
+                <android.support.design.widget.TextInputLayout
+                    android:id="@+id/nameInputLayout"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="16dp"
+                    android:layout_marginRight="16dp"
+                    android:layout_marginTop="10dp"
+                    android:textColorHint="@color/divider_color">
+
+                    <EditText
+                        android:id="@+id/name"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:drawablePadding="16dp"
+                        android:drawableStart="@drawable/user3x"
+                        android:hint="@string/hint_user_name"
+                        android:imeOptions="actionNext"
+                        android:inputType="textPersonName"
+                        android:lines="1"
+                        android:maxLength="50"
+                        android:text="@={model.username}"
+                        android:textColor="@color/gray_text"
+                        android:textColorHint="@color/divider_color"
+                        android:textSize="@dimen/form_text_size"
+                        android:theme="@style/MyEditText"
+                        app:font="@{@string/regular}" />
+                </android.support.design.widget.TextInputLayout>
+
+                <android.support.design.widget.TextInputLayout
+                    android:id="@+id/emailInputLayout"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="16dp"
+                    android:layout_marginRight="16dp"
+                    android:layout_marginTop="10dp"
+                    android:textColorHint="@color/divider_color">
+
+                    <EditText
+                        android:id="@+id/email_edt"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:drawablePadding="16dp"
+                        android:drawableStart="@drawable/mail3x"
+                        android:hint="@string/hint_email"
+                        android:imeOptions="actionNext"
+                        android:inputType="textEmailAddress"
+                        android:lines="1"
+                        android:maxLength="50"
+                        android:text="@={model.email}"
+                        android:textColor="@color/gray_text"
+                        android:textColorHint="@color/divider_color"
+                        android:textSize="@dimen/form_text_size"
+                        android:theme="@style/MyEditText"
+                        app:font="@{@string/regular}" />
+                </android.support.design.widget.TextInputLayout>
+
+                <LinearLayout
+                    android:onClick="@{()->activity.onClickCountry()}"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="5dp"
+                    android:drawablePadding="10dp"
+                    android:gravity="center"
+                    android:lines="1"
+                    android:orientation="vertical"
+                    android:paddingEnd="10dp"
+                    android:paddingStart="10dp">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="50dp"
+                        android:layout_margin="3dp"
+                        android:layout_marginTop="20dp"
+                        android:orientation="horizontal">
+
+                        <ImageView
+                            android:layout_width="13dp"
+                            android:layout_height="match_parent"
+                            android:src="@drawable/country" />
+
+                        <TextView
+                            android:id="@+id/tvCountryName"
+                            android:layout_marginStart="10dp"
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:gravity="center_vertical"
+                            android:lines="1"
+                            android:padding="10dp"
+                            android:text="@string/select_country"
+                            android:textColor="@color/black"
+                            android:textSize="16sp"
+                            app:font="@{@string/regular}" />
+
+                        <ImageView
+                            android:layout_width="20dp"
+                            android:layout_height="match_parent"
+                            android:layout_marginRight="10sp"
+                            android:src="@drawable/ic_arrow_drop_down" />
+
+                    </LinearLayout>
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:background="@color/gray"></View>
+
+                </LinearLayout>
+
+
+                <LinearLayout
+                    android:onClick="@{()->activity.onClickCountry()}"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="5dp"
+                    android:drawablePadding="10dp"
+                    android:gravity="center"
+                    android:lines="1"
+                    android:orientation="vertical"
+                    android:paddingEnd="10dp"
+                    android:paddingStart="10dp">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="3dp"
+                        android:layoutDirection="ltr"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:id="@+id/tvCountryCode"
+                            android:layout_width="wrap_content"
+                            android:layout_height="40dp"
+                            android:gravity="center_vertical"
+                            android:lines="1"
+                            android:text="+912"
+                            android:textSize="16sp"
+                            app:font="@{@string/regular}" />
+
+                            <EditText
+                                    android:paddingStart="5dp"
+                                android:id="@+id/mobile"
+                                android:layout_width="match_parent"
+                                android:layout_height="40dp"
+                                android:hint="@string/hint_mobile"
+                                android:imeOptions="actionNext"
+                                android:inputType="phone"
+                                android:text="@={model.mobile}"
+                                android:gravity="center_vertical|start"
+                                android:lines="1"
+                                android:maxLength="50"
+                                android:background="@null"
+                                android:textColor="@color/gray_text"
+                                android:textColorHint="@color/divider_color"
+                                android:textSize="@dimen/form_text_size"
+                                app:font="@{@string/regular}" />
+
+                    </LinearLayout>
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:background="@color/gray"></View>
+                </LinearLayout>
+
+                <android.support.design.widget.TextInputLayout
+                    android:id="@+id/passwordInputLayout"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="16dp"
+                    android:layout_marginRight="16dp"
+                    android:layout_marginTop="10dp"
+                    android:textColorHint="@color/divider_color">
+
+                    <EditText
+                        android:id="@+id/password_edt"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:drawablePadding="16dp"
+                        android:drawableStart="@drawable/password3x"
+                        android:hint="@string/hint_password"
+                        android:imeOptions="actionDone"
+                        android:inputType="textPassword"
+                        android:lines="1"
+                        android:maxLength="20"
+                        android:text="@={model.password}"
+                        android:textColor="@color/gray_text"
+                        android:textColorHint="@color/divider_color"
+                        android:textSize="@dimen/form_text_size"
+                        android:theme="@style/MyEditText"
+                        app:font="@{@string/regular}" />
+                </android.support.design.widget.TextInputLayout>
+
+                <android.support.design.widget.TextInputLayout
+                    android:id="@+id/referralCodeInputLayout"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="16dp"
+                    android:layout_marginRight="16dp"
+                    android:layout_marginTop="10dp"
+                    android:textColorHint="@color/divider_color">
+
+                    <EditText
+                        android:id="@+id/referralCode"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:drawablePadding="16dp"
+                        android:drawableStart="@drawable/user3x"
+                        android:hint="@string/referral_code_optional"
+                        android:imeOptions="actionNext"
+                        android:inputType="text"
+                        android:lines="1"
+                        android:maxLength="50"
+                        android:text="@={model.referralCode}"
+                        android:textColor="@color/gray_text"
+                        android:textColorHint="@color/divider_color"
+                        android:textSize="@dimen/form_text_size"
+                        android:theme="@style/MyEditText"
+                        app:font="@{@string/regular}" />
+                </android.support.design.widget.TextInputLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="5dp"
+                    android:layout_marginTop="5dp"
+                    android:gravity="center"
+                    android:orientation="horizontal">
+
+                    <Switch
+                        android:id="@+id/switchTC"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:gravity="center"
+                        android:padding="5dp" />
+
+                    <TextView
+                        android:onClick="@{()->activity.onClickTC()}"
+                        android:id="@+id/tc"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:gravity="center_vertical"
+                        android:lines="2"
+                        android:text="@string/temrs_of_service"
+                        android:textColor="@color/gray_text"
+                        android:textSize="14sp"
+                        app:font="@{@string/regular}" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="5dp"
+                    android:layout_marginTop="5dp"
+                    android:gravity="center"
+                    android:orientation="horizontal">
+
+                    <Switch
+                        android:id="@+id/switchPP"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:padding="5dp" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:gravity="center_vertical"
+                        android:lines="2"
+                        android:text="@string/label_offer_send"
+                        android:textColor="@color/gray_text"
+                        android:textSize="14sp"
+                        app:font="@{@string/regular}" />
+                </LinearLayout>
+
+                <Button
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/button_height_size"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginTop="5dp"
+                    android:background="@drawable/button_blue_corner"
+                    android:minWidth="220dp"
+                    android:onClick="@{()->activity.onClickSignUp(model)}"
+                    android:text="@string/label_sign_up"
+                    android:textColor="@color/white"
+                    app:font="@{@string/regular}" />
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="0.5dp"
+                    android:layout_marginTop="10dp"
+                    android:background="@color/divider_color" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:padding="10dp"
+                    android:text="@string/label_login_msg"
+                    android:textColor="@color/gray_text"
+                    android:textSize="16sp"
+                    app:font="@{@string/bold}" />
+
+                <Button
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/button_height_size"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginBottom="10dp"
+                    android:background="@drawable/button_primary"
+                    android:minWidth="220dp"
+                    android:onClick="@{()->activity.onClickSignIn()}"
+                    android:text="@string/label_signin"
+                    android:textColor="@color/white"
+                    app:font="@{@string/regular}" />
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </ScrollView>
+</layout>

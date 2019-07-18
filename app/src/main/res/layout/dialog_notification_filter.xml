@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="5dip"
+        android:background="#00000000"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="5dp"
+            android:background="@drawable/alert_diolog_bg_white"
+            android:orientation="vertical">
+
+            <RelativeLayout
+                android:id="@+id/llHeader"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:background="@drawable/two_round_bg_assets"
+                android:gravity="center"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/txCancel"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:padding="10dp"
+                    android:gravity="center"
+                    android:text="@string/cancel"
+                    android:textColor="@color/white"
+                    android:textSize="16dp"
+                    app:font="@{@string/bold}" />
+
+
+                <TextView
+                    android:id="@+id/txDone"
+                    android:layout_alignParentEnd="true"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:padding="10dp"
+                    android:gravity="center"
+                    android:text="@string/done"
+                    android:textColor="@color/white"
+                    android:textSize="16dp"
+                    app:font="@{@string/bold}" />
+
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="300dp">
+
+                <ProgressBar
+                    android:id="@+id/progressBar"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:layout_centerInParent="true" />
+
+                <android.support.v7.widget.RecyclerView
+                    android:layout_margin="15dp"
+                    android:id="@+id/recyclerView"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    />
+            </RelativeLayout>
+
+
+                <TextView
+                    android:id="@+id/selectAll"
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:background="@drawable/two_round_down_bg"
+                    android:gravity="center"
+                    android:text="@string/select_all"
+                    android:textColor="@color/white"
+                    android:textSize="16dp"
+                    app:font="@{@string/bold}" />
+
+
+        </LinearLayout>
+
+    </RelativeLayout>
+
+</layout>

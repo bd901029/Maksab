@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout>
+    <data>
+        <variable
+            name="adapter"
+            type="app.com.maksab.view.adapter.FamilyMemberAdapter"/>
+
+        <variable
+            name="model"
+            type="app.com.maksab.api.dao.GetFamilyMembers.FamMember"/>
+    </data>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="65dp"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@color/white">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="start|center"
+        android:layout_margin="05dp">
+
+        <com.mikhaellopez.circularimageview.CircularImageView
+            android:id="@+id/family_iv"
+            android:layout_width="55dp"
+            android:layout_height="55dp"
+            android:scaleType="centerCrop"
+            android:src="@drawable/me3x" >
+        </com.mikhaellopez.circularimageview.CircularImageView>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="16sp"
+            android:layout_marginStart="05dp"
+            android:layout_toEndOf="@+id/family_iv"
+            android:layout_centerInParent="true"
+            app:font="@{@string/regular}"
+            android:textColor="@color/black"
+            android:text="@{model.memberName}" />
+
+        <LinearLayout
+            android:visibility="gone"
+            android:id="@+id/llActive"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_centerInParent="true"
+            android:layout_toStartOf="@+id/delete_iv">
+
+            <ImageView
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:src="@drawable/active"
+                android:layout_marginEnd="05dp">
+            </ImageView>
+
+            <TextView
+                android:id="@+id/activity_txt"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/activate"
+                android:textColor="@color/green"
+                android:textSize="16sp"
+                android:layout_marginEnd="10dp"
+                app:font="@{@string/bold}" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:visibility="gone"
+            android:id="@+id/llDeActive"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_centerInParent="true"
+            android:layout_toStartOf="@+id/delete_iv">
+
+            <ImageView
+                android:visibility="gone"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:src="@drawable/active"
+                android:layout_marginEnd="05dp">
+            </ImageView>
+
+            <TextView
+                android:id="@+id/deActivity"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/deactivate"
+                android:textColor="@color/red_full"
+                android:textSize="14sp"
+                app:font="@{@string/bold}"
+                />
+
+        </LinearLayout>
+
+        <ImageView
+            android:onClick="@{()->adapter.onClickDelete(model)}"
+            android:id="@+id/delete_iv"
+            android:layout_width="36dp"
+            android:layout_height="match_parent"
+            android:src="@drawable/delete"
+            android:paddingStart="10dp"
+            android:paddingEnd="10dp"
+            android:layout_alignParentEnd="true"
+            android:layout_centerInParent="true" />
+
+    </RelativeLayout>
+
+</RelativeLayout>
+</layout>

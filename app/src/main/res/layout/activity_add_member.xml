@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout>
+    <data>
+        <variable
+            name="activity"
+            type="app.com.maksab.view.activity.AddMemberActivity"/>
+    </data>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white">
+
+    <RelativeLayout
+        android:id="@+id/header"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:background="@color/white"
+        android:padding="03dp">
+
+        <ImageView
+            android:id="@+id/back"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_alignParentStart="true"
+            android:padding="10dp"
+            android:onClick="@{()->activity.onBackPressed()}"
+            android:src="@drawable/ic_chevron" />
+
+        <TextView
+            android:id="@+id/title_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:layout_weight="1"
+            android:text="@string/my_past_purchase"
+            android:textColor="@color/gray_dark" />
+
+    </RelativeLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:gravity="center|top"
+        android:layout_marginTop="20dp"
+        android:layout_marginStart="30dp"
+        android:layout_marginEnd="30dp"
+        android:layout_marginBottom="30dp">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="24sp"
+            android:textColor="@color/black"
+            android:text="@string/family_member"
+            app:font="@{@string/bold}"
+            android:gravity="center"/>
+
+        <EditText
+            android:id="@+id/email_edt"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="40dp"
+            android:background="@null"
+            android:drawablePadding="10dp"
+            android:hint="@string/enter_email"
+            android:imeOptions="actionNext"
+            android:maxLines="1"
+            android:inputType="textEmailAddress"
+            android:textColor="@color/black"
+            android:textColorHint="#BFBFBF" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="2dp"
+            android:layout_marginTop="15dp"
+            android:background="#ECECF1" />
+
+        <EditText
+            android:id="@+id/name_edt"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="30dp"
+            android:background="@null"
+            android:drawablePadding="10dp"
+            android:hint="@string/name"
+            android:imeOptions="actionDone"
+            android:maxLines="1"
+            android:inputType="textPersonName"
+            android:textColor="@color/black"
+            android:textColorHint="#BFBFBF" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="2dp"
+            android:layout_marginTop="15dp"
+            android:background="#ECECF1" />
+
+        <TextView
+            android:id="@+id/submit_tv"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:background="@drawable/rectangle_purple"
+            android:gravity="center"
+            android:text="@string/add"
+            android:textColor="@color/white"
+            android:textSize="16sp"
+            android:onClick="@{()->activity.onClickAdd()}"
+            android:layout_marginTop="40dp"
+            android:textStyle="bold"></TextView>
+
+
+
+    </LinearLayout>
+
+</LinearLayout>
+</layout>

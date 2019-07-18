@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <variable
+            name="adapter"
+            type="app.com.maksab.view.adapter.ReviewAdapter" />
+
+        <variable
+            name="model"
+            type="app.com.maksab.api.dao.OfferDetailsResponse.ReviewsList" />
+    </data>
+
+    <LinearLayout
+        android:onClick="@{()->adapter.onItemClick(model)}"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white"
+        android:layout_margin="3dp"
+        android:orientation="horizontal">
+
+        <RelativeLayout
+            android:layout_margin="6dp"
+            android:layout_width="95dp"
+            android:layout_height="95dp">
+
+            <ProgressBar
+                android:visibility="gone"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true" />
+
+            <ImageView
+                android:id="@+id/ivUserAvastasr"
+                android:layout_width="80dp"
+                android:layout_height="80dp"
+               android:layout_centerInParent="true"
+                app:imageUrl="@{model.profilePic}"
+                />
+
+        </RelativeLayout>
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="match_parent"
+            android:gravity="center_vertical"
+            android:orientation="vertical">
+
+            <RelativeLayout
+                android:paddingTop="6dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:id="@+id/offer1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:lines="1"
+                    android:layout_alignParentStart="true"
+                    android:text="@{model.userName}"
+                    android:textColor="@color/black"
+                    android:textSize="16sp"
+                    android:textStyle="bold"
+                    app:font="@{@string/regular}" />
+
+                <TextView
+                    android:layout_marginEnd="5dp"
+                    android:layout_alignParentEnd="true"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:lines="1"
+                    android:gravity="end"
+                    android:text="@{model.reviewTime}"
+                    android:textSize="12sp"
+                    app:font="@{@string/regular}" />
+            </RelativeLayout>
+
+            <TextView
+                android:id="@+id/time1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:lines="2"
+                android:paddingTop="3dp"
+                android:text="@{model.comment}"
+                android:textSize="12sp"
+                app:font="@{@string/regular}" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="3dp"
+                android:orientation="horizontal">
+
+                <LinearLayout
+                    android:layout_width="45dp"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/button_primary_dark"
+                    android:gravity="center"
+                    android:orientation="horizontal">
+
+                    <ImageView
+                        android:layout_width="13dp"
+                        android:layout_height="13dp"
+                        android:layout_margin="3dp"
+                        android:src="@drawable/ic_star_border" />
+
+                    <TextView
+                        android:id="@+id/rates"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="3dp"
+                        android:text="@{model.rate}"
+                        android:gravity="center"
+                        android:textColor="@color/white"
+                        android:textSize="12dp"
+                        app:font="@{@string/regular}" />
+
+                </LinearLayout>
+
+
+
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </LinearLayout>
+</layout>

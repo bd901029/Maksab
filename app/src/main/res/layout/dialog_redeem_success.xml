@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="5dip"
+        android:background="#00000000"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="5dp"
+            android:background="@drawable/alert_diolog_bg_white"
+            android:orientation="vertical"
+            android:gravity="center">
+
+            <ImageView
+                android:id="@+id/close"
+                android:layout_marginTop="50dp"
+                android:layout_margin="10dp"
+                android:layout_width="80dp"
+                android:layout_height="80dp"
+                android:scaleType="centerInside"
+                android:background="@drawable/face"
+                />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:lines="1"
+                android:gravity="center"
+                android:text="@string/congratulation"
+                android:textColor="@color/green_full"
+                android:textSize="20sp"
+                app:font="@{@string/regular}" />
+            <TextView
+                android:layout_marginBottom="15dp"
+                android:layout_marginTop="5dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:lines="1"
+                android:gravity="center"
+                android:text="@string/offer_redeemed"
+                android:textSize="14sp"
+                app:font="@{@string/regular}" />
+
+
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:lines="1"
+                android:gravity="center"
+                android:text="@string/you_have_saved"
+                android:textColor="@color/black"
+                android:textSize="16sp"
+                app:font="@{@string/bold}" />
+            <TextView
+                android:id="@+id/saved"
+                android:layout_marginBottom="15dp"
+                android:layout_marginTop="5dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:lines="1"
+                android:gravity="center"
+                android:textColor="@color/green_full"
+                android:text="@string/offer_redeemed"
+                android:textSize="16sp"
+                app:font="@{@string/bold}" />
+
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:lines="1"
+                android:gravity="center"
+                android:text="@string/redeemption_reference_number"
+                android:textColor="@color/colorAccent"
+                android:textSize="16sp"
+                app:font="@{@string/regular}" />
+            <TextView
+                android:id="@+id/redeemedId"
+                android:layout_marginBottom="40dp"
+                android:layout_marginTop="5dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:lines="1"
+                android:gravity="center"
+                android:text="@string/offer_redeemed"
+                android:textSize="16sp"
+                app:font="@{@string/regular}" />
+
+        </LinearLayout>
+
+    </RelativeLayout>
+
+</layout>

@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+        <variable
+                name="activity"
+                type="app.com.maksab.view.activity.CardActivity" />
+
+    </data>
+
+    <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/white"
+            android:orientation="vertical">
+
+
+       <!-- <com.manojbhadane.PaymentCardView
+                android:id="@+id/creditCard"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:cv_submitBtnText="Done"
+                app:cv_cardTitle="Pay Now"/>-->
+    </LinearLayout>
+</layout>

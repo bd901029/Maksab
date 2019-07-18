@@ -1,0 +1,193 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout>
+    <data>
+        <variable
+            name="activity"
+            type="app.com.maksab.view.activity.ContactUsActivity"/>
+
+        <variable
+            name="model"
+            type="app.com.maksab.view.viewmodel.ContactUsModel" />
+    </data>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="#EEEEEE"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:id="@+id/header"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:background="@color/white"
+        android:padding="03dp">
+
+        <ImageView
+            android:id="@+id/back"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_margin="5dp"
+            android:onClick="@{()->activity.onClickBack()}"
+            android:src="@drawable/ic_chevron" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:layout_weight="1"
+            android:text="@string/contact_us"
+            android:textColor="@color/gray_dark" />
+
+    </RelativeLayout>
+
+    <android.support.v4.widget.NestedScrollView
+        android:id="@+id/NestedScrollView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fillViewport="true">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginEnd="10dp"
+            android:layout_marginStart="10dp"
+            android:orientation="vertical">
+
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/recyclerView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:layout_marginBottom="5dp"
+                android:padding="15dp"
+                android:background="@drawable/bg_corner_white"
+                android:gravity="center"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/get_in_touch_now"
+                    android:textColor="@color/black"
+                    android:textSize="16sp"
+                    android:textStyle=""
+                    app:font="@{@string/regular}" />
+
+                <EditText
+                    android:id="@+id/name_edt"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20dp"
+                    android:background="@null"
+                    android:drawablePadding="10dp"
+                    android:hint="@string/name"
+                    android:imeOptions="actionNext"
+                    android:inputType="textPersonName"
+                    android:maxLines="1"
+                    android:text="@={model.contactName}"
+                    android:textColor="@color/black"
+                    android:textColorHint="#BFBFBF"
+                    app:font="@{@string/regular}"/>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="2dp"
+                    android:layout_marginTop="08dp"
+                    android:background="#ECECF1" />
+
+                <EditText
+                    android:id="@+id/email_edt"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20dp"
+                    android:background="@null"
+                    android:drawablePadding="10dp"
+                    android:hint="@string/hint_email"
+                    android:imeOptions="actionNext"
+                    android:inputType="textEmailAddress"
+                    android:maxLines="1"
+                    android:text="@={model.contactEmail}"
+                    android:textColor="@color/black"
+                    android:textColorHint="#BFBFBF"
+                    app:font="@{@string/regular}"/>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="2dp"
+                    android:layout_marginTop="08dp"
+                    android:background="#ECECF1" />
+
+                <EditText
+                    android:id="@+id/subject_edt"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20dp"
+                    android:background="@null"
+                    android:drawablePadding="10dp"
+                    android:hint="@string/error_subject"
+                    android:imeOptions="actionNext"
+                    android:inputType="textEmailSubject"
+                    android:maxLines="1"
+                    android:text="@={model.contactSubject}"
+                    android:textColor="@color/black"
+                    android:textColorHint="#BFBFBF"
+                    app:font="@{@string/regular}"/>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="2dp"
+                    android:layout_marginTop="08dp"
+                    android:background="#ECECF1" />
+
+
+                <EditText
+                    android:id="@+id/message_edt"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20dp"
+                    android:background="@null"
+                    android:drawablePadding="10dp"
+                    android:hint="@string/error_massage"
+                    android:imeOptions="actionDone"
+                    android:inputType="textLongMessage"
+                    android:maxLines="1"
+                    android:text="@={model.contactMessage}"
+                    android:textColor="@color/black"
+                    android:textColorHint="#BFBFBF"
+                    app:font="@{@string/regular}"/>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="2dp"
+                    android:layout_marginTop="08dp"
+                    android:background="#ECECF1" />
+
+                <TextView
+                    android:id="@+id/submit_tv"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:layout_marginTop="10dp"
+                    android:background="@drawable/button_blue_corner"
+                    android:gravity="center"
+                    android:onClick="@{()->activity.onClickSave(model)}"
+                    android:orientation="vertical"
+                    android:text="@string/label_submit"
+                    android:textColor="@color/white"
+                    android:textSize="16sp"
+                    app:font="@{@string/bold}"/>
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </android.support.v4.widget.NestedScrollView>
+
+</LinearLayout>
+</layout>
