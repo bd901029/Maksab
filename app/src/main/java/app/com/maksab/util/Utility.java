@@ -76,6 +76,9 @@ import app.com.maksab.listener.DialogListener;
  * Created by RWS 6 on 1/2/2017.
  */
 public class Utility {
+
+    public static int REQUEST_CODE_LOCATION = 101;
+
     /**
      * Get new date after converting in local time.
      * @param serverDate Server date.
@@ -159,7 +162,7 @@ public class Utility {
     }
 
     public static String getLanguage(Context context) {
-        return PreferenceConnector.readString(context, PreferenceConnector.APP_LANGUAGE, "");
+        return LocaleUtil.sharedInstance().getLanguage();
     }
 
     public static String getIsMember(Context context) {
@@ -946,4 +949,14 @@ aq.id(R.id.image).image(url, options);*/
         PreferenceConnector.writeInteger(activity, PreferenceConnector.DEVICE_WIDTH, width);
     }
 
+    public static boolean isEmulator() {
+        return Build.FINGERPRINT.startsWith("generic")
+                || Build.FINGERPRINT.startsWith("unknown")
+                || Build.MODEL.contains("google_sdk")
+                || Build.MODEL.contains("Emulator")
+                || Build.MODEL.contains("Android SDK built for x86")
+                || Build.MANUFACTURER.contains("Genymotion")
+                || (Build.BRAND.startsWith("generic") && Build.DEVICE.startsWith("generic"))
+                || "google_sdk".equals(Build.PRODUCT);
+    }
 }

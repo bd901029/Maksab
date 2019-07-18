@@ -1,242 +1,242 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-          package="app.com.maksab">
+		  package="app.com.maksab">
 
-    <uses-permission android:name="android.permission.INTERNET"/>
-    <uses-permission android:name="android.permission.CAMERA"/>
-    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
-    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
-    <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW"/>
-    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"/>
-    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>
-    <uses-permission android:name="com.google.android.providers.gsf.permission.READ_GSERVICES"/>
-    <uses-permission android:name="com.google.android.c2dm.permission.RECEIVE"/>
-    <uses-permission android:name="android.permission.CALL_PHONE"/>
-    <uses-permission android:name="android.permission.READ_PHONE_STATE"/>
+	<uses-permission android:name="android.permission.INTERNET"/>
+	<uses-permission android:name="android.permission.CAMERA"/>
+	<uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
+	<uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+	<uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
+	<uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW"/>
+	<uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"/>
+	<uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>
+	<uses-permission android:name="com.google.android.providers.gsf.permission.READ_GSERVICES"/>
+	<uses-permission android:name="com.google.android.c2dm.permission.RECEIVE"/>
+	<uses-permission android:name="android.permission.CALL_PHONE"/>
+	<uses-permission android:name="android.permission.READ_PHONE_STATE"/>
 
-    <protected-broadcast android:name="com.motorola.motocare.INTENT_TRIGGER"/>
+	<protected-broadcast android:name="com.motorola.motocare.INTENT_TRIGGER"/>
 
-    <!--
-     tools:replace="android:allowBackup"
-        android:allowBackup="false"
-    -->
-    <application
-            android:name="android.support.multidex.MultiDexApplication"
-            android:allowBackup="true"
-            android:icon="@drawable/ic_launcher"
-            android:label="@string/app_name"
-            android:roundIcon="@drawable/ic_launcher"
-            android:supportsRtl="true"
-            android:theme="@style/AppTheme">
-        <meta-data
-                android:name="com.google.android.gms.version"
-                android:value="@integer/google_play_services_version"/>
-        <meta-data
-                android:name="com.google.android.geo.API_KEY"
-                android:value="AIzaSyD0VTJB3RB2jfxIFVxD0mOjS7MPoUlp0Wc"/>
-        <meta-data
-                android:name="io.fabric.ApiKey"
-                android:value="69f7e950c0499ba79277221438c4a54e9bde2a9e"/>
-        <meta-data
-                android:name="com.google.firebase.messaging.default_notification_icon"
-                android:resource="@drawable/ic_launcher"/>
+	<!--
+	 tools:replace="android:allowBackup"
+		android:allowBackup="false"
+	-->
+	<application
+			android:name=".MyApplication"
+			android:allowBackup="true"
+			android:icon="@drawable/ic_launcher"
+			android:label="@string/app_name"
+			android:roundIcon="@drawable/ic_launcher"
+			android:supportsRtl="true"
+			android:theme="@style/AppTheme">
+		<meta-data
+				android:name="com.google.android.gms.version"
+				android:value="@integer/google_play_services_version"/>
+		<meta-data
+				android:name="com.google.android.geo.API_KEY"
+				android:value="AIzaSyD0VTJB3RB2jfxIFVxD0mOjS7MPoUlp0Wc"/>
+		<meta-data
+				android:name="io.fabric.ApiKey"
+				android:value="69f7e950c0499ba79277221438c4a54e9bde2a9e"/>
+		<meta-data
+				android:name="com.google.firebase.messaging.default_notification_icon"
+				android:resource="@drawable/ic_launcher"/>
 
-        <activity
-                android:name=".view.activity.SplashActivity"
-                android:label="@string/app_name"
-                android:screenOrientation="portrait"
-                android:theme="@style/AppTheme.NoActionBar">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN"/>
-                <action android:name="android.intent.action.VIEW"/>
+		<activity
+				android:name=".view.activity.SplashActivity"
+				android:label="@string/app_name"
+				android:screenOrientation="portrait"
+				android:theme="@style/AppTheme.NoActionBar">
+			<intent-filter>
+				<action android:name="android.intent.action.MAIN"/>
+				<action android:name="android.intent.action.VIEW"/>
 
-                <category android:name="android.intent.category.LAUNCHER"/>
-            </intent-filter>
+				<category android:name="android.intent.category.LAUNCHER"/>
+			</intent-filter>
 
-        </activity>
-        <activity
-                android:name=".view.activity.PushNotificationActivity"
-                android:screenOrientation="portrait">
-            <intent-filter>
+		</activity>
+		<activity
+				android:name=".view.activity.PushNotificationActivity"
+				android:screenOrientation="portrait">
+			<intent-filter>
 
-                <!-- <action android:name="com.example.yourapplication_YOUR_NOTIFICATION_NAME" /> -->
-                <action android:name="broadcast_notification"/>
+				<!-- <action android:name="com.example.yourapplication_YOUR_NOTIFICATION_NAME" /> -->
+				<action android:name="broadcast_notification"/>
 
-                <category android:name="android.intent.category.DEFAULT"/>
-            </intent-filter>
-        </activity>
+				<category android:name="android.intent.category.DEFAULT"/>
+			</intent-filter>
+		</activity>
 
-        <!--
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        -->
+		<!--
+			<intent-filter>
+				<action android:name="android.intent.action.MAIN" />
+				<category android:name="android.intent.category.LAUNCHER" />
+			</intent-filter>
+		-->
 
-        <activity
-                android:name=".view.activity.IntroActivity"
-                android:noHistory="true"
-                android:screenOrientation="portrait">
+		<activity
+				android:name=".view.activity.IntroActivity"
+				android:noHistory="true"
+				android:screenOrientation="portrait">
 
-        </activity>
-        <activity
-                android:name=".view.activity.HomeActivity"
-                android:screenOrientation="portrait"/>
-        <activity
-                android:name=".view.activity.LoginActivity"
-                android:screenOrientation="portrait"/>
-        <activity
-                android:name=".view.activity.ForgotActivity"
-                android:screenOrientation="portrait"/>
-        <activity
-                android:name=".view.activity.UserRegistrationActivity"
-                android:screenOrientation="portrait"/>
-        <activity
-                android:name=".view.activity.OfferDetailsActivity"
-                android:screenOrientation="portrait"/>
-        <activity
-                android:name=".view.activity.BrandDetailActivity"
-                android:screenOrientation="portrait"/>
-        <activity
-                android:name=".view.activity.OfferListActivity"
-                android:screenOrientation="portrait"/>
-        <activity
-                android:name=".view.activity.SearchActivity"
-                android:screenOrientation="portrait"/>
-        <activity
-                android:name=".view.activity.BecomePartnerActivity"
-                android:screenOrientation="portrait"/>
-        <activity
-                android:name=".view.activity.PaymentActivity"
-                android:screenOrientation="portrait"/>
-        <activity
-                android:name=".view.activity.PackagesActivity"
-                android:screenOrientation="portrait"/>
-        <activity
-                android:name=".view.activity.DirectionActivity"
-                android:screenOrientation="portrait"/>
-        <activity
-                android:name=".view.activity.CountryLanguageActivity"
-                android:screenOrientation="portrait"/>
-        <activity
-                android:name=".view.activity.ContactUsActivity"
-                android:screenOrientation="portrait"/>
-        <activity
-                android:name=".view.activity.ImageSliderActivity"
-                android:screenOrientation="portrait"/>
+		</activity>
+		<activity
+				android:name=".view.activity.HomeActivity"
+				android:screenOrientation="portrait"/>
+		<activity
+				android:name=".view.activity.LoginActivity"
+				android:screenOrientation="portrait"/>
+		<activity
+				android:name=".view.activity.ForgotActivity"
+				android:screenOrientation="portrait"/>
+		<activity
+				android:name=".view.activity.UserRegistrationActivity"
+				android:screenOrientation="portrait"/>
+		<activity
+				android:name=".view.activity.OfferDetailsActivity"
+				android:screenOrientation="portrait"/>
+		<activity
+				android:name=".view.activity.BrandDetailActivity"
+				android:screenOrientation="portrait"/>
+		<activity
+				android:name=".view.activity.OfferListActivity"
+				android:screenOrientation="portrait"/>
+		<activity
+				android:name=".view.activity.SearchActivity"
+				android:screenOrientation="portrait"/>
+		<activity
+				android:name=".view.activity.BecomePartnerActivity"
+				android:screenOrientation="portrait"/>
+		<activity
+				android:name=".view.activity.PaymentActivity"
+				android:screenOrientation="portrait"/>
+		<activity
+				android:name=".view.activity.PackagesActivity"
+				android:screenOrientation="portrait"/>
+		<activity
+				android:name=".view.activity.DirectionActivity"
+				android:screenOrientation="portrait"/>
+		<activity
+				android:name=".view.activity.CountryLanguageActivity"
+				android:screenOrientation="portrait"/>
+		<activity
+				android:name=".view.activity.ContactUsActivity"
+				android:screenOrientation="portrait"/>
+		<activity
+				android:name=".view.activity.ImageSliderActivity"
+				android:screenOrientation="portrait"/>
 
-        <!-- For camera and gallery -->
-        <activity
-                android:name=".imagepicker.TempActivity"
-                android:configChanges="orientation|screenSize"
-                android:screenOrientation="portrait"/>
-        <activity
-                android:name="com.yalantis.ucrop.UCropActivity"
-                android:screenOrientation="portrait"
-                android:theme="@style/Theme.AppCompat.Light.NoActionBar"/>
-        <activity
-                android:name=".view.activity.FaqActivity"
-                android:screenOrientation="portrait"/>
-        <activity
-                android:name=".view.activity.CareerActivity"
-                android:screenOrientation="portrait"/>
-        <activity
-                android:name=".view.activity.PastPurchaseActivity"
-                android:screenOrientation="portrait"/>
-        <activity
-                android:name=".view.activity.PointsRewardActivity"
-                android:screenOrientation="portrait"/>
-        <activity
-                android:name=".view.activity.SubscriptionActivity"
-                android:screenOrientation="portrait"/>
-        <activity
-                android:name=".view.activity.GiftHistoryActivity"
-                android:screenOrientation="portrait"/>
-        <activity
-                android:name=".view.activity.MyGiftsActivity"
-                android:screenOrientation="portrait"/>
-        <activity
-                android:name=".view.activity.UpcomingPurchaseActivity"
-                android:screenOrientation="portrait"/>
-        <activity
-                android:name=".view.activity.PPActivity"
-                android:screenOrientation="portrait"/>
-        <activity
-                android:name=".view.activity.TCActivity"
-                android:screenOrientation="portrait"/>
-        <activity
-                android:name=".view.activity.FamilyMemberActivity"
-                android:screenOrientation="portrait"/>
-        <activity
-                android:name=".view.activity.AddMemberActivity"
-                android:screenOrientation="portrait"/>
-        <activity
-                android:name=".view.activity.ProfileEditActivity"
-                android:screenOrientation="portrait"/>
-        <activity
-                android:name=".view.activity.BigBrandActivity"
-                android:screenOrientation="portrait"/>
-        <activity
-                android:name=".view.activity.MobileVerificationActivity"
-                android:screenOrientation="portrait"/>
+		<!-- For camera and gallery -->
+		<activity
+				android:name=".imagepicker.TempActivity"
+				android:configChanges="orientation|screenSize"
+				android:screenOrientation="portrait"/>
+		<activity
+				android:name="com.yalantis.ucrop.UCropActivity"
+				android:screenOrientation="portrait"
+				android:theme="@style/Theme.AppCompat.Light.NoActionBar"/>
+		<activity
+				android:name=".view.activity.FaqActivity"
+				android:screenOrientation="portrait"/>
+		<activity
+				android:name=".view.activity.CareerActivity"
+				android:screenOrientation="portrait"/>
+		<activity
+				android:name=".view.activity.PastPurchaseActivity"
+				android:screenOrientation="portrait"/>
+		<activity
+				android:name=".view.activity.PointsRewardActivity"
+				android:screenOrientation="portrait"/>
+		<activity
+				android:name=".view.activity.SubscriptionActivity"
+				android:screenOrientation="portrait"/>
+		<activity
+				android:name=".view.activity.GiftHistoryActivity"
+				android:screenOrientation="portrait"/>
+		<activity
+				android:name=".view.activity.MyGiftsActivity"
+				android:screenOrientation="portrait"/>
+		<activity
+				android:name=".view.activity.UpcomingPurchaseActivity"
+				android:screenOrientation="portrait"/>
+		<activity
+				android:name=".view.activity.PPActivity"
+				android:screenOrientation="portrait"/>
+		<activity
+				android:name=".view.activity.TCActivity"
+				android:screenOrientation="portrait"/>
+		<activity
+				android:name=".view.activity.FamilyMemberActivity"
+				android:screenOrientation="portrait"/>
+		<activity
+				android:name=".view.activity.AddMemberActivity"
+				android:screenOrientation="portrait"/>
+		<activity
+				android:name=".view.activity.ProfileEditActivity"
+				android:screenOrientation="portrait"/>
+		<activity
+				android:name=".view.activity.BigBrandActivity"
+				android:screenOrientation="portrait"/>
+		<activity
+				android:name=".view.activity.MobileVerificationActivity"
+				android:screenOrientation="portrait"/>
 
-        <activity
-                android:name=".submitcreditcardflow.SubmitCreditCardActivity"
-                android:screenOrientation="portrait"/>
+		<activity
+				android:name=".submitcreditcardflow.SubmitCreditCardActivity"
+				android:screenOrientation="portrait"/>
 
-        <activity
-                android:name=".view.activity.ActivityPaymentWebview"
-                android:screenOrientation="portrait"/>
-
-
-
-        <!-- Push Notification -->
-        <service
-                android:name=".notifications.MyFirebaseMessagingService"
-                android:permission="com.google.android.c2dm.permission.SEND">
-            <intent-filter>
-                <action android:name="com.google.firebase.MESSAGING_EVENT"/>
-                <action android:name="com.google.android.c2dm.intent.RECEIVE"/>
-            </intent-filter>
-        </service>
-        <service android:name=".notifications.MyFirebaseInstanceIDService">
-            <intent-filter>
-                <action android:name="com.google.firebase.INSTANCE_ID_EVENT"/>
-            </intent-filter>
-        </service>
-
-        <!--
-            <meta-data android:name="com.google.android.maps.v2.API_KEY"
-            android:value="HERE GOES YOUR API KEY" />
-        -->
+		<activity
+				android:name=".view.activity.ActivityPaymentWebview"
+				android:screenOrientation="portrait"/>
 
 
-        <!--
-        <service
-            android:name=".notifications.MyFirebaseMessagingService"
-            android:permission="com.google.android.c2dm.permission.SEND">
-            <intent-filter>
-                <action android:name="com.google.firebase.MESSAGING_EVENT" />
-                <action android:name="com.google.android.c2dm.intent.RECEIVE" />
-            </intent-filter>
-        </service>
 
-        <service android:name=".notifications.MyFirebaseInstanceIDService">
-            <intent-filter>
-                <action android:name="com.google.firebase.INSTANCE_ID_EVENT" />
-            </intent-filter>
-        </service>
+		<!-- Push Notification -->
+		<service
+				android:name=".notifications.MyFirebaseMessagingService"
+				android:permission="com.google.android.c2dm.permission.SEND">
+			<intent-filter>
+				<action android:name="com.google.firebase.MESSAGING_EVENT"/>
+				<action android:name="com.google.android.c2dm.intent.RECEIVE"/>
+			</intent-filter>
+		</service>
+		<service android:name=".notifications.MyFirebaseInstanceIDService">
+			<intent-filter>
+				<action android:name="com.google.firebase.INSTANCE_ID_EVENT"/>
+			</intent-filter>
+		</service>
 
-        <meta-data
-            android:name="com.google.firebase.messaging.default_notification_icon"
-            android:resource="@mipmap/ic_launcher" />
-        <meta-data
-            android:name="com.google.firebase.messaging.default_notification_color"
-            android:resource="@color/colorTransparent" />
-        <meta-data android:name="com.google.android.gms.version"
-            android:value="@integer/google_play_services_version" />
-        -->
-    </application>
+		<!--
+			<meta-data android:name="com.google.android.maps.v2.API_KEY"
+			android:value="HERE GOES YOUR API KEY" />
+		-->
+
+
+		<!--
+		<service
+			android:name=".notifications.MyFirebaseMessagingService"
+			android:permission="com.google.android.c2dm.permission.SEND">
+			<intent-filter>
+				<action android:name="com.google.firebase.MESSAGING_EVENT" />
+				<action android:name="com.google.android.c2dm.intent.RECEIVE" />
+			</intent-filter>
+		</service>
+
+		<service android:name=".notifications.MyFirebaseInstanceIDService">
+			<intent-filter>
+				<action android:name="com.google.firebase.INSTANCE_ID_EVENT" />
+			</intent-filter>
+		</service>
+
+		<meta-data
+			android:name="com.google.firebase.messaging.default_notification_icon"
+			android:resource="@mipmap/ic_launcher" />
+		<meta-data
+			android:name="com.google.firebase.messaging.default_notification_color"
+			android:resource="@color/colorTransparent" />
+		<meta-data android:name="com.google.android.gms.version"
+			android:value="@integer/google_play_services_version" />
+		-->
+	</application>
 
 </manifest>

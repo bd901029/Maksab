@@ -12,6 +12,7 @@ import app.com.maksab.api.APIClient;
 import app.com.maksab.api.Api;
 import app.com.maksab.api.dao.LoginResponse;
 import app.com.maksab.databinding.ActivityLoginBinding;
+import app.com.maksab.util.Helper;
 import app.com.maksab.util.PreferenceConnector;
 import app.com.maksab.util.Utility;
 import app.com.maksab.util.ValidationTemplate;
@@ -23,156 +24,164 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 public class LoginActivity extends AppCompatActivity {
-    ActivityLoginBinding activityBinding;
-    private String fireballToken;
+	ActivityLoginBinding activityBinding;
+	private String fireballToken;
 
-    @Override
-    protected void onStart() {
-        super.onStart();
-        if (isAlreadyLogin()) {
-            startActivity(new Intent(LoginActivity.this, HomeActivity.class));
-            finish();
-        }
-    }
+	@Override
+	protected void onStart() {
+		super.onStart();
+		if (isAlreadyLogin()) {
+			startActivity(new Intent(LoginActivity.this, HomeActivity.class));
+			finish();
+		}
+	}
 
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-         activityBinding = DataBindingUtil.setContentView(this, R.layout.activity_login);
-        activityBinding.setActivity(this);
-        this.getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN);
-        Utility.saveDeviceHeightWidth(this);
-        fireballToken = FirebaseInstanceId.getInstance().getToken();
-        LoginModel loginModel = new LoginModel();
-       // loginModel.setEmail("user@gmail.com");
-        //loginModel.setPassword("123456");
-        activityBinding.setModel(loginModel);
-    }
+	@Override
+	protected void onCreate(Bundle savedInstanceState) {
+		super.onCreate(savedInstanceState);
+		activityBinding = DataBindingUtil.setContentView(this, R.layout.activity_login);
+		activityBinding.setActivity(this);
+		this.getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN);
+		Utility.saveDeviceHeightWidth(this);
+		fireballToken = FirebaseInstanceId.getInstance().getToken();
+		LoginModel loginModel = new LoginModel();
+		// loginModel.setEmail("user@gmail.com");
+		//loginModel.setPassword("123456");
+		activityBinding.setModel(loginModel);
+	}
 
-    private boolean isAlreadyLogin() {
-        return PreferenceConnector.readBoolean(LoginActivity.this, PreferenceConnector.IS_LOGIN, false);
-    }
+	private boolean isAlreadyLogin() {
+		return PreferenceConnector.readBoolean(LoginActivity.this, PreferenceConnector.IS_LOGIN, false);
+	}
 
-    /**
-     * Validate Login form
-     * @param loginModel LoginModel
-     * @return true if valid else false
-     */
-    private boolean validate(LoginModel loginModel) {
-        app.com.maksab.util.Extension extension = app.com.maksab.util.Extension.getInstance();
-        if (isEmpty(loginModel.getEmail()) || isEmpty(loginModel.getPassword())) {
-            if (loginModel.getEmail().isEmpty()) {
-                activityBinding.emailInputLayout.setError(getText(R.string.error_email_or_mobile));
-            }
-            if (loginModel.getPassword().isEmpty()) {
-                activityBinding.passwordInputLayout.setError(getText(R.string.error_pass));
-            }
-            Utility.showToast(LoginActivity.this, getString(R.string.email_pass));
-            return false;
-        } else if (!extension.executeStrategy(LoginActivity.this, loginModel.getEmail(), ValidationTemplate.INTERNET)) {
-            Utility.setNoInternetPopup(LoginActivity.this);
-            return false;
-        } else {
-            return true;
-        }
-    }
+	/**
+	 * Validate Login form
+	 * @param loginModel LoginModel
+	 * @return true if valid else false
+	 */
+	private boolean validate(LoginModel loginModel) {
+		app.com.maksab.util.Extension extension = app.com.maksab.util.Extension.getInstance();
+		if (isEmpty(loginModel.getEmail()) || isEmpty(loginModel.getPassword())) {
+			if (loginModel.getEmail().isEmpty()) {
+				activityBinding.emailInputLayout.setError(getText(R.string.error_email_or_mobile));
+			}
+			if (loginModel.getPassword().isEmpty()) {
+				activityBinding.passwordInputLayout.setError(getText(R.string.error_pass));
+			}
+			Utility.showToast(LoginActivity.this, getString(R.string.email_pass));
+			return false;
+		} else if (!extension.executeStrategy(LoginActivity.this, loginModel.getEmail(), ValidationTemplate.INTERNET)) {
+			Utility.setNoInternetPopup(LoginActivity.this);
+			return false;
+		} else {
+			return true;
+		}
+	}
 
-    public void onForgotBtnClick(){
-        startActivity(new Intent(LoginActivity.this, ForgotActivity.class));
-    }
+	public void onForgotBtnClick(){
+		startActivity(new Intent(LoginActivity.this, ForgotActivity.class));
+	}
 
-    /**
-     * Login button click method
-     * @param loginModel LoginModel
-     */
-    public void onLoginButtonClick(LoginModel loginModel) {
-        if (validate(loginModel)) {
-            loginModel.setLanguage("en");
-            loginModel.setFcmToken(fireballToken);
-            loginModel.setIEMINumber(Build.SERIAL);
-           app.com.maksab.util.ProgressDialog.getInstance().showProgressDialog(LoginActivity.this);
-            Api api = APIClient.getClient().create(Api.class);
-            final Call<LoginResponse> loginResponseCall = api.loginUser(loginModel);
-            loginResponseCall.enqueue(new Callback<LoginResponse>() {
-                @Override
-                public void onResponse(Call<LoginResponse> call, Response<LoginResponse> response) {
-                    app.com.maksab.util.ProgressDialog.getInstance().dismissDialog();
-                    handleLoginResponse(response.body());
-                }
+	/**
+	 * Login button click method
+	 * @param loginModel LoginModel
+	 */
+	public void onLoginButtonClick(LoginModel loginModel) {
+		if (validate(loginModel)) {
+			loginModel.setLanguage("en");
+			loginModel.setFcmToken(fireballToken);
+			loginModel.setIEMINumber(Build.SERIAL);
 
-                @Override
-                public void onFailure(Call<LoginResponse> call, Throwable t) {
-                    app.com.maksab.util.ProgressDialog.getInstance().dismissDialog();
-                    loginResponseCall.cancel();
-                    Utility.showToast(LoginActivity.this, t.getMessage());
-                }
-            });
-        }
-    }
+			Helper.showProgress(LoginActivity.this);
+			Api api = APIClient.getClient().create(Api.class);
+			final Call<LoginResponse> loginResponseCall = api.loginUser(loginModel);
+			loginResponseCall.enqueue(new Callback<LoginResponse>() {
+				@Override
+				public void onResponse(Call<LoginResponse> call, Response<LoginResponse> response) {
+					Helper.hideProgress();
+					handleLoginResponse(response.body());
+				}
 
-    /**
-     * Handle login response
-     * @param loginResponse LoginResponse
-     */
-    private void handleLoginResponse(LoginResponse loginResponse) {
-        if (loginResponse != null) {
-            if (loginResponse.getStatus() != null){
-                if (loginResponse.getStatus().equals("0")){
-                    Intent intent = new Intent(LoginActivity.this, MobileVerificationActivity.class);
-                    intent.putExtra("token",fireballToken);
-                    intent.putExtra("email",activityBinding.emailEdt.getText().toString());
-                    startActivity(intent);
-                    finish();
-                }else
-                    Utility.showToast(LoginActivity.this, loginResponse.getErrorMessage());
-            }else if (loginResponse.getResponseCode().equals(Api.SUCCESS)) {
-                saveDetails(loginResponse);
-                startActivity(new Intent(LoginActivity.this, HomeActivity.class));
-                finish();
-            }else Utility.showToast(LoginActivity.this, loginResponse.getMessage());
-        }
-    }
+				@Override
+				public void onFailure(Call<LoginResponse> call, Throwable t) {
+					Helper.hideProgress();
+					loginResponseCall.cancel();
+					Utility.showToast(LoginActivity.this, t.getMessage());
+				}
+			});
+		}
+	}
 
-    /**
-     * Save registered user details
-     * @param loginResponse LoginResponse model
-     */
-    private void saveDetails(LoginResponse loginResponse) {
-        String userData = new Gson().toJson(loginResponse);
-        PreferenceConnector.writeString(LoginActivity.this, PreferenceConnector.USER_ID, loginResponse.getUserId());
-        PreferenceConnector.writeString(LoginActivity.this, PreferenceConnector.USER_DATA, userData);
-        PreferenceConnector.writeBoolean(LoginActivity.this, PreferenceConnector.IS_LOGIN, true);
-        PreferenceConnector.writeString(LoginActivity.this, PreferenceConnector.CITY, loginResponse.getCityId());
-        PreferenceConnector.writeString(LoginActivity.this, PreferenceConnector.USER_NAME, loginResponse.getUserName());
-        PreferenceConnector.writeString(LoginActivity.this, PreferenceConnector.USER_PIC,
-                loginResponse.getProfilePic());
-        PreferenceConnector.writeString(LoginActivity.this, PreferenceConnector.IS_MEMBER,
-                loginResponse.getIsMember());
-        PreferenceConnector.writeString(LoginActivity.this, PreferenceConnector.MAX_DIVICE_COUNT,
-                loginResponse.getMaxDeviceCount());
-    }
+	/**
+	 * Handle login response
+	 * @param loginResponse LoginResponse
+	 */
+	private void handleLoginResponse(LoginResponse loginResponse) {
+		if (loginResponse != null) {
+			if (loginResponse.getStatus() != null) {
+				if (Utility.isEmulator()) {
+					saveDetails(loginResponse);
+					startActivity(new Intent(LoginActivity.this, HomeActivity.class));
+					finish();
+					return;
+				}
 
-    /**
-     * SignUp Button click method
-     */
-    public void onRegisterButtonClick() {
-        startActivity(new Intent(LoginActivity.this, UserRegistrationActivity.class));
-        finish();
-    }
+				if (loginResponse.getStatus().equals("0")){
+					Intent intent = new Intent(LoginActivity.this, MobileVerificationActivity.class);
+					intent.putExtra("token",fireballToken);
+					intent.putExtra("email",activityBinding.emailEdt.getText().toString());
+					startActivity(intent);
+					finish();
+				}else
+					Utility.showToast(LoginActivity.this, loginResponse.getErrorMessage());
+			}else if (loginResponse.getResponseCode().equals(Api.SUCCESS)) {
+				saveDetails(loginResponse);
+				startActivity(new Intent(LoginActivity.this, HomeActivity.class));
+				finish();
+			}else Utility.showToast(LoginActivity.this, loginResponse.getMessage());
+		}
+	}
 
-    /**
-     * Check string empty or not
-     * @param str string to check
-     * @return true if empty else false
-     */
-    private boolean isEmpty(String str) {
-        return TextUtils.isEmpty(str);
-    }
+	/**
+	 * Save registered user details
+	 * @param loginResponse LoginResponse model
+	 */
+	private void saveDetails(LoginResponse loginResponse) {
+		String userData = new Gson().toJson(loginResponse);
+		PreferenceConnector.writeString(LoginActivity.this, PreferenceConnector.USER_ID, loginResponse.getUserId());
+		PreferenceConnector.writeString(LoginActivity.this, PreferenceConnector.USER_DATA, userData);
+		PreferenceConnector.writeBoolean(LoginActivity.this, PreferenceConnector.IS_LOGIN, true);
+		PreferenceConnector.writeString(LoginActivity.this, PreferenceConnector.CITY, loginResponse.getCityId());
+		PreferenceConnector.writeString(LoginActivity.this, PreferenceConnector.USER_NAME, loginResponse.getUserName());
+		PreferenceConnector.writeString(LoginActivity.this, PreferenceConnector.USER_PIC,
+				loginResponse.getProfilePic());
+		PreferenceConnector.writeString(LoginActivity.this, PreferenceConnector.IS_MEMBER,
+				loginResponse.getIsMember());
+		PreferenceConnector.writeString(LoginActivity.this, PreferenceConnector.MAX_DIVICE_COUNT,
+				loginResponse.getMaxDeviceCount());
+	}
 
-    @Override
-    public void onBackPressed() {
-        super.onBackPressed();
-    }
+	/**
+	 * SignUp Button click method
+	 */
+	public void onRegisterButtonClick() {
+		startActivity(new Intent(LoginActivity.this, UserRegistrationActivity.class));
+		finish();
+	}
+
+	/**
+	 * Check string empty or not
+	 * @param str string to check
+	 * @return true if empty else false
+	 */
+	private boolean isEmpty(String str) {
+		return TextUtils.isEmpty(str);
+	}
+
+	@Override
+	public void onBackPressed() {
+		super.onBackPressed();
+	}
 
 
     /*private String getImeiNumber() {
