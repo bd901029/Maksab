@@ -1,21 +1,35 @@
 package app.com.maksab.util;
 
+import android.util.Log;
 import app.com.maksab.MyApplication;
 
+import java.util.ArrayList;
 import java.util.Locale;
 
-public class LocaleUtil {
-	private static LocaleUtil instance = null;
-	public static LocaleUtil sharedInstance() {
+public class LanguageUtil {
+	private static LanguageUtil instance = null;
+	public static LanguageUtil sharedInstance() {
 		if (instance == null) {
-			instance = new LocaleUtil();
+			instance = new LanguageUtil();
 		}
 		return instance;
 	}
 
+	public static final String ARABIC = "ar";
+	public static final String ENGLISH = "en";
+	public static final String TURKYCE = "tu";
+
+	private String TAG = "LanguageUtil";
+
+	public static ArrayList<String> Languages = new ArrayList<String>() {{
+		add(ARABIC);
+		add(ENGLISH);
+		add(TURKYCE);
+	}};
+
 	String language = "";
 
-	LocaleUtil() {
+	LanguageUtil() {
 		loadLanguage();
 	}
 
@@ -31,6 +45,7 @@ public class LocaleUtil {
 
 	public String getLanguage() {
 		loadLanguage();
+		Log.i(TAG, language);
 		return language;
 	}
 

@@ -155,7 +155,7 @@ public class ProfileEditActivity extends AppCompatActivity {
                                     new Handler(Looper.getMainLooper()).post(new Runnable() {
                                         @Override
                                         public void run() {
-                                            //activityBinding.imageViewProfile.setImageBitmap(bitmap);
+                                            //binder.imageViewProfile.setImageBitmap(bitmap);
                                             //setProfilePicture(new Gson().toJson(new SetProfilePictureModel(
                                             //  strImagePath, strUserId)));
                                         }

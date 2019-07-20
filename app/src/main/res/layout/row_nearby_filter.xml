@@ -9,7 +9,7 @@
 
         <variable
             name="model"
-            type="app.com.maksab.api.dao.CategoryHomeResponse.CategoryList" />
+            type="app.com.maksab.api.dao.CategoryHomeResponse.Category" />
     </data>
     <LinearLayout
         android:layout_width="match_parent"

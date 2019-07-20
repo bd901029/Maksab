@@ -60,8 +60,8 @@ public class DialogArListAdapter extends RecyclerView.Adapter<DialogArListAdapte
             };
             holder.binding.recyclerView.setLayoutManager(new GridLayoutManager
                     (context, 1));
-            holder.binding.recyclerView.setAdapter(new DialogCityAdapter
-                    (context, resultLists.get(position).getCitys(), onItemClickListener2));
+//            holder.binding.recyclerView.setAdapter(new CityListAdapter
+//                    (context, resultLists.get(position).getCitys(), onItemClickListener2));
         }
     }
 

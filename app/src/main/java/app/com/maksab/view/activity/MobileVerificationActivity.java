@@ -244,7 +244,7 @@ public class MobileVerificationActivity extends AppCompatActivity {
 
             public void onFinish() {
                 resentOtp = true;
-                //activityBinding.resendCode.setBackground(R.drawable.button_primary);
+                //binder.resendCode.setBackground(R.drawable.button_primary);
                 activityBinding.resendCode.setBackground(ContextCompat.getDrawable(MobileVerificationActivity.this, R.drawable.button_primary));
                 activityBinding.timer.setText("");
             }

@@ -68,7 +68,6 @@ import java.util.regex.Pattern;
 
 import app.com.maksab.R;
 import app.com.maksab.api.dao.LoginResponse;
-import app.com.maksab.api.dao.User;
 import app.com.maksab.listener.DialogListener;
 
 
@@ -162,7 +161,7 @@ public class Utility {
     }
 
     public static String getLanguage(Context context) {
-        return LocaleUtil.sharedInstance().getLanguage();
+        return LanguageUtil.sharedInstance().getLanguage();
     }
 
     public static String getIsMember(Context context) {

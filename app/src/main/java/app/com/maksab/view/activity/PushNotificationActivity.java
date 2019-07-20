@@ -55,7 +55,7 @@ public class PushNotificationActivity extends AppCompatActivity {
         activityBinding.setActivity(this);
         getFavoriteDeals();
 
-        /*activityBinding.swifeRefresh.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+        /*binder.swifeRefresh.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
                 try {
@@ -101,7 +101,7 @@ public class PushNotificationActivity extends AppCompatActivity {
             public void onResponse(Call<NotificationResponse> call, retrofit2.Response<NotificationResponse>
                     response) {
                 if (!isDestroyed()) {
-                    //activityBinding.swifeRefresh.setRefreshing(false);
+                    //binder.swifeRefresh.setRefreshing(false);
                     getNotificationStatus();
                     handleStoreListResponse(response.body());
                 }
@@ -110,7 +110,7 @@ public class PushNotificationActivity extends AppCompatActivity {
             @Override
             public void onFailure(Call<NotificationResponse> call, Throwable t) {
                 if (!isDestroyed()) {
-                    //activityBinding.swifeRefresh.setRefreshing(false);
+                    //binder.swifeRefresh.setRefreshing(false);
                     Utility.showToast(PushNotificationActivity.this, t + "");
                     Log.e("", "onFailure: " + t.getLocalizedMessage());
                 }
@@ -127,7 +127,7 @@ public class PushNotificationActivity extends AppCompatActivity {
         try {
             if (myResponse != null) {
                 if (myResponse.getResponseCode() != null && myResponse.getResponseCode().equals(Api.SUCCESS)) {
-                    // activityBinding.swifeRefresh.setRefreshing(false);
+                    // binder.swifeRefresh.setRefreshing(false);
                     if (myResponse.getNotificationList() != null && myResponse.getNotificationList().size() != 0) {
                         setRecyclerView(myResponse.getNotificationList());
                     }
@@ -226,7 +226,7 @@ public class PushNotificationActivity extends AppCompatActivity {
         try {
             if (myResponse != null) {
                 if (myResponse.getResponseCode() != null && myResponse.getResponseCode().equals(Api.SUCCESS)) {
-                    //activityBinding.swifeRefresh.setRefreshing(false);
+                    //binder.swifeRefresh.setRefreshing(false);
                     if (myResponse.getCategoryList() != null && myResponse.getCategoryList().size() != 0) {
                         setRecyclerViewNotificationFilter(myResponse.getCategoryList());
                     }

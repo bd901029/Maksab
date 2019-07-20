@@ -15,10 +15,10 @@ import app.com.maksab.listener.OnItemClickCheckUnCheckListener;
 public class NearbyFilterAdapter extends RecyclerView.Adapter<NearbyFilterAdapter.ViewHolder> {
 
     private Activity context;
-    private ArrayList<CategoryHomeResponse.CategoryList> resultLists;
+    private ArrayList<CategoryHomeResponse.Category> resultLists;
     private OnItemClickCheckUnCheckListener onItemClickCheckUnCheckListener;
 
-    public NearbyFilterAdapter(Activity context, ArrayList<CategoryHomeResponse.CategoryList> resultLists, OnItemClickCheckUnCheckListener onItemClickCheckUnCheckListener) {
+    public NearbyFilterAdapter(Activity context, ArrayList<CategoryHomeResponse.Category> resultLists, OnItemClickCheckUnCheckListener onItemClickCheckUnCheckListener) {
         this.context = context;
         this.resultLists = resultLists;
         this.onItemClickCheckUnCheckListener = onItemClickCheckUnCheckListener;
@@ -61,7 +61,7 @@ public class NearbyFilterAdapter extends RecyclerView.Adapter<NearbyFilterAdapte
             this.binding = binding;
         }
     }
-    public void onClickItem(final CategoryHomeResponse.CategoryList serviceTypesList) {
+    public void onClickItem(final CategoryHomeResponse.Category serviceTypesList) {
         if (resultLists.get(resultLists.indexOf(serviceTypesList)).getCategoryStatus().equalsIgnoreCase("1")) {
             serviceTypesList.setCategoryStatus("0");
             onItemClickCheckUnCheckListener.onRemove(resultLists.indexOf(serviceTypesList),serviceTypesList);

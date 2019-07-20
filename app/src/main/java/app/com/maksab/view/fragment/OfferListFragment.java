@@ -35,214 +35,212 @@ import retrofit2.Callback;
 
 public class OfferListFragment extends Fragment {
 
-    public OfferListFragment() {
-        // Required empty public constructor
-    }
-    private FragmentOfferListBinding fragmentBinding;
-    private String sCategoryId = "";
-    OfferListModel offerListModel = new OfferListModel();
-    private boolean gridView = true;
-    private OfferListResponse offerListResponse;
+	public OfferListFragment() {
+		// Required empty public constructor
+	}
+	private FragmentOfferListBinding binder;
+	private String sCategoryId = "";
+	OfferListModel offerListModel = new OfferListModel();
+	private boolean gridView = true;
+	private OfferListResponse offerListResponse;
 
-    public static OfferListFragment newInstance(String storeTypeId) {
-        Bundle args = new Bundle();
-        OfferListFragment fragment = new OfferListFragment();
-        args.putString(Constant.CATEGORY_ID, storeTypeId);
-        fragment.setArguments(args);
-        return fragment;
-    }
+	public static OfferListFragment newInstance(String storeTypeId) {
+		Bundle args = new Bundle();
+		OfferListFragment fragment = new OfferListFragment();
+		args.putString(Constant.CATEGORY_ID, storeTypeId);
+		fragment.setArguments(args);
+		return fragment;
+	}
 
-    @Override
-    public void onCreate(@Nullable Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        Bundle bundle = getArguments();
-        if (bundle != null) {
-            sCategoryId = bundle.getString(Constant.CATEGORY_ID);
-        } else {
-            Utility.showToast(getActivity(), getString(R.string.wrong));
-        }
-    }
+	@Override
+	public void onCreate(@Nullable Bundle savedInstanceState) {
+		super.onCreate(savedInstanceState);
+		Bundle bundle = getArguments();
+		if (bundle != null) {
+			sCategoryId = bundle.getString(Constant.CATEGORY_ID);
+		} else {
+			Utility.showToast(getActivity(), getString(R.string.wrong));
+		}
+	}
 
-    @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
-        fragmentBinding = DataBindingUtil.inflate(LayoutInflater.from(getActivity()), R.layout
-                        .fragment_offer_list,
-                container, false);
-        return fragmentBinding.getRoot();
-    }
+	@Override
+	public View onCreateView(LayoutInflater inflater, ViewGroup container,
+							 Bundle savedInstanceState) {
+		binder = DataBindingUtil.inflate(LayoutInflater.from(getActivity()), R.layout.fragment_offer_list,
+				container, false);
+		return binder.getRoot();
+	}
 
-    @Override
-    public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
-        super.onViewCreated(view, savedInstanceState);
-        fragmentBinding.setFragment(this);
+	@Override
+	public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
+		super.onViewCreated(view, savedInstanceState);
+		binder.setFragment(this);
 
-        if (gridView){
-            fragmentBinding.gridImg.setImageResource(R.drawable.grid_hover3x);
-            fragmentBinding.gridText.setTextColor(getResources().getColor(R.color.colorAccent));
-            fragmentBinding.listImg.setImageResource(R.drawable.list3x);
-            fragmentBinding.listText.setTextColor(getResources().getColor(R.color.gray_dark));
-        }else {
-            fragmentBinding.gridImg.setImageResource(R.drawable.gridr3x);
-            fragmentBinding.gridText.setTextColor(getResources().getColor(R.color.gray_dark));
-            fragmentBinding.listImg.setImageResource(R.drawable.lis_hovert3x);
-            fragmentBinding.listText.setTextColor(getResources().getColor(R.color.gray_dark));
-        }
+		if (gridView){
+			binder.gridImg.setImageResource(R.drawable.grid_hover3x);
+			binder.gridText.setTextColor(getResources().getColor(R.color.colorAccent));
+			binder.listImg.setImageResource(R.drawable.list3x);
+			binder.listText.setTextColor(getResources().getColor(R.color.gray_dark));
+		}else {
+			binder.gridImg.setImageResource(R.drawable.gridr3x);
+			binder.gridText.setTextColor(getResources().getColor(R.color.gray_dark));
+			binder.listImg.setImageResource(R.drawable.lis_hovert3x);
+			binder.listText.setTextColor(getResources().getColor(R.color.gray_dark));
+		}
 
-        getCategoryList();
-    }
+		getCategoryList();
+	}
 
-    public void getCategoryList() {
-        ProgressDialog.getInstance().showProgressDialog(getActivity());
-        LanguageModel languageModel = new LanguageModel();
-        languageModel.setLanguage(Utility.getLanguage(getActivity()));
-        Api api = APIClient.getClient().create(Api.class);
-        final Call<CategoryHomeResponse> responseCall = api.getCategoryList(languageModel);
-        responseCall.enqueue(new Callback<CategoryHomeResponse>() {
-            @Override
-            public void onResponse(Call<CategoryHomeResponse> call, retrofit2.Response<CategoryHomeResponse> response) {
-                getOfferList(sCategoryId);
-                handleStoreListResponse(response.body());
-            }
+	public void getCategoryList() {
+		ProgressDialog.getInstance().showProgressDialog(getActivity());
+		LanguageModel languageModel = new LanguageModel();
+		languageModel.setLanguage(Utility.getLanguage(getActivity()));
+		Api api = APIClient.getClient().create(Api.class);
+		final Call<CategoryHomeResponse> responseCall = api.getCategoryList(languageModel);
+		responseCall.enqueue(new Callback<CategoryHomeResponse>() {
+			@Override
+			public void onResponse(Call<CategoryHomeResponse> call, retrofit2.Response<CategoryHomeResponse> response) {
+				getOfferList(sCategoryId);
+				handleStoreListResponse(response.body());
+			}
 
-            @Override
-            public void onFailure(Call<CategoryHomeResponse> call, Throwable t) {
-                ProgressDialog.getInstance().dismissDialog();
-                Toast.makeText(getActivity(), t + "", Toast.LENGTH_SHORT).show();
-                Log.e("", "onFailure: " + t.getLocalizedMessage());
-            }
-        });
-    }
-
-
-    /**
-     * Handle store list response
-     * @param storeListResponse @StoreListResponse object
-     */
-    private void handleStoreListResponse(CategoryHomeResponse storeListResponse) {
-        if (storeListResponse.getResponseCode().equals(Api.SUCCESS)) {
-            if (storeListResponse.getResultList() != null && storeListResponse.getResultList().size() != 0) {
-                setRecyclerView(storeListResponse.getResultList());
-            } else {
-            }
-        } else {
-            Utility.showToast(getActivity(), getString(R.string.wrong));
-        }
-    }
-
-    /**
-     * Set recycler view Adapter
-     */
-    private void setRecyclerView(ArrayList<CategoryHomeResponse.CategoryList> categoryListArrayList) {
-        if (isDetached()) {
-            return;
-        }
-        OnItemClickListener onItemClickListener = new OnItemClickListener() {
-            @Override
-            public void onClick(int position, Object obj) {
-                CategoryHomeResponse.CategoryList categoryList = (CategoryHomeResponse.CategoryList) obj;
-                //((HomeActivity) getActivity()).addFragment(CategoryListFragment.newInstance(store),
-                // "CategoryListFragment",false);
-                fragmentBinding.catName.setText(categoryList.categoryName);
-                getOfferList(categoryList.categoryId);
+			@Override
+			public void onFailure(Call<CategoryHomeResponse> call, Throwable t) {
+				ProgressDialog.getInstance().dismissDialog();
+				Toast.makeText(getActivity(), t + "", Toast.LENGTH_SHORT).show();
+				Log.e("", "onFailure: " + t.getLocalizedMessage());
+			}
+		});
+	}
 
 
-            }
-        };
-        //fragmentBinding.recyclerView.setLayoutManager(new GridLayoutManager(getActivity(), 1));
-        fragmentBinding.recyclerView.setLayoutManager(new LinearLayoutManager(getActivity(), LinearLayoutManager
-                .HORIZONTAL, true));
-        fragmentBinding.recyclerView.setAdapter(new CategoryHomeAdapter(getActivity(), categoryListArrayList,
-                onItemClickListener));
-    }
+	/**
+	 * Handle store list response
+	 * @param storeListResponse @StoreListResponse object
+	 */
+	private void handleStoreListResponse(CategoryHomeResponse storeListResponse) {
+		if (storeListResponse.getResponseCode().equals(Api.SUCCESS)) {
+			if (storeListResponse.getResultList() != null && storeListResponse.getResultList().size() != 0) {
+				setRecyclerView(storeListResponse.getResultList());
+			} else {
+			}
+		} else {
+			Utility.showToast(getActivity(), getString(R.string.wrong));
+		}
+	}
+
+	/**
+	 * Set recycler view Adapter
+	 */
+	private void setRecyclerView(ArrayList<CategoryHomeResponse.Category> categoryListArrayList) {
+		if (isDetached()) {
+			return;
+		}
+		OnItemClickListener onItemClickListener = new OnItemClickListener() {
+			@Override
+			public void onClick(int position, Object obj) {
+				CategoryHomeResponse.Category category = (CategoryHomeResponse.Category) obj;
+				//((HomeActivity) getActivity()).addFragment(CategoryListFragment.newInstance(store),
+				// "CategoryListFragment",false);
+				Log.i("dragon", category.categoryName);
+				binder.catName.setText(category.categoryName);
+				getOfferList(category.categoryId);
+			}
+		};
+		//binder.recyclerView.setLayoutManager(new GridLayoutManager(getActivity(), 1));
+		binder.recyclerView.setLayoutManager(new LinearLayoutManager(getActivity(), LinearLayoutManager
+				.HORIZONTAL, true));
+		binder.recyclerView.setAdapter(new CategoryHomeAdapter(getActivity(), categoryListArrayList,
+				onItemClickListener));
+	}
 
 
 
-    public void getOfferList(String categoryId) {
-        fragmentBinding.progressBar.setVisibility(View.VISIBLE);
-        offerListModel.setCategoryId(categoryId);
-        offerListModel.setUserId(Utility.getUserId(getActivity()));
-        offerListModel.setLanguage(Utility.getLanguage(getActivity()));
-        Api api = APIClient.getClient().create(Api.class);
-        final Call<OfferListResponse> responseCall = api.offerList(offerListModel);
-        responseCall.enqueue(new Callback<OfferListResponse>() {
-            @Override
-            public void onResponse(Call<OfferListResponse> call, retrofit2.Response<OfferListResponse>
-                    response) {
-                ProgressDialog.getInstance().dismissDialog();
-                 offerListResponse = response.body();
-                handleResponse();
-            }
+	public void getOfferList(String categoryId) {
+		binder.progressBar.setVisibility(View.VISIBLE);
+		offerListModel.setCategoryId(categoryId);
+		offerListModel.setUserId(Utility.getUserId(getActivity()));
+		offerListModel.setLanguage(Utility.getLanguage(getActivity()));
+		Api api = APIClient.getClient().create(Api.class);
+		final Call<OfferListResponse> responseCall = api.offerList(offerListModel);
+		responseCall.enqueue(new Callback<OfferListResponse>() {
+			@Override
+			public void onResponse(Call<OfferListResponse> call, retrofit2.Response<OfferListResponse>
+					response) {
+				ProgressDialog.getInstance().dismissDialog();
+				offerListResponse = response.body();
+				handleResponse();
+			}
 
-            @Override
-            public void onFailure(Call<OfferListResponse> call, Throwable t) {
-                ProgressDialog.getInstance().dismissDialog();
-                Toast.makeText(getActivity(), t + "", Toast.LENGTH_SHORT).show();
-                Log.e("", "onFailure: " + t.getLocalizedMessage());
-            }
-        });
-    }
+			@Override
+			public void onFailure(Call<OfferListResponse> call, Throwable t) {
+				ProgressDialog.getInstance().dismissDialog();
+				Toast.makeText(getActivity(), t + "", Toast.LENGTH_SHORT).show();
+				Log.e("", "onFailure: " + t.getLocalizedMessage());
+			}
+		});
+	}
 
 
-    private void handleResponse() {
-        fragmentBinding.progressBar.setVisibility(View.GONE);
-        if (offerListResponse.getResponseCode().equals(Api.SUCCESS)) {
-            if (offerListResponse.getOfferList() != null && offerListResponse.getOfferList().size() != 0) {
-                fragmentBinding.recyclerViewOffer.setVisibility(View.VISIBLE);
-                setRecyclerViewOfferList(offerListResponse.getOfferList());
-            } else {
-                fragmentBinding.recyclerViewOffer.setVisibility(View.GONE);
-                Utility.showToast(getActivity(), getString(R.string.no_data_found));
-            }
-        } else {
-            Utility.showToast(getActivity(), getString(R.string.wrong));
-        }
-    }
+	private void handleResponse() {
+		binder.progressBar.setVisibility(View.GONE);
+		if (offerListResponse.getResponseCode().equals(Api.SUCCESS)) {
+			if (offerListResponse.getOfferList() != null && offerListResponse.getOfferList().size() != 0) {
+				binder.recyclerViewOffer.setVisibility(View.VISIBLE);
+				setRecyclerViewOfferList(offerListResponse.getOfferList());
+			} else {
+				binder.recyclerViewOffer.setVisibility(View.GONE);
+				Utility.showToast(getActivity(), getString(R.string.no_data_found));
+			}
+		} else {
+			Utility.showToast(getActivity(), getString(R.string.wrong));
+		}
+	}
 
-    /**
-     * Set recycler view Adapter
-     */
-    private void setRecyclerViewOfferList(ArrayList<OfferListResponse.OfferList> myArrayList) {
-        if (isDetached()) {
-            return;
-        }
-        OnItemClickListener onItemClickListener = new OnItemClickListener() {
-            @Override
-            public void onClick(int position, Object obj) {
-                OfferListResponse.OfferList offerList = (OfferListResponse.OfferList) obj;
-                //((HomeActivity) getActivity()).addFragment(CategoryListFragment.newInstance(store),
-                // "CategoryListFragment",false);
-                Intent intent = new Intent(getActivity(), OfferDetailsActivity.class);
-                intent.putExtra(Constant.OFFER_ID,offerList.getOfferId());
-                startActivity(intent);
-            }
-        };
+	/**
+	 * Set recycler view Adapter
+	 */
+	private void setRecyclerViewOfferList(ArrayList<OfferListResponse.OfferList> myArrayList) {
+		if (isDetached()) {
+			return;
+		}
+		OnItemClickListener onItemClickListener = new OnItemClickListener() {
+			@Override
+			public void onClick(int position, Object obj) {
+				OfferListResponse.OfferList offerList = (OfferListResponse.OfferList) obj;
+				//((HomeActivity) getActivity()).addFragment(CategoryListFragment.newInstance(store),
+				// "CategoryListFragment",false);
+				Intent intent = new Intent(getActivity(), OfferDetailsActivity.class);
+				intent.putExtra(Constant.OFFER_ID,offerList.getOfferId());
+				startActivity(intent);
+			}
+		};
 
-        if (gridView){
-            fragmentBinding.recyclerViewOffer.setLayoutManager(new GridLayoutManager(getActivity(),2));
-            fragmentBinding.recyclerViewOffer.setAdapter(new OfferGridAdapter(getActivity(), myArrayList, onItemClickListener));
-        }else {
-            fragmentBinding.recyclerViewOffer.setLayoutManager(new GridLayoutManager(getActivity(),1));
-            fragmentBinding.recyclerViewOffer.setAdapter(new OfferListAdapter(getActivity(), myArrayList, onItemClickListener));
-        }
-    }
+		if (gridView){
+			binder.recyclerViewOffer.setLayoutManager(new GridLayoutManager(getActivity(),2));
+			binder.recyclerViewOffer.setAdapter(new OfferGridAdapter(getActivity(), myArrayList, onItemClickListener));
+		}else {
+			binder.recyclerViewOffer.setLayoutManager(new GridLayoutManager(getActivity(),1));
+			binder.recyclerViewOffer.setAdapter(new OfferListAdapter(getActivity(), myArrayList, onItemClickListener));
+		}
+	}
 
-    public void onClickGrid(){
-        gridView = true;
-        fragmentBinding.gridImg.setImageResource(R.drawable.grid_hover3x);
-        fragmentBinding.gridText.setTextColor(getResources().getColor(R.color.colorAccent));
-        fragmentBinding.listImg.setImageResource(R.drawable.list3x);
-        fragmentBinding.listText.setTextColor(getResources().getColor(R.color.gray_dark));
-        handleResponse();
-    }
+	public void onClickGrid(){
+		gridView = true;
+		binder.gridImg.setImageResource(R.drawable.grid_hover3x);
+		binder.gridText.setTextColor(getResources().getColor(R.color.colorAccent));
+		binder.listImg.setImageResource(R.drawable.list3x);
+		binder.listText.setTextColor(getResources().getColor(R.color.gray_dark));
+		handleResponse();
+	}
 
-    public void onClickList(){
-        gridView = false;
-        handleResponse();
-        fragmentBinding.gridImg.setImageResource(R.drawable.gridr3x);
-        fragmentBinding.gridText.setTextColor(getResources().getColor(R.color.gray_dark));
-        fragmentBinding.listImg.setImageResource(R.drawable.lis_hovert3x);
-        fragmentBinding.listText.setTextColor(getResources().getColor(R.color.colorAccent));
-    }
+	public void onClickList(){
+		gridView = false;
+		handleResponse();
+		binder.gridImg.setImageResource(R.drawable.gridr3x);
+		binder.gridText.setTextColor(getResources().getColor(R.color.gray_dark));
+		binder.listImg.setImageResource(R.drawable.lis_hovert3x);
+		binder.listText.setTextColor(getResources().getColor(R.color.colorAccent));
+	}
 }
 

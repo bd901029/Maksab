@@ -15,13 +15,13 @@ public class CategoryHomeResponse implements Parcelable{
     public String responseCode = "";
     public String message = "";
     @SerializedName("category_list")
-    private ArrayList<CategoryList> resultList;
+    private ArrayList<Category> resultList;
 
-    public ArrayList<CategoryList> getResultList() {
+    public ArrayList<Category> getResultList() {
         return resultList;
     }
 
-    public void setResultList(ArrayList<CategoryList> resultList) {
+    public void setResultList(ArrayList<Category> resultList) {
         this.resultList = resultList;
     }
 
@@ -41,7 +41,7 @@ public class CategoryHomeResponse implements Parcelable{
         this.message = message;
     }
 
-    public class CategoryList {
+    public class Category {
         @SerializedName("category_id")
         public String categoryId = "";
         @SerializedName("category_name")
@@ -102,8 +102,8 @@ public class CategoryHomeResponse implements Parcelable{
     protected CategoryHomeResponse(Parcel in) {
         this.responseCode = in.readString();
         this.message = in.readString();
-        this.resultList = new ArrayList<CategoryList>();
-        in.readList(this.resultList, CategoryList.class.getClassLoader());
+        this.resultList = new ArrayList<Category>();
+        in.readList(this.resultList, Category.class.getClassLoader());
     }
 
     public static final Creator<CategoryHomeResponse> CREATOR = new Creator<CategoryHomeResponse>() {

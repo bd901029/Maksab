@@ -4,12 +4,10 @@ import android.app.Activity;
 import android.app.Dialog;
 import android.content.Intent;
 import android.databinding.DataBindingUtil;
-import android.os.Build;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.text.Html;
 import android.text.TextUtils;
-import android.util.Log;
 import android.view.WindowManager;
 import android.widget.CompoundButton;
 import app.com.maksab.R;
@@ -19,6 +17,7 @@ import app.com.maksab.api.dao.LoginResponse;
 import app.com.maksab.api.dao.RegistrationResponse;
 import app.com.maksab.databinding.ActivityUserRegistratoinBinding;
 import app.com.maksab.databinding.DialogRecyclerViewBinding;
+import app.com.maksab.engine.country.CountryManager;
 import app.com.maksab.util.*;
 import app.com.maksab.view.viewmodel.UserRegistrationModel;
 import com.google.firebase.iid.FirebaseInstanceId;
@@ -28,7 +27,7 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 public class UserRegistrationActivity extends AppCompatActivity {
-    private ActivityUserRegistratoinBinding mBinding;
+    private ActivityUserRegistratoinBinding binder;
     private Dialog dialogCountry;
     private DialogRecyclerViewBinding recyclerViewBinding;
     private String sCountryCode = "";
@@ -41,19 +40,22 @@ public class UserRegistrationActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        mBinding = DataBindingUtil.setContentView(this, R.layout.activity_user_registratoin);
-        mBinding.setModel(new UserRegistrationModel());
-        mBinding.setActivity(this);
+        binder = DataBindingUtil.setContentView(this, R.layout.activity_user_registratoin);
+        binder.setModel(new UserRegistrationModel());
+        binder.setActivity(this);
         this.getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN);
 
     //getCountryList();
         fireballToken = FirebaseInstanceId.getInstance().getToken();
         //onClickCountry();
-        mBinding.tc.setText((Html.fromHtml(getString(R.string.temrs_of_service))));
-        mBinding.tvCountryName.setText(Utility.getCityName(UserRegistrationActivity.this));
-        mBinding.tvCountryCode.setText(Utility.getCountryCode(UserRegistrationActivity.this));
+        binder.tc.setText((Html.fromHtml(getString(R.string.temrs_of_service))));
 
-        mBinding.switchTC.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+        String cityName = CountryManager.sharedInstance().convertCityName(Utility.getCityName(UserRegistrationActivity.this));
+        binder.tvCountryName.setText(cityName);
+
+        binder.tvCountryCode.setText(Utility.getCountryCode(UserRegistrationActivity.this));
+
+        binder.switchTC.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 if(isChecked) {
@@ -66,7 +68,7 @@ public class UserRegistrationActivity extends AppCompatActivity {
             }
         });
 
-        mBinding.switchPP.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+        binder.switchPP.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 if(isChecked) {
@@ -90,16 +92,16 @@ public class UserRegistrationActivity extends AppCompatActivity {
         if (isEmpty(userRegistrationModel.getUsername()) || isEmpty(userRegistrationModel.getEmail()) ||
                 isEmpty(userRegistrationModel.getPassword()) || isEmpty(userRegistrationModel.getMobile())) {
             if (userRegistrationModel.getUsername().isEmpty()) {
-                mBinding.nameInputLayout.setError(getText(R.string.error_f_name));
+                binder.nameInputLayout.setError(getText(R.string.error_f_name));
             }
             if (userRegistrationModel.getEmail().isEmpty()) {
-                mBinding.emailInputLayout.setError(getText(R.string.error_email));
+                binder.emailInputLayout.setError(getText(R.string.error_email));
             }
             if (userRegistrationModel.getMobile().isEmpty()) {
-                mBinding.mobile.setError(getText(R.string.error_phone));
+                binder.mobile.setError(getText(R.string.error_phone));
             }
             if (userRegistrationModel.getPassword().isEmpty()) {
-                mBinding.passwordInputLayout.setError(getText(R.string.error_pass));
+                binder.passwordInputLayout.setError(getText(R.string.error_pass));
             }
             return false;
         } /*else if (isEmpty(userRegistrationModel.getUserEmail()) && isEmpty(userRegistrationModel.getPhoneNumber())) {
@@ -169,9 +171,9 @@ public class UserRegistrationActivity extends AppCompatActivity {
                 if (registrationResponse.getStatus().equals("0")){
                     Intent intent = new Intent(UserRegistrationActivity.this, MobileVerificationActivity.class);
                     intent.putExtra("token",fireballToken);
-                   // intent.putExtra("mobile",mBinding.mobile.getText().toString());
-                    intent.putExtra("email",mBinding.emailEdt.getText().toString());
-                    //intent.putExtra("country_code",mBinding.emailEdt.getText().toString());
+                   // intent.putExtra("mobile",binder.mobile.getText().toString());
+                    intent.putExtra("email", binder.emailEdt.getText().toString());
+                    //intent.putExtra("country_code",binder.emailEdt.getText().toString());
 
                     startActivity(intent);
                     finish();
@@ -249,8 +251,11 @@ public class UserRegistrationActivity extends AppCompatActivity {
             if(resultCode == Activity.RESULT_OK){
                 sCityID = data.getStringExtra("city_id");
                 sCountryID = data.getStringExtra("country_id");
-                mBinding.tvCountryCode.setText(data.getStringExtra("country_code"));
-                mBinding.tvCountryName.setText(data.getStringExtra("city_name"));
+                binder.tvCountryCode.setText(data.getStringExtra("country_code"));
+
+                String cityName = data.getStringExtra("city_name");
+                cityName = CountryManager.sharedInstance().convertCityName(cityName);
+                binder.tvCountryName.setText(cityName);
             }
             if (resultCode == Activity.RESULT_CANCELED) {
                 //Write your code if there's no result

@@ -58,7 +58,7 @@ public class FaqActivity extends AppCompatActivity {
             @Override
             public void onFailure(Call<FaqModel> call, Throwable t) {
                 if (!isDestroyed()) {
-                    //activityBinding.swifeRefresh.setRefreshing(false);
+                    //binder.swifeRefresh.setRefreshing(false);
                     mBinding.progressBar.setVisibility(View.GONE);
                     Utility.showToast(FaqActivity.this, t + "");
                     Log.e("", "onFailure: " + t.getLocalizedMessage());
@@ -76,7 +76,7 @@ public class FaqActivity extends AppCompatActivity {
         try {
             if (myResponse != null) {
                // if (myResponse.getResponseCode().equals("200")) {
-                    // activityBinding.swifeRefresh.setRefreshing(false);
+                    // binder.swifeRefresh.setRefreshing(false);
                     if (myResponse.getFaqList() != null && myResponse.getFaqList().size() != 0) {
                         adapter = new FaqAdapter(context,myResponse.getFaqList());
                         mBinding.faqRecycelrview.setAdapter(adapter);

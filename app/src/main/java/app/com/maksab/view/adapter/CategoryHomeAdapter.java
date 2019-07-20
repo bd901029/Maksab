@@ -13,10 +13,10 @@ import app.com.maksab.listener.OnItemClickListener;
 
 public class CategoryHomeAdapter extends RecyclerView.Adapter<CategoryHomeAdapter.ViewHolder> {
     private Context context;
-    private ArrayList<CategoryHomeResponse.CategoryList> categoryListArrayList;
+    private ArrayList<CategoryHomeResponse.Category> categoryListArrayList;
     private OnItemClickListener onItemClickListener;
 
-    public CategoryHomeAdapter(Context context, ArrayList<CategoryHomeResponse.CategoryList> categoryListArrayList, OnItemClickListener onItemClickListener) {
+    public CategoryHomeAdapter(Context context, ArrayList<CategoryHomeResponse.Category> categoryListArrayList, OnItemClickListener onItemClickListener) {
         this.context = context;
         this.categoryListArrayList = categoryListArrayList;
         this.onItemClickListener = onItemClickListener;
@@ -53,7 +53,7 @@ public class CategoryHomeAdapter extends RecyclerView.Adapter<CategoryHomeAdapte
      * On Item click listener method
      * @param categoryList Store object of clicked position
      */
-    public void onItemClick(CategoryHomeResponse.CategoryList categoryList) {
+    public void onItemClick(CategoryHomeResponse.Category categoryList) {
         onItemClickListener.onClick(categoryListArrayList.indexOf(categoryList), categoryList);
     }
 }

@@ -8,7 +8,7 @@
 
         <variable
             name="adapter"
-            type="app.com.maksab.view.adapter.DialogListAdapter" />
+            type="app.com.maksab.view.adapter.CountryListAdapter" />
 
         <variable
             name="model"

@@ -1,478 +1,478 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <string name="regular">Al-Jazeera-Arabic-Regular</string>
-    <string name="light">Al-Jazeera-Arabic-Light</string>
-    <string name="bold">Al-Jazeera-Arabic-Bold</string>
+	<string name="regular">Al-Jazeera-Arabic-Regular</string>
+	<string name="light">Al-Jazeera-Arabic-Light</string>
+	<string name="bold">Al-Jazeera-Arabic-Bold</string>
 
-    <string name="ext">.ttf</string>
+	<string name="ext">.ttf</string>
 
-    <!--Dialog-->
-    <string name="select_country_language">إخترا المدينة واللغة</string>
-    <string name="english">English</string>
-    <string name="arabic"> العربية</string>
-    <string name="turkce">Türkçe</string>
-    <string name="select_country">اختر الدولة</string>
-    <string name="select_business">إختر نوع النشاط</string>
+	<!--Dialog-->
+	<string name="select_country_language">إخترا المدينة واللغة</string>
+	<string name="english">English</string>
+	<string name="arabic"> العربية</string>
+	<string name="turkce">Türkçe</string>
+	<string name="select_country">اختر الدولة</string>
+	<string name="select_business">إختر نوع النشاط</string>
 
-    <string name="navigation_drawer_open">Open navigation drawer</string>
-    <string name="navigation_drawer_close">Close navigation drawer</string>
-    <string name="action_settings">Settings</string>
+	<string name="navigation_drawer_open">Open navigation drawer</string>
+	<string name="navigation_drawer_close">Close navigation drawer</string>
+	<string name="action_settings">Settings</string>
 
-    <!--home Navigation-->
-    <string name="welcome">مرحباً</string>
-    <string name="login_signup">تسجيل الدخول / إنشاء حساب</string>
+	<!--home Navigation-->
+	<string name="welcome">مرحباً</string>
+	<string name="login_signup">تسجيل الدخول / إنشاء حساب</string>
 
-    <string name="home">الرئيسية</string>
-    <string name="purchases">مشترياتي</string>
-    <string name="favorites">المفضلة</string>
+	<string name="home">الرئيسية</string>
+	<string name="purchases">مشترياتي</string>
+	<string name="favorites">المفضلة</string>
 
-    <string name="guest_login_alert">الرجاء تسجيل الدخول للوصول الى هذه القائمة</string>
+	<string name="guest_login_alert">الرجاء تسجيل الدخول للوصول الى هذه القائمة</string>
 
-    <string name="country_languages">البلد واللغة</string>
-    <string name="membership">إشتراكات مكسب</string>
-    <string name="invite">أرسل دعوة لصديق</string>
-    <string name="become_partner">انضم إلى شركاء مكسب</string>
-    <string name="careers">إنضم إلى فريق العمل</string>
-    <string name="contact_us">اتصل بنا</string>
+	<string name="country_languages">البلد واللغة</string>
+	<string name="membership">إشتراكات مكسب</string>
+	<string name="invite">أرسل دعوة لصديق</string>
+	<string name="become_partner">انضم إلى شركاء مكسب</string>
+	<string name="careers">إنضم إلى فريق العمل</string>
+	<string name="contact_us">اتصل بنا</string>
 
-    <string name="faq">الأسئلة الشائعة</string>
-    <string name="terms_condition">شروط الإستخدام</string>
-    <string name="terms_condition_msg">الرجاء قبول شروط الاستخدام</string>
+	<string name="faq">الأسئلة الشائعة</string>
+	<string name="terms_condition">شروط الإستخدام</string>
+	<string name="terms_condition_msg">الرجاء قبول شروط الاستخدام</string>
 
-    <string name="privacy_policy">اتفاقية الخصوصية</string>
-    <string name="logout">تسجيل الخروج</string>
+	<string name="privacy_policy">اتفاقية الخصوصية</string>
+	<string name="logout">تسجيل الخروج</string>
 
-    <string name="my_account">حسابي</string>
+	<string name="my_account">حسابي</string>
 
-    <!--Home Data-->
-    <string name="cat_brand">علامات تجارية كبرى</string>
-    <string name="cat_collections">عروض مختارة</string>
-    <string name="cat_trending">عروض رائجة</string>
-    <string name="cat_hot_deal">عروض ساخنة</string>
-    <string name="cat_new_deal">عروض جديدة</string>
+	<!--Home Data-->
+	<string name="cat_brand">علامات تجارية كبرى</string>
+	<string name="cat_collections">عروض مختارة</string>
+	<string name="cat_trending">عروض رائجة</string>
+	<string name="cat_hot_deal">عروض ساخنة</string>
+	<string name="cat_new_deal">عروض جديدة</string>
 
-    <string name="brand_capital">BRANDS</string>
+	<string name="brand_capital">BRANDS</string>
 
-    <string name="select_your_package">الرجاء اختيار الباقة المناسبة</string>
+	<string name="select_your_package">الرجاء اختيار الباقة المناسبة</string>
 
-    <!-- <string name="signup_policy">
+	<!-- <string name="signup_policy">
 <![CDATA[ I have read and accepted MAKSAB\'s
 <b>Terms Of Use</b> and <b>Privacy Policy.</b>]]></string>-->
-    <string name="temrs_of_service">لقد قرأت وأوافق على شروط الإستخدام و سياسة الخصوصة</string>
-
-    <!--Buttons-->
-    <string name="cancel">إلغاء</string>
-    <string name="create">Create</string>
-    <string name="store">Store</string>
-    <string name="user">User</string>
-    <string name="next">التالى</string>
-    <string name="confirm">Confirm</string>
-    <string name="accept">Accept</string>
-    <string name="decline">Decline</string>
-    <string name="pending">Pending</string>
-    <string name="accepted">Accepted</string>
-    <string name="done">تم</string>
-    <string name="select_all">اختر الكل</string>
-
-    <string name="unselect_all">Unselect All</string>
-    <string name="resend_otp">Resend OTP</string>
-    <string name="didnt_get_otp">Didn\'t received otp?</string>
-
-    <!--Home Tab Data-->
-    <string name="update">تحديث</string>
-
-    <!--Notification-->
-    <string name="notification">مجاور</string>
-
-    <!--Profile-->
-    <string name="change_passsword">تغيير كلمة السر</string>
-    <string name="profile_photos">Profile Photos</string>
-    <string name="choose_image_source">Choose Image Source.</string>
-    <string name="gallery">Gallery</string>
-    <string name="camera">Camera</string>
-    <string name="choose_image_video">Choose Image and Video Source.</string>
-    <string name="select_picture">Select Picture</string>
-    <string name="cropping_failed">Cropping failed</string>
-    <string name="verify"> &#160;التحقق&#160;&#160;</string>
-    <string name="verified">التحقق</string>
-    <string name="otp">OTP Verification</string>
-
-    <!--Offer Page-->
-    <string name="offer_list">قائمة العروض</string>
-    <string name="search_filter">قائمة العروض</string>
-    <string name="sort_by">الترتيب حسب</string>
-    <string name="category">الفئة</string>
-    <string name="price_range">نطاق السعر</string>
-    <string name="search">بحث</string>
-    <string name="search_results">نتائج البحث</string>
-
-    <string name="hint_search_msg">تفتيش...</string>
-
-    <string name="add_to_wishlist">أضف في قائمة الأماني</string>
-    <string name="added_wishlist">وأضاف في قائمة الأماني</string>
-    <string name="share_this_deal">شارك هذا العرض</string>
-
-    <!--Row Data-->
-    <string name="reaming">متبقي</string>
-
-    <!--Massage-->
-    <string name="server_not_response">Server Not Responding</string>
-    <string name="guest_alert">This feature only for user!</string>
-    <string name="take_photo">Take Photo</string>
-    <string name="take_photo_or_video">Take Photo or Video</string>
-    <string name="required_email_or_phone">Email ID or Phone Number.</string>
-    <string name="wrong">Something went wrong, Please try again.</string>
-    <string name="password_matching">Password Not matching.</string>
-    <string name="all_required">All fields required.</string>
-    <string name="invalid_email">Enter valid email address.</string>
-    <string name="email_pass">Enter your email id and password.</string>
-    <string name="alert">تنبيه</string>
-    <string name="logout_message">هل ترغب بالخروج؟</string>
-    <string name="remove_favourite_message">Do you want to remove this item from list?</string>
-    <string name="yes">نعم فعلا</string>
-    <string name="no">كلا!</string>
-    <string name="home_dialog">Choose Your Sign Up Type</string>
-    <string name="home_login_dialog">Choose Your Login Type</string>
-    <string name="cart_confirm">You Want Purchase this Product</string>
-    <string name="thanking_you">Thanking You</string>
-    <string name="thanking_you_msg">Your Order has been send your store account.\n Please follow your order setion.</string>
-
-    <string name="choose_country_language">اختر المدينة واللغة</string>
-    <string name="error_no_internet">يرجى التحقق من اتصال الإنترنت الخاص بك أو حاول مرة أخرى في وقت لاحق</string>
-
-    <!--login screen-->
-    <string name="hint_user_name">اسم المستخدم</string>
-    <string name="hint_password">كلمة السر</string>
-    <string name="hint_confirm_password">تأكيد كلمة المرور</string>
-    <string name="label_sign_up">سجل الآن</string>
-    <string name="label_signin">تسجيل الدخول</string>
-    <string name="label_register_now">سجل الآن</string>
-    <string name="label_later">لاحقاً</string>
-    <string name="label_forgot_password">هل نسيت كلمة المرور؟</string>
-    <string name="label_forgot_your_password">هل نسيت كلمة المرور؟</string>
-    <string name="label_no_account">ليس لديك حساب في مكسب؟ </string>
-    <string name="label_submit">أرسل</string>
-    <string name="label_cancel">إلغاء</string>
-
-    <!--    sign up screen  -->
-    <string name="hint_first_name">First Name</string>
-    <string name="hint_last_name">Last Name</string>
-    <string name="hint_email">البريد الإلكتروني</string>
-
-    <string name="hint_dob">DOB</string>
-    <string name="hint_city">City/Area</string>
-    <string name="hint_number">Phone Number</string>
-    <string name="hint_mobile">رقم الجوال</string>
-    <string name="hint_nationality">Nationality</string>
-
-    <string name="hint_additional_information">معلومات إضافية</string>
-
-    <string name="label_login_offer_msg">الرجاء إكمال تسجيل البيانات لتتمكن من الإستفادة من العروض في مدينتك</string>
-    <string name="label_login_msg">لديك حساب في مكسب؟</string>
-    <string name="label_offer_send">أرسل لي العروض والتحديثات عبر البريد الإلكتروني</string>
-    <string name="label_intro_msg">تسريع تجربة التسوق الخاصة بك عن طريق التسجيل معنا</string>
-
-    <!--Payment-->
-    <string name="enter_coupon_code">أدخل رمز القسيمة</string>
-    <string name="apply">Apply</string>
-
-    <string name="pay_now">ادفع الآن</string>
-    <string name="billing_address">عنوان وصول الفواتير</string>
-    <string name="country">بلد</string>
-    <string name="zipcode">الرمز البريدي </string>
-    <string name="city">مدينة</string>
-    <string name="state">حالة</string>
-
-    <string name="error_coupon_code">أدخل رمز القسيمة</string>
-
-    <!--Become Partner-->
-    <string name="grow_your_business">Grow your business with MAKSAB</string>
-    <string name="grow_your_business_d">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor
-        incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam</string>
-
-    <string name="with_maksab_h1">Attract new customers</string>
-    <string name="with_maksab_d1">Tap into our base of over 4 million subscribers. Put your business on a platform that
-        gets millions of visits per month.</string>
-
-    <string name="with_maksab_h2">Get valuable marketing exposure</string>
-    <string name="with_maksab_d2">Ride on Fave’t regular promotions, email marketing, social media, brand partnerships and
-        more</string>
-
-    <string name="with_maksab_h3">Get free business tools to help you understand your customers better</string>
-    <string name="with_maksab_d3">Tap into our base of over 4 million subscribers. Put your business on a platform that
-        gets millions of visits per month.Benefit from Fave’s proprietary business tools for partners. Study purchase patterns, review your earnings and optimise your revenue with an easy-to-use dashboard</string>
-
-    <string name="there_is_more">Wait, there is more...</string>
-
-    <string name="there_is_h1">Dedicated partner support</string>
-    <string name="there_is_d1">Work with a team of Partner Managers that are always available to help you with processes
-        and optimisation</string>
-
-    <string name="there_is_d2">Get free, high-quality photos taken by a professional photographer hired by us. Want to use
-        these images in your own promotional materials? Simply submit a request to us!</string>
-
-    <string name="there_is_h3">Transparent commission</string>
-    <string name="there_is_d3">No upfront fee or setup costs required, listing is absolutely free! We only take a fair,
-        flat-rate commission only when a purchase is made</string>
-
-    <string name="started_maksab">كن شريكا ابدأ في MAKSAB الآن!</string>
-
-    <string name="get_in_touch_now">تواصل معنا الآن</string>
-
-    <string name="comments">Comments</string>
-
-    <string name="who_we_are">من نحن؟</string>
-    <string name="british1">BRITISH</string>
-    <string name="arabic1">ARABIC</string>
-    <string name="turkey1">TURKEY</string>
-    <string name="with_maksab">مع MAKSAB ، يمكنك ذلك</string>
-
-    <!--Error Massage-->
-    <string name="error_f_name">أدخل الاسم</string>
-    <string name="error_l_name">إدخال اسم آخر</string>
-    <string name="error_pass">أدخل كلمة المرور</string>
-    <string name="error_phone">أدخل رقم الهاتف</string>
-    <string name="error_email">أدخل معرف البريد الإلكتروني</string>
-    <string name="error_email_or_mobile">أدخل البريد الإلكتروني أو الجوال</string>
-    <string name="error_subject">Enter Subject</string>
-    <string name="error_massage">أدخل رسالة</string>
-
-    <string name="hint_note">Write your size and note here</string>
-    <string name="hint_note_kitchen">Write Your Delivery time and notes here</string>
-    <string name="hint_address">عنوان</string>
-    <string name="hint_price">Price</string>
-    <string name="name">الإسم</string>
-    <string name="hint_name">الاسم: (اختياري)</string>
-    <string name="enable_gps_internet">يرجى تمكين GPS والإنترنت</string>
-
-    <!--    Home    -->
-    <string name="near_by">مجاوز</string>
-    <string name="products">منتجات</string>
-    <string name="me">أنا</string>
-    <string name="change_profile">تغيير صورة الملف الشخصي</string>
-    <string name="view_all">عرض الكل</string>
-    <string name="your_location">موقعك</string>
-    <string name="vat_inclusive">ضريبة القيمة المضافة شاملة</string>
-    <string name="subscribed">المشترك</string>
-    <string name="already_have_higher_package"> لديك بالفعل حزمة أعلى لا يمكنك تقليله</string>
-    <string name="you_want_to_upgrade">إذا كنت ترغب في الترقية ، فسوف تفقد حزمة الاشتراك الحالية</string>
-    <string name="ok">حسنا</string>
-
-    <!--    Tabs -->
-    <string name="offer_wishlist">العروض المفضلة</string>
-    <string name="partners_wishlist">المتاجر المفضلة</string>
-
-    <!--Offer-->
-    <string name="offer_detail">تفاصيل العرض</string>
-
-    <string name="grid">شبكة</string>
-    <string name="list">قائمة</string>
-    <string name="restaurant_food">Restaurant and Food</string>
-    <string name="no_data_found">لاتوجد بيانات</string>
-    <string name="available_facilities">المرافق المتاحة</string>
-
-    <string name="redeem_offer">استرد العرض من اليوم حتى</string>
-    <string name="offer">عروض</string>
-
-    <string name="offers">عروض متوفرة</string>
-
-    <string name="favorite">في المفضلة</string>
-    <string name="other_offer_for">عروض أخرى لـ</string>
-    <string name="bought">تم شراؤه</string>
-    <string name="send_as_gift"> أرسل العرض كهدية</string>
-    <string name="offer_capital">عروض</string>
-    <string name="off">خصم</string>
-    <string name="redeem_now">إطلب العرض الآن</string>
-    <string name="call">إتصل</string>
-    <string name="congratulation">تهنئة!</string>
-    <string name="offer_redeemed">لقد تم استرداد قيمة العرض الخاص بك</string>
-
-    <string name="secrete_code">من فضلك ادخل الكود السري</string>
-
-    <!--Brand-->
-    <string name="brand_detail">تفاصيل الشريك</string>
-
-    <string name="view_menu">عرض القائمة</string>
-    <string name="vendor_location">مواقع البائعين</string>
-    <string name="contact">اتصل</string>
-    <string name="location">المنطقة</string>
-    <string name="offers_by">عروض من قبل</string>
-
-    <string name="redeem_offer_at">استرداد العرض في</string>
-    <string name="what_you_get">ماذا يتضمن هذا العرض</string>
-    <string name="redemption_instructions">الشروط الخاصة بهذا العرض</string>
-    <string name="what_customer_like">تقيمات المشتركين لعرض</string>
-
-    <!--    Product List -->
-    <string name="remaining">متبق</string>
-    <string name="line"> Not crossed <strike> crossed </strike> </string>
-    <string name="filter">منقي</string>
-
-    <!--    Progress    -->
-    <string name="loading">جار التحميل</string>
-
-    <!--delivery map -->
-    <string name="delivery_map_title">Delivery Map</string>
-    <string name="step_first">Waiting for fazaa to accept the order</string>
-    <string name="step_second">on the store</string>
-    <string name="step_third">in the store</string>
-    <string name="step_fourth">Your order is on the way to you.</string>
-    <string name="call_driver">Call Driver</string>
-    <string name="message_driver">Message Driver</string>
-    <string name="add_tip">Add Tip</string>
-
-    <!--    pickup map  -->
-    <string name="cancel_order">Cancel Order</string>
-    <string name="view_order_summary">View Order Summary</string>
-    <string name="pickup_first_step">Your order is received and getting prepared.</string>
-    <string name="pickup_second_step">Your order is ready to be pickedup.</string>
-
-    <!--    checkout -->
-    <string name="chekcout_title">Checkout</string>
-    <string name="select_your_address">Select your Address</string>
-    <string name="add_address">Add new address</string>
-    <string name="payments">PAYMENTS:</string>
-    <string name="cash">Cash</string>
-    <string name="credit_card">Credit Card</string>
-    <string name="mada_creditcard">MADA / Credit Card</string>
-    <string name="card_number">Card Number</string>
-    <string name="expiration_date">Expiration Date</string>
-    <string name="security_code">Security Code</string>
-    <string name="confirm_order">Confirm Order</string>
-
-    <string name="details">Details :</string>
-    <string name="price">Price : </string>
-    <string name="buy_now">Buy Now</string>
-    <string name="add_to_cart">Add to Cart</string>
-    <string name="request_product">Request Product</string>
-    <string name="request_information">Request Information</string>
-
-
-    <!--    My Account  -->
-    <string name="verify_email">Verify Email</string>
-    <string name="deliveries">Deliveries</string>
-    <string name="edit_profile">Edit Profile</string>
-    <string name="profile">profile</string>
-    <string name="my_order">MY ORDER</string>
-    <string name="wishlist_my">WISHLIST</string>
-
-    <!--    My Category     -->
-    <string name="delete">حذف</string>
-    <string name="save_for_later">احفظ لوقت لاحق</string>
-
-    <!--    My Cart    -->
-    <string name="checkout">Checkout</string>
-    <string name="my_cart">My Cart</string>
-    <string name="no_item_cart">No Item in cart.</string>\
-
-    <!--Favorites-->
-    <string name="no_photo_available">لا توجد صور متاحة</string>
-    <string name="data">احصل على شهر مجاني من وقت اللياقة برو عند الاشتراك لمدة ثلاثة أشهر</string>
-    <string name="my_past_purchase">عروض تم شراؤها</string>
-    <string name="total_purchase">إجمالي الشراء</string>
-    <string name="redeme_offers">العروض المستردة</string>
-    <string name="total_savings">مجموع الادخار</string>
-    <string name="my_upcoming_purchase">قائمة المشتريات الحالية</string>
-    <string name="points_rewards">النقاط والمكافآت</string>
-    <string name="subscription">تفاصيل الإشتراك</string>
-    <string name="gift_history">الهدايا المرسلة</string>
-    <string name="received_gifts">الهدايا المستلمة</string>
-    <string name="sent_gifts">هدايا مرسلة</string>
-
-    <string name="redeemed">مطفأة</string>
-    <string name="redeem">أعتق</string>
-
-    <string name="my_gifts">الهدايا بلدي</string>
-
-
-    <string name="your_maksab_credit">رصيدك الائتماني من MAKSAB</string>
-    <string name="maksab_credit_wll_be_deducted">سيتم خصم رصيد مكساب على حسابك
-        \n شراء المقبل</string>
-    <string name="invite_friends">أرسل دعوة لصديق</string>
-    <string name="earn_more">كسب المزيد من الاعتمادات فف عن طريق دعوة أصدقائك
-        \n إلى Fave</string>
-    <string name="subscription_details">تفاصيل الإشتراك</string>
-    <string name="subscription_id">رقم الإشتراك</string>
-    <string name="subscription_plan">إسم الباقة</string>
-    <string name="subscription_start_date">تاريخ الإشتراك</string>
-    <string name="subscription_expiry">تاريخ الإشتراك</string>
-    <string name="value_shrip_meal">قيمة الروبيان وجبة</string>
-
-    <string name="rate_it">قيمه</string>
-    <string name="write_review">أكتب مراجعة</string>
-
-    <string name="add_member">إضافة عضو</string>
-    <string name="family_tree">شجرة العائلة</string>
-    <string name="my_family">عائلتي</string>
-    <string name="enter_email">الرجاء إدخال بريدك الإلكتروني</string>
-    <string name="add">إضافة</string>
-    <string name="family_member">إعداد جهاز متعدد</string>
-
-    <string-array name="country_list">
-        <item>عربى</item>
-        <item>بريطاني</item>
-        <item>ديك رومي</item>
-    </string-array>
-
-    <string name="you_have_saved">لقد قمت بحفظ</string>
-    <string name="redeemption_reference_number">رقم مرجع الاسترداد</string>
-    <string name="in">في</string>
-    <string name="about">حول</string>
-    <string name="other_deal">صفقة أخرى لويندي</string>
-
-    <string name="show_all">عرض جميع المواقع القابلة للاسترداد</string>
-    <string name="show_less">عرض أقل</string>
-
-    <string name="please_ask">من فضلك إطلب من</string>
-    <string name="enter_his_secret_code">لإدخال رقمهم السري</string>
-    <string name="remaining_gift_massage">ليس لديك أي هدية متبقية</string>
-
-    <string name="gift_msg1">لقد ارسلت</string>
-    <string name="gift_msg2">بالفعل ، حتى تتمكن من إرسال المزيد</string>
-    <string name="enter">أدخل الرقم السري</string>
-
-    <string name="please_select_language">يرجى اختيار اللغة</string>
-    <string name="select_country_city">الرجاء اختيار المدينة</string>
-
-
-
-
-
-    <string name="hint_otp">أدخل كلمة المرور لمرة واحدة</string>
-
-    <string name="verification_code">شيفرة التأكيد</string>
-
-    <string name="verification_code_msg">يرجى كتابة رمز التحقق إرسال
-        \n إلى</string>
-    <string name="referral_code">كود الإحالة</string>
-    <string name="referral_code_optional">إحالة قانون (اختياري)</string>
-
-
-    <string name="expiry_year">سنة الانتهاء</string>
-    <string name="expiry_month">شهر انتهاء الصلاحية</string>
-    <string name="card_info">معلومات البطاقة</string>
-
-
-
-
-    <string name="card_holder">الاسم على البطاقة</string>
-
-
-    <string name="title_action_reset">إعادة تعيين</string>
-
-    <string name="label_card_number">XXXX XXXX XXXX XXXX</string>
-    <string name="label_expired_date">MM/YY</string>
-    <string name="label_card_holder">حامل البطاقة</string>
-    <string name="label_cvv_code">بطاقة تحقق قيمة</string>
-
-
-
-    <string name="hint_card_number">رقم بطاقة رقم 16</string>
-    <string name="hint_expired_date">منتهي الصلاحية</string>
-    <string name="hint_card_holder">حامل البطاقة</string>
-    <string name="hint_cvv_code">بطاقة تحقق قيمة</string>
-
-    <string name="label_secure_submission">تقديم آمن</string>
+	<string name="temrs_of_service">لقد قرأت وأوافق على شروط الإستخدام و سياسة الخصوصة</string>
+
+	<!--Buttons-->
+	<string name="cancel">إلغاء</string>
+	<string name="create">Create</string>
+	<string name="store">Store</string>
+	<string name="user">User</string>
+	<string name="next">التالى</string>
+	<string name="confirm">Confirm</string>
+	<string name="accept">Accept</string>
+	<string name="decline">Decline</string>
+	<string name="pending">Pending</string>
+	<string name="accepted">Accepted</string>
+	<string name="done">تم</string>
+	<string name="select_all">اختر الكل</string>
+
+	<string name="unselect_all">Unselect All</string>
+	<string name="resend_otp">Resend OTP</string>
+	<string name="didnt_get_otp">Didn\'t received otp?</string>
+
+	<!--Home Tab Data-->
+	<string name="update">تحديث</string>
+
+	<!--Notification-->
+	<string name="notification">مجاور</string>
+
+	<!--Profile-->
+	<string name="change_passsword">تغيير كلمة السر</string>
+	<string name="profile_photos">Profile Photos</string>
+	<string name="choose_image_source">Choose Image Source.</string>
+	<string name="gallery">Gallery</string>
+	<string name="camera">Camera</string>
+	<string name="choose_image_video">Choose Image and Video Source.</string>
+	<string name="select_picture">Select Picture</string>
+	<string name="cropping_failed">Cropping failed</string>
+	<string name="verify"> &#160;التحقق&#160;&#160;</string>
+	<string name="verified">التحقق</string>
+	<string name="otp">OTP Verification</string>
+
+	<!--Offer Page-->
+	<string name="offer_list">قائمة العروض</string>
+	<string name="search_filter">قائمة العروض</string>
+	<string name="sort_by">الترتيب حسب</string>
+	<string name="category">الفئة</string>
+	<string name="price_range">نطاق السعر</string>
+	<string name="search">بحث</string>
+	<string name="search_results">نتائج البحث</string>
+
+	<string name="hint_search_msg">تفتيش...</string>
+
+	<string name="add_to_wishlist">أضف في قائمة الأماني</string>
+	<string name="added_wishlist">وأضاف في قائمة الأماني</string>
+	<string name="share_this_deal">شارك هذا العرض</string>
+
+	<!--Row Data-->
+	<string name="reaming">متبقي</string>
+
+	<!--Massage-->
+	<string name="server_not_response">Server Not Responding</string>
+	<string name="guest_alert">This feature only for user!</string>
+	<string name="take_photo">Take Photo</string>
+	<string name="take_photo_or_video">Take Photo or Video</string>
+	<string name="required_email_or_phone">Email ID or Phone Number.</string>
+	<string name="wrong">Something went wrong, Please try again.</string>
+	<string name="password_matching">Password Not matching.</string>
+	<string name="all_required">All fields required.</string>
+	<string name="invalid_email">Enter valid email address.</string>
+	<string name="email_pass">Enter your email id and password.</string>
+	<string name="alert">تنبيه</string>
+	<string name="logout_message">هل ترغب بالخروج؟</string>
+	<string name="remove_favourite_message">Do you want to remove this item from list?</string>
+	<string name="yes">نعم فعلا</string>
+	<string name="no">كلا!</string>
+	<string name="home_dialog">Choose Your Sign Up Type</string>
+	<string name="home_login_dialog">Choose Your Login Type</string>
+	<string name="cart_confirm">You Want Purchase this Product</string>
+	<string name="thanking_you">Thanking You</string>
+	<string name="thanking_you_msg">Your Order has been send your store account.\n Please follow your order setion.</string>
+
+	<string name="choose_country_language">اختر المدينة واللغة</string>
+	<string name="error_no_internet">يرجى التحقق من اتصال الإنترنت الخاص بك أو حاول مرة أخرى في وقت لاحق</string>
+
+	<!--login screen-->
+	<string name="hint_user_name">اسم المستخدم</string>
+	<string name="hint_password">كلمة السر</string>
+	<string name="hint_confirm_password">تأكيد كلمة المرور</string>
+	<string name="label_sign_up">سجل الآن</string>
+	<string name="label_signin">تسجيل الدخول</string>
+	<string name="label_register_now">سجل الآن</string>
+	<string name="label_later">لاحقاً</string>
+	<string name="label_forgot_password">هل نسيت كلمة المرور؟</string>
+	<string name="label_forgot_your_password">هل نسيت كلمة المرور؟</string>
+	<string name="label_no_account">ليس لديك حساب في مكسب؟ </string>
+	<string name="label_submit">أرسل</string>
+	<string name="label_cancel">إلغاء</string>
+
+	<!--    sign up screen  -->
+	<string name="hint_first_name">First Name</string>
+	<string name="hint_last_name">Last Name</string>
+	<string name="hint_email">البريد الإلكتروني</string>
+
+	<string name="hint_dob">DOB</string>
+	<string name="hint_city">City/Area</string>
+	<string name="hint_number">Phone Number</string>
+	<string name="hint_mobile">رقم الجوال</string>
+	<string name="hint_nationality">Nationality</string>
+
+	<string name="hint_additional_information">معلومات إضافية</string>
+
+	<string name="label_login_offer_msg">الرجاء إكمال تسجيل البيانات لتتمكن من الإستفادة من العروض في مدينتك</string>
+	<string name="label_login_msg">لديك حساب في مكسب؟</string>
+	<string name="label_offer_send">أرسل لي العروض والتحديثات عبر البريد الإلكتروني</string>
+	<string name="label_intro_msg">تسريع تجربة التسوق الخاصة بك عن طريق التسجيل معنا</string>
+
+	<!--Payment-->
+	<string name="enter_coupon_code">أدخل رمز القسيمة</string>
+	<string name="apply">Apply</string>
+
+	<string name="pay_now">ادفع الآن</string>
+	<string name="billing_address">عنوان وصول الفواتير</string>
+	<string name="country">بلد</string>
+	<string name="zipcode">الرمز البريدي </string>
+	<string name="city">مدينة</string>
+	<string name="state">حالة</string>
+
+	<string name="error_coupon_code">أدخل رمز القسيمة</string>
+
+	<!--Become Partner-->
+	<string name="grow_your_business">Grow your business with MAKSAB</string>
+	<string name="grow_your_business_d">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor
+		incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam</string>
+
+	<string name="with_maksab_h1">Attract new customers</string>
+	<string name="with_maksab_d1">Tap into our base of over 4 million subscribers. Put your business on a platform that
+		gets millions of visits per month.</string>
+
+	<string name="with_maksab_h2">Get valuable marketing exposure</string>
+	<string name="with_maksab_d2">Ride on Fave’t regular promotions, email marketing, social media, brand partnerships and
+		more</string>
+
+	<string name="with_maksab_h3">Get free business tools to help you understand your customers better</string>
+	<string name="with_maksab_d3">Tap into our base of over 4 million subscribers. Put your business on a platform that
+		gets millions of visits per month.Benefit from Fave’s proprietary business tools for partners. Study purchase patterns, review your earnings and optimise your revenue with an easy-to-use dashboard</string>
+
+	<string name="there_is_more">Wait, there is more...</string>
+
+	<string name="there_is_h1">Dedicated partner support</string>
+	<string name="there_is_d1">Work with a team of Partner Managers that are always available to help you with processes
+		and optimisation</string>
+
+	<string name="there_is_d2">Get free, high-quality photos taken by a professional photographer hired by us. Want to use
+		these images in your own promotional materials? Simply submit a request to us!</string>
+
+	<string name="there_is_h3">Transparent commission</string>
+	<string name="there_is_d3">No upfront fee or setup costs required, listing is absolutely free! We only take a fair,
+		flat-rate commission only when a purchase is made</string>
+
+	<string name="started_maksab">كن شريكا ابدأ في MAKSAB الآن!</string>
+
+	<string name="get_in_touch_now">تواصل معنا الآن</string>
+
+	<string name="comments">Comments</string>
+
+	<string name="who_we_are">من نحن؟</string>
+	<string name="british1">BRITISH</string>
+	<string name="arabic1">ARABIC</string>
+	<string name="turkey1">TURKEY</string>
+	<string name="with_maksab">مع MAKSAB ، يمكنك ذلك</string>
+
+	<!--Error Massage-->
+	<string name="error_f_name">أدخل الاسم</string>
+	<string name="error_l_name">إدخال اسم آخر</string>
+	<string name="error_pass">أدخل كلمة المرور</string>
+	<string name="error_phone">أدخل رقم الهاتف</string>
+	<string name="error_email">أدخل معرف البريد الإلكتروني</string>
+	<string name="error_email_or_mobile">أدخل البريد الإلكتروني أو الجوال</string>
+	<string name="error_subject">Enter Subject</string>
+	<string name="error_massage">أدخل رسالة</string>
+
+	<string name="hint_note">Write your size and note here</string>
+	<string name="hint_note_kitchen">Write Your Delivery time and notes here</string>
+	<string name="hint_address">عنوان</string>
+	<string name="hint_price">Price</string>
+	<string name="name">الإسم</string>
+	<string name="hint_name">الاسم: (اختياري)</string>
+	<string name="enable_gps_internet">يرجى تمكين GPS والإنترنت</string>
+
+	<!--    Home    -->
+	<string name="near_by">مجاوز</string>
+	<string name="products">منتجات</string>
+	<string name="me">أنا</string>
+	<string name="change_profile">تغيير صورة الملف الشخصي</string>
+	<string name="view_all">عرض الكل</string>
+	<string name="your_location">موقعك</string>
+	<string name="vat_inclusive">ضريبة القيمة المضافة شاملة</string>
+	<string name="subscribed">المشترك</string>
+	<string name="already_have_higher_package"> لديك بالفعل حزمة أعلى لا يمكنك تقليله</string>
+	<string name="you_want_to_upgrade">إذا كنت ترغب في الترقية ، فسوف تفقد حزمة الاشتراك الحالية</string>
+	<string name="ok">حسنا</string>
+
+	<!--    Tabs -->
+	<string name="offer_wishlist">العروض المفضلة</string>
+	<string name="partners_wishlist">المتاجر المفضلة</string>
+
+	<!--Offer-->
+	<string name="offer_detail">تفاصيل العرض</string>
+
+	<string name="grid">شبكة</string>
+	<string name="list">قائمة</string>
+	<string name="restaurant_food">Restaurant and Food</string>
+	<string name="no_data_found">لاتوجد بيانات</string>
+	<string name="available_facilities">المرافق المتاحة</string>
+
+	<string name="redeem_offer">استرد العرض من اليوم حتى</string>
+	<string name="offer">عروض</string>
+
+	<string name="offers">عروض متوفرة</string>
+
+	<string name="favorite">في المفضلة</string>
+	<string name="other_offer_for">عروض أخرى لـ</string>
+	<string name="bought">تم شراؤه</string>
+	<string name="send_as_gift"> أرسل العرض كهدية</string>
+	<string name="offer_capital">عروض</string>
+	<string name="off">خصم</string>
+	<string name="redeem_now">إطلب العرض الآن</string>
+	<string name="call">إتصل</string>
+	<string name="congratulation">تهنئة!</string>
+	<string name="offer_redeemed">لقد تم استرداد قيمة العرض الخاص بك</string>
+
+	<string name="secrete_code">من فضلك ادخل الكود السري</string>
+
+	<!--Brand-->
+	<string name="brand_detail">تفاصيل الشريك</string>
+
+	<string name="view_menu">عرض القائمة</string>
+	<string name="vendor_location">مواقع البائعين</string>
+	<string name="contact">اتصل</string>
+	<string name="location">المنطقة</string>
+	<string name="offers_by">عروض من قبل</string>
+
+	<string name="redeem_offer_at">استرداد العرض في</string>
+	<string name="what_you_get">ماذا يتضمن هذا العرض</string>
+	<string name="redemption_instructions">الشروط الخاصة بهذا العرض</string>
+	<string name="what_customer_like">تقيمات المشتركين لعرض</string>
+
+	<!--    Product List -->
+	<string name="remaining">متبق</string>
+	<string name="line"> Not crossed <strike> crossed </strike> </string>
+	<string name="filter">منقي</string>
+
+	<!--    Progress    -->
+	<string name="loading">جار التحميل</string>
+
+	<!--delivery map -->
+	<string name="delivery_map_title">Delivery Map</string>
+	<string name="step_first">Waiting for fazaa to accept the order</string>
+	<string name="step_second">on the store</string>
+	<string name="step_third">in the store</string>
+	<string name="step_fourth">Your order is on the way to you.</string>
+	<string name="call_driver">Call Driver</string>
+	<string name="message_driver">Message Driver</string>
+	<string name="add_tip">Add Tip</string>
+
+	<!--    pickup map  -->
+	<string name="cancel_order">Cancel Order</string>
+	<string name="view_order_summary">View Order Summary</string>
+	<string name="pickup_first_step">Your order is received and getting prepared.</string>
+	<string name="pickup_second_step">Your order is ready to be pickedup.</string>
+
+	<!--    checkout -->
+	<string name="chekcout_title">Checkout</string>
+	<string name="select_your_address">Select your Address</string>
+	<string name="add_address">Add new address</string>
+	<string name="payments">PAYMENTS:</string>
+	<string name="cash">Cash</string>
+	<string name="credit_card">Credit Card</string>
+	<string name="mada_creditcard">MADA / Credit Card</string>
+	<string name="card_number">Card Number</string>
+	<string name="expiration_date">Expiration Date</string>
+	<string name="security_code">Security Code</string>
+	<string name="confirm_order">Confirm Order</string>
+
+	<string name="details">Details :</string>
+	<string name="price">Price : </string>
+	<string name="buy_now">Buy Now</string>
+	<string name="add_to_cart">Add to Cart</string>
+	<string name="request_product">Request Product</string>
+	<string name="request_information">Request Information</string>
+
+
+	<!--    My Account  -->
+	<string name="verify_email">Verify Email</string>
+	<string name="deliveries">Deliveries</string>
+	<string name="edit_profile">Edit Profile</string>
+	<string name="profile">profile</string>
+	<string name="my_order">MY ORDER</string>
+	<string name="wishlist_my">WISHLIST</string>
+
+	<!--    My Category     -->
+	<string name="delete">حذف</string>
+	<string name="save_for_later">احفظ لوقت لاحق</string>
+
+	<!--    My Cart    -->
+	<string name="checkout">Checkout</string>
+	<string name="my_cart">My Cart</string>
+	<string name="no_item_cart">No Item in cart.</string>\
+
+	<!--Favorites-->
+	<string name="no_photo_available">لا توجد صور متاحة</string>
+	<string name="data">احصل على شهر مجاني من وقت اللياقة برو عند الاشتراك لمدة ثلاثة أشهر</string>
+	<string name="my_past_purchase">عروض تم شراؤها</string>
+	<string name="total_purchase">إجمالي الشراء</string>
+	<string name="redeme_offers">العروض المستردة</string>
+	<string name="total_savings">مجموع الادخار</string>
+	<string name="my_upcoming_purchase">قائمة المشتريات الحالية</string>
+	<string name="points_rewards">النقاط والمكافآت</string>
+	<string name="subscription">تفاصيل الإشتراك</string>
+	<string name="gift_history">الهدايا المرسلة</string>
+	<string name="received_gifts">الهدايا المستلمة</string>
+	<string name="sent_gifts">هدايا مرسلة</string>
+
+	<string name="redeemed">مطفأة</string>
+	<string name="redeem">أعتق</string>
+
+	<string name="my_gifts">الهدايا بلدي</string>
+
+
+	<string name="your_maksab_credit">رصيدك الائتماني من MAKSAB</string>
+	<string name="maksab_credit_wll_be_deducted">سيتم خصم رصيد مكساب على حسابك
+		\n شراء المقبل</string>
+	<string name="invite_friends">أرسل دعوة لصديق</string>
+	<string name="earn_more">كسب المزيد من الاعتمادات فف عن طريق دعوة أصدقائك
+		\n إلى Fave</string>
+	<string name="subscription_details">تفاصيل الإشتراك</string>
+	<string name="subscription_id">رقم الإشتراك</string>
+	<string name="subscription_plan">إسم الباقة</string>
+	<string name="subscription_start_date">تاريخ الإشتراك</string>
+	<string name="subscription_expiry">تاريخ الإشتراك</string>
+	<string name="value_shrip_meal">قيمة الروبيان وجبة</string>
+
+	<string name="rate_it">قيمه</string>
+	<string name="write_review">أكتب مراجعة</string>
+
+	<string name="add_member">إضافة عضو</string>
+	<string name="family_tree">شجرة العائلة</string>
+	<string name="my_family">عائلتي</string>
+	<string name="enter_email">الرجاء إدخال بريدك الإلكتروني</string>
+	<string name="add">إضافة</string>
+	<string name="family_member">إعداد جهاز متعدد</string>
+
+	<string-array name="country_list">
+		<item>عربى</item>
+		<item>بريطاني</item>
+		<item>ديك رومي</item>
+	</string-array>
+
+	<string name="you_have_saved">لقد قمت بحفظ</string>
+	<string name="redeemption_reference_number">رقم مرجع الاسترداد</string>
+	<string name="in">في</string>
+	<string name="about">حول</string>
+	<string name="other_deal">صفقة أخرى لويندي</string>
+
+	<string name="show_all">عرض جميع المواقع القابلة للاسترداد</string>
+	<string name="show_less">عرض أقل</string>
+
+	<string name="please_ask">من فضلك إطلب من</string>
+	<string name="enter_his_secret_code">لإدخال رقمهم السري</string>
+	<string name="remaining_gift_massage">ليس لديك أي هدية متبقية</string>
+
+	<string name="gift_msg1">لقد ارسلت</string>
+	<string name="gift_msg2">بالفعل ، حتى تتمكن من إرسال المزيد</string>
+	<string name="enter">أدخل الرقم السري</string>
+
+	<string name="please_select_language">يرجى اختيار اللغة</string>
+	<string name="select_country_city">الرجاء اختيار المدينة</string>
+
+
+
+
+
+	<string name="hint_otp">أدخل كلمة المرور لمرة واحدة</string>
+
+	<string name="verification_code">شيفرة التأكيد</string>
+
+	<string name="verification_code_msg">يرجى كتابة رمز التحقق إرسال
+		\n إلى</string>
+	<string name="referral_code">كود الإحالة</string>
+	<string name="referral_code_optional">إحالة قانون (اختياري)</string>
+
+
+	<string name="expiry_year">سنة الانتهاء</string>
+	<string name="expiry_month">شهر انتهاء الصلاحية</string>
+	<string name="card_info">معلومات البطاقة</string>
+
+
+
+
+	<string name="card_holder">الاسم على البطاقة</string>
+
+
+	<string name="title_action_reset">إعادة تعيين</string>
+
+	<string name="label_card_number">XXXX XXXX XXXX XXXX</string>
+	<string name="label_expired_date">MM/YY</string>
+	<string name="label_card_holder">حامل البطاقة</string>
+	<string name="label_cvv_code">بطاقة تحقق قيمة</string>
+
+
+
+	<string name="hint_card_number">رقم بطاقة رقم 16</string>
+	<string name="hint_expired_date">منتهي الصلاحية</string>
+	<string name="hint_card_holder">حامل البطاقة</string>
+	<string name="hint_cvv_code">بطاقة تحقق قيمة</string>
+
+	<string name="label_secure_submission">تقديم آمن</string>
 
 </resources>

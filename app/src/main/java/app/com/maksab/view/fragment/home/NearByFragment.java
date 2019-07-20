@@ -102,7 +102,7 @@ public class NearByFragment extends Fragment implements GoogleMap.OnInfoWindowCl
 	private boolean firstTime = true;
 	private boolean firstTimeLocationUpdate = true;
 	private SupportMapFragment mapFragment;
-	ArrayList<CategoryHomeResponse.CategoryList> categoryListArrayList;
+	ArrayList<CategoryHomeResponse.Category> categoryListArrayList;
 	private boolean selectStatus = true;
 	private CategoryHomeResponse categoryHomeResponse;
 
@@ -476,14 +476,14 @@ public class NearByFragment extends Fragment implements GoogleMap.OnInfoWindowCl
 
 			@Override
 			public void onAdd(int id, Object obj) {
-				CategoryHomeResponse.CategoryList notificationList = (CategoryHomeResponse.CategoryList) obj;
+				CategoryHomeResponse.Category notificationList = (CategoryHomeResponse.Category) obj;
 				notificationList.setCategoryStatus("1");
 				selectNotification.add(notificationList.getCategoryId());
 			}
 
 			@Override
 			public void onRemove(int id, Object obj) {
-				CategoryHomeResponse.CategoryList notificationList = (CategoryHomeResponse.CategoryList) obj;
+				CategoryHomeResponse.Category notificationList = (CategoryHomeResponse.Category) obj;
 				notificationList.setCategoryStatus("0");
 				selectNotification.remove(notificationList.getCategoryId());
 			}

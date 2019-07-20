@@ -7,9 +7,7 @@ import android.content.pm.PackageManager;
 import android.databinding.DataBindingUtil;
 import android.os.Bundle;
 import android.os.Handler;
-import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.Fragment;
-import android.support.v4.content.ContextCompat;
 import android.support.v4.view.GravityCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
@@ -17,7 +15,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 import app.com.maksab.R;
 import app.com.maksab.api.APIClient;
 import app.com.maksab.api.Api;
@@ -49,7 +46,7 @@ public class HomeActivity extends AppCompatActivity {
 	boolean isFirst = true;
 	int tempM = 1;
 	public boolean intFirstVisible = false;
-	public ArrayList<CategoryHomeResponse.CategoryList> categoryLists;
+	public ArrayList<CategoryHomeResponse.Category> categoryLists;
 	public CategoryHomeResponse categoryHomeResponse;
 
 	NearByFragment nearByFragment = null;
@@ -550,8 +547,6 @@ public class HomeActivity extends AppCompatActivity {
 		intFirstVisible = target;
 	}
 
-
-
 	private void getLogout() {
 		ProgressDialog.getInstance().showProgressDialog(HomeActivity.this);
 		LogoutModel logoutModel = new LogoutModel();
@@ -568,8 +563,9 @@ public class HomeActivity extends AppCompatActivity {
 				if (myResponse != null) {
 					if (myResponse.getResponseCode() != null && myResponse.getResponseCode().equals(Api.SUCCESS)) {
 						doLogout();
-					}else
+					} else {
 						Utility.showToast(HomeActivity.this, myResponse.getMessage() + "");
+					}
 				}
 			}
 

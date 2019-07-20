@@ -6,11 +6,11 @@
     <data>
         <variable
             name="adapter"
-            type="app.com.maksab.view.adapter.DialogCityAdapter" />
+            type="app.com.maksab.view.adapter.CityListAdapter" />
 
         <variable
             name="model"
-            type="app.com.maksab.api.dao.CountryCityListResponse.CityList"/>
+            type="app.com.maksab.engine.country.City"/>
     </data>
 
         <LinearLayout
@@ -26,7 +26,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:lines="1"
-                android:text="@{model.cityName}"
+                android:text="@{model.getName}"
                 android:textColor="@color/gray_text"
                 android:textSize="16sp"
                 app:font="@{@string/regular}" />

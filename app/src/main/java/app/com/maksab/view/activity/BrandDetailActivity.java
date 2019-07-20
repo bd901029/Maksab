@@ -185,7 +185,7 @@ public class BrandDetailActivity extends AppCompatActivity implements OnMapReady
                         if (myResponse.getBrandDetails().getOfferListArrayList().size() != 0)
                             setRecyclerViewOffer(myResponse.getBrandDetails().getOfferListArrayList());
                         /*else
-                            activityBinding.llOfferBy.setVisibility(View.GONE);*/
+                            binder.llOfferBy.setVisibility(View.GONE);*/
 
                         if (myResponse.getBrandDetails().getLocationListArrayList().size() != 0)
                             setRecyclerViewLocations(myResponse.getBrandDetails().getLocationListArrayList());
