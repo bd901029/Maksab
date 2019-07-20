@@ -247,7 +247,7 @@
 	<string name="enable_gps_internet">يرجى تمكين GPS والإنترنت</string>
 
 	<!--    Home    -->
-	<string name="near_by">مجاوز</string>
+	<string name="near_by">مجاور</string>
 	<string name="products">منتجات</string>
 	<string name="me">أنا</string>
 	<string name="change_profile">تغيير صورة الملف الشخصي</string>
@@ -434,10 +434,6 @@
 
 	<string name="please_select_language">يرجى اختيار اللغة</string>
 	<string name="select_country_city">الرجاء اختيار المدينة</string>
-
-
-
-
 
 	<string name="hint_otp">أدخل كلمة المرور لمرة واحدة</string>
 
