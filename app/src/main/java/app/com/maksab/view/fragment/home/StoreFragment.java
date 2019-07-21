@@ -14,6 +14,7 @@ import android.view.ViewGroup;
 import android.widget.Toast;
 import app.com.maksab.engine.ApiManager;
 import app.com.maksab.engine.country.CountryManager;
+import app.com.maksab.engine.offer.*;
 import app.com.maksab.util.*;
 import com.daimajia.slider.library.Animations.DescriptionAnimation;
 import com.daimajia.slider.library.SliderLayout;
@@ -44,7 +45,6 @@ import app.com.maksab.view.adapter.HotDealDataAdapter;
 import app.com.maksab.view.adapter.SubCategoryDataAdapter;
 import app.com.maksab.view.adapter.TrendingAdapter;
 import app.com.maksab.view.fragment.OfferListFragment;
-import app.com.maksab.view.viewmodel.HomeDataModel;
 import app.com.maksab.view.viewmodel.LanguageModel;
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -57,7 +57,7 @@ public class StoreFragment extends Fragment implements BaseSliderView.OnSliderCl
 		// Required empty public constructor
 	}
 
-	private FragmentHomeBinding fragmentBinding;
+	private FragmentHomeBinding binder;
 	private final static String STORE_TYPE_ID = "store_type_id";
 	private String storeTypeId = "";
 	HashMap<String, String> Hash_file_maps;
@@ -85,17 +85,17 @@ public class StoreFragment extends Fragment implements BaseSliderView.OnSliderCl
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 							 Bundle savedInstanceState) {
-		fragmentBinding = DataBindingUtil.inflate(LayoutInflater.from(getActivity()), R.layout.fragment_home, container, false);
-		return fragmentBinding.getRoot();
+		binder = DataBindingUtil.inflate(LayoutInflater.from(getActivity()), R.layout.fragment_home, container, false);
+		return binder.getRoot();
 	}
 
 	@Override
 	public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
 		super.onViewCreated(view, savedInstanceState);
-		fragmentBinding.setFragment(this);
+		binder.setFragment(this);
 
 		if (Utility.getIsMember(getActivity()).equalsIgnoreCase("1")){
-			fragmentBinding.filter.setVisibility(View.GONE);
+			binder.filter.setVisibility(View.GONE);
 		}
 
 		Extension extension = Extension.getInstance();
@@ -163,10 +163,10 @@ public class StoreFragment extends Fragment implements BaseSliderView.OnSliderCl
 					} catch (Exception e) {
 						e.printStackTrace();
 					}
-					fragmentBinding.recyclerView.setVisibility(View.VISIBLE);
+					binder.recyclerView.setVisibility(View.VISIBLE);
 					setRecyclerView(categoryHomeResponse.getResultList());
 				} else {
-					fragmentBinding.recyclerView.setVisibility(View.GONE);
+					binder.recyclerView.setVisibility(View.GONE);
 
 				}
 			} else {
@@ -192,12 +192,13 @@ public class StoreFragment extends Fragment implements BaseSliderView.OnSliderCl
 				startActivity(intent);
 			}
 		};
-		fragmentBinding.recyclerView.setLayoutManager(new LinearLayoutManager(getActivity(), LinearLayoutManager
+		binder.recyclerView.setLayoutManager(new LinearLayoutManager(getActivity(), LinearLayoutManager
 				.HORIZONTAL, false));
-		fragmentBinding.recyclerView.setAdapter(new CategoryHomeAdapter(getActivity(), categoryListArrayList,
+		binder.recyclerView.setAdapter(new CategoryHomeAdapter(getActivity(), categoryListArrayList,
 				onItemClickListener));
 	}
 
+	/*
 	public void getMyHomeData() {
 		String countryId = Utility.getCountry(getActivity());
 		String cityId = Utility.getCity(getActivity());
@@ -224,161 +225,172 @@ public class StoreFragment extends Fragment implements BaseSliderView.OnSliderCl
 				Log.e("", "onFailure: " + t.getLocalizedMessage());
 			}
 		});
+	}*/
+
+	public void getMyHomeData() {
+		String language = LanguageUtil.sharedInstance().getLanguage();
+		String countryId = Utility.getCountry(getActivity());
+		String cityId = Utility.getCity(getActivity());
+		String userId = Utility.getUserId(getActivity());
+
+		Helper.showProgress(getActivity());
+		OfferManager.sharedInstance().loadHomeData(language, countryId, cityId, userId, new ApiManager.Callback() {
+			@Override
+			public void OnFinished(String message) {
+				Helper.hideProgress();
+				if (message != null) {
+					Helper.showErrorMessage(getActivity(), message);
+					return;
+				}
+
+				updateUI();
+			}
+		});
 	}
 
-	/**
-	 * Handle store list response
-	 * @param homeDataResponse @StoreListResponse object
-	 */
-	private void handleHomeDataResponse(HomeDataResponse homeDataResponse) {
-		if (homeDataResponse != null) {
-			if (homeDataResponse.getResponseCode().equals(Api.SUCCESS)) {
-				/*Slider Images*/
-				if (homeDataResponse.getSliderImages() != null && homeDataResponse.getSliderImages().size() != 0) {
-					fragmentBinding.imageSliderLayout.setVisibility(View.VISIBLE);
-					setSlider(homeDataResponse.getSliderImages());
-				} else fragmentBinding.imageSliderLayout.setVisibility(View.GONE);
+	private void updateUI() {
+		ArrayList<SliderImage> sliderImages = OfferManager.sharedInstance().sliderImages;
+		if (sliderImages.size() > 0) {
+			binder.imageSliderLayout.setVisibility(View.VISIBLE);
+			updateSliderImages(sliderImages);
+		} else {
+			binder.imageSliderLayout.setVisibility(View.GONE);
+		}
 
-				/*Big Brand Data*/
-				if (homeDataResponse.getBrandData() != null && homeDataResponse.getBrandData().size() != 0) {
-					fragmentBinding.bigBrandView.setVisibility(View.VISIBLE);
-					setRecyclerViewBrandData(homeDataResponse.getBrandData());
-				} else fragmentBinding.bigBrandView.setVisibility(View.GONE);
+		ArrayList<Brand> brands = OfferManager.sharedInstance().brands;
+		if (brands.size() > 0) {
+			binder.bigBrandView.setVisibility(View.VISIBLE);
+			updateBrands(brands);
+		} else {
+			binder.bigBrandView.setVisibility(View.GONE);
+		}
 
-				/*Collection Data*/
-				if (homeDataResponse.getCollectionsData() != null && homeDataResponse.getCollectionsData().size() != 0) {
-					fragmentBinding.collectionsView.setVisibility(View.VISIBLE);
-					setRecyclerViewCollection(homeDataResponse.getCollectionsData());
-				} else
-					fragmentBinding.collectionsView.setVisibility(View.GONE);
+		ArrayList<Offer> collections = OfferManager.sharedInstance().collections;
+		if (collections.size() > 0) {
+			binder.collectionsView.setVisibility(View.VISIBLE);
+			updateCollections(collections);
+		} else {
+			binder.collectionsView.setVisibility(View.GONE);
+		}
 
-				/*Trending Data*/
-				if (homeDataResponse.getTrendingData() != null && homeDataResponse.getTrendingData().size() != 0) {
-					fragmentBinding.trendingView.setVisibility(View.VISIBLE);
-					setRecyclerViewTrending(homeDataResponse.getTrendingData());
-				} else
-					fragmentBinding.trendingView.setVisibility(View.GONE);
+		ArrayList<Offer> trends = OfferManager.sharedInstance().trends;
+		if (trends.size() > 0) {
+			binder.trendingView.setVisibility(View.VISIBLE);
+			updateTrends(trends);
+		} else {
+			binder.trendingView.setVisibility(View.GONE);
+		}
 
-				/*Hot Deal Data*/
-				if (homeDataResponse.getHotdealData() != null && homeDataResponse.getHotdealData().size() != 0) {
-					fragmentBinding.HotDealDataView.setVisibility(View.VISIBLE);
-					setRecyclerViewHotDealData(homeDataResponse.getHotdealData());
-				} else
-					fragmentBinding.HotDealDataView.setVisibility(View.GONE);
+		ArrayList<Offer> hotDeals = OfferManager.sharedInstance().hotDeals;
+		if (hotDeals.size() > 0) {
+			updateHotDealData(hotDeals);
+			binder.HotDealDataView.setVisibility(View.VISIBLE);
+		} else {
+			binder.HotDealDataView.setVisibility(View.GONE);
+		}
 
-				/*New Deal Data*/
-				if (homeDataResponse.getNewdealData() != null && homeDataResponse.getNewdealData().size() != 0) {
-					fragmentBinding.NewDealDataView.setVisibility(View.VISIBLE);
-					setRecyclerViewNewDealData(homeDataResponse.getNewdealData());
-				} else
-					fragmentBinding.NewDealDataView.setVisibility(View.GONE);
+		ArrayList<Offer> newDeals = OfferManager.sharedInstance().newDeals;
+		if (newDeals.size() > 0) {
+			binder.NewDealDataView.setVisibility(View.VISIBLE);
+			updateNewDeals(newDeals);
+		} else {
+			binder.NewDealDataView.setVisibility(View.GONE);
+		}
 
-				/*Category Data*/
-				if (homeDataResponse.getCategoryData() != null && homeDataResponse.getCategoryData().size() != 0) {
-					setRecyclerViewCategoryData(homeDataResponse.getCategoryData());
-				}
-				if (homeDataResponse.getSubcategoryData() != null && homeDataResponse.getSubcategoryData().size() != 0) {
-					fragmentBinding.recyclerViewSubCat.setVisibility(View.VISIBLE);
-					setRecyclerViewSubCategoryData(homeDataResponse.getSubcategoryData());
-				} else
-					fragmentBinding.recyclerViewSubCat.setVisibility(View.GONE);
-			} else {
-				Utility.showToast(getActivity(), getString(R.string.wrong));
-			}
+		ArrayList<Category> categories = OfferManager.sharedInstance().categories;
+		updateCategory(categories);
+
+		ArrayList<Subcategory> subcategories = OfferManager.sharedInstance().subcategories;
+		if (subcategories.size() > 0) {
+			binder.recyclerViewSubCat.setVisibility(View.VISIBLE);
+			updateSubCategoryData(subcategories);
+		} else {
+			binder.recyclerViewSubCat.setVisibility(View.GONE);
 		}
 	}
-	/**
-	 * Set recycler view Adapter
-	 */
-	private void setRecyclerViewBrandData(ArrayList<HomeDataResponse.BrandData> brandDataArrayList) {
+
+	private void updateBrands(ArrayList<Brand> brands) {
 		if (isDetached()) {
 			return;
 		}
 		OnItemClickListener onItemClickListener = new OnItemClickListener() {
 			@Override
 			public void onClick(int position, Object obj) {
-				HomeDataResponse.BrandData brandData = (HomeDataResponse.BrandData) obj;
+				Brand brand = (Brand) obj;
 				Intent intent = new Intent(getActivity(), BrandDetailActivity.class);
-				intent.putExtra(Constant.BRAND_ID, brandData.getBrandId());
+				intent.putExtra(Constant.BRAND_ID, brand.id);
 				startActivity(intent);
 			}
 		};
-		fragmentBinding.recyclerViewBrand.setLayoutManager(new LinearLayoutManager(getActivity(), LinearLayoutManager
-				.HORIZONTAL, false));
-		fragmentBinding.recyclerViewBrand.setAdapter(new BrandDataAdapter(getActivity(), brandDataArrayList,
-				onItemClickListener));
+		binder.recyclerViewBrand.setLayoutManager(new LinearLayoutManager(getActivity(), LinearLayoutManager.HORIZONTAL, false));
+		binder.recyclerViewBrand.setAdapter(new BrandDataAdapter(getActivity(), brands,	onItemClickListener));
 	}
 
 	/**
 	 * Set recycler view Adapter
 	 */
-	private void setRecyclerViewCollection(ArrayList<HomeDataResponse.CollectionsData> collectionsDataArrayList) {
+	private void updateCollections(ArrayList<Offer> collections) {
+		if (isDetached()) {
+			return;
+		}
+
+		OnItemClickListener onItemClickListener = new OnItemClickListener() {
+			@Override
+			public void onClick(int position, Object obj) {
+				Offer collection = (Offer) obj;
+				Intent intent = new Intent(getActivity(), OfferDetailsActivity.class);
+				intent.putExtra(Constant.OFFER_ID, collection.id);
+				startActivityForResult(intent, 1);
+			}
+		};
+		binder.recyclerViewCollections.setLayoutManager(new LinearLayoutManager(getActivity(), LinearLayoutManager.HORIZONTAL, false));
+		binder.recyclerViewCollections.setAdapter(new CollectionAdapter(getActivity(), collections, onItemClickListener));
+	}
+
+	/**
+	 * Set recycler view Adapter
+	 */
+	private void updateTrends(ArrayList<Offer> trends) {
 		if (isDetached()) {
 			return;
 		}
 		OnItemClickListener onItemClickListener = new OnItemClickListener() {
 			@Override
 			public void onClick(int position, Object obj) {
-				HomeDataResponse.CollectionsData collectionsData = (HomeDataResponse.CollectionsData) obj;
+				Offer trend = (Offer) obj;
 				Intent intent = new Intent(getActivity(), OfferDetailsActivity.class);
-				intent.putExtra(Constant.OFFER_ID, collectionsData.getOfferId());
+				intent.putExtra(Constant.OFFER_ID, trend.id);
 				startActivityForResult(intent, 1);
 			}
 		};
-		fragmentBinding.recyclerViewCollections.setLayoutManager(new LinearLayoutManager(getActivity(),
-				LinearLayoutManager.HORIZONTAL, false));
-		fragmentBinding.recyclerViewCollections.setAdapter(new CollectionAdapter(getActivity(),
-				collectionsDataArrayList, onItemClickListener));
+		binder.recyclerViewTrending.setLayoutManager(new LinearLayoutManager(getActivity(), LinearLayoutManager.HORIZONTAL, false));
+		binder.recyclerViewTrending.setAdapter(new TrendingAdapter(getActivity(), trends, onItemClickListener));
 	}
 
 	/**
 	 * Set recycler view Adapter
 	 */
-	private void setRecyclerViewTrending(ArrayList<HomeDataResponse.TrendingData> trendingDataArrayList) {
+	private void updateHotDealData(ArrayList<Offer> hotDeals) {
 		if (isDetached()) {
 			return;
 		}
 		OnItemClickListener onItemClickListener = new OnItemClickListener() {
 			@Override
 			public void onClick(int position, Object obj) {
-				HomeDataResponse.TrendingData offerList = (HomeDataResponse.TrendingData) obj;
+				Offer hotdealData = (Offer) obj;
 				Intent intent = new Intent(getActivity(), OfferDetailsActivity.class);
-				intent.putExtra(Constant.OFFER_ID, offerList.getOfferId());
+				intent.putExtra(Constant.OFFER_ID, hotdealData.id);
 				startActivityForResult(intent, 1);
 			}
 		};
-		fragmentBinding.recyclerViewTrending.setLayoutManager(new LinearLayoutManager(getActivity(), LinearLayoutManager
-				.HORIZONTAL, false));
-		fragmentBinding.recyclerViewTrending.setAdapter(new TrendingAdapter(getActivity(), trendingDataArrayList,
-				onItemClickListener));
+		binder.recyclerViewHotDealData.setLayoutManager(new LinearLayoutManager(getActivity(), LinearLayoutManager.HORIZONTAL, false));
+		binder.recyclerViewHotDealData.setAdapter(new HotDealDataAdapter(getActivity(), hotDeals, onItemClickListener));
 	}
 
 	/**
 	 * Set recycler view Adapter
 	 */
-	private void setRecyclerViewHotDealData(ArrayList<HomeDataResponse.HotdealData> hotdealDataArrayList) {
-		if (isDetached()) {
-			return;
-		}
-		OnItemClickListener onItemClickListener = new OnItemClickListener() {
-			@Override
-			public void onClick(int position, Object obj) {
-				HomeDataResponse.HotdealData hotdealData = (HomeDataResponse.HotdealData) obj;
-				Intent intent = new Intent(getActivity(), OfferDetailsActivity.class);
-				intent.putExtra(Constant.OFFER_ID, hotdealData.getOfferId());
-				startActivityForResult(intent, 1);
-			}
-		};
-		fragmentBinding.recyclerViewHotDealData.setLayoutManager(new LinearLayoutManager(getActivity(),
-				LinearLayoutManager.HORIZONTAL, false));
-		fragmentBinding.recyclerViewHotDealData.setAdapter(new HotDealDataAdapter(getActivity(), hotdealDataArrayList,
-				onItemClickListener));
-	}
-
-	/**
-	 * Set recycler view Adapter
-	 */
-	private void setRecyclerViewNewDealData(ArrayList<HomeDataResponse.NewdealData> newdealDataArrayList) {
+	private void updateNewDeals(ArrayList<Offer> newDeals) {
 		if (isDetached()) {
 			return;
 		}
@@ -392,65 +404,65 @@ public class StoreFragment extends Fragment implements BaseSliderView.OnSliderCl
 				//startActivity(intent);
 			}
 		};
-		fragmentBinding.recyclerViewNewdealData.setLayoutManager(new LinearLayoutManager(getActivity(),
-				LinearLayoutManager.HORIZONTAL, false));
-		fragmentBinding.recyclerViewNewdealData.setAdapter(new HomeCatDataAdapter(getActivity(), newdealDataArrayList,
-				onItemClickListener));
+		binder.recyclerViewNewdealData.setLayoutManager(new LinearLayoutManager(getActivity(), LinearLayoutManager.HORIZONTAL, false));
+		binder.recyclerViewNewdealData.setAdapter(new HomeCatDataAdapter(getActivity(), newDeals, onItemClickListener));
 	}
 
 	/**
 	 * Set recycler view Adapter
 	 */
-	private void setRecyclerViewCategoryData(ArrayList<HomeDataResponse.CategoryData> categoryDataArrayList) {
+	private void updateCategory(ArrayList<Category> categories) {
+		if (isDetached()) {
+			return;
+		}
+
+		OnItemClickListener onItemClickListener = new OnItemClickListener() {
+			@Override
+			public void onClick(int position, Object obj) {
+				Category categoryData = (Category) obj;
+				Intent intent = new Intent(getActivity(), OfferListActivity.class);
+				intent.putExtra(Constant.CATEGORY_ID, categoryData.id);
+				intent.putExtra(Constant.CATEGORY_NAME, categoryData.name);
+				startActivity(intent);
+			}
+		};
+
+		binder.recyclerViewCat.setLayoutManager(new LinearLayoutManager(getActivity()));
+		binder.recyclerViewCat.setAdapter(new CategoryDataAdapter(getActivity(), categories, onItemClickListener));
+	}
+
+	/**
+	 * Set recycler view Adapter
+	 */
+	private void updateSubCategoryData(ArrayList<Subcategory> subcategories) {
 		if (isDetached()) {
 			return;
 		}
 		OnItemClickListener onItemClickListener = new OnItemClickListener() {
 			@Override
 			public void onClick(int position, Object obj) {
-				HomeDataResponse.CategoryData categoryData = (HomeDataResponse.CategoryData) obj;
+				Subcategory subcategoryData = (Subcategory) obj;
 				Intent intent = new Intent(getActivity(), OfferListActivity.class);
-				intent.putExtra(Constant.CATEGORY_ID, categoryData.getCategoryId());
-				intent.putExtra(Constant.CATEGORY_NAME, categoryData.getCategoryName());
+				intent.putExtra(Constant.CATEGORY_ID, subcategoryData.id);
 				startActivity(intent);
 			}
 		};
 
-		fragmentBinding.recyclerViewCat.setLayoutManager(new LinearLayoutManager(getActivity()));
-		fragmentBinding.recyclerViewCat.setAdapter(new CategoryDataAdapter(getActivity(), categoryDataArrayList,
-				onItemClickListener));
+		binder.recyclerViewSubCat.setAdapter(new SubCategoryDataAdapter(getActivity(), subcategories, onItemClickListener));
 	}
 
 	/**
 	 * Set recycler view Adapter
 	 */
-	private void setRecyclerViewSubCategoryData(ArrayList<HomeDataResponse.SubcategoryData> subcategoryDataArrayList) {
-		if (isDetached()) {
-			return;
-		}
-		OnItemClickListener onItemClickListener = new OnItemClickListener() {
-			@Override
-			public void onClick(int position, Object obj) {
-				HomeDataResponse.SubcategoryData subcategoryData = (HomeDataResponse.SubcategoryData) obj;
-				Intent intent = new Intent(getActivity(), OfferListActivity.class);
-				intent.putExtra(Constant.CATEGORY_ID, subcategoryData.getSubcategoryId());
-				startActivity(intent);
-			}
-		};
+	private void updateSliderImages(ArrayList<SliderImage> sliderImages) {
+		binder.imageSlider.removeAllSliders();
 
-		fragmentBinding.recyclerViewSubCat.setAdapter(new SubCategoryDataAdapter(getActivity(),
-				subcategoryDataArrayList, onItemClickListener));
-	}
-
-	/**
-	 * Set recycler view Adapter
-	 */
-	private void setSlider(ArrayList<HomeDataResponse.SliderImages> sliderImagesArrayList) {
 		HashMap<String, String> url_maps = new HashMap<String, String>();
 		url_maps.clear();
-		for (int i = 0; i < sliderImagesArrayList.size(); i++) {
-			url_maps.put(sliderImagesArrayList.get(i).getBannerText(), sliderImagesArrayList.get(i).getBannerImage());
+		for (int i = 0; i < sliderImages.size(); i++) {
+			url_maps.put(sliderImages.get(i).bannerText, sliderImages.get(i).bannerImage);
 		}
+
 		for (String name : url_maps.keySet()) {
 			// TextSliderView textSliderView = new TextSliderView(getActivity());
 			app.com.maksab.util.TextSliderView textSliderView = new app.com.maksab.util.TextSliderView(getActivity());
@@ -470,25 +482,24 @@ public class StoreFragment extends Fragment implements BaseSliderView.OnSliderCl
                 e.printStackTrace();
             }*/
 			try {
-				fragmentBinding.imageSlider.addSlider(textSliderView);
+				binder.imageSlider.addSlider(textSliderView);
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
-
 		}
 
-		fragmentBinding.imageSlider.setPresetTransformer(SliderLayout.Transformer.Accordion);
-		fragmentBinding.imageSlider.setPresetIndicator(SliderLayout.PresetIndicators.Center_Bottom);
-		fragmentBinding.imageSlider.setCustomAnimation(new DescriptionAnimation());
-		fragmentBinding.imageSlider.setDuration(5500);
-		fragmentBinding.imageSlider.addOnPageChangeListener(this);
-		// fragmentBinding.imageSlider.setCustomIndicator(fragmentBinding.customIndicator);
+		binder.imageSlider.setPresetTransformer(SliderLayout.Transformer.Accordion);
+		binder.imageSlider.setPresetIndicator(SliderLayout.PresetIndicators.Center_Bottom);
+		binder.imageSlider.setCustomAnimation(new DescriptionAnimation());
+		binder.imageSlider.setDuration(5500);
+		binder.imageSlider.addOnPageChangeListener(this);
+		// binder.imageSlider.setCustomIndicator(binder.customIndicator);
 	}
 
 	@Override
 	public void onStop() {
 		//make sure to call stopAutoCycle() on the slider before activity or fragment is destroyed
-		fragmentBinding.imageSlider.stopAutoCycle();
+		binder.imageSlider.stopAutoCycle();
 		super.onStop();
 	}
 

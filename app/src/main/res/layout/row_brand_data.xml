@@ -9,7 +9,7 @@
             type="app.com.maksab.view.adapter.BrandDataAdapter"/>
         <variable
            name="model"
-           type="app.com.maksab.api.dao.HomeDataResponse.BrandData" />
+           type="app.com.maksab.engine.offer.Brand" />
     </data>
 
     <android.support.v7.widget.CardView
@@ -35,7 +35,7 @@
                 android:layout_width="100dp"
                 android:layout_height="100dp"
                 android:scaleType="centerInside"
-                app:imageUrl="@{model.brandImg}"
+                app:imageUrl="@{model.image}"
                 />
 
         </RelativeLayout>

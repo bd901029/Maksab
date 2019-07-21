@@ -10,7 +10,7 @@
 
         <variable
             name="model"
-            type="app.com.maksab.api.dao.HomeDataResponse.SubcategoryData" />
+            type="app.com.maksab.engine.offer.Subcategory" />
     </data>
 
 
@@ -42,7 +42,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@{model.subCategoryName}"
+                    android:text="@{model.name}"
                     android:textColor="@color/gray_text"
                     android:textSize="16sp"
                     app:font="@{@string/regular}"/>

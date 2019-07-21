@@ -262,56 +262,6 @@ public class CountryLanguageActivity extends AppCompatActivity {
 		});
 	}
 
-	/**
-	 * Handle category list response
-	 * @param countryCityResponse @CountryCityListResponse object
-	 */
-	private void handleCountryListResponse(CountryCityListResponse countryCityResponse) {
-		try {
-			if (countryCityResponse != null) {
-				if (countryCityResponse.getResponseCode() != null && countryCityResponse.getResponseCode().equals(Api.SUCCESS)) {
-					switch (sLanguage) {
-						case Constant.LANGUAGE_ARABIC:
-							if (countryCityResponse.getAllCountryData().getArCountryArrayList() != null && countryCityResponse
-									.getAllCountryData().getArCountryArrayList().size() != 0) {
-								setRecyclerViewCountryAr(countryCityResponse.getAllCountryData().getArCountryArrayList());
-							}
-							break;
-						case Constant.LANGUAGE_ENGLISH:
-							if (countryCityResponse.getAllCountryData().getEnCountryArrayList() != null && countryCityResponse
-									.getAllCountryData()
-									.getEnCountryArrayList().size() != 0) {
-								setRecyclerViewCountryEn(countryCityResponse.getAllCountryData().getEnCountryArrayList());
-							}
-							break;
-						case Constant.LANGUAGE_TURKYCE:
-							if (countryCityResponse.getAllCountryData().getEnCountryArrayList() != null && countryCityResponse
-									.getAllCountryData()
-									.getEnCountryArrayList().size() != 0) {
-								setRecyclerViewCountryEn(countryCityResponse.getAllCountryData().getEnCountryArrayList());
-							}
-							break;
-						default:
-							if (countryCityResponse.getAllCountryData().getEnCountryArrayList() != null && countryCityResponse
-									.getAllCountryData()
-									.getEnCountryArrayList().size() != 0) {
-								setRecyclerViewCountryEn(countryCityResponse.getAllCountryData().getEnCountryArrayList());
-							}
-							break;
-					}
-
-					if (countryCityResponse.getAllCountryData().getArCountryArrayList() != null && countryCityResponse
-							.getAllCountryData().getArCountryArrayList().size() != 0) {
-					}
-				} else {
-				}
-			}
-		} catch (Exception e) {
-			Utility.showToast(CountryLanguageActivity.this, getString(R.string.server_not_response));
-			e.printStackTrace();
-		}
-	}
-
 	private void handleCountryResponse() {
 		final ArrayList<Country> countries = CountryManager.sharedInstance().countries;
 

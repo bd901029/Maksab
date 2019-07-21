@@ -1,5 +1,6 @@
 package app.com.maksab.engine.country;
 
+import android.util.Log;
 import app.com.maksab.util.LanguageUtil;
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -8,6 +9,8 @@ import java.util.ArrayList;
 import java.util.LinkedHashMap;
 
 public class Country {
+	private static String TAG = "Country";
+
 	public static class Key {
 		public static String Id = "country_id";
 		public static String Name = "country_name";
@@ -32,8 +35,10 @@ public class Country {
 			setName(language, info);
 			setCities(language, info);
 		} catch (Exception e) {
-			e.printStackTrace();
+			Log.e(TAG, e.getLocalizedMessage());
 		}
+
+		Log.i(TAG, flag);
 	}
 
 	public String getName() {
@@ -52,7 +57,7 @@ public class Country {
 		try {
 			nameInfo.put(language, info.getString(Key.Name));
 		} catch (Exception e) {
-			e.printStackTrace();
+			Log.e(TAG, e.getLocalizedMessage());
 		}
 	}
 
@@ -80,7 +85,7 @@ public class Country {
 				cities.add(city);
 			}
 		} catch (Exception e) {
-			e.printStackTrace();
+			Log.e(TAG, e.getLocalizedMessage());
 		}
 	}
 

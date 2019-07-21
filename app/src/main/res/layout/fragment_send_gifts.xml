@@ -1,37 +1,36 @@
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools">
+		xmlns:app="http://schemas.android.com/apk/res-auto"
+		xmlns:tools="http://schemas.android.com/tools">
 
-    <data>
+	<data>
 
-        <variable
-            name="fragment"
-            type="app.com.maksab.view.fragment.SendGiftsFragment" />
+		<variable
+				name="fragment"
+				type="app.com.maksab.view.fragment.SendGiftsFragment" />
 
-        <variable
-            name="model"
-            type="app.com.maksab.api.dao.GetOrderAmount"/>
-    </data>
+		<variable
+				name="model"
+				type="app.com.maksab.api.dao.GetOrderAmount"/>
+	</data>
 
-<RelativeLayout
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="@color/bg"
-    tools:context="com.borrow.android.view.fragment.SavedFragment">
+	<RelativeLayout
+			android:layout_width="match_parent"
+			android:layout_height="match_parent"
+			android:background="@color/bg"
+			tools:context="com.borrow.android.view.fragment.SavedFragment">
 
-    <android.support.v4.widget.SwipeRefreshLayout
-        android:id="@+id/swifeRefresh"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/top_ll">
+		<android.support.v4.widget.SwipeRefreshLayout
+				android:id="@+id/swifeRefresh"
+				android:layout_width="match_parent"
+				android:layout_height="wrap_content">
 
-        <android.support.v7.widget.RecyclerView
-            android:id="@+id/gift_history"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
-        </android.support.v7.widget.RecyclerView>
+			<android.support.v7.widget.RecyclerView
+					android:id="@+id/gift_history"
+					android:layout_width="match_parent"
+					android:layout_height="match_parent">
+			</android.support.v7.widget.RecyclerView>
 
-    </android.support.v4.widget.SwipeRefreshLayout>
+		</android.support.v4.widget.SwipeRefreshLayout>
 
-</RelativeLayout>
+	</RelativeLayout>
 </layout>

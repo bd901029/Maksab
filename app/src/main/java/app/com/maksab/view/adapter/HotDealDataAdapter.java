@@ -16,8 +16,8 @@ import app.com.maksab.R;
 import app.com.maksab.api.APIClient;
 import app.com.maksab.api.Api;
 import app.com.maksab.api.dao.AddFavoritesResponse;
-import app.com.maksab.api.dao.HomeDataResponse;
 import app.com.maksab.databinding.RowHotDealDataBinding;
+import app.com.maksab.engine.offer.Offer;
 import app.com.maksab.listener.OnItemClickListener;
 import app.com.maksab.util.PreferenceConnector;
 import app.com.maksab.util.ProgressDialog;
@@ -29,12 +29,12 @@ import retrofit2.Callback;
 public class HotDealDataAdapter extends RecyclerView.Adapter<HotDealDataAdapter.ViewHolder> {
 
     private Context context;
-    private ArrayList<HomeDataResponse.HotdealData> categoryListArrayList;
+    private ArrayList<Offer> hotDeals;
     private OnItemClickListener onItemClickListener;
 
-    public HotDealDataAdapter(Context context, ArrayList<HomeDataResponse.HotdealData> categoryListArrayList, OnItemClickListener onItemClickListener) {
+    public HotDealDataAdapter(Context context, ArrayList<Offer> categoryListArrayList, OnItemClickListener onItemClickListener) {
         this.context = context;
-        this.categoryListArrayList = categoryListArrayList;
+        this.hotDeals = categoryListArrayList;
         this.onItemClickListener = onItemClickListener;
     }
 
@@ -48,17 +48,17 @@ public class HotDealDataAdapter extends RecyclerView.Adapter<HotDealDataAdapter.
     public void onBindViewHolder(final ViewHolder holder, final int position) {
         holder.rowHomeBinding.setAdapter(this);
 
-        categoryListArrayList.get(position).setDiscountRate(categoryListArrayList.get(position).getDiscountRate()+" "+context.getResources().getString(R.string.off));
+        hotDeals.get(position).discountRate = hotDeals.get(position).discountRate + " " + context.getResources().getString(R.string.off);
 
-        holder.rowHomeBinding.setModel(categoryListArrayList.get(position));
-        if (categoryListArrayList.get(position).getReaming().equalsIgnoreCase("0")||categoryListArrayList.get(position)
-                .getReaming().equalsIgnoreCase("Unlimited")){
+        holder.rowHomeBinding.setModel(hotDeals.get(position));
+        if (hotDeals.get(position).reaming.equalsIgnoreCase("0")|| hotDeals.get(position)
+                .reaming.equalsIgnoreCase("Unlimited")){
             holder.rowHomeBinding.remaining.setVisibility(View.INVISIBLE);
         }else {
             holder.rowHomeBinding.remaining.setVisibility(View.VISIBLE);
         }
 
-        if (categoryListArrayList.get(position).getBought().equalsIgnoreCase("0")||categoryListArrayList.get(position)
+        if (hotDeals.get(position).getBought().equalsIgnoreCase("0")|| hotDeals.get(position)
                 .getBought().equalsIgnoreCase("Unlimited")){
             holder.rowHomeBinding.bought.setVisibility(View.INVISIBLE);
         }else {
@@ -68,7 +68,7 @@ public class HotDealDataAdapter extends RecyclerView.Adapter<HotDealDataAdapter.
         holder.rowHomeBinding.beforeAmount.setPaintFlags(holder.rowHomeBinding.beforeAmount.getPaintFlags() | Paint.STRIKE_THRU_TEXT_FLAG);
 
 
-        if (categoryListArrayList.get(position).getFavStatus().equalsIgnoreCase("1"))
+        if (hotDeals.get(position).getFavStatus().equalsIgnoreCase("1"))
             holder.rowHomeBinding.favImage.setBackgroundResource(R.drawable.favorites_hover3x);
         else
             holder.rowHomeBinding.favImage.setBackgroundResource(R.drawable.favorites3x);
@@ -81,7 +81,7 @@ public class HotDealDataAdapter extends RecyclerView.Adapter<HotDealDataAdapter.
                     UserOfferIdModel userOfferIdModel = new UserOfferIdModel();
                     userOfferIdModel.setUserId(Utility.getUserId(context));
                     userOfferIdModel.setLanguage(Utility.getLanguage(context));
-                    userOfferIdModel.setOfferId(categoryListArrayList.get(position).offerId);
+                    userOfferIdModel.setOfferId(hotDeals.get(position).id);
 
                     Api api = APIClient.getClient().create(Api.class);
                     final Call<AddFavoritesResponse> responseCall = api.addOfferInWishlist(userOfferIdModel);
@@ -114,7 +114,7 @@ public class HotDealDataAdapter extends RecyclerView.Adapter<HotDealDataAdapter.
 
     @Override
     public int getItemCount() {
-        return categoryListArrayList != null ? categoryListArrayList.size() : 0;
+        return hotDeals != null ? hotDeals.size() : 0;
     }
 
     class ViewHolder extends RecyclerView.ViewHolder {
@@ -130,9 +130,9 @@ public class HotDealDataAdapter extends RecyclerView.Adapter<HotDealDataAdapter.
     /**
      * On Item click listener method
      *
-     * @param hotdealData Store object of clicked position
+     * @param hotDeal Store object of clicked position
      */
-    public void onItemClick(HomeDataResponse.HotdealData hotdealData) {
-        onItemClickListener.onClick(categoryListArrayList.indexOf(hotdealData), hotdealData);
+    public void onItemClick(Offer hotDeal) {
+        onItemClickListener.onClick(hotDeals.indexOf(hotDeal), hotDeal);
     }
 }

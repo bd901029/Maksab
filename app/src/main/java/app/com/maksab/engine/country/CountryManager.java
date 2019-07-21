@@ -67,8 +67,17 @@ public class CountryManager extends ApiManager {
 			return;
 		}
 
+		/*
 		Map<String, String> params = new HashMap<String, String>();
 		params.put(Key.Language, language);
+		*/
+
+		JSONObject params = new JSONObject();
+		try {
+			params.put(Key.Language, language);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 
 		call(PATH.GET_COUNTRY_CITY, params, new JsonCallback() {
 			@Override

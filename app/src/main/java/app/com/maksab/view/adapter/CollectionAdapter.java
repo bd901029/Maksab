@@ -16,8 +16,8 @@ import app.com.maksab.R;
 import app.com.maksab.api.APIClient;
 import app.com.maksab.api.Api;
 import app.com.maksab.api.dao.AddFavoritesResponse;
-import app.com.maksab.api.dao.HomeDataResponse;
 import app.com.maksab.databinding.RowCollectionBinding;
+import app.com.maksab.engine.offer.Offer;
 import app.com.maksab.listener.OnItemClickListener;
 import app.com.maksab.util.PreferenceConnector;
 import app.com.maksab.util.ProgressDialog;
@@ -29,12 +29,12 @@ import retrofit2.Callback;
 public class CollectionAdapter extends RecyclerView.Adapter<CollectionAdapter.ViewHolder> {
 
 	private Context context;
-	private ArrayList<HomeDataResponse.CollectionsData> categoryListArrayList;
+	private ArrayList<Offer> collections;
 	private OnItemClickListener onItemClickListener;
 
-	public CollectionAdapter(Context context, ArrayList<HomeDataResponse.CollectionsData> categoryListArrayList, OnItemClickListener onItemClickListener) {
+	public CollectionAdapter(Context context, ArrayList<Offer> collections, OnItemClickListener onItemClickListener) {
 		this.context = context;
-		this.categoryListArrayList = categoryListArrayList;
+		this.collections = collections;
 		this.onItemClickListener = onItemClickListener;
 	}
 
@@ -48,18 +48,16 @@ public class CollectionAdapter extends RecyclerView.Adapter<CollectionAdapter.Vi
 	public void onBindViewHolder(final ViewHolder holder, final int position) {
 		holder.rowHomeBinding.setAdapter(this);
 
-		categoryListArrayList.get(position).setDiscountRate(categoryListArrayList.get(position).getDiscountRate()+" "+context.getResources().getString(R.string.off));
+		collections.get(position).discountRate = collections.get(position).discountRate + " " + context.getResources().getString(R.string.off);
 
-		holder.rowHomeBinding.setModel(categoryListArrayList.get(position));
-		if (categoryListArrayList.get(position).getReaming().equalsIgnoreCase("0")||categoryListArrayList.get(position)
-				.getReaming().equalsIgnoreCase("Unlimited")){
+		holder.rowHomeBinding.setModel(collections.get(position));
+		if (collections.get(position).reaming.equalsIgnoreCase("0") || collections.get(position).reaming.equalsIgnoreCase("Unlimited")){
 			holder.rowHomeBinding.remaining.setVisibility(View.INVISIBLE);
 		}else {
 			holder.rowHomeBinding.remaining.setVisibility(View.VISIBLE);
 		}
 
-		if (categoryListArrayList.get(position).getBought().equalsIgnoreCase("0")||categoryListArrayList.get(position)
-				.getBought().equalsIgnoreCase("Unlimited")){
+		if (collections.get(position).bought == 0 || collections.get(position).boughtInText.equalsIgnoreCase("Unlimited")) {
 			holder.rowHomeBinding.bought.setVisibility(View.INVISIBLE);
 		}else {
 			holder.rowHomeBinding.bought.setVisibility(View.VISIBLE);
@@ -67,7 +65,7 @@ public class CollectionAdapter extends RecyclerView.Adapter<CollectionAdapter.Vi
 		holder.rowHomeBinding.beforeAmount.setPaintFlags(holder.rowHomeBinding.beforeAmount.getPaintFlags() | Paint.STRIKE_THRU_TEXT_FLAG);
 
 
-		if (categoryListArrayList.get(position).getFavStatus().equalsIgnoreCase("1"))
+		if (collections.get(position).favStatus == 1)
 			holder.rowHomeBinding.favImage.setBackgroundResource(R.drawable.favorites_hover3x);
 		else
 			holder.rowHomeBinding.favImage.setBackgroundResource(R.drawable.favorites3x);
@@ -80,7 +78,7 @@ public class CollectionAdapter extends RecyclerView.Adapter<CollectionAdapter.Vi
 					UserOfferIdModel userOfferIdModel = new UserOfferIdModel();
 					userOfferIdModel.setUserId(Utility.getUserId(context));
 					userOfferIdModel.setLanguage(Utility.getLanguage(context));
-					userOfferIdModel.setOfferId(categoryListArrayList.get(position).offerId);
+					userOfferIdModel.setOfferId(collections.get(position).id);
 
 					Api api = APIClient.getClient().create(Api.class);
 					final Call<AddFavoritesResponse> responseCall = api.addOfferInWishlist(userOfferIdModel);
@@ -113,7 +111,7 @@ public class CollectionAdapter extends RecyclerView.Adapter<CollectionAdapter.Vi
 
 	@Override
 	public int getItemCount() {
-		return categoryListArrayList != null ? categoryListArrayList.size() : 0;
+		return collections != null ? collections.size() : 0;
 	}
 
 	class ViewHolder extends RecyclerView.ViewHolder {
@@ -128,9 +126,9 @@ public class CollectionAdapter extends RecyclerView.Adapter<CollectionAdapter.Vi
 
 	/**
 	 * On Item click listener method
-	 * @param collectionsData Store object of clicked position
+	 * @param collection Store object of clicked position
 	 */
-	public void onItemClick(HomeDataResponse.CollectionsData collectionsData) {
-		onItemClickListener.onClick(categoryListArrayList.indexOf(collectionsData), collectionsData);
+	public void onItemClick(Offer collection) {
+		onItemClickListener.onClick(collections.indexOf(collection), collection);
 	}
 }

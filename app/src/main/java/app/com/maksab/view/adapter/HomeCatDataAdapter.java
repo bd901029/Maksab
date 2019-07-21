@@ -16,8 +16,8 @@ import app.com.maksab.R;
 import app.com.maksab.api.APIClient;
 import app.com.maksab.api.Api;
 import app.com.maksab.api.dao.AddFavoritesResponse;
-import app.com.maksab.api.dao.HomeDataResponse;
 import app.com.maksab.databinding.RowHomeCatDataBinding;
+import app.com.maksab.engine.offer.Offer;
 import app.com.maksab.listener.OnItemClickListener;
 import app.com.maksab.util.PreferenceConnector;
 import app.com.maksab.util.ProgressDialog;
@@ -28,13 +28,13 @@ import retrofit2.Callback;
 
 public class HomeCatDataAdapter extends RecyclerView.Adapter<HomeCatDataAdapter.ViewHolder> {
     private Context context;
-    private ArrayList<HomeDataResponse.NewdealData> categoryListArrayList;
+    private ArrayList<Offer> newDeals;
     private OnItemClickListener onItemClickListener;
 
-    public HomeCatDataAdapter(Context context, ArrayList<HomeDataResponse.NewdealData> categoryListArrayList,
+    public HomeCatDataAdapter(Context context, ArrayList<Offer> newDeals,
                               OnItemClickListener onItemClickListener) {
         this.context = context;
-        this.categoryListArrayList = categoryListArrayList;
+        this.newDeals = newDeals;
         this.onItemClickListener = onItemClickListener;
     }
 
@@ -48,20 +48,20 @@ public class HomeCatDataAdapter extends RecyclerView.Adapter<HomeCatDataAdapter.
     @Override
     public void onBindViewHolder(final ViewHolder holder, final int position) {
         holder.rowHomeBinding.setAdapter(this);
-        /*categoryListArrayList.get(position).setBought(context.getResources().getString(R.string.bought) +" "+
-                categoryListArrayList.get(position).getBought());
-        categoryListArrayList.get(position).setReaming(context.getResources().getString(R.string.remaining) +" "+
-                categoryListArrayList.get(position).getReaming());*/
-        holder.rowHomeBinding.setModel(categoryListArrayList.get(position));
+        /*newDeals.get(position).setBought(context.getResources().getString(R.string.bought) +" "+
+                newDeals.get(position).getBought());
+        newDeals.get(position).setReaming(context.getResources().getString(R.string.remaining) +" "+
+                newDeals.get(position).getReaming());*/
+        holder.rowHomeBinding.setModel(newDeals.get(position));
 
-        if (categoryListArrayList.get(position).getReaming().equalsIgnoreCase("0") || categoryListArrayList.get(position)
-                .getReaming().equalsIgnoreCase("Unlimited")) {
+        if (newDeals.get(position).reaming.equalsIgnoreCase("0") || newDeals.get(position)
+                .reaming.equalsIgnoreCase("Unlimited")) {
             holder.rowHomeBinding.remaining.setVisibility(View.INVISIBLE);
         } else {
             holder.rowHomeBinding.remaining.setVisibility(View.VISIBLE);
         }
 
-        if (categoryListArrayList.get(position).getBought().equalsIgnoreCase("0") || categoryListArrayList.get(position)
+        if (newDeals.get(position).getBought().equalsIgnoreCase("0") || newDeals.get(position)
                 .getBought().equalsIgnoreCase("Unlimited")) {
             holder.rowHomeBinding.bought.setVisibility(View.INVISIBLE);
         } else {
@@ -72,7 +72,7 @@ public class HomeCatDataAdapter extends RecyclerView.Adapter<HomeCatDataAdapter.
                 .STRIKE_THRU_TEXT_FLAG);
 
 
-        if (categoryListArrayList.get(position).getFavStatus().equalsIgnoreCase("1"))
+        if (newDeals.get(position).getFavStatus().equalsIgnoreCase("1"))
             holder.rowHomeBinding.favImage.setBackground(ContextCompat.getDrawable(context, R.drawable.favorites_hover3x));
         else
             holder.rowHomeBinding.favImage.setBackground(ContextCompat.getDrawable(context, R.drawable.favorites3x));
@@ -86,7 +86,7 @@ public class HomeCatDataAdapter extends RecyclerView.Adapter<HomeCatDataAdapter.
                     UserOfferIdModel userOfferIdModel = new UserOfferIdModel();
                     userOfferIdModel.setUserId(Utility.getUserId(context));
                     userOfferIdModel.setLanguage(Utility.getLanguage(context));
-                    userOfferIdModel.setOfferId(categoryListArrayList.get(position).offerId);
+                    userOfferIdModel.setOfferId(newDeals.get(position).id);
 
                     Api api = APIClient.getClient().create(Api.class);
                     final Call<AddFavoritesResponse> responseCall = api.addOfferInWishlist(userOfferIdModel);
@@ -110,7 +110,7 @@ public class HomeCatDataAdapter extends RecyclerView.Adapter<HomeCatDataAdapter.
                                         UserOfferIdModel userOfferIdModel = new UserOfferIdModel();
                                         userOfferIdModel.setUserId(Utility.getUserId(context));
                                         userOfferIdModel.setLanguage(Utility.getLanguage(context));
-                                        userOfferIdModel.setOfferId(categoryListArrayList.get(position).offerId);
+                                        userOfferIdModel.setOfferId(newDeals.get(position).id);
 
                                         Api api = APIClient.getClient().create(Api.class);
                                         final Call<AddFavoritesResponse> responseCall = api.addOfferInWishlist(userOfferIdModel);
@@ -158,7 +158,7 @@ public class HomeCatDataAdapter extends RecyclerView.Adapter<HomeCatDataAdapter.
 
     @Override
     public int getItemCount() {
-        return categoryListArrayList != null ? categoryListArrayList.size() : 0;
+        return newDeals != null ? newDeals.size() : 0;
     }
 
     class ViewHolder extends RecyclerView.ViewHolder {
@@ -174,16 +174,9 @@ public class HomeCatDataAdapter extends RecyclerView.Adapter<HomeCatDataAdapter.
     /**
      * On Item click listener method
      *
-     * @param hotdealData Store object of clicked position
+     * @param newDeal Store object of clicked position
      */
-    public void onItemClick(HomeDataResponse.NewdealData hotdealData) {
-        onItemClickListener.onClick(categoryListArrayList.indexOf(hotdealData), hotdealData);
+    public void onItemClick(Offer newDeal) {
+        onItemClickListener.onClick(newDeals.indexOf(newDeal), newDeal);
     }
-
-    public void onClickFav(HomeDataResponse.NewdealData hotdealData) {
-        // resultLists.remove(categoryListArrayList.indexOf(hotdealData));
-        //notifyItemRemoved(categoryListArrayList.indexOf(hotdealData));
-    }
-
-
 }

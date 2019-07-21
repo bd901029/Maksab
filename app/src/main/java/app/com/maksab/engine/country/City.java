@@ -7,13 +7,13 @@ import org.json.JSONObject;
 import java.util.LinkedHashMap;
 
 public class City {
+	private String TAG = "City";
+
 	public static class Key {
 		public static String Id = "city_id";
 		public static String Name = "city_name";
 		public static String Languages = "languages";
 	}
-
-	private String TAG = "City";
 
 	public Country country = null;
 	public String id = "";
@@ -27,7 +27,7 @@ public class City {
 			setName(language, info);
 			setLanguages(info);
 		} catch (Exception e) {
-			e.printStackTrace();
+			Log.e(TAG, e.getLocalizedMessage());
 		}
 	}
 
@@ -48,9 +48,13 @@ public class City {
 
 	public void setName(String language, JSONObject info) {
 		try {
+			if (info.isNull(Key.Name)) {
+				return;
+			}
+
 			nameInfo.put(language, info.getString(Key.Name));
 		} catch (Exception e) {
-			e.printStackTrace();
+			Log.e(TAG, e.getLocalizedMessage());
 		}
 	}
 
@@ -66,10 +70,11 @@ public class City {
 		try {
 			JSONObject languageInfo = info.getJSONObject(Key.Languages);
 			for (String lg : LanguageUtil.Languages) {
+				if (languageInfo.isNull(lg)) continue;
 				languages.put(lg, languageInfo.getBoolean(lg));
 			}
 		} catch (Exception e) {
-			e.printStackTrace();
+			Log.e(TAG, e.getLocalizedMessage());
 		}
 	}
 

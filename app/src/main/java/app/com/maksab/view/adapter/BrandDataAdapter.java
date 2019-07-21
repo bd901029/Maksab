@@ -5,23 +5,22 @@ import android.databinding.DataBindingUtil;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.ViewGroup;
+import app.com.maksab.R;
+import app.com.maksab.databinding.RowBrandDataBinding;
+import app.com.maksab.engine.offer.Brand;
+import app.com.maksab.listener.OnItemClickListener;
 
 import java.util.ArrayList;
-
-import app.com.maksab.R;
-import app.com.maksab.api.dao.HomeDataResponse;
-import app.com.maksab.databinding.RowBrandDataBinding;
-import app.com.maksab.listener.OnItemClickListener;
 
 public class BrandDataAdapter extends RecyclerView.Adapter<BrandDataAdapter.ViewHolder> {
 
     private Context context;
-    private ArrayList<HomeDataResponse.BrandData> categoryListArrayList;
+    private ArrayList<Brand> brands;
     private OnItemClickListener onItemClickListener;
 
-    public BrandDataAdapter(Context context, ArrayList<HomeDataResponse.BrandData> categoryListArrayList, OnItemClickListener onItemClickListener) {
+    public BrandDataAdapter(Context context, ArrayList<Brand> brands, OnItemClickListener onItemClickListener) {
         this.context = context;
-        this.categoryListArrayList = categoryListArrayList;
+        this.brands = brands;
         this.onItemClickListener = onItemClickListener;
     }
 
@@ -34,12 +33,12 @@ public class BrandDataAdapter extends RecyclerView.Adapter<BrandDataAdapter.View
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
         holder.rowHomeBinding.setAdapter(this);
-        holder.rowHomeBinding.setModel(categoryListArrayList.get(position));
+        holder.rowHomeBinding.setModel(brands.get(position));
     }
 
     @Override
     public int getItemCount() {
-        return categoryListArrayList != null ? categoryListArrayList.size() : 0;
+        return brands != null ? brands.size() : 0;
     }
 
     class ViewHolder extends RecyclerView.ViewHolder {
@@ -55,9 +54,9 @@ public class BrandDataAdapter extends RecyclerView.Adapter<BrandDataAdapter.View
     /**
      * On Item click listener method
      *
-     * @param brandData Store object of clicked position
+     * @param brand Store object of clicked position
      */
-    public void onItemClick(HomeDataResponse.BrandData brandData) {
-        onItemClickListener.onClick(categoryListArrayList.indexOf(brandData), brandData);
+    public void onItemClick(Brand brand) {
+        onItemClickListener.onClick(brands.indexOf(brand), brand);
     }
 }
