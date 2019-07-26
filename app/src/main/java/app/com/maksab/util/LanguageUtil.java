@@ -33,6 +33,10 @@ public class LanguageUtil {
 		loadLanguage();
 	}
 
+	public static String currentLanguage() {
+		return LanguageUtil.sharedInstance().getLanguage();
+	}
+
 	private void loadLanguage() {
 		String prevLanguage = PreferenceConnector.readString(MyApplication.sharedInstance(), PreferenceConnector.APP_LANGUAGE, "");
 		if (prevLanguage.length() > 0) {

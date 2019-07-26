@@ -11,34 +11,35 @@ import java.util.ArrayList;
 public class OfferDetailsResponse {
     public String responseCode = "";
     public String message = "";
-    @SerializedName("offerDetails")
-    public OfferDetailsResponse.OfferDetails offerDetails;
-    @SerializedName("venderLocations")
-    private ArrayList<VenderLocationList> venderLocationLists;
-    @SerializedName("otherOffer")
-    private ArrayList<OtherOfferList> otherOfferListArrayList;
 
-    public ArrayList<OtherOfferList> getOtherOfferListArrayList() {
+    @SerializedName("offerDetails")
+    public OfferDetail offerDetails;
+    @SerializedName("venderLocations")
+    private ArrayList<VenderLocation> venderLocationLists;
+    @SerializedName("otherOffer")
+    private ArrayList<OtherOffer> otherOfferListArrayList;
+
+    public ArrayList<OtherOffer> getOtherOfferListArrayList() {
         return otherOfferListArrayList;
     }
 
-    public void setOtherOfferListArrayList(ArrayList<OtherOfferList> otherOfferListArrayList) {
+    public void setOtherOfferListArrayList(ArrayList<OtherOffer> otherOfferListArrayList) {
         this.otherOfferListArrayList = otherOfferListArrayList;
     }
 
-    public ArrayList<VenderLocationList> getVenderLocationLists() {
+    public ArrayList<VenderLocation> getVenderLocationLists() {
         return venderLocationLists;
     }
 
-    public void setVenderLocationLists(ArrayList<VenderLocationList> venderLocationLists) {
+    public void setVenderLocationLists(ArrayList<VenderLocation> venderLocationLists) {
         this.venderLocationLists = venderLocationLists;
     }
 
-    public OfferDetails getOfferDetails() {
+    public OfferDetail getOfferDetails() {
         return offerDetails;
     }
 
-    public void setOfferDetails(OfferDetails offerDetails) {
+    public void setOfferDetails(OfferDetail offerDetails) {
         this.offerDetails = offerDetails;
     }
 
@@ -58,7 +59,7 @@ public class OfferDetailsResponse {
         this.message = message;
     }
 
-    public class OfferDetails {
+    public class OfferDetail {
         @SerializedName("offer_id")
         private String offerId;
         @SerializedName("partner_id")
@@ -103,13 +104,17 @@ public class OfferDetailsResponse {
         @SerializedName("offer_link")
         private String offerLink;
 
-
-
-
         @SerializedName("share_title")
         private String shareTitle;
         @SerializedName("share_logo")
         private String shareLogo;
+
+        @SerializedName("images")
+        private ArrayList<String> imagesListArrayList;
+        @SerializedName("facilitys")
+        private ArrayList<FacilityList> facilityListArrayList;
+        @SerializedName("reviews")
+        private ArrayList<ReviewsList> reviewsListArrayList;
 
         public String getShareTitle() {
             return shareTitle;
@@ -126,13 +131,6 @@ public class OfferDetailsResponse {
         public void setShareLogo(String shareLogo) {
             this.shareLogo = shareLogo;
         }
-
-        @SerializedName("images")
-        private ArrayList<String> imagesListArrayList;
-        @SerializedName("facilitys")
-        private ArrayList<FacilityList> facilityListArrayList;
-        @SerializedName("reviews")
-        private ArrayList<ReviewsList> reviewsListArrayList;
 
         public String getCallNumber() {
             return callNumber;
@@ -455,7 +453,7 @@ public class OfferDetailsResponse {
         }
     }
 
-    public class VenderLocationList {
+    public class VenderLocation {
         @SerializedName("vender_name")
         private String venderName;
         @SerializedName("vender_location")
@@ -496,7 +494,7 @@ public class OfferDetailsResponse {
         }
     }
 
-    public class OtherOfferList {
+    public class OtherOffer {
         @SerializedName("offer_id")
         public String offerId = "";
         @SerializedName("offer_name")

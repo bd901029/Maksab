@@ -10,17 +10,16 @@ import java.util.ArrayList;
 
 import app.com.maksab.R;
 import app.com.maksab.api.dao.OfferDetailsResponse;
-import app.com.maksab.databinding.RowFacilityBinding;
 import app.com.maksab.databinding.RowVenderLocationBinding;
 import app.com.maksab.listener.OnItemClickListener;
 
 public class VenderLocationAdapter extends RecyclerView.Adapter<VenderLocationAdapter.ViewHolder> {
 
     private Context context;
-    private ArrayList<OfferDetailsResponse.VenderLocationList> categoryListArrayList;
+    private ArrayList<OfferDetailsResponse.VenderLocation> categoryListArrayList;
     private OnItemClickListener onItemClickListener;
 
-    public VenderLocationAdapter(Context context, ArrayList<OfferDetailsResponse.VenderLocationList> categoryListArrayList, OnItemClickListener onItemClickListener) {
+    public VenderLocationAdapter(Context context, ArrayList<OfferDetailsResponse.VenderLocation> categoryListArrayList, OnItemClickListener onItemClickListener) {
         this.context = context;
         this.categoryListArrayList = categoryListArrayList;
         this.onItemClickListener = onItemClickListener;
@@ -59,7 +58,7 @@ public class VenderLocationAdapter extends RecyclerView.Adapter<VenderLocationAd
      *
      * @param categoryList Store object of clicked position
      */
-    public void onItemClick(OfferDetailsResponse.VenderLocationList categoryList) {
+    public void onItemClick(OfferDetailsResponse.VenderLocation categoryList) {
         onItemClickListener.onClick(categoryListArrayList.indexOf(categoryList), categoryList);
     }
 }

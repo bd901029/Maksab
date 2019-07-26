@@ -57,7 +57,7 @@ public class CollectionAdapter extends RecyclerView.Adapter<CollectionAdapter.Vi
 			holder.rowHomeBinding.remaining.setVisibility(View.VISIBLE);
 		}
 
-		if (collections.get(position).bought == 0 || collections.get(position).boughtInText.equalsIgnoreCase("Unlimited")) {
+		if (collections.get(position).bought.equals("0") || collections.get(position).bought.equalsIgnoreCase("Unlimited")) {
 			holder.rowHomeBinding.bought.setVisibility(View.INVISIBLE);
 		}else {
 			holder.rowHomeBinding.bought.setVisibility(View.VISIBLE);
@@ -65,7 +65,7 @@ public class CollectionAdapter extends RecyclerView.Adapter<CollectionAdapter.Vi
 		holder.rowHomeBinding.beforeAmount.setPaintFlags(holder.rowHomeBinding.beforeAmount.getPaintFlags() | Paint.STRIKE_THRU_TEXT_FLAG);
 
 
-		if (collections.get(position).favStatus == 1)
+		if (collections.get(position).favStatus.equals("1"))
 			holder.rowHomeBinding.favImage.setBackgroundResource(R.drawable.favorites_hover3x);
 		else
 			holder.rowHomeBinding.favImage.setBackgroundResource(R.drawable.favorites3x);

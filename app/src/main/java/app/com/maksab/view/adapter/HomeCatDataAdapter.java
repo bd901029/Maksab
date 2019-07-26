@@ -61,8 +61,8 @@ public class HomeCatDataAdapter extends RecyclerView.Adapter<HomeCatDataAdapter.
             holder.rowHomeBinding.remaining.setVisibility(View.VISIBLE);
         }
 
-        if (newDeals.get(position).getBought().equalsIgnoreCase("0") || newDeals.get(position)
-                .getBought().equalsIgnoreCase("Unlimited")) {
+        if (newDeals.get(position).bought.equalsIgnoreCase("0") || newDeals.get(position)
+                .bought.equalsIgnoreCase("Unlimited")) {
             holder.rowHomeBinding.bought.setVisibility(View.INVISIBLE);
         } else {
             holder.rowHomeBinding.bought.setVisibility(View.VISIBLE);
@@ -72,7 +72,7 @@ public class HomeCatDataAdapter extends RecyclerView.Adapter<HomeCatDataAdapter.
                 .STRIKE_THRU_TEXT_FLAG);
 
 
-        if (newDeals.get(position).getFavStatus().equalsIgnoreCase("1"))
+        if (newDeals.get(position).favStatus.equalsIgnoreCase("1"))
             holder.rowHomeBinding.favImage.setBackground(ContextCompat.getDrawable(context, R.drawable.favorites_hover3x));
         else
             holder.rowHomeBinding.favImage.setBackground(ContextCompat.getDrawable(context, R.drawable.favorites3x));

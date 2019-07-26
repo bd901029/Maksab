@@ -21,7 +21,6 @@ import java.util.ArrayList;
 import app.com.maksab.R;
 import app.com.maksab.api.APIClient;
 import app.com.maksab.api.Api;
-import app.com.maksab.api.dao.CategoryHomeResponse;
 import app.com.maksab.api.dao.NotificationFilterResponse;
 import app.com.maksab.api.dao.NotificationResponse;
 import app.com.maksab.api.dao.NotificationStatusResponse;
@@ -162,7 +161,7 @@ public class NotificationFragment extends Fragment {
             Utility.setNoInternetPopup(getActivity());
         }else {
             UserCityIdModel userCityIdModel = new UserCityIdModel();
-            userCityIdModel.setCityId(Utility.getCity(getActivity()));
+            userCityIdModel.setCityId(Utility.getCityId(getActivity()));
             userCityIdModel.setUserId(Utility.getUserId(getActivity()));
             userCityIdModel.setLanguage(Utility.getLanguage(getActivity()));
             Api api = APIClient.getClient().create(Api.class);

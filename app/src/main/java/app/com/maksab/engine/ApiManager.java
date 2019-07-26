@@ -2,7 +2,6 @@ package app.com.maksab.engine;
 
 import android.content.Context;
 import android.os.Handler;
-import android.util.Log;
 import app.com.maksab.MyApplication;
 import app.com.maksab.R;
 import com.android.volley.Request;
@@ -10,14 +9,11 @@ import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
-import com.android.volley.toolbox.JsonRequest;
-import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
-import java.util.Map;
 
 public class ApiManager {
 	private String TAG = "ApiManager";
@@ -126,17 +122,8 @@ public class ApiManager {
 	}
 
 	public void runCallback(final JsonCallback callback, final JSONObject result, final String strError) {
-		if (callback == null)
-			return;
-
-		Context context = MyApplication.sharedInstance();
-		Handler handler = new Handler(context.getMainLooper());
-		handler.post(new Runnable() {
-			@Override
-			public void run() {
-				callback.OnFinished(result, strError);
-			}
-		});
+		if (callback == null) return;
+		callback.OnFinished(result, strError);
 	}
 
 //	public void call(String path, final Map<String, String> params, final JsonCallback callback) {
@@ -189,15 +176,26 @@ public class ApiManager {
 			}
 		};
 
-		JsonObjectRequest request = new JsonObjectRequest(Request.Method.POST, fullPath, null, onResponse, onFailure) {
-			@Override
-			public byte[] getBody() {
-				if (param != null) return param.toString().getBytes();
-				return super.getBody();
-			}
-		};
-
-
+		MyRequest request = new MyRequest(Request.Method.POST, fullPath, param, onResponse, onFailure);
 		addToRequestQueue(request, path);
+	}
+
+	private class MyRequest extends JsonObjectRequest {
+		JSONObject param = null;
+		public MyRequest(int method, String url, JSONObject param, Response.Listener<JSONObject> listener, Response.ErrorListener errorListener) {
+			super(method, url, null, listener, errorListener);
+			this.param = param;
+		}
+
+		@Override
+		public byte[] getBody() {
+			String strParam = "";
+			if (param != null) {
+				strParam = param.toString();
+			}
+
+			byte[] body = strParam.getBytes();
+			return body;
+		}
 	}
 }

@@ -24,8 +24,9 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 public class LoginActivity extends AppCompatActivity {
-	ActivityLoginBinding activityBinding;
-	private String fireballToken;
+
+	ActivityLoginBinding binder;
+	String deviceToken = Utility.getDeviceToken();
 
 	@Override
 	protected void onStart() {
@@ -39,15 +40,17 @@ public class LoginActivity extends AppCompatActivity {
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		activityBinding = DataBindingUtil.setContentView(this, R.layout.activity_login);
-		activityBinding.setActivity(this);
+		binder = DataBindingUtil.setContentView(this, R.layout.activity_login);
+		binder.setActivity(this);
 		this.getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN);
 		Utility.saveDeviceHeightWidth(this);
-		fireballToken = FirebaseInstanceId.getInstance().getToken();
+
 		LoginModel loginModel = new LoginModel();
-		// loginModel.setEmail("user@gmail.com");
-		//loginModel.setPassword("123456");
-		activityBinding.setModel(loginModel);
+
+		loginModel.setEmail("user@gmail.com");
+		loginModel.setPassword("123456");
+
+		binder.setModel(loginModel);
 	}
 
 	private boolean isAlreadyLogin() {
@@ -63,10 +66,10 @@ public class LoginActivity extends AppCompatActivity {
 		app.com.maksab.util.Extension extension = app.com.maksab.util.Extension.getInstance();
 		if (isEmpty(loginModel.getEmail()) || isEmpty(loginModel.getPassword())) {
 			if (loginModel.getEmail().isEmpty()) {
-				activityBinding.emailInputLayout.setError(getText(R.string.error_email_or_mobile));
+				binder.emailInputLayout.setError(getText(R.string.error_email_or_mobile));
 			}
 			if (loginModel.getPassword().isEmpty()) {
-				activityBinding.passwordInputLayout.setError(getText(R.string.error_pass));
+				binder.passwordInputLayout.setError(getText(R.string.error_pass));
 			}
 			Utility.showToast(LoginActivity.this, getString(R.string.email_pass));
 			return false;
@@ -89,8 +92,11 @@ public class LoginActivity extends AppCompatActivity {
 	public void onLoginButtonClick(LoginModel loginModel) {
 		if (validate(loginModel)) {
 			loginModel.setLanguage("en");
-			loginModel.setFcmToken(fireballToken);
-			loginModel.setIEMINumber(Build.SERIAL);
+
+			loginModel.setFcmToken(deviceToken);
+
+			String IMEI = Build.SERIAL;
+			loginModel.setIEMINumber(IMEI);
 
 			Helper.showProgress(LoginActivity.this);
 			Api api = APIClient.getClient().create(Api.class);
@@ -119,21 +125,15 @@ public class LoginActivity extends AppCompatActivity {
 	private void handleLoginResponse(LoginResponse loginResponse) {
 		if (loginResponse != null) {
 			if (loginResponse.getStatus() != null) {
-				if (Utility.isEmulator()) {
-					saveDetails(loginResponse);
-					startActivity(new Intent(LoginActivity.this, HomeActivity.class));
-					finish();
-					return;
-				}
-
-				if (loginResponse.getStatus().equals("0")){
+				if (loginResponse.getStatus().equals("0")) {
 					Intent intent = new Intent(LoginActivity.this, MobileVerificationActivity.class);
-					intent.putExtra("token",fireballToken);
-					intent.putExtra("email",activityBinding.emailEdt.getText().toString());
+					intent.putExtra("token", deviceToken);
+					intent.putExtra("email", binder.emailEdt.getText().toString());
 					startActivity(intent);
 					finish();
-				}else
+				} else {
 					Utility.showToast(LoginActivity.this, loginResponse.getErrorMessage());
+				}
 			}else if (loginResponse.getResponseCode().equals(Api.SUCCESS)) {
 				saveDetails(loginResponse);
 				startActivity(new Intent(LoginActivity.this, HomeActivity.class));

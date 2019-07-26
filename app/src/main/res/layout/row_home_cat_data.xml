@@ -198,7 +198,7 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:gravity="center"
-                            android:text="@{model.getBought}"
+                            android:text="@{model.bought}"
                             android:textSize="14sp"
                             app:font="@{@string/regular}" />
                     </LinearLayout>

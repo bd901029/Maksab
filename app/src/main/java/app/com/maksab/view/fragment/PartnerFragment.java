@@ -29,7 +29,6 @@ import app.com.maksab.util.ValidationTemplate;
 import app.com.maksab.view.activity.BrandDetailActivity;
 import app.com.maksab.view.adapter.AlphabetItemAdapter;
 import app.com.maksab.view.adapter.FavoritesAllPartnersAdapter;
-import app.com.maksab.view.adapter.FavoritesPartnersAdapter;
 import app.com.maksab.view.viewmodel.UserCityIdModel;
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -121,7 +120,7 @@ if (Utility.getLanguage(getActivity()).equalsIgnoreCase(Constant.LANGUAGE_ARABIC
     public void getPartners() {
         fragmentBinding.swifeRefresh.setRefreshing(true);
         UserCityIdModel userCityIdModel = new UserCityIdModel();
-        userCityIdModel.setCityId(Utility.getCity(getActivity()));
+        userCityIdModel.setCityId(Utility.getCityId(getActivity()));
         userCityIdModel.setType(sType);
         userCityIdModel.setUserId(Utility.getUserId(getActivity()));
         userCityIdModel.setLanguage(Utility.getLanguage(getActivity()));

@@ -17,7 +17,6 @@ import java.util.ArrayList;
 import app.com.maksab.R;
 import app.com.maksab.api.APIClient;
 import app.com.maksab.api.Api;
-import app.com.maksab.api.dao.CategoryHomeResponse;
 import app.com.maksab.api.dao.NotificationFilterResponse;
 import app.com.maksab.api.dao.NotificationResponse;
 import app.com.maksab.api.dao.NotificationStatusResponse;
@@ -91,7 +90,7 @@ public class PushNotificationActivity extends AppCompatActivity {
 
     public void getFavoriteDeals() {
         UserCityIdModel userCityIdModel = new UserCityIdModel();
-        userCityIdModel.setCityId(Utility.getCity(PushNotificationActivity.this));
+        userCityIdModel.setCityId(Utility.getCityId(PushNotificationActivity.this));
         userCityIdModel.setUserId(Utility.getUserId(PushNotificationActivity.this));
         userCityIdModel.setLanguage(Utility.getLanguage(PushNotificationActivity.this));
         Api api = APIClient.getClient().create(Api.class);

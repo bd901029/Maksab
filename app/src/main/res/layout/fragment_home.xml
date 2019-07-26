@@ -1,396 +1,390 @@
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools">
-
-    <data>
-
-        <variable
-            name="fragment"
-            type="app.com.maksab.view.fragment.home.StoreFragment" />
-
-        <!--<variable
-            name="model"
-            type="com.app.rokape.model.LoginModel" />-->
-    </data>
-
-
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="@color/bg">
-
-        <RelativeLayout
-            android:id="@+id/titleLayout"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-
-            <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="?attr/actionBarSize"
-                android:background="@color/white">
-
-                <ImageView
-                    android:id="@+id/drawerImg"
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:onClick="@{()->fragment.openDrawer()}"
-                    android:paddingEnd="12dp"
-                    android:paddingStart="12dp"
-                    android:src="@drawable/ic_menu" />
-
-            </RelativeLayout>
-
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="50dp"
-                android:layout_alignParentEnd="true"
-                android:orientation="horizontal">
-
-                <ImageView
-                    android:onClick="@{()->fragment.onClickSearch()}"
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:layout_alignRight="@+id/filter"
-                    android:padding="10dp"
-                    android:src="@drawable/search" />
-
-                <ImageView
-                    android:onClick="@{()->fragment.onClickPackages()}"
-                    android:id="@+id/filter"
-                    android:layout_width="35dp"
-                    android:layout_height="match_parent"
-                    android:padding="7dp"
-                    android:src="@drawable/products_hover3x" />
-            </LinearLayout>
-
-
-            <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_centerInParent="true"
-                android:src="@drawable/logo_small" />
-
-
-
-        </RelativeLayout>
-
-        <View
-            android:layout_below="@+id/titleLayout"
-            android:layout_width="match_parent"
-            android:layout_height="0.5sp"
-            android:background="@color/divider_color" />
-
-        <android.support.v7.widget.RecyclerView
-            android:id="@+id/recyclerView"
-            android:layout_width="match_parent"
-            android:layout_height="75dp"
-            android:layout_below="@+id/titleLayout"/>
-
-        <android.support.v4.widget.NestedScrollView
-            android:id="@+id/NestedScrollView"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_below="@id/recyclerView"
-            android:fillViewport="true">
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:orientation="vertical">
-
-                <RelativeLayout
-                    android:id="@+id/imageSliderLayout"
-                    android:layout_width="match_parent"
-                    android:layout_height="190dp">
-
-                    <com.daimajia.slider.library.SliderLayout
-                        android:id="@+id/imageSlider"
-                        android:layout_width="match_parent"
-                        android:layout_height="190dp"
-                        app:pager_animation="Accordion"
-                        app:auto_cycle="true"
-                        app:indicator_visibility="visible"/>
-
-
-                    <!--<com.daimajia.slider.library.Indicators.PagerIndicator
-                        android:id="@+id/custom_indicator"
-                        style="@style/AndroidImageSlider_Corner_Oval_Orange"
-                        android:layout_alignParentBottom="true"
-                        android:layout_centerHorizontal="true"
-                        android:layout_marginBottom="35dp"
-                        app:selected_color="#672976"
-                        app:unselected_color="#fff" />-->
-
-                </RelativeLayout>
-
-
-                <RelativeLayout
-                    android:id="@+id/bigBrandView"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical">
-
-                    <android.support.v7.widget.RecyclerView
-                        android:id="@+id/recyclerViewBrand"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_below="@+id/topPanel"
-                        android:layout_marginTop="-10dp" />
-
-                    <RelativeLayout
-                        android:id="@+id/topPanel"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_margin="10dp"
-                        android:layout_marginBottom="10dp"
-                        android:layout_marginTop="10dp">
-
-                        <LinearLayout
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:orientation="vertical"
-                            android:paddingEnd="16dp"
-                            android:paddingStart="12dp">
-
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:text="@string/cat_brand"
-                                android:textColor="@color/gray_text"
-                                android:textSize="16sp"
-                                app:font="@{@string/regular}" />
-
-                            <View
-                                android:layout_width="20dp"
-                                android:layout_height="2dp"
-                                android:background="@color/colorAccent" />
-                        </LinearLayout>
-
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_alignParentEnd="true"
-                            android:background="@drawable/round_corner_border_blue"
-                            android:onClick="@{()->fragment.onClickBigBrand()}"
-                            android:paddingBottom="4dp"
-                            android:paddingEnd="14dp"
-                            android:paddingStart="14dp"
-                            android:paddingTop="4dp"
-                            android:text="@string/view_all"
-                            android:textColor="@color/colorAccent"
-                            android:textSize="14sp"
-                            app:font="@{@string/regular}" />
-                    </RelativeLayout>
-                </RelativeLayout>
-
-                <RelativeLayout
-                    android:id="@+id/collectionsView"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical"
-                    android:visibility="gone">
-
-                    <android.support.v7.widget.RecyclerView
-                        android:id="@+id/recyclerViewCollections"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_below="@+id/topPanel2"
-                        android:layout_marginTop="-10dp" />
-
-                    <RelativeLayout
-                        android:id="@+id/topPanel2"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_margin="10dp"
-                        android:layout_marginBottom="10dp"
-                        android:layout_marginTop="10dp">
-
-                        <LinearLayout
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:orientation="vertical"
-                            android:paddingEnd="16dp"
-                            android:paddingStart="12dp">
-
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:text="@string/cat_collections"
-                                android:textColor="@color/gray_text"
-                                android:textSize="16sp"
-                                app:font="@{@string/regular}" />
-
-                            <View
-                                android:layout_width="20dp"
-                                android:layout_height="2dp"
-                                android:background="@color/colorAccent" />
-                        </LinearLayout>
-
-
-                    </RelativeLayout>
-                </RelativeLayout>
-
-                <RelativeLayout
-                    android:id="@+id/trendingView"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical"
-                    android:visibility="gone">
-
-                    <android.support.v7.widget.RecyclerView
-                        android:id="@+id/recyclerViewTrending"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_below="@+id/topPanel3"
-                        android:layout_marginTop="-10dp" />
-
-                    <RelativeLayout
-                        android:id="@+id/topPanel3"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_margin="10dp"
-                        android:layout_marginBottom="10dp"
-                        android:layout_marginTop="10dp">
-
-                        <LinearLayout
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:orientation="vertical"
-                            android:paddingEnd="16dp"
-                            android:paddingStart="12dp">
-
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:text="@string/cat_trending"
-                                android:textColor="@color/gray_text"
-                                android:textSize="16sp"
-                                app:font="@{@string/regular}" />
-
-                            <View
-                                android:layout_width="20dp"
-                                android:layout_height="2dp"
-                                android:background="@color/colorAccent" />
-                        </LinearLayout>
-
-
-                    </RelativeLayout>
-                </RelativeLayout>
-
-                <RelativeLayout
-                    android:id="@+id/HotDealDataView"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical"
-                    android:visibility="gone">
-
-                    <android.support.v7.widget.RecyclerView
-                        android:id="@+id/recyclerViewHotDealData"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_below="@+id/topPanel4"
-                        android:layout_marginTop="-10dp" />
-
-                    <RelativeLayout
-                        android:id="@+id/topPanel4"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_margin="10dp"
-                        android:layout_marginBottom="10dp"
-                        android:layout_marginTop="10dp">
-
-                        <LinearLayout
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:orientation="vertical"
-                            android:paddingEnd="16dp"
-                            android:paddingStart="12dp">
-
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:text="@string/cat_hot_deal"
-                                android:textColor="@color/gray_text"
-                                android:textSize="16sp"
-                                app:font="@{@string/regular}" />
-
-                            <View
-                                android:layout_width="20dp"
-                                android:layout_height="2dp"
-                                android:background="@color/colorAccent" />
-                        </LinearLayout>
-
-
-                    </RelativeLayout>
-                </RelativeLayout>
-
-                <android.support.v7.widget.RecyclerView
-                    android:id="@+id/recyclerViewCat"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
-
-                </android.support.v7.widget.RecyclerView>
-
-                <RelativeLayout
-                    android:id="@+id/NewDealDataView"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical"
-                    android:visibility="visible">
-
-                    <android.support.v7.widget.RecyclerView
-                        android:id="@+id/recyclerViewNewdealData"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_below="@+id/topPanel5"
-                        android:layout_marginTop="-10dp" />
-
-                    <RelativeLayout
-                        android:id="@+id/topPanel5"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_margin="10dp"
-                        android:layout_marginBottom="10dp"
-                        android:layout_marginTop="10dp">
-
-                        <LinearLayout
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:orientation="vertical"
-                            android:paddingEnd="16dp"
-                            android:paddingStart="12dp">
-
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:text="@string/cat_new_deal"
-                                android:textColor="@color/gray_text"
-                                android:textSize="16sp"
-                                app:font="@{@string/regular}" />
-
-                            <View
-                                android:layout_width="20dp"
-                                android:layout_height="2dp"
-                                android:background="@color/colorAccent" />
-                        </LinearLayout>
-
-
-                    </RelativeLayout>
-
-                </RelativeLayout>
-
-                <android.support.v7.widget.RecyclerView
-                    android:id="@+id/recyclerViewSubCat"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
-
-                </android.support.v7.widget.RecyclerView>
-
-            </LinearLayout>
-
-        </android.support.v4.widget.NestedScrollView>
-
-
-    </RelativeLayout>
+		xmlns:app="http://schemas.android.com/apk/res-auto"
+		xmlns:tools="http://schemas.android.com/tools">
+
+	<data>
+
+		<variable
+				name="fragment"
+				type="app.com.maksab.view.fragment.home.StoreFragment" />
+	</data>
+
+
+	<RelativeLayout
+			android:layout_width="match_parent"
+			android:layout_height="match_parent"
+			android:background="@color/bg">
+
+		<RelativeLayout
+				android:id="@+id/titleLayout"
+				android:layout_width="match_parent"
+				android:layout_height="wrap_content">
+
+			<RelativeLayout
+					android:layout_width="match_parent"
+					android:layout_height="?attr/actionBarSize"
+					android:background="@color/white">
+
+				<ImageView
+						android:id="@+id/drawerImg"
+						android:layout_width="wrap_content"
+						android:layout_height="match_parent"
+						android:onClick="@{()->fragment.openDrawer()}"
+						android:paddingEnd="12dp"
+						android:paddingStart="12dp"
+						android:src="@drawable/ic_menu" />
+
+			</RelativeLayout>
+
+			<LinearLayout
+					android:layout_width="wrap_content"
+					android:layout_height="50dp"
+					android:layout_alignParentEnd="true"
+					android:orientation="horizontal">
+
+				<ImageView
+						android:onClick="@{()->fragment.onClickSearch()}"
+						android:layout_width="wrap_content"
+						android:layout_height="match_parent"
+						android:layout_alignRight="@+id/filter"
+						android:padding="10dp"
+						android:src="@drawable/search" />
+
+				<ImageView
+						android:onClick="@{()->fragment.onClickPackages()}"
+						android:id="@+id/filter"
+						android:layout_width="35dp"
+						android:layout_height="match_parent"
+						android:padding="7dp"
+						android:src="@drawable/products_hover3x" />
+			</LinearLayout>
+
+
+			<ImageView
+					android:layout_width="wrap_content"
+					android:layout_height="wrap_content"
+					android:layout_centerInParent="true"
+					android:src="@drawable/logo_small" />
+
+		</RelativeLayout>
+
+		<View
+				android:layout_below="@+id/titleLayout"
+				android:layout_width="match_parent"
+				android:layout_height="0.5sp"
+				android:background="@color/divider_color" />
+
+		<android.support.v7.widget.RecyclerView
+				android:id="@+id/recyclerView"
+				android:layout_width="match_parent"
+				android:layout_height="75dp"
+				android:layout_below="@+id/titleLayout"/>
+
+		<android.support.v4.widget.NestedScrollView
+				android:id="@+id/NestedScrollView"
+				android:layout_width="match_parent"
+				android:layout_height="match_parent"
+				android:layout_below="@id/recyclerView"
+				android:fillViewport="true">
+
+			<LinearLayout
+					android:layout_width="match_parent"
+					android:layout_height="match_parent"
+					android:orientation="vertical">
+
+				<RelativeLayout
+						android:id="@+id/imageSliderLayout"
+						android:layout_width="match_parent"
+						android:layout_height="190dp">
+
+					<com.daimajia.slider.library.SliderLayout
+							android:id="@+id/imageSlider"
+							android:layout_width="match_parent"
+							android:layout_height="190dp"
+							app:pager_animation="Accordion"
+							app:auto_cycle="true"
+							app:indicator_visibility="visible"/>
+
+
+					<!--<com.daimajia.slider.library.Indicators.PagerIndicator
+						android:id="@+id/custom_indicator"
+						style="@style/AndroidImageSlider_Corner_Oval_Orange"
+						android:layout_alignParentBottom="true"
+						android:layout_centerHorizontal="true"
+						android:layout_marginBottom="35dp"
+						app:selected_color="#672976"
+						app:unselected_color="#fff" />-->
+
+				</RelativeLayout>
+
+
+				<RelativeLayout
+						android:id="@+id/bigBrandView"
+						android:layout_width="match_parent"
+						android:layout_height="wrap_content"
+						android:orientation="vertical">
+
+					<android.support.v7.widget.RecyclerView
+							android:id="@+id/recyclerViewBrand"
+							android:layout_width="match_parent"
+							android:layout_height="wrap_content"
+							android:layout_below="@+id/topPanel"
+							android:layout_marginTop="-10dp" />
+
+					<RelativeLayout
+							android:id="@+id/topPanel"
+							android:layout_width="match_parent"
+							android:layout_height="wrap_content"
+							android:layout_margin="10dp"
+							android:layout_marginBottom="10dp"
+							android:layout_marginTop="10dp">
+
+						<LinearLayout
+								android:layout_width="wrap_content"
+								android:layout_height="wrap_content"
+								android:orientation="vertical"
+								android:paddingEnd="16dp"
+								android:paddingStart="12dp">
+
+							<TextView
+									android:layout_width="wrap_content"
+									android:layout_height="wrap_content"
+									android:text="@string/cat_brand"
+									android:textColor="@color/gray_text"
+									android:textSize="16sp"
+									app:font="@{@string/regular}" />
+
+							<View
+									android:layout_width="20dp"
+									android:layout_height="2dp"
+									android:background="@color/colorAccent" />
+						</LinearLayout>
+
+
+						<TextView
+								android:layout_width="wrap_content"
+								android:layout_height="wrap_content"
+								android:layout_alignParentEnd="true"
+								android:background="@drawable/round_corner_border_blue"
+								android:onClick="@{()->fragment.onClickBigBrand()}"
+								android:paddingBottom="4dp"
+								android:paddingEnd="14dp"
+								android:paddingStart="14dp"
+								android:paddingTop="4dp"
+								android:text="@string/view_all"
+								android:textColor="@color/colorAccent"
+								android:textSize="14sp"
+								app:font="@{@string/regular}" />
+					</RelativeLayout>
+				</RelativeLayout>
+
+				<RelativeLayout
+						android:id="@+id/collectionsView"
+						android:layout_width="match_parent"
+						android:layout_height="wrap_content"
+						android:orientation="vertical"
+						android:visibility="gone">
+
+					<android.support.v7.widget.RecyclerView
+							android:id="@+id/recyclerViewCollections"
+							android:layout_width="match_parent"
+							android:layout_height="wrap_content"
+							android:layout_below="@+id/topPanel2"
+							android:layout_marginTop="-10dp" />
+
+					<RelativeLayout
+							android:id="@+id/topPanel2"
+							android:layout_width="match_parent"
+							android:layout_height="wrap_content"
+							android:layout_margin="10dp"
+							android:layout_marginBottom="10dp"
+							android:layout_marginTop="10dp">
+
+						<LinearLayout
+								android:layout_width="wrap_content"
+								android:layout_height="wrap_content"
+								android:orientation="vertical"
+								android:paddingEnd="16dp"
+								android:paddingStart="12dp">
+
+							<TextView
+									android:layout_width="wrap_content"
+									android:layout_height="wrap_content"
+									android:text="@string/cat_collections"
+									android:textColor="@color/gray_text"
+									android:textSize="16sp"
+									app:font="@{@string/regular}" />
+
+							<View
+									android:layout_width="20dp"
+									android:layout_height="2dp"
+									android:background="@color/colorAccent" />
+						</LinearLayout>
+
+
+					</RelativeLayout>
+				</RelativeLayout>
+
+				<RelativeLayout
+						android:id="@+id/trendingView"
+						android:layout_width="match_parent"
+						android:layout_height="wrap_content"
+						android:orientation="vertical"
+						android:visibility="gone">
+
+					<android.support.v7.widget.RecyclerView
+							android:id="@+id/recyclerViewTrending"
+							android:layout_width="match_parent"
+							android:layout_height="wrap_content"
+							android:layout_below="@+id/topPanel3"
+							android:layout_marginTop="-10dp" />
+
+					<RelativeLayout
+							android:id="@+id/topPanel3"
+							android:layout_width="match_parent"
+							android:layout_height="wrap_content"
+							android:layout_margin="10dp"
+							android:layout_marginBottom="10dp"
+							android:layout_marginTop="10dp">
+
+						<LinearLayout
+								android:layout_width="wrap_content"
+								android:layout_height="wrap_content"
+								android:orientation="vertical"
+								android:paddingEnd="16dp"
+								android:paddingStart="12dp">
+
+							<TextView
+									android:layout_width="wrap_content"
+									android:layout_height="wrap_content"
+									android:text="@string/cat_trending"
+									android:textColor="@color/gray_text"
+									android:textSize="16sp"
+									app:font="@{@string/regular}" />
+
+							<View
+									android:layout_width="20dp"
+									android:layout_height="2dp"
+									android:background="@color/colorAccent" />
+						</LinearLayout>
+
+
+					</RelativeLayout>
+				</RelativeLayout>
+
+				<RelativeLayout
+						android:id="@+id/HotDealDataView"
+						android:layout_width="match_parent"
+						android:layout_height="wrap_content"
+						android:orientation="vertical"
+						android:visibility="gone">
+
+					<android.support.v7.widget.RecyclerView
+							android:id="@+id/recyclerViewHotDealData"
+							android:layout_width="match_parent"
+							android:layout_height="wrap_content"
+							android:layout_below="@+id/topPanel4"
+							android:layout_marginTop="-10dp" />
+
+					<RelativeLayout
+							android:id="@+id/topPanel4"
+							android:layout_width="match_parent"
+							android:layout_height="wrap_content"
+							android:layout_margin="10dp"
+							android:layout_marginBottom="10dp"
+							android:layout_marginTop="10dp">
+
+						<LinearLayout
+								android:layout_width="wrap_content"
+								android:layout_height="wrap_content"
+								android:orientation="vertical"
+								android:paddingEnd="16dp"
+								android:paddingStart="12dp">
+
+							<TextView
+									android:layout_width="wrap_content"
+									android:layout_height="wrap_content"
+									android:text="@string/cat_hot_deal"
+									android:textColor="@color/gray_text"
+									android:textSize="16sp"
+									app:font="@{@string/regular}" />
+
+							<View
+									android:layout_width="20dp"
+									android:layout_height="2dp"
+									android:background="@color/colorAccent" />
+						</LinearLayout>
+
+
+					</RelativeLayout>
+				</RelativeLayout>
+
+				<android.support.v7.widget.RecyclerView
+						android:id="@+id/recyclerViewCat"
+						android:layout_width="match_parent"
+						android:layout_height="wrap_content">
+
+				</android.support.v7.widget.RecyclerView>
+
+				<RelativeLayout
+						android:id="@+id/NewDealDataView"
+						android:layout_width="match_parent"
+						android:layout_height="wrap_content"
+						android:orientation="vertical"
+						android:visibility="visible">
+
+					<android.support.v7.widget.RecyclerView
+							android:id="@+id/recyclerViewNewdealData"
+							android:layout_width="match_parent"
+							android:layout_height="wrap_content"
+							android:layout_below="@+id/topPanel5"
+							android:layout_marginTop="-10dp" />
+
+					<RelativeLayout
+							android:id="@+id/topPanel5"
+							android:layout_width="match_parent"
+							android:layout_height="wrap_content"
+							android:layout_margin="10dp"
+							android:layout_marginBottom="10dp"
+							android:layout_marginTop="10dp">
+
+						<LinearLayout
+								android:layout_width="wrap_content"
+								android:layout_height="wrap_content"
+								android:orientation="vertical"
+								android:paddingEnd="16dp"
+								android:paddingStart="12dp">
+
+							<TextView
+									android:layout_width="wrap_content"
+									android:layout_height="wrap_content"
+									android:text="@string/cat_new_deal"
+									android:textColor="@color/gray_text"
+									android:textSize="16sp"
+									app:font="@{@string/regular}" />
+
+							<View
+									android:layout_width="20dp"
+									android:layout_height="2dp"
+									android:background="@color/colorAccent" />
+						</LinearLayout>
+
+
+					</RelativeLayout>
+
+				</RelativeLayout>
+
+				<android.support.v7.widget.RecyclerView
+						android:id="@+id/recyclerViewSubCat"
+						android:layout_width="match_parent"
+						android:layout_height="wrap_content">
+
+				</android.support.v7.widget.RecyclerView>
+
+			</LinearLayout>
+
+		</android.support.v4.widget.NestedScrollView>
+
+
+	</RelativeLayout>
 </layout>

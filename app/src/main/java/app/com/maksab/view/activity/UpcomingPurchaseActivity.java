@@ -103,7 +103,7 @@ public class UpcomingPurchaseActivity extends AppCompatActivity {
     public void getUpcomingPurchase() {
         mBinding.swifeRefresh.setRefreshing(true);
         UserCityIdModel model = new UserCityIdModel();
-        model.setCityId(Utility.getCity(context));
+        model.setCityId(Utility.getCityId(context));
         model.setUserId(Utility.getUserId(context));
         model.setLanguage(Utility.getLanguage(context));
         Api api = APIClient.getClient().create(Api.class);

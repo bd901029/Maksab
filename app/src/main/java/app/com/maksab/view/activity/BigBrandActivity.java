@@ -1,21 +1,13 @@
 package app.com.maksab.view.activity;
 
-import android.app.Activity;
-import android.app.AlertDialog;
-import android.app.Dialog;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.databinding.DataBindingUtil;
-import android.graphics.Color;
-import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
-import android.text.TextUtils;
 import android.util.Log;
-import android.view.LayoutInflater;
 import android.view.View;
 import android.view.WindowManager;
 import java.util.ArrayList;
@@ -25,12 +17,7 @@ import app.com.maksab.api.APIClient;
 import app.com.maksab.api.Api;
 import app.com.maksab.api.dao.AlphabetResponse;
 import app.com.maksab.api.dao.FavoritePartnerListResponse;
-import app.com.maksab.api.dao.NotificationFilterResponse;
-import app.com.maksab.api.dao.SuccessfulResponse;
-import app.com.maksab.databinding.ActivityBecomePartnerBinding;
 import app.com.maksab.databinding.ActivityBigBrandBinding;
-import app.com.maksab.databinding.DialogNotificationFilterBinding;
-import app.com.maksab.databinding.FragmentPartnerBinding;
 import app.com.maksab.listener.OnItemClickListener;
 import app.com.maksab.util.Constant;
 import app.com.maksab.util.Extension;
@@ -38,14 +25,10 @@ import app.com.maksab.util.ProgressDialog;
 import app.com.maksab.util.Utility;
 import app.com.maksab.util.ValidationTemplate;
 import app.com.maksab.view.adapter.AlphabetItemAdapter;
-import app.com.maksab.view.adapter.BusinessTypeAdapter;
 import app.com.maksab.view.adapter.FavoritesAllPartnersAdapter;
-import app.com.maksab.view.viewmodel.BecomePartnerModel;
 import app.com.maksab.view.viewmodel.UserCityIdModel;
-import app.com.maksab.view.viewmodel.UserIdModel;
 import retrofit2.Call;
 import retrofit2.Callback;
-import retrofit2.Response;
 
 public class BigBrandActivity extends AppCompatActivity {
     private ActivityBigBrandBinding mBinding;
@@ -121,7 +104,7 @@ public class BigBrandActivity extends AppCompatActivity {
     public void getPartners() {
         mBinding.swifeRefresh.setRefreshing(true);
         UserCityIdModel userCityIdModel = new UserCityIdModel();
-        userCityIdModel.setCityId(Utility.getCity(BigBrandActivity.this));
+        userCityIdModel.setCityId(Utility.getCityId(BigBrandActivity.this));
         userCityIdModel.setType(sType);
         userCityIdModel.setUserId(Utility.getUserId(BigBrandActivity.this));
         userCityIdModel.setLanguage(Utility.getLanguage(BigBrandActivity.this));

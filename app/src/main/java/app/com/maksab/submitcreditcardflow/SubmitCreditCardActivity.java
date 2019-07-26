@@ -464,7 +464,7 @@ public class SubmitCreditCardActivity extends AppCompatActivity {
             CouponCodeModel couponCodeModel = new CouponCodeModel();
             couponCodeModel.setLanguage(Utility.getLanguage(SubmitCreditCardActivity.this));
             couponCodeModel.setUserId(Utility.getUserId(SubmitCreditCardActivity.this));
-            couponCodeModel.setCityId(Utility.getCity(SubmitCreditCardActivity.this));
+            couponCodeModel.setCityId(Utility.getCityId(SubmitCreditCardActivity.this));
             couponCodeModel.setCouponCode(activitySubmitCreditCardBinding.etCoupon.getText().toString());
             couponCodeModel.setPlanId(sPlanId);
             couponCodeModel.setPlanAmount(sAmount);

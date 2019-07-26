@@ -18,7 +18,7 @@ import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.Toast;
-import app.com.maksab.engine.country.CountryManager;
+import app.com.maksab.engine.country.CountryCityManager;
 import com.crystal.crystalrangeseekbar.interfaces.OnRangeSeekbarChangeListener;
 import com.crystal.crystalrangeseekbar.interfaces.OnRangeSeekbarFinalValueListener;
 
@@ -79,7 +79,7 @@ public class OfferListActivity extends AppCompatActivity {
 			// if (sCategoryName.equalsIgnoreCase(""))
 			//    sCategoryName = "";
 
-			String cityName = CountryManager.sharedInstance().convertCityName(Utility.getCityName(OfferListActivity.this));
+			String cityName = CountryCityManager.sharedInstance().convertCityName(Utility.getCityId(OfferListActivity.this));
 			activityBinding.catName.setText(sCategoryName+" "+getString(R.string.in) + " " + cityName);
 			try {
 				if (!bundle.getString(Constant.QUERY,"").equalsIgnoreCase("")){
@@ -199,7 +199,7 @@ public class OfferListActivity extends AppCompatActivity {
 		offerListModel.setCategoryId(sCategoryId);
 		offerListModel.setUserId(Utility.getUserId(OfferListActivity.this));
 		offerListModel.setLanguage(Utility.getLanguage(OfferListActivity.this));
-		offerListModel.setCityId(Utility.getCity(OfferListActivity.this));
+		offerListModel.setCityId(Utility.getCityId(OfferListActivity.this));
 		offerListModel.setSubCategoryId(selectSubCategories);
 		offerListModel.setLocations(selectLocation);
 		offerListModel.setMinPrice(sMinPrice);
@@ -404,7 +404,7 @@ public class OfferListActivity extends AppCompatActivity {
 
 		CityCatIdModel cityCatIdModel = new CityCatIdModel();
 		cityCatIdModel.setLanguage(Utility.getLanguage(OfferListActivity.this));
-		cityCatIdModel.setCityId(Utility.getCity(OfferListActivity.this));
+		cityCatIdModel.setCityId(Utility.getCityId(OfferListActivity.this));
 		cityCatIdModel.setCategoryId(sCategoryId);
 		Api api = APIClient.getClient().create(Api.class);
 		final Call<OfferFilterResponse> responseCall = api.getFilterCategory(cityCatIdModel);

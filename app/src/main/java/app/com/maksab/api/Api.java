@@ -1,6 +1,9 @@
 package app.com.maksab.api;
 
 import app.com.maksab.api.dao.*;
+import app.com.maksab.engine.country.Country;
+import app.com.maksab.engine.country.CountryCityResponse;
+import app.com.maksab.engine.offer.HomeDataResponse;
 import app.com.maksab.view.viewmodel.*;
 import okhttp3.MultipartBody;
 import okhttp3.RequestBody;
@@ -31,12 +34,12 @@ public interface Api {
     Call<SuccessfulResponse> forgotPassword(@Body ForgotModel forgotModel);
 
     @POST("api/get_country_city")
-    Call<CountryCityListResponse> getCountryCity(@Body LanguageModel languageModel);
+    Call<CountryCityResponse> getCountryCity(@Body LanguageModel languageModel);
 
     @POST("api/get_category_list")
     Call<CategoryHomeResponse> getCategoryList(@Body LanguageModel languageModel);
 
-    @POST("api/getCity")
+    @POST("api/getCityId")
     Call<CityListResponse> getCity(@Body CityModel cityModel);
 
     @POST("api/get_home_data")

@@ -3,9 +3,7 @@ package app.com.maksab.view.adapter;
 import android.content.Context;
 import android.databinding.DataBindingUtil;
 import android.graphics.Paint;
-import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,25 +11,16 @@ import android.view.ViewGroup;
 import java.util.ArrayList;
 
 import app.com.maksab.R;
-import app.com.maksab.api.APIClient;
-import app.com.maksab.api.Api;
-import app.com.maksab.api.dao.AddFavoritesResponse;
 import app.com.maksab.api.dao.OfferDetailsResponse;
 import app.com.maksab.databinding.RowOtherOfferBinding;
 import app.com.maksab.listener.OnItemClickListener;
-import app.com.maksab.util.PreferenceConnector;
-import app.com.maksab.util.ProgressDialog;
-import app.com.maksab.util.Utility;
-import app.com.maksab.view.viewmodel.UserOfferIdModel;
-import retrofit2.Call;
-import retrofit2.Callback;
 
 public class OtherOfferAdapter extends RecyclerView.Adapter<OtherOfferAdapter.ViewHolder> {
     private Context context;
-    private ArrayList<OfferDetailsResponse.OtherOfferList> categoryListArrayList;
+    private ArrayList<OfferDetailsResponse.OtherOffer> categoryListArrayList;
     private OnItemClickListener onItemClickListener;
 
-    public OtherOfferAdapter(Context context, ArrayList<OfferDetailsResponse.OtherOfferList> categoryListArrayList,
+    public OtherOfferAdapter(Context context, ArrayList<OfferDetailsResponse.OtherOffer> categoryListArrayList,
                              OnItemClickListener onItemClickListener) {
         this.context = context;
         this.categoryListArrayList = categoryListArrayList;
@@ -128,7 +117,7 @@ public class OtherOfferAdapter extends RecyclerView.Adapter<OtherOfferAdapter.Vi
      * On Item click listener method
      * @param offerList Store object of clicked position
      */
-    public void onItemClick(OfferDetailsResponse.OtherOfferList offerList) {
+    public void onItemClick(OfferDetailsResponse.OtherOffer offerList) {
         onItemClickListener.onClick(categoryListArrayList.indexOf(offerList), offerList);
     }
 }

@@ -17,7 +17,7 @@ import app.com.maksab.api.dao.LoginResponse;
 import app.com.maksab.api.dao.RegistrationResponse;
 import app.com.maksab.databinding.ActivityUserRegistratoinBinding;
 import app.com.maksab.databinding.DialogRecyclerViewBinding;
-import app.com.maksab.engine.country.CountryManager;
+import app.com.maksab.engine.country.CountryCityManager;
 import app.com.maksab.util.*;
 import app.com.maksab.view.viewmodel.UserRegistrationModel;
 import com.google.firebase.iid.FirebaseInstanceId;
@@ -50,7 +50,7 @@ public class UserRegistrationActivity extends AppCompatActivity {
 		//onClickCountry();
 		binder.tc.setText((Html.fromHtml(getString(R.string.temrs_of_service))));
 
-		String cityName = CountryManager.sharedInstance().convertCityName(Utility.getCityName(UserRegistrationActivity.this));
+		String cityName = CountryCityManager.sharedInstance().convertCityName(Utility.getCityName(UserRegistrationActivity.this));
 		binder.tvCountryName.setText(cityName);
 
 		binder.tvCountryCode.setText(Utility.getCountryCode(UserRegistrationActivity.this));
@@ -139,7 +139,7 @@ public class UserRegistrationActivity extends AppCompatActivity {
 			ProgressDialog.getInstance().showProgressDialog(UserRegistrationActivity.this);
 			userRegistrationModel.setLanguage(Utility.getLanguage(UserRegistrationActivity.this));
 			userRegistrationModel.setCountryCode(Utility.getCountryCode(UserRegistrationActivity.this));
-			userRegistrationModel.setCityId(Utility.getCity(UserRegistrationActivity.this));
+			userRegistrationModel.setCityId(Utility.getCityId(UserRegistrationActivity.this));
 			userRegistrationModel.setFcmToken(fireballToken);
 			// userRegistrationModel.setIEMINumber(Build.SERIAL);
 			Api api = APIClient.getClient().create(Api.class);
@@ -254,7 +254,7 @@ public class UserRegistrationActivity extends AppCompatActivity {
 				binder.tvCountryCode.setText(data.getStringExtra("country_code"));
 
 				String cityName = data.getStringExtra("city_name");
-				cityName = CountryManager.sharedInstance().convertCityName(cityName);
+				cityName = CountryCityManager.sharedInstance().convertCityName(cityName);
 				binder.tvCountryName.setText(cityName);
 			}
 			if (resultCode == Activity.RESULT_CANCELED) {

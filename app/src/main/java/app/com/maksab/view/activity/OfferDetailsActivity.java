@@ -33,13 +33,14 @@ import app.com.maksab.util.*;
 import app.com.maksab.view.adapter.*;
 import app.com.maksab.view.viewmodel.*;
 import com.androidquery.AQuery;
+import com.squareup.picasso.Picasso;
 import retrofit2.Call;
 import retrofit2.Callback;
 
 import java.util.ArrayList;
 
 public class OfferDetailsActivity extends AppCompatActivity {
-	private ActivityOfferDetailsBinding activityBinding;
+	private ActivityOfferDetailsBinding binder;
 	private boolean redeemStatus = true;
 	private boolean redemptionInstructionsStatus = true;
 	private boolean packageStatus = true;
@@ -51,14 +52,16 @@ public class OfferDetailsActivity extends AppCompatActivity {
 	private String offerName, brandImage, partnerName, redeemedMsg, redeemedStatus, sOfferId, shareOfferLink, callNumber = "";
 	private ImageViewPagerAdapter imageViewPagerAdapter;
 	private static final int PERMISSIONS_REQUEST_CODE = 11;
-	ArrayList<OfferDetailsResponse.VenderLocationList> facilityListArrayList;
+	ArrayList<OfferDetailsResponse.VenderLocation> facilityListArrayList;
 	private boolean bLoadMore = true;
+
+	private OfferDetailsResponse.OfferDetail offerDetails = null;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		activityBinding = DataBindingUtil.setContentView(this, R.layout.activity_offer_details);
-		activityBinding.setActivity(this);
+		binder = DataBindingUtil.setContentView(this, R.layout.activity_offer_details);
+		binder.setActivity(this);
 
 		Bundle bundle = getIntent().getExtras();
 		if (!bundle.isEmpty()) {
@@ -74,10 +77,10 @@ public class OfferDetailsActivity extends AppCompatActivity {
         int height = displayMetrics.heightPixels;
         int width = displayMetrics.widthPixels;*/
 		int width = PreferenceConnector.readInteger(OfferDetailsActivity.this,PreferenceConnector.DEVICE_WIDTH,350);
-		ViewGroup.LayoutParams params = activityBinding.elSlidesPager.getLayoutParams();
+		ViewGroup.LayoutParams params = binder.elSlidesPager.getLayoutParams();
 		params.height = width;
 		params.width = width;
-		activityBinding.elSlidesPager.setLayoutParams(params);
+		binder.elSlidesPager.setLayoutParams(params);
 	}
 
 	@Override
@@ -91,7 +94,7 @@ public class OfferDetailsActivity extends AppCompatActivity {
 	public void getFavoritePartner(String offerId) {
 		ProgressDialog.getInstance().showProgressDialog(OfferDetailsActivity.this);
 		UserCityOfferModel userCityOfferModel = new UserCityOfferModel();
-		userCityOfferModel.setCityId(Utility.getCity(OfferDetailsActivity.this));
+		userCityOfferModel.setCityId(Utility.getCityId(OfferDetailsActivity.this));
 		userCityOfferModel.setUserId(Utility.getUserId(getApplicationContext()));
 		userCityOfferModel.setLanguage(Utility.getLanguage(getApplicationContext()));
 		userCityOfferModel.setOfferId(offerId);
@@ -133,9 +136,11 @@ public class OfferDetailsActivity extends AppCompatActivity {
 						myResponse.getOfferDetails().setDiscountRate(myResponse.getOfferDetails().getDiscountRate() + "% " +
 								getResources().getString(R.string.off));
 
-						activityBinding.setModel(myResponse.getOfferDetails());
+						offerDetails = myResponse.getOfferDetails();
 
-						activityBinding.redemptionInstructions.setText
+						binder.setModel(myResponse.getOfferDetails());
+
+						binder.redemptionInstructions.setText
 								(Html.fromHtml(myResponse.getOfferDetails().getInstructions()));
 
 						sOfferId = myResponse.getOfferDetails().getOfferId();
@@ -144,7 +149,7 @@ public class OfferDetailsActivity extends AppCompatActivity {
 						offerName = myResponse.getOfferDetails().getOfferName();
 						partnerName = myResponse.getOfferDetails().getPartnerName();
 
-						activityBinding.whatCustomerLike.setText(getResources().getString(R.string
+						binder.whatCustomerLike.setText(getResources().getString(R.string
 								.what_customer_like) + " " + getResources().getString(R.string
 								.about) + " " + myResponse.getOfferDetails().getOfferName());
 						redeemedStatus = myResponse.getOfferDetails().getRedeemedStatus();
@@ -152,44 +157,44 @@ public class OfferDetailsActivity extends AppCompatActivity {
 						shareOfferLink = myResponse.getOfferDetails().getOfferLink();
 
 						if (myResponse.getOfferDetails().getSrtPackage().equals(""))
-							activityBinding.llSrtPackage.setVisibility(View.GONE);
+							binder.llSrtPackage.setVisibility(View.GONE);
 						else
-							activityBinding.llSrtPackage.setVisibility(View.VISIBLE);
+							binder.llSrtPackage.setVisibility(View.VISIBLE);
 
 						if (myResponse.getOfferDetails().getRedeemedMsg().equals(""))
-							activityBinding.llRedemptionInstructions.setVisibility(View.GONE);
+							binder.llRedemptionInstructions.setVisibility(View.GONE);
 						else
-							activityBinding.llRedemptionInstructions.setVisibility(View.VISIBLE);
+							binder.llRedemptionInstructions.setVisibility(View.VISIBLE);
 
 
 						if (callNumber.equals(""))
-							activityBinding.llCall.setVisibility(View.GONE);
+							binder.llCall.setVisibility(View.GONE);
 						else
-							activityBinding.llCall.setVisibility(View.VISIBLE);
+							binder.llCall.setVisibility(View.VISIBLE);
 
 
 
 						if (redeemedStatus.equalsIgnoreCase("1"))
-							activityBinding.btnRedeem.setBackgroundResource(R.color.colorPrimaryDark);
+							binder.btnRedeem.setBackgroundResource(R.color.colorPrimaryDark);
 						else
-							activityBinding.btnRedeem.setBackgroundResource(R.color.gray_dark);
+							binder.btnRedeem.setBackgroundResource(R.color.gray_dark);
 
-						activityBinding.beforeAmount.setPaintFlags(activityBinding.beforeAmount.getPaintFlags()
+						binder.beforeAmount.setPaintFlags(binder.beforeAmount.getPaintFlags()
 								| Paint.STRIKE_THRU_TEXT_FLAG);
 
-						activityBinding.otherOfferFor.setText(getResources().getString(R.string
+						binder.otherOfferFor.setText(getResources().getString(R.string
 								.other_offer_for) + " " + myResponse.getOfferDetails().getPartnerName());
 						if (myResponse.getOfferDetails().getFavStatus().equalsIgnoreCase("1")) {
-							activityBinding.bookmark.setBackgroundResource(R.drawable.favorites_hover3x);
-							activityBinding.addWishlist.setText(getResources().getString(R.string.added_wishlist));
+							binder.bookmark.setBackgroundResource(R.drawable.favorites_hover3x);
+							binder.addWishlist.setText(getResources().getString(R.string.added_wishlist));
 						} else {
-							activityBinding.bookmark.setBackgroundResource(R.drawable.favorites3x);
-							activityBinding.addWishlist.setText(getResources().getString(R.string.add_to_wishlist));
+							binder.bookmark.setBackgroundResource(R.drawable.favorites3x);
+							binder.addWishlist.setText(getResources().getString(R.string.add_to_wishlist));
 						}
 						if (myResponse.getOfferDetails().getPartnerFavStatus().equalsIgnoreCase("1"))
-							activityBinding.favoritesStatusPartner.setBackgroundResource(R.drawable.favorites_hover3x);
+							binder.favoritesStatusPartner.setBackgroundResource(R.drawable.favorites_hover3x);
 						else
-							activityBinding.favoritesStatusPartner.setBackgroundResource(R.drawable.favorites3x);
+							binder.favoritesStatusPartner.setBackgroundResource(R.drawable.favorites3x);
 
 						/*Slider Images*/
 						if (myResponse.getOfferDetails().getImagesListArrayList() != null && myResponse.getOfferDetails()
@@ -201,7 +206,7 @@ public class OfferDetailsActivity extends AppCompatActivity {
 						if (myResponse.getOfferDetails().getFacilityListArrayList().size() != 0)
 							setRecyclerViewFacilities(myResponse.getOfferDetails().getFacilityListArrayList());
 						else
-							activityBinding.llAvailableFacilities.setVisibility(View.GONE);
+							binder.llAvailableFacilities.setVisibility(View.GONE);
 
 						if (myResponse.getOfferDetails().getReviewsListArrayList().size() != 0)
 							setRecyclerViewReviews(myResponse.getOfferDetails().getReviewsListArrayList());
@@ -236,9 +241,9 @@ public class OfferDetailsActivity extends AppCompatActivity {
 				// CategoryHomeResponse.Category categoryList = (CategoryHomeResponse.Category) obj;
 			}
 		};
-		activityBinding.recyclerViewFacilitys.setLayoutManager(new LinearLayoutManager(OfferDetailsActivity.this,
+		binder.recyclerViewFacilitys.setLayoutManager(new LinearLayoutManager(OfferDetailsActivity.this,
 				LinearLayoutManager.HORIZONTAL, false));
-		activityBinding.recyclerViewFacilitys.setAdapter(new FacilityAdapter(OfferDetailsActivity.this,
+		binder.recyclerViewFacilitys.setAdapter(new FacilityAdapter(OfferDetailsActivity.this,
 				facilityListArrayList, onItemClickListener));
 	}
 
@@ -249,17 +254,17 @@ public class OfferDetailsActivity extends AppCompatActivity {
 				// CategoryHomeResponse.Category categoryList = (CategoryHomeResponse.Category) obj;
 			}
 		};
-		activityBinding.recyclerViewReviews.setLayoutManager(new GridLayoutManager(OfferDetailsActivity.this, 1));
-		activityBinding.recyclerViewReviews.addItemDecoration(new DividerItemDecoration(this, LinearLayoutManager.VERTICAL));
-		activityBinding.recyclerViewReviews.setAdapter(new ReviewAdapter(OfferDetailsActivity.this, reviewsListArrayList,
+		binder.recyclerViewReviews.setLayoutManager(new GridLayoutManager(OfferDetailsActivity.this, 1));
+		binder.recyclerViewReviews.addItemDecoration(new DividerItemDecoration(this, LinearLayoutManager.VERTICAL));
+		binder.recyclerViewReviews.setAdapter(new ReviewAdapter(OfferDetailsActivity.this, reviewsListArrayList,
 				onItemClickListener));
 	}
 
-	private void setRecyclerViewOtherOffer(ArrayList<OfferDetailsResponse.OtherOfferList> otherOfferListArrayList) {
+	private void setRecyclerViewOtherOffer(ArrayList<OfferDetailsResponse.OtherOffer> otherOfferListArrayList) {
 		OnItemClickListener onItemClickListener = new OnItemClickListener() {
 			@Override
 			public void onClick(int position, Object obj) {
-				OfferDetailsResponse.OtherOfferList offerList = (OfferDetailsResponse.OtherOfferList) obj;
+				OfferDetailsResponse.OtherOffer offerList = (OfferDetailsResponse.OtherOffer) obj;
 				Intent intent = new Intent(OfferDetailsActivity.this, OfferDetailsActivity.class);
 				intent.putExtra(Constant.OFFER_ID, offerList.getOfferId());
 				startActivity(intent);
@@ -267,47 +272,47 @@ public class OfferDetailsActivity extends AppCompatActivity {
 				// CategoryHomeResponse.Category categoryList = (CategoryHomeResponse.Category) obj;
 			}
 		};
-		activityBinding.recyclerViewOtherOffer.setLayoutManager(new LinearLayoutManager(OfferDetailsActivity.this,
+		binder.recyclerViewOtherOffer.setLayoutManager(new LinearLayoutManager(OfferDetailsActivity.this,
 				LinearLayoutManager
 
 						.HORIZONTAL, false));
-		activityBinding.recyclerViewOtherOffer.setAdapter(new OtherOfferAdapter(OfferDetailsActivity.this,
+		binder.recyclerViewOtherOffer.setAdapter(new OtherOfferAdapter(OfferDetailsActivity.this,
 				otherOfferListArrayList, onItemClickListener));
 	}
 
 	public void onClickRedeem() {
 		if (redeemStatus) {
 			redeemStatus = false;
-			activityBinding.llRedeem.setVisibility(View.GONE);
-			activityBinding.redeemVisibility.setImageResource(R.drawable.ic_add_white);
+			binder.llRedeem.setVisibility(View.GONE);
+			binder.redeemVisibility.setImageResource(R.drawable.ic_add_white);
 		} else {
 			redeemStatus = true;
-			activityBinding.llRedeem.setVisibility(View.VISIBLE);
-			activityBinding.redeemVisibility.setImageResource(R.drawable.ic_remove_white);
+			binder.llRedeem.setVisibility(View.VISIBLE);
+			binder.redeemVisibility.setImageResource(R.drawable.ic_remove_white);
 		}
 	}
 
 	public void onClickPackage() {
 		if (packageStatus) {
 			packageStatus = false;
-			activityBinding.srtPackage.setVisibility(View.GONE);
-			activityBinding.packageVisibility.setImageResource(R.drawable.ic_add_white);
+			binder.srtPackage.setVisibility(View.GONE);
+			binder.packageVisibility.setImageResource(R.drawable.ic_add_white);
 		} else {
 			packageStatus = true;
-			activityBinding.srtPackage.setVisibility(View.VISIBLE);
-			activityBinding.packageVisibility.setImageResource(R.drawable.ic_remove_white);
+			binder.srtPackage.setVisibility(View.VISIBLE);
+			binder.packageVisibility.setImageResource(R.drawable.ic_remove_white);
 		}
 	}
 
 	public void onClickRedemptionInstructions() {
 		if (redemptionInstructionsStatus) {
 			redemptionInstructionsStatus = false;
-			activityBinding.redemptionInstructions.setVisibility(View.GONE);
-			activityBinding.redemptionInstructionsVisibility.setImageResource(R.drawable.ic_add_white);
+			binder.redemptionInstructions.setVisibility(View.GONE);
+			binder.redemptionInstructionsVisibility.setImageResource(R.drawable.ic_add_white);
 		} else {
 			redemptionInstructionsStatus = true;
-			activityBinding.redemptionInstructions.setVisibility(View.VISIBLE);
-			activityBinding.redemptionInstructionsVisibility.setImageResource(R.drawable.ic_remove_white);
+			binder.redemptionInstructions.setVisibility(View.VISIBLE);
+			binder.redemptionInstructionsVisibility.setImageResource(R.drawable.ic_remove_white);
 		}
 	}
 
@@ -330,12 +335,12 @@ public class OfferDetailsActivity extends AppCompatActivity {
 						ProgressDialog.getInstance().dismissDialog();
 						Log.e("getFavStatus", response.body().getFavStatus() + "");
 						if (response.body().getFavStatus().equalsIgnoreCase("1")) {
-							activityBinding.bookmark.setBackgroundResource(R.drawable.favorites_hover3x);
-							activityBinding.addWishlist.setText(getResources().getString(R.string.added_wishlist));
+							binder.bookmark.setBackgroundResource(R.drawable.favorites_hover3x);
+							binder.addWishlist.setText(getResources().getString(R.string.added_wishlist));
 
 						} else {
-							activityBinding.bookmark.setBackgroundResource(R.drawable.favorites3x);
-							activityBinding.addWishlist.setText(getResources().getString(R.string.add_to_wishlist));
+							binder.bookmark.setBackgroundResource(R.drawable.favorites3x);
+							binder.addWishlist.setText(getResources().getString(R.string.add_to_wishlist));
 						}
 					}
 				}
@@ -350,7 +355,7 @@ public class OfferDetailsActivity extends AppCompatActivity {
 				}
 			});
 		} else {
-			userGuestDialog();
+			showGuestUserAlert();
 		}
 	}
 
@@ -366,9 +371,7 @@ public class OfferDetailsActivity extends AppCompatActivity {
 		if (PreferenceConnector.readBoolean(OfferDetailsActivity.this, PreferenceConnector.IS_LOGIN, false)) {
 			if (redeemedStatus.equalsIgnoreCase("1")) {
 				dialogRedeem = new Dialog(OfferDetailsActivity.this);
-				dialogRedeemBinding = DataBindingUtil.inflate(LayoutInflater.from
-								(OfferDetailsActivity.this),
-						R.layout.dialog_redeem, null, false);
+				dialogRedeemBinding = DataBindingUtil.inflate(LayoutInflater.from(OfferDetailsActivity.this), R.layout.dialog_redeem, null, false);
 				dialogRedeem.setContentView(dialogRedeemBinding.getRoot());
 				dialogRedeem.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
 
@@ -403,21 +406,16 @@ public class OfferDetailsActivity extends AppCompatActivity {
 				dialogRedeem.show();
 			} else {
 				showUnsbscribedUserAlert();
-				// Utility.showToast(OfferDetailsActivity.this, redeemedMsg + "");
 			}
 		} else {
-			userGuestDialog();
-            /*if (redeemedStatus.equalsIgnoreCase("3")) {
-            } else {
-                userGuestDialog();
-            }*/
+			showGuestUserAlert();
 		}
 	}
 
 	public void getRedeemOffer(String redeemCode) {
 		ProgressDialog.getInstance().showProgressDialog(OfferDetailsActivity.this);
 		RedeemModel redeemModel = new RedeemModel();
-		redeemModel.setCityId(Utility.getCity(OfferDetailsActivity.this));
+		redeemModel.setCityId(Utility.getCityId(OfferDetailsActivity.this));
 		redeemModel.setUserId(Utility.getUserId(getApplicationContext()));
 		redeemModel.setLanguage(Utility.getLanguage(getApplicationContext()));
 		redeemModel.setOfferId(sOfferId);
@@ -436,13 +434,15 @@ public class OfferDetailsActivity extends AppCompatActivity {
 							Utility.showToast(OfferDetailsActivity.this, response.body().getMessage() + "");
 							redeemedStatus = response.body().getRedeemedStatus();
 							if (response.body().getRedeemedStatus().equalsIgnoreCase("1")) {
-								activityBinding.btnRedeem.setBackgroundResource(R.color.colorPrimary);
+								binder.btnRedeem.setBackgroundResource(R.color.colorPrimary);
 							} else {
-								activityBinding.btnRedeem.setBackgroundResource(R.color.gray_dark);
+								binder.btnRedeem.setBackgroundResource(R.color.gray_dark);
 							}
 							dialogRedeem.dismiss();
 							onClickCongratulationDialog(response.body());
-						} else Utility.showToast(OfferDetailsActivity.this, response.body().getMessage() + "");
+						} else {
+							Utility.showToast(OfferDetailsActivity.this, response.body().getMessage() + "");
+						}
 					}
 
 				}
@@ -524,7 +524,7 @@ public class OfferDetailsActivity extends AppCompatActivity {
 			});
 			dialogRedeem.show();
 		} else {
-			userGuestDialog();
+			showGuestUserAlert();
 		}
 	}
 
@@ -532,7 +532,7 @@ public class OfferDetailsActivity extends AppCompatActivity {
 	public void onClickGiftDialog() {
 		ProgressDialog.getInstance().showProgressDialog(OfferDetailsActivity.this);
 		UserCityIdModel userCityIdModel = new UserCityIdModel();
-		userCityIdModel.setCityId(Utility.getCity(OfferDetailsActivity.this));
+		userCityIdModel.setCityId(Utility.getCityId(OfferDetailsActivity.this));
 		userCityIdModel.setUserId(Utility.getUserId(getApplicationContext()));
 		userCityIdModel.setLanguage(Utility.getLanguage(getApplicationContext()));
 
@@ -571,7 +571,7 @@ public class OfferDetailsActivity extends AppCompatActivity {
 	public void sendGift(String sName, String sEmail) {
 		ProgressDialog.getInstance().showProgressDialog(OfferDetailsActivity.this);
 		GiftModel giftModel = new GiftModel();
-		giftModel.setCityId(Utility.getCity(OfferDetailsActivity.this));
+		giftModel.setCityId(Utility.getCityId(OfferDetailsActivity.this));
 		giftModel.setUserId(Utility.getUserId(getApplicationContext()));
 		giftModel.setLanguage(Utility.getLanguage(getApplicationContext()));
 		giftModel.setOfferId(sOfferId);
@@ -617,17 +617,16 @@ public class OfferDetailsActivity extends AppCompatActivity {
 
 		PostPagerAdapter mAdapter = new PostPagerAdapter(OfferDetailsActivity.this, sliderImagesArrayList,
 				onItemClickListener);
-		activityBinding.imageSlider.setAdapter(mAdapter);
+		binder.imageSlider.setAdapter(mAdapter);
 		if (mAdapter.getCount() > 1) {
-			activityBinding.indicator.setViewPager(activityBinding.imageSlider);
+			binder.indicator.setViewPager(binder.imageSlider);
 		}
 		mAdapter.notifyDataSetChanged();
 	}
 
 	public void onClickImageDialog(int position) {
 		dialogRedeem = new Dialog(OfferDetailsActivity.this);
-		dialogImageBinding = DataBindingUtil.inflate(LayoutInflater.from(OfferDetailsActivity.this),
-				R.layout.dialog_image, null, false);
+		dialogImageBinding = DataBindingUtil.inflate(LayoutInflater.from(OfferDetailsActivity.this), R.layout.dialog_image, null, false);
 		dialogRedeem.setContentView(dialogImageBinding.getRoot());
 		dialogRedeem.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
 		dialogRedeem.getWindow().setLayout(WindowManager.LayoutParams.MATCH_PARENT,
@@ -669,7 +668,7 @@ public class OfferDetailsActivity extends AppCompatActivity {
 	/**
 	 * Show Guest Login Alert
 	 */
-	private void userGuestDialog() {
+	private void showGuestUserAlert() {
 		Utility.setDialog(OfferDetailsActivity.this, getString(R.string.alert), getString(R.string.guest_login_alert),
 				getString(R.string.no), getString(R.string.yes), new DialogListener() {
 					@Override
@@ -767,18 +766,18 @@ public class OfferDetailsActivity extends AppCompatActivity {
 	}
 
 	public void onClickLoadMore() {
-		ArrayList<OfferDetailsResponse.VenderLocationList> locationLists = new ArrayList<>();
+		ArrayList<OfferDetailsResponse.VenderLocation> locationLists = new ArrayList<>();
 		locationLists.clear();
 		if (facilityListArrayList.size() > 2) {
 			if (bLoadMore) {
 				bLoadMore = false;
-				activityBinding.loadMore.setText(getResources().getString(R.string.show_all));
+				binder.loadMore.setText(getResources().getString(R.string.show_all));
 				for (int i = 0; i < 2; i++) {
 					locationLists.add(facilityListArrayList.get(i));
 				}
 			} else {
 				bLoadMore = true;
-				activityBinding.loadMore.setText(getResources().getString(R.string.show_less));
+				binder.loadMore.setText(getResources().getString(R.string.show_less));
 				locationLists = facilityListArrayList;
 			}
 		} else {
@@ -788,19 +787,17 @@ public class OfferDetailsActivity extends AppCompatActivity {
 		OnItemClickListener onItemClickListener = new OnItemClickListener() {
 			@Override
 			public void onClick(int position, Object obj) {
-				OfferDetailsResponse.VenderLocationList venderLocationList = (OfferDetailsResponse.VenderLocationList) obj;
+				OfferDetailsResponse.VenderLocation venderLocation = (OfferDetailsResponse.VenderLocation) obj;
 				//startActivity(new Intent(OfferDetailsActivity.this, DirectionActivity.class));
 				Intent intent = new Intent(OfferDetailsActivity.this, DirectionActivity.class);
-				intent.putExtra(DirectionActivity.LAT, venderLocationList.getLatitude());
-				intent.putExtra(DirectionActivity.LNG, venderLocationList.getLongitude());
+				intent.putExtra(DirectionActivity.LAT, venderLocation.getLatitude());
+				intent.putExtra(DirectionActivity.LNG, venderLocation.getLongitude());
 				startActivity(intent);
 
 			}
 		};
-		activityBinding.recyclerViewRedeemOffer.setLayoutManager(new GridLayoutManager(OfferDetailsActivity.this, 1));
-		activityBinding.recyclerViewRedeemOffer.setAdapter(new VenderLocationAdapter(OfferDetailsActivity.this,
-				locationLists,
-				onItemClickListener));
+		binder.recyclerViewRedeemOffer.setLayoutManager(new GridLayoutManager(OfferDetailsActivity.this, 1));
+		binder.recyclerViewRedeemOffer.setAdapter(new VenderLocationAdapter(OfferDetailsActivity.this, locationLists, onItemClickListener));
 	}
 }
 

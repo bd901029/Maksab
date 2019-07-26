@@ -1,103 +1,69 @@
 package app.com.maksab.engine.country;
 
-import android.util.Log;
-import app.com.maksab.util.LanguageUtil;
-import org.json.JSONArray;
-import org.json.JSONObject;
+import com.google.gson.annotations.SerializedName;
 
 import java.util.ArrayList;
-import java.util.LinkedHashMap;
 
 public class Country {
 	private static String TAG = "Country";
 
-	public static class Key {
-		public static String Id = "country_id";
-		public static String Name = "country_name";
-		public static String Code = "country_code";
-		public static String Flag = "country_flag";
-		public static String Cities = "citys";
+	@SerializedName("country_id")
+	private String id = "";
+	@SerializedName("country_name")
+	private String name = "";
+	@SerializedName("country_code")
+	private String code = "";
+	@SerializedName("country_flag")
+	private String flag = "";
+	@SerializedName("citys")
+	private ArrayList<City> citys = new ArrayList<>();
+	private boolean isSelected = false;
+
+	public String getId() {
+		return id;
 	}
 
-	public String id = "";
-	public String code = "";
-	public String flag = "";
-	private LinkedHashMap<String, String> nameInfo = new LinkedHashMap<String, String>();
-	private LinkedHashMap<String, String> languages = new LinkedHashMap<String, String>();
-	public ArrayList<City> cities = new ArrayList<>();
-	public boolean isSelected = false;
-
-	public Country(String language, JSONObject info) {
-		try {
-			this.id = info.getString(Key.Id);
-			this.code = info.getString(Key.Code);
-			this.flag = info.getString(Key.Flag);
-			setName(language, info);
-			setCities(language, info);
-		} catch (Exception e) {
-			Log.e(TAG, e.getLocalizedMessage());
-		}
-
-		Log.i(TAG, flag);
+	public void setId(String id) {
+		this.id = id;
 	}
 
 	public String getName() {
-		String language = LanguageUtil.sharedInstance().getLanguage();
-		return getName(language);
+		return name;
 	}
 
-	public String getName(String language) {
-		if (isSupported(language)) {
-			return nameInfo.get(language);
-		}
-		return "";
+	public void setName(String name) {
+		this.name = name;
 	}
 
-	public void setName(String language, JSONObject info) {
-		try {
-			nameInfo.put(language, info.getString(Key.Name));
-		} catch (Exception e) {
-			Log.e(TAG, e.getLocalizedMessage());
-		}
+	public String getCode() {
+		return code;
 	}
 
-	public void setCities(String language, JSONObject info) {
-		try {
-			JSONArray cityInfos = info.getJSONArray(Key.Cities);
-			for (int i = 0; i < cityInfos.length(); i++) {
-				JSONObject cityInfo = cityInfos.getJSONObject(i);
-				String id = cityInfo.getString(City.Key.Id);
-
-				boolean found = false;
-				for (City city : cities) {
-					if (city.id.equals(id)) {
-						city.setName(language, cityInfo);
-						city.setLanguages(cityInfo);
-						found = true;
-						break;
-					}
-				}
-
-				if (found) continue;
-
-				City city = new City(language, cityInfo);
-				city.country = this;
-				cities.add(city);
-			}
-		} catch (Exception e) {
-			Log.e(TAG, e.getLocalizedMessage());
-		}
+	public void setCode(String code) {
+		this.code = code;
 	}
 
-	public boolean isSupported(String language) {
-		String name = nameInfo.get(language);
-		if (name == null || name.length() <= 0) {
-			return false;
-		}
-		return true;
+	public String getFlag() {
+		return flag;
 	}
 
-	public void setSelected(boolean isSelected) {
-		this.isSelected = isSelected;
+	public void setFlag(String flag) {
+		this.flag = flag;
+	}
+
+	public ArrayList<City> getCitys() {
+		return citys;
+	}
+
+	public void setCitys(ArrayList<City> citys) {
+		this.citys = citys;
+	}
+
+	public boolean isSelected() {
+		return isSelected;
+	}
+
+	public void setSelected(boolean selected) {
+		isSelected = selected;
 	}
 }

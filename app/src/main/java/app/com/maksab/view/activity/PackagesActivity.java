@@ -58,7 +58,7 @@ public class PackagesActivity extends AppCompatActivity {
     public void getFavoriteDeals() {
         ProgressDialog.getInstance().showProgressDialog(PackagesActivity.this);
         UserCityIdModel userCityIdModel = new UserCityIdModel();
-        userCityIdModel.setCityId(Utility.getCity(PackagesActivity.this));
+        userCityIdModel.setCityId(Utility.getCityId(PackagesActivity.this));
         userCityIdModel.setUserId(Utility.getUserId(PackagesActivity.this));
         userCityIdModel.setLanguage(Utility.getLanguage(PackagesActivity.this));
         Api api = APIClient.getClient().create(Api.class);
@@ -230,7 +230,7 @@ public class PackagesActivity extends AppCompatActivity {
     public void freePackage(String planId) {
         ProgressDialog.getInstance().showProgressDialog(PackagesActivity.this);
         FreePlanModel freePlanModel = new FreePlanModel();
-        freePlanModel.setCityId(Utility.getCity(PackagesActivity.this));
+        freePlanModel.setCityId(Utility.getCityId(PackagesActivity.this));
         freePlanModel.setUserId(Utility.getUserId(PackagesActivity.this));
         freePlanModel.setLanguage(Utility.getLanguage(PackagesActivity.this));
         freePlanModel.setPlanId(planId);

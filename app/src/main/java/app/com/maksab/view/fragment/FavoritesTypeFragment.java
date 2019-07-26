@@ -24,7 +24,6 @@ import app.com.maksab.api.dao.FavoriteOfferListResponse;
 import app.com.maksab.databinding.FragmentFavoritesTypeBinding;
 import app.com.maksab.listener.DialogListener;
 import app.com.maksab.listener.On2ItemClickListener;
-import app.com.maksab.listener.OnItemClickListener;
 import app.com.maksab.util.Constant;
 import app.com.maksab.util.Extension;
 import app.com.maksab.util.PreferenceConnector;
@@ -83,7 +82,7 @@ public class FavoritesTypeFragment extends Fragment {
     public void getFavoriteDeals() {
         mBinding.swifeRefresh.setRefreshing(true);
         UserCityIdModel userCityIdModel = new UserCityIdModel();
-        userCityIdModel.setCityId(Utility.getCity(getActivity()));
+        userCityIdModel.setCityId(Utility.getCityId(getActivity()));
         userCityIdModel.setUserId(Utility.getUserId(getActivity()));
         userCityIdModel.setLanguage(Utility.getLanguage(getActivity()));
         Api api = APIClient.getClient().create(Api.class);

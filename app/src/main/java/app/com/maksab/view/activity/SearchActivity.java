@@ -22,7 +22,6 @@ import app.com.maksab.databinding.ActivitySearchBinding;
 import app.com.maksab.listener.OnItemClickListener;
 import app.com.maksab.util.Constant;
 import app.com.maksab.util.Extension;
-import app.com.maksab.util.ProgressDialog;
 import app.com.maksab.util.Utility;
 import app.com.maksab.util.ValidationTemplate;
 import app.com.maksab.view.adapter.SearchBrandAdapter;
@@ -98,7 +97,7 @@ public class SearchActivity extends AppCompatActivity {
         SearchModel searchModel = new SearchModel();
         searchModel.setUserId(Utility.getUserId(SearchActivity.this));
         searchModel.setLanguage(Utility.getLanguage(SearchActivity.this));
-        searchModel.setCityId(Utility.getCity(SearchActivity.this));
+        searchModel.setCityId(Utility.getCityId(SearchActivity.this));
         searchModel.setSearch(search);
         Api api = APIClient.getClient().create(Api.class);
         final Call<SearchListResponse> responseCall = api.getSearchResult(searchModel);

@@ -104,7 +104,7 @@ public class PaymentActivity extends AppCompatActivity {
             CouponCodeModel couponCodeModel = new CouponCodeModel();
             couponCodeModel.setLanguage(Utility.getLanguage(PaymentActivity.this));
             couponCodeModel.setUserId(Utility.getUserId(PaymentActivity.this));
-            couponCodeModel.setCityId(Utility.getCity(PaymentActivity.this));
+            couponCodeModel.setCityId(Utility.getCityId(PaymentActivity.this));
             couponCodeModel.setCouponCode(mBinding.etCoupon.getText().toString());
             couponCodeModel.setPlanId(sPlanId);
             couponCodeModel.setPlanAmount(sAmount);

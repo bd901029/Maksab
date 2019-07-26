@@ -9,7 +9,7 @@
             type="app.com.maksab.view.adapter.OtherOfferAdapter"/>
         <variable
            name="model"
-           type="app.com.maksab.api.dao.OfferDetailsResponse.OtherOfferList" />
+           type="app.com.maksab.api.dao.OfferDetailsResponse.OtherOffer" />
     </data>
 
 

@@ -12,17 +12,14 @@ import android.support.v7.widget.GridLayoutManager;
 import android.text.TextUtils;
 import android.view.View;
 import app.com.maksab.R;
-import app.com.maksab.api.Api;
-import app.com.maksab.api.dao.CountryCityListResponse;
 import app.com.maksab.databinding.ActivityCountryLanguageBinding;
 import app.com.maksab.engine.ApiManager;
 import app.com.maksab.engine.country.City;
 import app.com.maksab.engine.country.Country;
-import app.com.maksab.engine.country.CountryManager;
+import app.com.maksab.engine.country.CountryCityManager;
 import app.com.maksab.listener.DialogListener;
 import app.com.maksab.listener.OnItemClickListener;
 import app.com.maksab.util.*;
-import app.com.maksab.view.adapter.DialogArListAdapter;
 import app.com.maksab.view.adapter.CountryListAdapter;
 
 import java.util.ArrayList;
@@ -220,34 +217,10 @@ public class CountryLanguageActivity extends AppCompatActivity {
 		}
 	}
 
-	/*
-	private void getCountryList() {
-		ProgressDialog.getInstance().showProgressDialog(CountryLanguageActivity.this);
-		LanguageModel languageModel = new LanguageModel();
-		languageModel.setLanguage(sLanguage);
-		Api api = APIClient.getClient().create(Api.class);
-		final Call<CountryCityListResponse> responseCall = api.getCountryCity(languageModel);
-		responseCall.enqueue(new Callback<CountryCityListResponse>() {
-			@Override
-			public void onResponse(Call<CountryCityListResponse> call, Response<CountryCityListResponse> response) {
-				ProgressDialog.getInstance().dismissDialog();
-				if (!isDestroyed()) {
-					handleCountryListResponse(response.body());
-				}
-			}
-
-			@Override
-			public void onFailure(Call<CountryCityListResponse> call, Throwable t) {
-				ProgressDialog.getInstance().dismissDialog();
-			}
-		});
-	}
-	*/
-
 	private void getCountryList() {
 		Helper.showProgress(this);
 
-		CountryManager.sharedInstance().load(LanguageUtil.sharedInstance().getLanguage(), new ApiManager.Callback() {
+		CountryCityManager.sharedInstance().load(LanguageUtil.sharedInstance().getLanguage(), new ApiManager.Callback() {
 			@Override
 			public void OnFinished(String message) {
 				Helper.hideProgress();
@@ -257,28 +230,29 @@ public class CountryLanguageActivity extends AppCompatActivity {
 					return;
 				}
 
-				handleCountryResponse();
+				updateUI();
 			}
 		});
 	}
 
-	private void handleCountryResponse() {
-		final ArrayList<Country> countries = CountryManager.sharedInstance().countries;
+	private void updateUI() {
+		String currentLanguage = LanguageUtil.sharedInstance().getLanguage();
+		final ArrayList<Country> countries = CountryCityManager.sharedInstance().getCountries(currentLanguage);
 
 		OnItemClickListener onItemClickListener = new OnItemClickListener() {
 			@Override
 			public void onClick(int position, Object obj) {
 				for (int i = 0; i < countries.size(); i++) {
 					countries.get(i).setSelected(false);
-					for (int j = 0; j < countries.get(i).cities.size(); j++) {
-						countries.get(i).cities.get(j).setSelected(false);
+					for (int j = 0; j < countries.get(i).getCitys().size(); j++) {
+						countries.get(i).getCitys().get(j).setSelected(false);
 					}
 				}
 
 				City city = (City) obj;
-				sCountryId = city.country.id;
-				sCityID = city.id;
-				countryCode = city.country.code;
+				sCountryId = city.getCountryId();
+				sCityID = city.getId();
+				countryCode = city.getCountryCode();
 				cityName = city.getName();
 				sCountryIdT = sCountryId;
 
@@ -297,133 +271,17 @@ public class CountryLanguageActivity extends AppCompatActivity {
 				else
 					binder.lnTurkce.setVisibility(View.GONE);
 
-				PreferenceConnector.writeString(CountryLanguageActivity.this, PreferenceConnector.COUNTRY, city.country.id);
-				PreferenceConnector.writeString(CountryLanguageActivity.this, PreferenceConnector.COUNTRY_FLAG, city.country.flag);
-				PreferenceConnector.writeString(CountryLanguageActivity.this, PreferenceConnector.COUNTRY_NAME, city.country.getName());
-				PreferenceConnector.writeString(CountryLanguageActivity.this, PreferenceConnector.COUNTRY_CODE, city.country.code);
+				PreferenceConnector.writeString(CountryLanguageActivity.this, PreferenceConnector.COUNTRY, city.getCountryId());
+				PreferenceConnector.writeString(CountryLanguageActivity.this, PreferenceConnector.COUNTRY_NAME, city.getCountryName());
+				PreferenceConnector.writeString(CountryLanguageActivity.this, PreferenceConnector.COUNTRY_CODE, city.getCountryCode());
+				PreferenceConnector.writeString(CountryLanguageActivity.this, PreferenceConnector.COUNTRY_FLAG, city.getCountryFlag());
 				PreferenceConnector.writeString(CountryLanguageActivity.this, PreferenceConnector.CITY_NAME, city.getName());
-				PreferenceConnector.writeString(CountryLanguageActivity.this, PreferenceConnector.CITY, city.id);
-
-
+				PreferenceConnector.writeString(CountryLanguageActivity.this, PreferenceConnector.CITY, city.getId());
 			}
 		};
 
 		binder.recyclerView.setLayoutManager(new GridLayoutManager(CountryLanguageActivity.this, 1));
 		binder.recyclerView.setAdapter(new CountryListAdapter(CountryLanguageActivity.this, countries, onItemClickListener));
-	}
-
-	/**
-	 * Set recycler view Adapter
-	 *
-	 * @param listArrayList Category array list for adapter
-	 */
-	private void setRecyclerViewCountryEn(final ArrayList<CountryCityListResponse.EnCountry> listArrayList) {
-		OnItemClickListener onItemClickListener = new OnItemClickListener() {
-			@Override
-			public void onClick(int position, Object obj) {
-				for (int i = 0; i < listArrayList.size(); i++) {
-					listArrayList.get(i).setStatusCountry(false);
-					for (int j = 0; j < listArrayList.get(i).getCitys().size(); j++) {
-						listArrayList.get(i).getCitys().get(j).setStatus(false);
-					}
-				}
-				CountryCityListResponse.CityList resultList = (CountryCityListResponse.CityList) obj;
-				sCountryId = resultList.getCountryId();
-				sCityID = resultList.getCityId();
-				countryCode = resultList.getCountryCode();
-				cityName = resultList.getCityName();
-				sCountryIdT = sCountryId;
-
-				if (resultList.getLanguageList().isEn())
-					binder.lnEnglish.setVisibility(View.VISIBLE);
-				else binder.lnEnglish.setVisibility(View.GONE);
-
-				if (resultList.getLanguageList().isAr())
-					binder.lnArabic.setVisibility(View.VISIBLE);
-				else binder.lnArabic.setVisibility(View.GONE);
-
-				if (resultList.getLanguageList().isTr())
-					binder.lnTurkce.setVisibility(View.VISIBLE);
-				else binder.lnTurkce.setVisibility(View.GONE);
-
-				PreferenceConnector.writeString(CountryLanguageActivity.this, PreferenceConnector.COUNTRY, resultList
-						.getCountryId());
-				PreferenceConnector.writeString(CountryLanguageActivity.this, PreferenceConnector.COUNTRY_FLAG, resultList
-						.getCountryFlag());
-				PreferenceConnector.writeString(CountryLanguageActivity.this, PreferenceConnector.COUNTRY_NAME, resultList
-						.getCountryName());
-				PreferenceConnector.writeString(CountryLanguageActivity.this, PreferenceConnector.COUNTRY_CODE, resultList
-						.getCountryCode());
-				PreferenceConnector.writeString(CountryLanguageActivity.this, PreferenceConnector.CITY_NAME, resultList
-						.getCityName());
-				PreferenceConnector.writeString(CountryLanguageActivity.this, PreferenceConnector.CITY, resultList
-						.getCityId());
-
-
-			}
-		};
-//		binder.recyclerView.setLayoutManager(new GridLayoutManager(CountryLanguageActivity.this, 1));
-//		binder.recyclerView.setAdapter(new CountryListAdapter(CountryLanguageActivity.this, listArrayList, onItemClickListener));
-	}
-
-
-	/**
-	 * Set recycler view Adapter
-	 *
-	 * @param listArrayList Category array list for adapter
-	 */
-	private void setRecyclerViewCountryAr(final ArrayList<CountryCityListResponse.ArCountry> listArrayList) {
-		OnItemClickListener onItemClickListener = new OnItemClickListener() {
-			@Override
-			public void onClick(int position, Object obj) {
-				for (int i = 0; i < listArrayList.size(); i++) {
-					listArrayList.get(i).setStatusCountry(false);
-
-					for (int j = 0; j < listArrayList.get(i).getCitys().size(); j++) {
-						listArrayList.get(i).getCitys().get(j).setStatus(false);
-					}
-				}
-				CountryCityListResponse.CityList resultList = (CountryCityListResponse.CityList) obj;
-				sCountryId = resultList.getCountryId();
-				sCityID = resultList.getCityId();
-				countryCode = resultList.getCountryCode();
-				cityName = resultList.getCityName();
-				sCountryIdT = sCountryId;
-
-				if (resultList.getLanguageList().isEn())
-					binder.lnEnglish.setVisibility(View.VISIBLE);
-				else binder.lnEnglish.setVisibility(View.GONE);
-
-
-				if (resultList.getLanguageList().isAr())
-					binder.lnArabic.setVisibility(View.VISIBLE);
-				else binder.lnArabic.setVisibility(View.GONE);
-
-				if (resultList.getLanguageList().isTr())
-					binder.lnTurkce.setVisibility(View.VISIBLE);
-				else binder.lnTurkce.setVisibility(View.GONE);
-
-
-				PreferenceConnector.writeString(CountryLanguageActivity.this, PreferenceConnector.COUNTRY, resultList
-						.getCountryId());
-				PreferenceConnector.writeString(CountryLanguageActivity.this, PreferenceConnector.COUNTRY_FLAG, resultList
-						.getCountryFlag());
-				PreferenceConnector.writeString(CountryLanguageActivity.this, PreferenceConnector.COUNTRY_NAME, resultList
-						.getCountryName());
-				PreferenceConnector.writeString(CountryLanguageActivity.this, PreferenceConnector.COUNTRY_CODE, resultList
-						.getCountryCode());
-				PreferenceConnector.writeString(CountryLanguageActivity.this, PreferenceConnector.CITY_NAME, resultList
-						.getCityName());
-				PreferenceConnector.writeString(CountryLanguageActivity.this, PreferenceConnector.CITY, resultList
-						.getCityId());
-
-
-			}
-		};
-		binder.recyclerView.setLayoutManager(new GridLayoutManager
-				(CountryLanguageActivity.this, 1));
-		binder.recyclerView.setAdapter(new DialogArListAdapter
-				(CountryLanguageActivity.this, listArrayList, onItemClickListener));
 	}
 
 	public void AlertDialog(String msg){
@@ -433,6 +291,7 @@ public class CountryLanguageActivity extends AppCompatActivity {
 					public void onNegative(DialogInterface dialog) {
 						dialog.dismiss();
 					}
+
 					@Override
 					public void onPositive(DialogInterface dialog) {
 						dialog.dismiss();

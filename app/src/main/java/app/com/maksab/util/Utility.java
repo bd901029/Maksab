@@ -1,5 +1,6 @@
 package app.com.maksab.util;
 
+import android.Manifest;
 import android.app.Activity;
 import android.app.Dialog;
 import android.content.Context;
@@ -29,12 +30,14 @@ import android.net.Uri;
 import android.os.Build;
 import android.provider.MediaStore;
 import android.provider.Settings;
+import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
+import android.telephony.TelephonyManager;
 import android.text.TextUtils;
 import android.util.Base64;
 import android.util.DisplayMetrics;
@@ -47,6 +50,7 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import app.com.maksab.MyApplication;
 import com.google.gson.Gson;
 
 import java.io.ByteArrayOutputStream;
@@ -140,7 +144,7 @@ public class Utility {
         return PreferenceConnector.readString(context, PreferenceConnector.CART_COUNT, "");
     }
 
-    public static String getCity(Context context) {
+    public static String getCityId(Context context) {
         return PreferenceConnector.readString(context, PreferenceConnector.CITY, "");
     }
     public static String getCityName(Context context) {
@@ -957,5 +961,30 @@ aq.id(R.id.image).image(url, options);*/
                 || Build.MANUFACTURER.contains("Genymotion")
                 || (Build.BRAND.startsWith("generic") && Build.DEVICE.startsWith("generic"))
                 || "google_sdk".equals(Build.PRODUCT);
+    }
+
+    public static String getUniqueIMEIId() {
+        Context context = MyApplication.sharedInstance();
+        try {
+            TelephonyManager telephonyManager = (TelephonyManager) context.getSystemService(Context.TELEPHONY_SERVICE);
+            if (ActivityCompat.checkSelfPermission(context, Manifest.permission.READ_PHONE_STATE) != PackageManager.PERMISSION_GRANTED) {
+                return "";
+            }
+
+            String imei = telephonyManager.getDeviceId();
+            if (imei != null && !imei.isEmpty()) {
+                return imei;
+            } else {
+                return android.os.Build.SERIAL;
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return "not_found";
+    }
+
+    public static String getDeviceToken() {
+        return Settings.Secure.getString(MyApplication.sharedInstance().getContentResolver(), Settings.Secure.ANDROID_ID);
     }
 }

@@ -97,7 +97,7 @@ public class PastPurchaseAdapter extends RecyclerView.Adapter<PastPurchaseAdapte
                     public void onClick(View v) {
                         ProgressDialog.getInstance().showProgressDialog(context);
                         RateReviewModel rateReviewModel = new RateReviewModel();
-                        rateReviewModel.setCityId(Utility.getCity(context));
+                        rateReviewModel.setCityId(Utility.getCityId(context));
                         rateReviewModel.setUserId(Utility.getUserId(context));
                         rateReviewModel.setLanguage(Utility.getLanguage(context));
                         rateReviewModel.setOfferId(offerLists.get(position).getOfferId());

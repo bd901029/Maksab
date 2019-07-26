@@ -56,8 +56,8 @@ public class CategorySubItemAdapter extends RecyclerView.Adapter<CategorySubItem
 			holder.rowHomeBinding.remaining.setVisibility(View.VISIBLE);
 		}
 
-		if (offers.get(position).getBought().equalsIgnoreCase("0")|| offers.get(position)
-				.getBought().equalsIgnoreCase("Unlimited")){
+		if (offers.get(position).bought.equalsIgnoreCase("0")|| offers.get(position)
+				.bought.equalsIgnoreCase("Unlimited")){
 			holder.rowHomeBinding.bought.setVisibility(View.INVISIBLE);
 		}else {
 			holder.rowHomeBinding.bought.setVisibility(View.VISIBLE);
@@ -66,7 +66,7 @@ public class CategorySubItemAdapter extends RecyclerView.Adapter<CategorySubItem
 		holder.rowHomeBinding.beforeAmount.setPaintFlags(holder.rowHomeBinding.beforeAmount.getPaintFlags() | Paint.STRIKE_THRU_TEXT_FLAG);
 
 
-		if (offers.get(position).getFavStatus().equalsIgnoreCase("1"))
+		if (offers.get(position).favStatus.equalsIgnoreCase("1"))
 			holder.rowHomeBinding.favImage.setBackgroundResource(R.drawable.favorites_hover3x);
 		else
 			holder.rowHomeBinding.favImage.setBackgroundResource(R.drawable.favorites3x);

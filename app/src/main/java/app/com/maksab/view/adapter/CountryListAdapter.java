@@ -35,22 +35,28 @@ public class CountryListAdapter extends RecyclerView.Adapter<CountryListAdapter.
 
 	@Override
 	public void onBindViewHolder(final ViewHolder holder, final int position) {
+		final Country selectedCountry = countries.get(position);
+
 		holder.binder.setAdapter(this);
-		holder.binder.setModel(countries.get(position));
+		holder.binder.setModel(selectedCountry);
 		// holder.binder.name.setText(countries.get(position).getName());
 		holder.binder.countryStatus.setVisibility(View.GONE);
 
-		if (countries.get(position).isSelected) {
+		if (selectedCountry.isSelected()) {
 			holder.binder.countryStatus.setVisibility(View.VISIBLE);
 		} else {
 			holder.binder.countryStatus.setVisibility(View.GONE);
 		}
 
-		if (countries.get(position).cities != null && countries.get(position).cities.size() != 0) {
+		if (selectedCountry.getCitys() != null && selectedCountry.getCitys().size() != 0) {
 			OnItemClickListener onItemClickListener2 = new OnItemClickListener() {
 				@Override
 				public void onClick(int position2, Object obj) {
 					City city = (City) obj;
+					city.setCountryId(selectedCountry.getId());
+					city.setCountryName(selectedCountry.getName());
+					city.setCountryCode(selectedCountry.getCode());
+					city.setCountryFlag(selectedCountry.getFlag());
 
 					onItemClickListener.onClick(position2, obj);
 					city.setSelected(true);
@@ -59,7 +65,7 @@ public class CountryListAdapter extends RecyclerView.Adapter<CountryListAdapter.
 				}
 			};
 			holder.binder.recyclerView.setLayoutManager(new GridLayoutManager(context, 1));
-			holder.binder.recyclerView.setAdapter(new CityListAdapter(context, countries.get(position).cities, onItemClickListener2));
+			holder.binder.recyclerView.setAdapter(new CityListAdapter(context, countries.get(position).getCitys(), onItemClickListener2));
 		}
 	}
 

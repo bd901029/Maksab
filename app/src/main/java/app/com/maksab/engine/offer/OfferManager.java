@@ -1,13 +1,15 @@
 package app.com.maksab.engine.offer;
 
-import app.com.maksab.MyApplication;
+import app.com.maksab.api.APIClient;
+import app.com.maksab.api.Api;
 import app.com.maksab.engine.ApiManager;
-import org.json.JSONArray;
-import org.json.JSONObject;
+import app.com.maksab.view.activity.HomeActivity;
+import app.com.maksab.view.viewmodel.HomeDataModel;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Map;
 
 public class OfferManager extends ApiManager {
 	private static OfferManager instance = null;
@@ -28,106 +30,48 @@ public class OfferManager extends ApiManager {
 	public ArrayList<Subcategory> subcategories = new ArrayList<>();
 
 	public void loadHomeData(String language, String countryId, String cityId, String userId, final Callback callback) {
+		sliderImages.clear();
 		brands.clear();
 		collections.clear();
 		trends.clear();
 		hotDeals.clear();
 		newDeals.clear();
+		categories.clear();
+		subcategories.clear();
 
-		/*
-		Map<String, String> params = new HashMap<String, String>();
-		params.put(Key.Language, language);
-		params.put(Key.CountryId, countryId);
-		params.put(Key.CityId, cityId);
-		params.put(Key.UserId, userId);
-		*/
+		HomeDataModel model = new HomeDataModel();
+		model.setLanguage(language);
+		model.setCountryId(countryId);
+		model.setCityId(cityId);
+		model.setUserId(userId);
 
-		JSONObject params = new JSONObject();
-		try {
-			params.put(Key.Language, language);
-			params.put(Key.CountryId, countryId);
-			params.put(Key.CityId, cityId);
-			params.put(Key.UserId, userId);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-
-		call(PATH.GET_HOME_DATA, params, new JsonCallback() {
+		Api api = APIClient.getClient().create(Api.class);
+		Call<HomeDataResponse> call = api.getHomeData(model);
+		call.enqueue(new retrofit2.Callback<HomeDataResponse>() {
 			@Override
-			public void OnFinished(JSONObject result, String message) {
-				if (message != null) {
-					runCallback(callback, SomethingWentWrong);
+			public void onResponse(Call<HomeDataResponse> call, Response<HomeDataResponse> apiResponse) {
+				HomeDataResponse response = apiResponse.body();
+				String responseCode = response.responseCode;
+				if (responseCode != null && responseCode.equals(Api.SUCCESS)) {
+					sliderImages = response.sliderImages;
+					brands = response.brands;
+					collections = response.collections;
+					trends = response.trends;
+					hotDeals = response.hotDeals;
+					newDeals = response.newDeals;
+					categories = response.categories;
+					subcategories = response.subcategories;
+
+					runCallback(callback, null);
 					return;
 				}
 
-				try {
-					int responseCode = result.getInt(Key.ResponseCode);
-					if (responseCode != 200) {
-						runCallback(callback, SomethingWentWrong);
-						return;
-					}
+				runCallback(callback, response.message);
+			}
 
-					if (!result.isNull(Key.SliderImages)) {
-						JSONArray sliderImageInfos = result.getJSONArray(Key.SliderImages);
-						for (int i = 0; i < sliderImageInfos.length(); i++) {
-							SliderImage sliderImage = new SliderImage(sliderImageInfos.getJSONObject(i));
-							sliderImages.add(sliderImage);
-						}
-					}
-
-					if (!result.isNull(Key.BrandData)) {
-						JSONArray brandInfos = result.getJSONArray(Key.BrandData);
-						for (int i = 0; i < brandInfos.length(); i++) {
-							Brand brand = new Brand(brandInfos.getJSONObject(i));
-							brands.add(brand);
-						}
-					}
-
-					if (!result.isNull(Key.Collection)) {
-						JSONArray collectionInfos = result.getJSONArray(Key.Collection);
-						for (int i = 0; i < collectionInfos.length(); i++) {
-							Offer offer = new Offer(collectionInfos.getJSONObject(i));
-							collections.add(offer);
-						}
-					}
-
-					if (!result.isNull(Key.Trend)) {
-						JSONArray trendInfos = result.getJSONArray(Key.Trend);
-						for (int i = 0; i < trendInfos.length(); i++) {
-							Offer offer = new Offer(trendInfos.getJSONObject(i));
-							trends.add(offer);
-						}
-					}
-
-					if (!result.isNull(Key.HotDeal)) {
-						JSONArray hotDealInfos = result.getJSONArray(Key.HotDeal);
-						for (int i = 0; i < hotDealInfos.length(); i++) {
-							Offer offer = new Offer(hotDealInfos.getJSONObject(i));
-							hotDeals.add(offer);
-						}
-					}
-
-					if (!result.isNull(Key.Category)) {
-						JSONArray categoryInfos = result.getJSONArray(Key.Category);
-						for (int i = 0; i < categoryInfos.length(); i++) {
-							Category category = new Category(categoryInfos.getJSONObject(i));
-							categories.add(category);
-						}
-					}
-
-					if (!result.isNull(Key.Subcategory)) {
-						JSONArray subcategoryInfos = result.getJSONArray(Key.Subcategory);
-						for (int i = 0; i < subcategoryInfos.length(); i++) {
-							Subcategory subcategory = new Subcategory(subcategoryInfos.getJSONObject(i));
-							subcategories.add(subcategory);
-						}
-					}
-
-					runCallback(callback, null);
-				} catch (Exception e) {
-					e.printStackTrace();
-					runCallback(callback, e.getLocalizedMessage());
-				}
+			@Override
+			public void onFailure(Call<HomeDataResponse> call, Throwable t) {
+				runCallback(callback, SomethingWentWrong);
 			}
 		});
 	}

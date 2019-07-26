@@ -10,7 +10,7 @@
 
         <variable
             name="model"
-            type="app.com.maksab.api.dao.OfferDetailsResponse.VenderLocationList" />
+            type="app.com.maksab.api.dao.OfferDetailsResponse.VenderLocation" />
     </data>
 
     <LinearLayout

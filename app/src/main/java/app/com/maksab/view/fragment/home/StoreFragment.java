@@ -13,7 +13,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
 import app.com.maksab.engine.ApiManager;
-import app.com.maksab.engine.country.CountryManager;
+import app.com.maksab.engine.country.CountryCityManager;
 import app.com.maksab.engine.offer.*;
 import app.com.maksab.util.*;
 import com.daimajia.slider.library.Animations.DescriptionAnimation;
@@ -26,7 +26,6 @@ import app.com.maksab.R;
 import app.com.maksab.api.APIClient;
 import app.com.maksab.api.Api;
 import app.com.maksab.api.dao.CategoryHomeResponse;
-import app.com.maksab.api.dao.HomeDataResponse;
 import app.com.maksab.databinding.FragmentHomeBinding;
 import app.com.maksab.listener.OnItemClickListener;
 import app.com.maksab.view.activity.BigBrandActivity;
@@ -61,7 +60,6 @@ public class StoreFragment extends Fragment implements BaseSliderView.OnSliderCl
 	private final static String STORE_TYPE_ID = "store_type_id";
 	private String storeTypeId = "";
 	HashMap<String, String> Hash_file_maps;
-	private ArrayList<HomeDataResponse.SliderImages> sliderImagesArrayList;
 
 	public static StoreFragment newInstance(String storeTypeId) {
 		Bundle args = new Bundle();
@@ -94,7 +92,7 @@ public class StoreFragment extends Fragment implements BaseSliderView.OnSliderCl
 		super.onViewCreated(view, savedInstanceState);
 		binder.setFragment(this);
 
-		if (Utility.getIsMember(getActivity()).equalsIgnoreCase("1")){
+		if (Utility.getIsMember(getActivity()).equalsIgnoreCase("1")) {
 			binder.filter.setVisibility(View.GONE);
 		}
 
@@ -102,8 +100,8 @@ public class StoreFragment extends Fragment implements BaseSliderView.OnSliderCl
 		if (!extension.executeStrategy(getActivity(), "", ValidationTemplate.INTERNET)) {
 			Utility.setNoInternetPopup(getActivity());
 		} else {
-			if (CountryManager.sharedInstance().countries.size() <= 0) {
-				CountryManager.sharedInstance().load(new ApiManager.Callback() {
+			if (CountryCityManager.sharedInstance().getCountries().size() <= 0) {
+				CountryCityManager.sharedInstance().load(new ApiManager.Callback() {
 					@Override
 					public void OnFinished(String message) {
 						if (message != null) {
@@ -128,8 +126,7 @@ public class StoreFragment extends Fragment implements BaseSliderView.OnSliderCl
 		final Call<CategoryHomeResponse> responseCall = api.getCategoryList(languageModel);
 		responseCall.enqueue(new Callback<CategoryHomeResponse>() {
 			@Override
-			public void onResponse(Call<CategoryHomeResponse> call, retrofit2.Response<CategoryHomeResponse>
-					response) {
+			public void onResponse(Call<CategoryHomeResponse> call, retrofit2.Response<CategoryHomeResponse> response) {
 				try {
 					getMyHomeData();
 				} catch (Exception e) {
@@ -167,7 +164,6 @@ public class StoreFragment extends Fragment implements BaseSliderView.OnSliderCl
 					setRecyclerView(categoryHomeResponse.getResultList());
 				} else {
 					binder.recyclerView.setVisibility(View.GONE);
-
 				}
 			} else {
 				Utility.showToast(getActivity(), getString(R.string.wrong));
@@ -198,39 +194,10 @@ public class StoreFragment extends Fragment implements BaseSliderView.OnSliderCl
 				onItemClickListener));
 	}
 
-	/*
-	public void getMyHomeData() {
-		String countryId = Utility.getCountry(getActivity());
-		String cityId = Utility.getCity(getActivity());
-		String userId = Utility.getUserId(getActivity());
-
-		HomeDataModel homeDataModel = new HomeDataModel();
-		homeDataModel.setLanguage(HomeActivity.sLanguage);
-		homeDataModel.setCountryId(countryId);
-		homeDataModel.setCityId(cityId);
-		homeDataModel.setUserId(userId);
-		Api api = APIClient.getClient().create(Api.class);
-		final Call<HomeDataResponse> responseCall = api.getHomeData(homeDataModel);
-		responseCall.enqueue(new Callback<HomeDataResponse>() {
-			@Override
-			public void onResponse(Call<HomeDataResponse> call, retrofit2.Response<HomeDataResponse> response) {
-				ProgressDialog.getInstance().dismissDialog();
-				handleHomeDataResponse(response.body());
-			}
-
-			@Override
-			public void onFailure(Call<HomeDataResponse> call, Throwable t) {
-				ProgressDialog.getInstance().dismissDialog();
-				Toast.makeText(getActivity(), t + "", Toast.LENGTH_SHORT).show();
-				Log.e("", "onFailure: " + t.getLocalizedMessage());
-			}
-		});
-	}*/
-
 	public void getMyHomeData() {
 		String language = LanguageUtil.sharedInstance().getLanguage();
 		String countryId = Utility.getCountry(getActivity());
-		String cityId = Utility.getCity(getActivity());
+		String cityId = Utility.getCityId(getActivity());
 		String userId = Utility.getUserId(getActivity());
 
 		Helper.showProgress(getActivity());
@@ -239,7 +206,7 @@ public class StoreFragment extends Fragment implements BaseSliderView.OnSliderCl
 			public void OnFinished(String message) {
 				Helper.hideProgress();
 				if (message != null) {
-					Helper.showErrorMessage(getActivity(), message);
+					Helper.showErrorToast(getActivity(), message);
 					return;
 				}
 
@@ -397,9 +364,9 @@ public class StoreFragment extends Fragment implements BaseSliderView.OnSliderCl
 		OnItemClickListener onItemClickListener = new OnItemClickListener() {
 			@Override
 			public void onClick(int position, Object obj) {
-				HomeDataResponse.NewdealData newdealData = (HomeDataResponse.NewdealData) obj;
+				Offer newdealData = (Offer) obj;
 				Intent intent = new Intent(getActivity(), OfferDetailsActivity.class);
-				intent.putExtra(Constant.OFFER_ID, newdealData.getOfferId());
+				intent.putExtra(Constant.OFFER_ID, newdealData.id);
 				startActivityForResult(intent, 1);
 				//startActivity(intent);
 			}

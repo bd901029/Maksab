@@ -56,8 +56,8 @@ public class TrendingAdapter extends RecyclerView.Adapter<TrendingAdapter.ViewHo
 			holder.rowHomeBinding.remaining.setVisibility(View.VISIBLE);
 		}
 
-		if (trends.get(position).getBought().equalsIgnoreCase("0")||trends.get(position)
-				.getBought().equalsIgnoreCase("Unlimited")){
+		if (trends.get(position).bought.equalsIgnoreCase("0")||trends.get(position)
+				.bought.equalsIgnoreCase("Unlimited")){
 			holder.rowHomeBinding.bought.setVisibility(View.INVISIBLE);
 		}else {
 			holder.rowHomeBinding.bought.setVisibility(View.VISIBLE);
@@ -66,7 +66,7 @@ public class TrendingAdapter extends RecyclerView.Adapter<TrendingAdapter.ViewHo
 		holder.rowHomeBinding.beforeAmount.setPaintFlags(holder.rowHomeBinding.beforeAmount.getPaintFlags() | Paint.STRIKE_THRU_TEXT_FLAG);
 
 
-		if (trends.get(position).favStatus == 1)
+		if (trends.get(position).favStatus.equals("1"))
 			holder.rowHomeBinding.favImage.setBackgroundResource(R.drawable.favorites_hover3x);
 		else
 			holder.rowHomeBinding.favImage.setBackgroundResource(R.drawable.favorites3x);

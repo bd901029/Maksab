@@ -37,7 +37,7 @@ public class CityListAdapter extends RecyclerView.Adapter<CityListAdapter.ViewHo
 		holder.binding.setAdapter(this);
 		holder.binding.setModel(cities.get(position));
 
-		if (cities.get(position).isSelected) {
+		if (cities.get(position).isSelected()) {
 			holder.binding.cityStatus.setVisibility(View.VISIBLE);
 			Typeface face = Typeface.createFromAsset(context.getAssets(), "fonts/CALIBRIB BOLD.TTF");
 			holder.binding.name.setTypeface(face);

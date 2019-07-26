@@ -13,13 +13,10 @@ import com.bumptech.glide.Glide;
 import java.util.ArrayList;
 
 import app.com.maksab.R;
-import app.com.maksab.api.dao.HomeDataResponse;
 import app.com.maksab.api.dao.SendGiftsResponce;
-import app.com.maksab.databinding.ItemGiftHistoryBinding;
 import app.com.maksab.databinding.ItemGiftReceiveBinding;
 import app.com.maksab.util.Constant;
 import app.com.maksab.view.activity.OfferDetailsActivity;
-import app.com.maksab.view.viewmodel.GiftHistoryModel;
 
 public class GiftReceiveAdapter extends RecyclerView.Adapter<GiftReceiveAdapter.ViewHolder> {
 

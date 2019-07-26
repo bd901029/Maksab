@@ -1,84 +1,132 @@
 package app.com.maksab.engine.country;
 
-import android.util.Log;
 import app.com.maksab.util.LanguageUtil;
-import org.json.JSONObject;
-
-import java.util.LinkedHashMap;
+import com.google.gson.annotations.SerializedName;
 
 public class City {
 	private String TAG = "City";
 
-	public static class Key {
-		public static String Id = "city_id";
-		public static String Name = "city_name";
-		public static String Languages = "languages";
+	public class Languages {
+		@SerializedName("ar")
+		private boolean ar = false;
+
+		@SerializedName("en")
+		private boolean en = false;
+
+		@SerializedName("tr")
+		private boolean tr = false;
+
+		public boolean isAr() {
+			return ar;
+		}
+
+		public void setAr(boolean ar) {
+			this.ar = ar;
+		}
+
+		public boolean isEn() {
+			return en;
+		}
+
+		public void setEn(boolean en) {
+			this.en = en;
+		}
+
+		public boolean isTr() {
+			return tr;
+		}
+
+		public void setTr(boolean tr) {
+			this.tr = tr;
+		}
 	}
 
-	public Country country = null;
-	public String id = "";
-	private LinkedHashMap<String, String> nameInfo = new LinkedHashMap<String, String>();
-	private LinkedHashMap<String, Boolean> languages = new LinkedHashMap<String, Boolean>();
-	public boolean isSelected = false;
+	@SerializedName("city_id")
+	private String id = "";
+	@SerializedName("city_name")
+	private String name = "";
+	@SerializedName("languages")
+	private Languages languages;
+	private String countryId;
+	private String countryName;
+	private String countryCode;
+	private String countryFlag;
+	private boolean selected = false;
 
-	public City(String language, JSONObject info) {
-		try {
-			this.id = info.getString(Key.Id);
-			setName(language, info);
-			setLanguages(info);
-		} catch (Exception e) {
-			Log.e(TAG, e.getLocalizedMessage());
-		}
+	public String getId() {
+		return id;
+	}
+
+	public void setId(String id) {
+		this.id = id;
 	}
 
 	public String getName() {
-		String language = LanguageUtil.sharedInstance().getLanguage();
-		return getName(language);
-	}
-
-	public String getName(String language) {
-		String name = nameInfo.get(language);
-		if (name == null) {
-			name = "";
-		}
-
-		Log.i(TAG, name);
 		return name;
 	}
 
-	public void setName(String language, JSONObject info) {
-		try {
-			if (info.isNull(Key.Name)) {
-				return;
-			}
-
-			nameInfo.put(language, info.getString(Key.Name));
-		} catch (Exception e) {
-			Log.e(TAG, e.getLocalizedMessage());
-		}
+	public void setName(String name) {
+		this.name = name;
 	}
 
-	public Boolean isSupported(String language) {
-		Boolean isSupported = languages.get(language);
-		if (isSupported != null) {
-			return isSupported;
-		}
-		return false;
+	public Languages getLanguages() {
+		return languages;
 	}
 
-	public void setLanguages(JSONObject info) {
-		try {
-			JSONObject languageInfo = info.getJSONObject(Key.Languages);
-			for (String lg : LanguageUtil.Languages) {
-				if (languageInfo.isNull(lg)) continue;
-				languages.put(lg, languageInfo.getBoolean(lg));
-			}
-		} catch (Exception e) {
-			Log.e(TAG, e.getLocalizedMessage());
-		}
+	public void setLanguages(Languages languages) {
+		this.languages = languages;
 	}
 
-	public void setSelected(boolean isSelected) {
-		this.isSelected = isSelected;
+	public String getCountryId() {
+		return countryId;
+	}
+
+	public void setCountryId(String countryId) {
+		this.countryId = countryId;
+	}
+
+	public String getCountryName() {
+		return countryName;
+	}
+
+	public void setCountryName(String countryName) {
+		this.countryName = countryName;
+	}
+
+	public String getCountryCode() {
+		return countryCode;
+	}
+
+	public void setCountryCode(String countryCode) {
+		this.countryCode = countryCode;
+	}
+
+	public String getCountryFlag() {
+		return countryFlag;
+	}
+
+	public void setCountryFlag(String countryFlag) {
+		this.countryFlag = countryFlag;
+	}
+
+	public boolean isSelected() {
+		return selected;
+	}
+
+	public void setSelected(boolean selected) {
+		this.selected = selected;
+	}
+
+	public boolean isSupported(String language) {
+		switch (language) {
+			case LanguageUtil.ENGLISH:
+				return languages.isEn();
+			case LanguageUtil.ARABIC:
+				return languages.isAr();
+			case LanguageUtil.TURKYCE:
+				return languages.isTr();
+			default:
+				return false;
+		}
 	}
 }
