@@ -10,7 +10,7 @@
 
         <variable
             name="model"
-            type="app.com.maksab.api.dao.PackagesResponse.PkgPlans" />
+            type="app.com.maksab.api.dao.PackagesResponse.PackagePlan" />
     </data>
 
     <android.support.v7.widget.CardView
@@ -24,7 +24,7 @@
             android:onClick="@{()->adapter.onItemClick(model)}"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@drawable/alert_diolog_bg_white"
+            android:background="@drawable/alert_dialog_bg_white"
             android:orientation="vertical">
 
             <RelativeLayout

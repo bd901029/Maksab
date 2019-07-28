@@ -23,9 +23,6 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 public class PaymentActivity extends AppCompatActivity {
-    private ActivityPaymentBinding mBinding;
-    PaymentModel paymentModel = new PaymentModel();
-
     public static String planId = "PLAN_ID";
     public static String planAmount = "PLAN_AMOUNT";
     public static String cardNumber = "CARD_NUMBER";
@@ -34,21 +31,25 @@ public class PaymentActivity extends AppCompatActivity {
     public static String cardHolder = "CARD_HOLDER";
     public static String cvvCode = "CVV";
     public static String couponCodeId = "COUPON_CODE_ID";
+
+    private ActivityPaymentBinding binder;
+    PaymentModel paymentModel = new PaymentModel();
+
     private String sCurrency = "", sAmount = "", sPayTotalCurrency = "";
     private String sPlanId = "", sPayTotal = "", sCardNumber = "", sExpiredDate = "", sCardHolder = "", sCvvCode = "", sCouponCodeId = "";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        mBinding = DataBindingUtil.setContentView(this, R.layout.activity_payment);
-        mBinding.setActivity(this);
+        binder = DataBindingUtil.setContentView(this, R.layout.activity_payment);
+        binder.setActivity(this);
         this.getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN);
         /*Bundle bundle = getIntent().getExtras();
         if (bundle != null) {
             sPlanId = bundle.getString(planId);//bundle.getString(planId);
             paymentCompleteModel.setPlanId(sPlanId);
             sPayTotal = bundle.getString(planAmount);
-            mBinding.payTotal.setText(sPayTotal);
+            binder.payTotal.setText(sPayTotal);
             sCurrency = sPayTotal.replaceAll("[^A-Za-z]+", "");
             sAmount = sPayTotal.replaceAll("[^0-9]", "");
             sTotalAmount = sAmount;
@@ -59,16 +60,16 @@ public class PaymentActivity extends AppCompatActivity {
         if (bundle != null) {
             sPlanId = bundle.getString(planId);//bundle.getString(planId);
             sPayTotalCurrency = bundle.getString(planAmount);
-            mBinding.payTotal.setText(sPayTotalCurrency);
+            binder.payTotal.setText(sPayTotalCurrency);
             sCurrency = sPayTotalCurrency.replaceAll("[^A-Za-z]+", "");
             sAmount = sPayTotalCurrency.replaceAll("[^0-9]", "");
         } else {
             Utility.showToast(this, getString(R.string.wrong));
         }
 
-        mBinding.setModel(paymentModel);
+        binder.setModel(paymentModel);
 
-        mBinding.etCardNumber.addTextChangedListener(new TextWatcher() {
+        binder.etCardNumber.addTextChangedListener(new TextWatcher() {
             private boolean lock;
 
             @Override
@@ -97,15 +98,15 @@ public class PaymentActivity extends AppCompatActivity {
 
 
     public void applyCouponCode() {
-        if (mBinding.etCoupon.getText().toString().isEmpty()) {
-            mBinding.etCoupon.setError(getText(R.string.error_coupon_code));
+        if (binder.etCoupon.getText().toString().isEmpty()) {
+            binder.etCoupon.setError(getText(R.string.error_coupon_code));
         } else {
             ProgressDialog.getInstance().showProgressDialog(PaymentActivity.this);
             CouponCodeModel couponCodeModel = new CouponCodeModel();
             couponCodeModel.setLanguage(Utility.getLanguage(PaymentActivity.this));
             couponCodeModel.setUserId(Utility.getUserId(PaymentActivity.this));
             couponCodeModel.setCityId(Utility.getCityId(PaymentActivity.this));
-            couponCodeModel.setCouponCode(mBinding.etCoupon.getText().toString());
+            couponCodeModel.setCouponCode(binder.etCoupon.getText().toString());
             couponCodeModel.setPlanId(sPlanId);
             couponCodeModel.setPlanAmount(sAmount);
             Api api = APIClient.getClient().create(Api.class);
@@ -142,7 +143,7 @@ public class PaymentActivity extends AppCompatActivity {
                 // String sDiscount = couponCodeResponse.getDiscountedPrice().replaceAll("[^0-9]", "");
                 // sPayTotal = (Double.parseDouble(sAmount) - Double.parseDouble(sDiscount)) + "";
                 sPayTotal = couponCodeResponse.getDiscountedPrice();
-                mBinding.payTotal.setText(sCurrency + " " + sPayTotal);
+                binder.payTotal.setText(sCurrency + " " + sPayTotal);
             }
             // activitySubmitCreditCardBinding.llCoupon.setVisibility(View.GONE);
         } else {

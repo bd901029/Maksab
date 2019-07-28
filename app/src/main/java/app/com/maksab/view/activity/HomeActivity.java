@@ -393,7 +393,7 @@ public class HomeActivity extends AppCompatActivity {
 						startActivity(new Intent(HomeActivity.this, TCActivity.class));
 						break;
 					case Constant.PP:
-						startActivity(new Intent(HomeActivity.this, PPActivity.class));
+						startActivity(new Intent(HomeActivity.this, PrivacyPolicyActivity.class));
 						break;
 					case Constant.LOGOUT:
 						showLogoutPopup();

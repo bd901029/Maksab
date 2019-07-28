@@ -33,7 +33,6 @@ import app.com.maksab.util.*;
 import app.com.maksab.view.adapter.*;
 import app.com.maksab.view.viewmodel.*;
 import com.androidquery.AQuery;
-import com.squareup.picasso.Picasso;
 import retrofit2.Call;
 import retrofit2.Callback;
 
@@ -102,8 +101,7 @@ public class OfferDetailsActivity extends AppCompatActivity {
 		final Call<OfferDetailsResponse> responseCall = api.getOfferDetails(userCityOfferModel);
 		responseCall.enqueue(new Callback<OfferDetailsResponse>() {
 			@Override
-			public void onResponse(Call<OfferDetailsResponse> call, retrofit2.Response<OfferDetailsResponse>
-					response) {
+			public void onResponse(Call<OfferDetailsResponse> call, retrofit2.Response<OfferDetailsResponse> response) {
 				ProgressDialog.getInstance().dismissDialog();
 				if (!isDestroyed()) {
 					handleStoreListResponse(response.body());
@@ -123,118 +121,116 @@ public class OfferDetailsActivity extends AppCompatActivity {
 
 	private void handleStoreListResponse(OfferDetailsResponse myResponse) {
 		try {
-			if (myResponse != null) {
-				if (myResponse.getResponseCode() != null && myResponse.getResponseCode().equals(Api.SUCCESS)) {
-					if (myResponse.getOfferDetails() != null) {
-						myResponse.getOfferDetails().setDiscoundEnd(getResources().getString(R.string.redeem_offer) +
-								myResponse.getOfferDetails().getDiscoundEnd());
-						myResponse.getOfferDetails().setPartnerOffers(myResponse.getOfferDetails().getPartnerOffers() + " " +
-								getResources().getString(R.string.offers));
-						myResponse.getOfferDetails().setPartnerFavCount(myResponse.getOfferDetails().getPartnerFavCount() +
-								" " + getResources().getString(R.string.favorite));
-
-						myResponse.getOfferDetails().setDiscountRate(myResponse.getOfferDetails().getDiscountRate() + "% " +
-								getResources().getString(R.string.off));
-
-						offerDetails = myResponse.getOfferDetails();
-
-						binder.setModel(myResponse.getOfferDetails());
-
-						binder.redemptionInstructions.setText
-								(Html.fromHtml(myResponse.getOfferDetails().getInstructions()));
-
-						sOfferId = myResponse.getOfferDetails().getOfferId();
-						callNumber = myResponse.getOfferDetails().getCallNumber();
-						brandImage = myResponse.getOfferDetails().getPartnerImg();
-						offerName = myResponse.getOfferDetails().getOfferName();
-						partnerName = myResponse.getOfferDetails().getPartnerName();
-
-						binder.whatCustomerLike.setText(getResources().getString(R.string
-								.what_customer_like) + " " + getResources().getString(R.string
-								.about) + " " + myResponse.getOfferDetails().getOfferName());
-						redeemedStatus = myResponse.getOfferDetails().getRedeemedStatus();
-						redeemedMsg = myResponse.getOfferDetails().getRedeemedMsg();
-						shareOfferLink = myResponse.getOfferDetails().getOfferLink();
-
-						if (myResponse.getOfferDetails().getSrtPackage().equals(""))
-							binder.llSrtPackage.setVisibility(View.GONE);
-						else
-							binder.llSrtPackage.setVisibility(View.VISIBLE);
-
-						if (myResponse.getOfferDetails().getRedeemedMsg().equals(""))
-							binder.llRedemptionInstructions.setVisibility(View.GONE);
-						else
-							binder.llRedemptionInstructions.setVisibility(View.VISIBLE);
-
-
-						if (callNumber.equals(""))
-							binder.llCall.setVisibility(View.GONE);
-						else
-							binder.llCall.setVisibility(View.VISIBLE);
-
-
-
-						if (redeemedStatus.equalsIgnoreCase("1"))
-							binder.btnRedeem.setBackgroundResource(R.color.colorPrimaryDark);
-						else
-							binder.btnRedeem.setBackgroundResource(R.color.gray_dark);
-
-						binder.beforeAmount.setPaintFlags(binder.beforeAmount.getPaintFlags()
-								| Paint.STRIKE_THRU_TEXT_FLAG);
-
-						binder.otherOfferFor.setText(getResources().getString(R.string
-								.other_offer_for) + " " + myResponse.getOfferDetails().getPartnerName());
-						if (myResponse.getOfferDetails().getFavStatus().equalsIgnoreCase("1")) {
-							binder.bookmark.setBackgroundResource(R.drawable.favorites_hover3x);
-							binder.addWishlist.setText(getResources().getString(R.string.added_wishlist));
-						} else {
-							binder.bookmark.setBackgroundResource(R.drawable.favorites3x);
-							binder.addWishlist.setText(getResources().getString(R.string.add_to_wishlist));
-						}
-						if (myResponse.getOfferDetails().getPartnerFavStatus().equalsIgnoreCase("1"))
-							binder.favoritesStatusPartner.setBackgroundResource(R.drawable.favorites_hover3x);
-						else
-							binder.favoritesStatusPartner.setBackgroundResource(R.drawable.favorites3x);
-
-						/*Slider Images*/
-						if (myResponse.getOfferDetails().getImagesListArrayList() != null && myResponse.getOfferDetails()
-								.getImagesListArrayList().size() != 0) {
-							sliderImagesDialog = myResponse.getOfferDetails().getImagesListArrayList();
-							setSlider(myResponse.getOfferDetails().getImagesListArrayList());
-						}
-
-						if (myResponse.getOfferDetails().getFacilityListArrayList().size() != 0)
-							setRecyclerViewFacilities(myResponse.getOfferDetails().getFacilityListArrayList());
-						else
-							binder.llAvailableFacilities.setVisibility(View.GONE);
-
-						if (myResponse.getOfferDetails().getReviewsListArrayList().size() != 0)
-							setRecyclerViewReviews(myResponse.getOfferDetails().getReviewsListArrayList());
-					}
-					if (myResponse.getVenderLocationLists() != null && myResponse.getVenderLocationLists().size() != 0)
-						facilityListArrayList = myResponse.getVenderLocationLists();
-
-					onClickLoadMore();
-
-					if (myResponse.getOtherOfferListArrayList() != null && myResponse.getOtherOfferListArrayList().size()
-							!= 0) {
-						//binder.llOtherOfferFor.setVisibility(View.VISIBLE);
-						setRecyclerViewOtherOffer(myResponse.getOtherOfferListArrayList());
-					}// else
-					// binder.llOtherOfferFor.setVisibility(View.GONE);
-
-				} else {
-					Utility.showToast(OfferDetailsActivity.this, getString(R.string.no_data_found));
-
-				}
+			if (myResponse == null) {
+				return;
 			}
+
+			String responseCode = myResponse.getResponseCode();
+			if (responseCode == null || !responseCode.equals(Api.SUCCESS)) {
+				Utility.showToast(OfferDetailsActivity.this, getString(R.string.no_data_found));
+				return;
+			}
+
+			offerDetails = myResponse.getOfferDetails();
+			if (offerDetails != null) {
+				Log.i("dragon", offerDetails.getInstructions());
+
+				offerDetails.setDiscoundEnd(getResources().getString(R.string.redeem_offer) + offerDetails.getDiscoundEnd());
+				offerDetails.setPartnerOffers(offerDetails.getPartnerOffers() + " " + getResources().getString(R.string.offers));
+				offerDetails.setPartnerFavCount(offerDetails.getPartnerFavCount() + " " + getResources().getString(R.string.favorite));
+
+				offerDetails.setDiscountRate(offerDetails.getDiscountRate() + "% " + getResources().getString(R.string.off));
+
+				binder.setModel(offerDetails);
+
+				binder.redemptionInstructions.setText
+						(Html.fromHtml(offerDetails.getInstructions()));
+
+				sOfferId = offerDetails.getOfferId();
+				callNumber = offerDetails.getCallNumber();
+				brandImage = offerDetails.getPartnerImg();
+				offerName = offerDetails.getOfferName();
+				partnerName = offerDetails.getPartnerName();
+
+				binder.whatCustomerLike.setText(getResources().getString(R.string.what_customer_like) + " " + getResources().getString(R.string.about) + " " + offerDetails.getOfferName());
+				redeemedStatus = offerDetails.getRedeemedStatus();
+				redeemedMsg = offerDetails.getRedeemedMsg();
+				shareOfferLink = offerDetails.getOfferLink();
+
+				if (offerDetails.getSrtPackage().equals(""))
+					binder.llSrtPackage.setVisibility(View.GONE);
+				else
+					binder.llSrtPackage.setVisibility(View.VISIBLE);
+
+				if (offerDetails.getRedeemedMsg().equals("")) {
+					binder.llRedemptionInstructions.setVisibility(View.GONE);
+				} else {
+					binder.llRedemptionInstructions.setVisibility(View.VISIBLE);
+				}
+
+				if (callNumber.equals(""))
+					binder.llCall.setVisibility(View.GONE);
+				else
+					binder.llCall.setVisibility(View.VISIBLE);
+
+
+
+				if (redeemedStatus.equalsIgnoreCase("1"))
+					binder.btnRedeem.setBackgroundResource(R.color.colorPrimaryDark);
+				else
+					binder.btnRedeem.setBackgroundResource(R.color.gray_dark);
+
+				binder.beforeAmount.setPaintFlags(binder.beforeAmount.getPaintFlags()
+						| Paint.STRIKE_THRU_TEXT_FLAG);
+
+				binder.otherOfferFor.setText(getResources().getString(R.string.other_offer_for) + " " + offerDetails.getPartnerName());
+				if (offerDetails.getFavStatus().equalsIgnoreCase("1")) {
+					binder.bookmark.setBackgroundResource(R.drawable.favorites_hover3x);
+					binder.addWishlist.setText(getResources().getString(R.string.added_wishlist));
+				} else {
+					binder.bookmark.setBackgroundResource(R.drawable.favorites3x);
+					binder.addWishlist.setText(getResources().getString(R.string.add_to_wishlist));
+				}
+				if (offerDetails.getPartnerFavStatus().equalsIgnoreCase("1"))
+					binder.favoritesStatusPartner.setBackgroundResource(R.drawable.favorites_hover3x);
+				else
+					binder.favoritesStatusPartner.setBackgroundResource(R.drawable.favorites3x);
+
+				/*Slider Images*/
+				if (offerDetails.getImagesListArrayList() != null && offerDetails.getImagesListArrayList().size() != 0) {
+					sliderImagesDialog = offerDetails.getImagesListArrayList();
+					setSlider(offerDetails.getImagesListArrayList());
+				}
+
+				if (offerDetails.getFacilityListArrayList().size() != 0)
+					updateFacilities(offerDetails.getFacilityListArrayList());
+				else
+					binder.llAvailableFacilities.setVisibility(View.GONE);
+
+				if (offerDetails.getReviewsListArrayList().size() != 0)
+					updateReviews(offerDetails.getReviewsListArrayList());
+			}
+
+			ArrayList<OfferDetailsResponse.VenderLocation> venderLocations = myResponse.getVenderLocationLists();
+			if (venderLocations != null) {
+				facilityListArrayList = myResponse.getVenderLocationLists();
+			}
+
+			onClickLoadMore();
+
+			if (myResponse.getOtherOfferListArrayList() != null && myResponse.getOtherOfferListArrayList().size()
+					!= 0) {
+				//binder.llOtherOfferFor.setVisibility(View.VISIBLE);
+				updateOtherOffer(myResponse.getOtherOfferListArrayList());
+			}// else
+			// binder.llOtherOfferFor.setVisibility(View.GONE);
 		} catch (Exception e) {
 			//  Utility.showToast(OfferDetailsActivity.this, getString(R.string.server_not_response));
 			e.printStackTrace();
 		}
 	}
 
-	private void setRecyclerViewFacilities(ArrayList<OfferDetailsResponse.FacilityList> facilityListArrayList) {
+	private void updateFacilities(ArrayList<OfferDetailsResponse.FacilityList> facilityListArrayList) {
 		OnItemClickListener onItemClickListener = new OnItemClickListener() {
 			@Override
 			public void onClick(int position, Object obj) {
@@ -247,7 +243,7 @@ public class OfferDetailsActivity extends AppCompatActivity {
 				facilityListArrayList, onItemClickListener));
 	}
 
-	private void setRecyclerViewReviews(ArrayList<OfferDetailsResponse.ReviewsList> reviewsListArrayList) {
+	private void updateReviews(ArrayList<OfferDetailsResponse.ReviewsList> reviewsListArrayList) {
 		OnItemClickListener onItemClickListener = new OnItemClickListener() {
 			@Override
 			public void onClick(int position, Object obj) {
@@ -260,7 +256,7 @@ public class OfferDetailsActivity extends AppCompatActivity {
 				onItemClickListener));
 	}
 
-	private void setRecyclerViewOtherOffer(ArrayList<OfferDetailsResponse.OtherOffer> otherOfferListArrayList) {
+	private void updateOtherOffer(ArrayList<OfferDetailsResponse.OtherOffer> otherOfferListArrayList) {
 		OnItemClickListener onItemClickListener = new OnItemClickListener() {
 			@Override
 			public void onClick(int position, Object obj) {

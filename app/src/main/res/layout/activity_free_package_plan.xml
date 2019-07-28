@@ -1,0 +1,257 @@
+<layout
+		xmlns:android="http://schemas.android.com/apk/res/android"
+		xmlns:app="http://schemas.android.com/apk/res-auto">
+
+	<data>
+		<variable
+				name="activity"
+				type="app.com.maksab.view.activity.FreePackagePlanActivity" />
+		<variable
+				name="model"
+				type="app.com.maksab.api.dao.PackagesResponse.PackagePlan" />
+	</data>
+
+	<LinearLayout
+			android:orientation="vertical"
+			android:layout_width="match_parent"
+			android:layout_height="match_parent">
+
+		<TextView
+				android:layout_width="match_parent"
+				android:layout_height="50sp"
+				app:font="@{@string/bold}"
+				android:gravity="center_vertical"
+				android:textAlignment="center"
+				android:textColor="@color/black"
+				android:textSize="16sp"
+				android:text="@string/review_and_checkout"/>
+
+		<ScrollView
+				android:layout_width="match_parent"
+				android:layout_height="0sp"
+				android:layout_weight="1">
+
+			<LinearLayout
+					android:orientation="vertical"
+					android:layout_width="match_parent"
+					android:layout_height="wrap_content"
+					android:padding="20sp">
+
+				<LinearLayout
+						android:orientation="vertical"
+						android:layout_width="match_parent"
+						android:layout_height="match_parent"
+						android:background="@drawable/alert_dialog_bg_white">
+
+					<RelativeLayout
+							android:id="@+id/headerView"
+							android:layout_width="match_parent"
+							android:layout_height="130dp">
+
+						<ImageView
+								android:id="@+id/image"
+								android:layout_width="match_parent"
+								android:layout_height="match_parent"
+								android:scaleType="centerCrop"
+								android:layout_centerInParent="true"/>
+
+						<LinearLayout
+								android:padding="10dp"
+								android:id="@+id/llHeader"
+								android:layout_width="match_parent"
+								android:layout_height="match_parent"
+								android:orientation="horizontal">
+
+							<LinearLayout
+									android:layout_width="0dp"
+									android:layout_weight="1"
+									android:gravity="center_vertical"
+									android:layout_height="match_parent"
+									android:orientation="vertical">
+
+								<TextView
+										android:layout_width="wrap_content"
+										android:layout_height="wrap_content"
+										android:text="@{model.afterAmount}"
+										android:gravity="center_vertical"
+										android:textColor="@color/white"
+										android:textSize="26sp"
+										app:font="@{@string/bold}" />
+
+								<TextView
+										android:layout_marginTop="5dp"
+										android:id="@+id/beforeAmount"
+										android:layout_width="wrap_content"
+										android:layout_height="wrap_content"
+										android:text="@{model.beforeAmount}"
+										android:gravity="center_vertical"
+										android:textColor="@color/white"
+										android:textSize="20sp"
+										app:font="@{@string/regular}" />
+
+							</LinearLayout>
+
+							<LinearLayout
+									android:layout_width="0dp"
+									android:layout_weight="1"
+									android:layout_height="match_parent"
+									android:gravity="end|center_vertical"
+									android:orientation="vertical">
+
+								<TextView
+										android:layout_width="wrap_content"
+										android:layout_height="wrap_content"
+										android:text="@{model.planName}"
+										android:textColor="@color/white"
+										android:textSize="26dp"
+										app:font="@{@string/bold}" />
+
+								<TextView
+										android:layout_marginTop="7dp"
+										android:layout_width="wrap_content"
+										android:layout_height="wrap_content"
+										android:text="@string/vat_inclusive"
+										android:textColor="@color/red"
+										android:textSize="16sp"
+										app:font="@{@string/regular}" />
+
+
+							</LinearLayout>
+
+
+						</LinearLayout>
+
+					</RelativeLayout>
+
+					<android.support.v7.widget.RecyclerView
+							android:layout_margin="8dp"
+							android:id="@+id/recyclerView"
+							android:layout_width="match_parent"
+							android:layout_height="wrap_content"/>
+
+					<LinearLayout
+							android:id="@+id/subscribed"
+							android:layout_margin="10dp"
+							android:layout_width="match_parent"
+							android:layout_height="wrap_content"
+							android:orientation="horizontal">
+
+						<TextView
+								android:layout_width="0dp"
+								android:layout_weight="1"
+								android:layout_height="match_parent"
+								android:gravity="center_vertical"
+								android:textColor="@color/colorPrimaryDark"
+								android:textSize="16sp"
+								android:text="@string/subscribed"
+								app:font="@{@string/bold}" />
+
+						<TextView
+								android:layout_width="0dp"
+								android:layout_weight="1"
+								android:layout_height="match_parent"
+								android:text="@{model.expiryDate}"
+								android:gravity="end"
+								android:textColor="@color/black"
+								android:textSize="16sp"
+								app:font="@{@string/regular}" />
+
+					</LinearLayout>
+
+
+				</LinearLayout>
+
+				<LinearLayout
+						android:orientation="horizontal"
+						android:layout_width="wrap_content"
+						android:layout_height="wrap_content"
+						android:layout_marginTop="15sp">
+
+					<TextView
+							android:layout_width="wrap_content"
+							android:layout_height="wrap_content"
+							android:gravity="center_vertical"
+							android:textAlignment="center"
+							android:textColor="@color/gray_text"
+							android:text="@string/grand_total"/>
+
+					<TextView
+							android:id="@+id/afterAmount"
+							android:layout_width="wrap_content"
+							android:layout_height="wrap_content"
+							android:layout_marginLeft="20sp"
+							android:gravity="center_vertical"
+							android:fontFamily="@string/bold"
+							android:textAlignment="center"
+							android:textColor="@color/black"
+							android:text="@{model.beforeAmount}"/>
+
+				</LinearLayout>
+
+				<TextView
+						android:layout_width="wrap_content"
+						android:layout_height="wrap_content"
+						android:layout_marginTop="20sp"
+						android:fontFamily="@string/bold"
+						android:textAlignment="center"
+						android:textColor="@color/black"
+						android:textSize="18sp"
+						android:text="@string/do_you_have_coupon_code"/>
+
+				<TextView
+						android:layout_width="wrap_content"
+						android:layout_height="wrap_content"
+						android:textAlignment="center"
+						android:textColor="@color/gray_text"
+						android:textSize="10sp"
+						android:text="@string/enter_coupon_code"/>
+
+				<LinearLayout
+						android:orientation="horizontal"
+						android:layout_width="match_parent"
+						android:layout_height="40sp">
+
+					<EditText
+							android:id="@+id/couponCodeView"
+							android:layout_width="0sp"
+							android:layout_height="match_parent"
+							android:layout_weight="1"
+							android:hint="@string/enter_coupon_code"
+							android:imeOptions="actionDone"
+							android:inputType="numberPassword"
+							android:gravity="left|center_vertical"
+							android:lines="1"
+							android:maxLength="30"
+							android:background="@color/white"
+							android:textColor="@color/black"
+							android:textColorHint="@color/divider_color"
+							android:textSize="@dimen/badge_text_size"
+							app:font="@{@string/regular}" />
+
+					<Button
+							android:layout_width="100sp"
+							android:layout_height="match_parent"
+							android:background="@color/colorAccent"
+							android:textColor="@color/white"
+							android:textSize="@dimen/badge_text_size"
+							android:text="@string/apply"
+							android:onClick="@{()->activity.applyCouponCode()}"/>
+
+				</LinearLayout>
+
+			</LinearLayout>
+
+		</ScrollView>
+
+		<Button
+				android:layout_width="match_parent"
+				android:layout_height="40sp"
+				android:background="@color/colorAccent"
+				android:textColor="@color/white"
+				android:textSize="@dimen/badge_text_size"
+				android:text="@string/proceed_to_checkout"
+				android:onClick="@{()->activity.proceedToCheckout()}"/>
+
+	</LinearLayout>
+
+</layout>

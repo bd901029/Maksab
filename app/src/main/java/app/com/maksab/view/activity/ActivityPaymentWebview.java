@@ -117,11 +117,8 @@ public class ActivityPaymentWebview extends AppCompatActivity {
             }
         });
         mWebview .loadUrl(paymentURL);
-
-
-
-
     }
+
     public boolean onOptionsItemSelected(MenuItem item) {
         int id = item.getItemId();
         if (id == android.R.id.home) {
@@ -130,6 +127,7 @@ public class ActivityPaymentWebview extends AppCompatActivity {
         }
         return super.onOptionsItemSelected(item);
     }
+
     /** Show a toast from the web page */
     @JavascriptInterface
     public void showToast(String toast) {

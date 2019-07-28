@@ -3,7 +3,7 @@
     <data>
         <variable
             name="activity"
-            type="app.com.maksab.view.activity.PPActivity" />
+            type="app.com.maksab.view.activity.PrivacyPolicyActivity" />
 
         <!--<variable
             name="model"

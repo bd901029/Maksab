@@ -761,7 +761,7 @@
 								android:layout_width="match_parent"
 								android:layout_height="wrap_content"
 								android:background="@color/white"
-								android:text="@{model.instructions}"
+								android:text="@{model.getInstructions}"
 								android:padding="10dp"
 								android:textColor="@color/black"
 								android:textSize="14dp"

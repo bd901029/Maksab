@@ -55,6 +55,9 @@
 	<string name="brand_capital">BRANDS</string>
 
 	<string name="select_your_package">الرجاء اختيار الباقة المناسبة</string>
+	<string name="review_and_checkout">مراجعة والخروج</string>
+	<string name="grand_total">المجموع الكلي</string>
+	<string name="do_you_have_coupon_code">هل لديك قسيمة؟</string>
 
 	<!-- <string name="signup_policy">
 <![CDATA[ I have read and accepted MAKSAB\'s
@@ -176,6 +179,7 @@
 	<!--Payment-->
 	<string name="enter_coupon_code">أدخل رمز القسيمة</string>
 	<string name="apply">Apply</string>
+	<string name="proceed_to_checkout">باشرالخروج من الفندق</string>
 
 	<string name="pay_now">ادفع الآن</string>
 	<string name="billing_address">عنوان وصول الفواتير</string>

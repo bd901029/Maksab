@@ -9,20 +9,20 @@ import app.com.maksab.R;
 import app.com.maksab.api.APIClient;
 import app.com.maksab.api.Api;
 import app.com.maksab.api.dao.PpResponse;
-import app.com.maksab.databinding.ActivityPpBinding;
+import app.com.maksab.databinding.ActivityPrivacyPolicyBinding;
 import app.com.maksab.util.Constant;
 import app.com.maksab.util.ProgressDialog;
 import app.com.maksab.util.Utility;
 import retrofit2.Call;
 import retrofit2.Callback;
 
-public class PPActivity extends AppCompatActivity {
-    private ActivityPpBinding mBinding;
+public class PrivacyPolicyActivity extends AppCompatActivity {
+    private ActivityPrivacyPolicyBinding mBinding;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        mBinding = DataBindingUtil.setContentView(this, R.layout.activity_pp);
+        mBinding = DataBindingUtil.setContentView(this, R.layout.activity_privacy_policy);
         mBinding.setActivity(this);
         this.getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN);
         getTC();
@@ -34,7 +34,7 @@ public class PPActivity extends AppCompatActivity {
     }
 
     private void getTC() {
-        ProgressDialog.getInstance().showProgressDialog(PPActivity.this);
+        ProgressDialog.getInstance().showProgressDialog(PrivacyPolicyActivity.this);
         Api api = APIClient.getClient().create(Api.class);
         final Call<PpResponse> responseCall = api.getPrivacyPolicy();
         responseCall.enqueue(new Callback<PpResponse>() {
@@ -42,7 +42,7 @@ public class PPActivity extends AppCompatActivity {
             public void onResponse(Call<PpResponse> call, retrofit2.Response<PpResponse> response) {
                 ProgressDialog.getInstance().dismissDialog();
                 PpResponse ppResponse = response.body();
-                switch (Utility.getLanguage(PPActivity.this)){
+                switch (Utility.getLanguage(PrivacyPolicyActivity.this)){
                     case Constant.LANGUAGE_ARABIC:
                         mBinding.pp.setText(Html.fromHtml(ppResponse.getAbPolicy()));
                         break;
@@ -58,7 +58,7 @@ public class PPActivity extends AppCompatActivity {
             @Override
             public void onFailure(Call<PpResponse> call, Throwable t) {
                 ProgressDialog.getInstance().dismissDialog();
-                Utility.showToast(PPActivity.this, t+"");
+                Utility.showToast(PrivacyPolicyActivity.this, t+"");
             }
         });
     }

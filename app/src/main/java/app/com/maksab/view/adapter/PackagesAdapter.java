@@ -19,26 +19,25 @@ import app.com.maksab.listener.OnItemClickListener;
 
 public class PackagesAdapter extends RecyclerView.Adapter<PackagesAdapter.ViewHolder> {
     private Activity context;
-    private ArrayList<PackagesResponse.PkgPlans> categoryListArrayList;
+    private ArrayList<PackagesResponse.PackagePlan> packagePlans;
     private OnItemClickListener onItemClickListener;
 
-    public PackagesAdapter(Activity context, ArrayList<PackagesResponse.PkgPlans> categoryListArrayList, OnItemClickListener onItemClickListener) {
+    public PackagesAdapter(Activity context, ArrayList<PackagesResponse.PackagePlan> categoryListArrayList, OnItemClickListener onItemClickListener) {
         this.context = context;
-        this.categoryListArrayList = categoryListArrayList;
+        this.packagePlans = categoryListArrayList;
         this.onItemClickListener = onItemClickListener;
     }
 
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        RowPackagesBinding rowCategoryHomeBinding = DataBindingUtil.inflate(LayoutInflater.from(context), R.layout.row_packages,
-                parent, false);
+        RowPackagesBinding rowCategoryHomeBinding = DataBindingUtil.inflate(LayoutInflater.from(context), R.layout.row_packages, parent, false);
         return new ViewHolder(rowCategoryHomeBinding);
     }
 
     @Override
     public void onBindViewHolder(final ViewHolder holder, int position) {
         holder.rowHomeBinding.setAdapter(this);
-        holder.rowHomeBinding.setModel(categoryListArrayList.get(position));
+        holder.rowHomeBinding.setModel(packagePlans.get(position));
 
         int width = (PreferenceConnector.readInteger(context,PreferenceConnector.DEVICE_WIDTH,150)/2);
         ViewGroup.LayoutParams params = holder.rowHomeBinding.llImage.getLayoutParams();
@@ -47,40 +46,40 @@ public class PackagesAdapter extends RecyclerView.Adapter<PackagesAdapter.ViewHo
         holder.rowHomeBinding.llImage.setLayoutParams(params);
 
 
-        if (categoryListArrayList.get(position).getPlanStatus().equalsIgnoreCase("1")){
+        if (packagePlans.get(position).getPlanStatus().equalsIgnoreCase("1")){
             holder.rowHomeBinding.subscribed.setVisibility(View.VISIBLE);
         }else{
             holder.rowHomeBinding.subscribed.setVisibility(View.GONE);
         }
 
-        if (categoryListArrayList.get(position).getPlanImg().equals(""))
-        holder.rowHomeBinding.image.setBackgroundColor(Color.parseColor(categoryListArrayList.get(position).planColor));
+        if (packagePlans.get(position).getPlanImg().equals(""))
+        holder.rowHomeBinding.image.setBackgroundColor(Color.parseColor(packagePlans.get(position).planColor));
         else{
              AQuery aQuery = new AQuery(holder.rowHomeBinding.image);
-             aQuery.id(holder.rowHomeBinding.image).image(categoryListArrayList.get(position).getPlanImg(), true, true, 300, R
+             aQuery.id(holder.rowHomeBinding.image).image(packagePlans.get(position).getPlanImg(), true, true, 300, R
                      .drawable.logo_small);
         }
 
         holder.rowHomeBinding.beforeAmount.setPaintFlags(holder.rowHomeBinding.beforeAmount.getPaintFlags() | Paint.STRIKE_THRU_TEXT_FLAG);
 
-        if (categoryListArrayList.get(position).getFacilitysArrayList() != null && categoryListArrayList.get(position).getFacilitysArrayList()
+        if (packagePlans.get(position).getFacilitysArrayList() != null && packagePlans.get(position).getFacilitysArrayList()
                 .size() != 0) {
             OnItemClickListener onItemClickListener2 = new OnItemClickListener() {
                 @Override
                 public void onClick(int position2, Object obj) {
-                    onItemClick(categoryListArrayList.get(holder.getAdapterPosition()));
+                    onItemClick(packagePlans.get(holder.getAdapterPosition()));
                 }
             };
             holder.rowHomeBinding.recyclerView.setLayoutManager(new GridLayoutManager(context, 1));
-            holder.rowHomeBinding.recyclerView.setAdapter(new SubPackagesAdapter(context, categoryListArrayList.get
-                    (position).getFacilitysArrayList(), onItemClickListener2 ,categoryListArrayList.get(position)
+            holder.rowHomeBinding.recyclerView.setAdapter(new SubPackagesAdapter(context, packagePlans.get
+                    (position).getFacilitysArrayList(), onItemClickListener2 , packagePlans.get(position)
                     .planColor));
         }
     }
 
     @Override
     public int getItemCount() {
-        return categoryListArrayList != null ? categoryListArrayList.size() : 0;
+        return packagePlans != null ? packagePlans.size() : 0;
     }
 
     class ViewHolder extends RecyclerView.ViewHolder {
@@ -95,7 +94,7 @@ public class PackagesAdapter extends RecyclerView.Adapter<PackagesAdapter.ViewHo
      * On Item click listener method
      * @param categoryData Store object of clicked position
      */
-    public void onItemClick(PackagesResponse.PkgPlans categoryData) {
-        onItemClickListener.onClick(categoryListArrayList.indexOf(categoryData), categoryData);
+    public void onItemClick(PackagesResponse.PackagePlan categoryData) {
+        onItemClickListener.onClick(packagePlans.indexOf(categoryData), categoryData);
     }
 }

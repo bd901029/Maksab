@@ -77,6 +77,7 @@ public class OfferDetailsResponse {
         private String reservation;
         @SerializedName("package")
         private String srtPackage;
+        @SerializedName("instructions")
         private String instructions;
         @SerializedName("call_number")
         private String callNumber;

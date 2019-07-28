@@ -1,505 +1,505 @@
 <resources>
-    <string name="app_name" translatable="false">Maksab</string>
-    <string name="regular">CALIBRI REGULAR</string>
-    <string name="light">CALIBRIL LIGHT</string>
-    <string name="bold">CALIBRIB BOLD</string>
+	<string name="app_name" translatable="false">Maksab</string>
+	<string name="regular">CALIBRI REGULAR</string>
+	<string name="light">CALIBRIL LIGHT</string>
+	<string name="bold">CALIBRIB BOLD</string>
 
-    <string name="ext">.TTF</string>
+	<string name="ext">.TTF</string>
 
-    <!--Dialog-->
-    <string name="select_country_language">Select Your Country &amp; Language</string>
-    <string name="select_country_city">Select Your Country &amp; City</string>
-    <string name="select_language">Select Language</string>
+	<!--Dialog-->
+	<string name="select_country_language">Select Your Country &amp; Language</string>
+	<string name="select_country_city">Select Your Country &amp; City</string>
+	<string name="select_language">Select Language</string>
 
-    <string name="english" translatable="false">English</string>
-    <string name="arabic" translatable="false">العربية</string>
-    <string name="turkce" translatable="false">Türkçe</string>
-    <string name="select_country">Select Country</string>
-    <string name="select_business">Select Your Business Type</string>
+	<string name="english" translatable="false">English</string>
+	<string name="arabic" translatable="false">العربية</string>
+	<string name="turkce" translatable="false">Türkçe</string>
+	<string name="select_country">Select Country</string>
+	<string name="select_business">Select Your Business Type</string>
 
-    <string name="navigation_drawer_open">Open navigation drawer</string>
-    <string name="navigation_drawer_close">Close navigation drawer</string>
-    <string name="action_settings">Settings</string>
+	<string name="navigation_drawer_open">Open navigation drawer</string>
+	<string name="navigation_drawer_close">Close navigation drawer</string>
+	<string name="action_settings">Settings</string>
 
-    <!--home Navigation-->
-    <string name="welcome">Welcome</string>
-    <string name="login_signup">Log In/Sign Up</string>
+	<!--home Navigation-->
+	<string name="welcome">Welcome</string>
+	<string name="login_signup">Log In/Sign Up</string>
 
-    <string name="home">Home</string>
-    <string name="purchases">My Purchase</string>
-    <string name="favorites">My Favorites</string>
+	<string name="home">Home</string>
+	<string name="purchases">My Purchase</string>
+	<string name="favorites">My Favorites</string>
 
-    <string name="country_languages">Country &amp; Languages</string>
-    <string name="membership">MAKSAB Membership</string>
-    <string name="invite">Invite Friends</string>
+	<string name="country_languages">Country &amp; Languages</string>
+	<string name="membership">MAKSAB Membership</string>
+	<string name="invite">Invite Friends</string>
 
-    <string name="become_partner">Become A Partner</string>
-    <string name="careers">Careers</string>
-    <string name="contact_us">Contact Us</string>
+	<string name="become_partner">Become A Partner</string>
+	<string name="careers">Careers</string>
+	<string name="contact_us">Contact Us</string>
 
-    <string name="faq">FAQ</string>
-    <string name="terms_condition">Terms &amp; Condition</string>
-    <string name="terms_condition_msg">Please accept term of use</string>
+	<string name="faq">FAQ</string>
+	<string name="terms_condition">Terms &amp; Condition</string>
+	<string name="terms_condition_msg">Please accept term of use</string>
 
-    <string name="privacy_policy">Privacy Policy</string>
-    <string name="logout">Logout</string>
+	<string name="privacy_policy">Privacy Policy</string>
+	<string name="logout">Logout</string>
 
-    <!--Home Data-->
-    <string name="cat_brand">Big brands you love</string>
-    <string name="cat_collections">Collections For You</string>
-    <string name="cat_trending">Trending Deals</string>
-    <string name="cat_hot_deal">Hot Deal</string>
-    <string name="cat_new_deal">New Deal</string>
-    <string name="brand_capital">BRANDS</string>
-    <string name="select_your_package">Select Your Package</string>
+	<!--Home Data-->
+	<string name="cat_brand">Big brands you love</string>
+	<string name="cat_collections">Collections For You</string>
+	<string name="cat_trending">Trending Deals</string>
+	<string name="cat_hot_deal">Hot Deal</string>
+	<string name="cat_new_deal">New Deal</string>
+	<string name="brand_capital">BRANDS</string>
+	<string name="select_your_package">Select Your Package</string>
+	<string name="review_and_checkout">Review and Checkout</string>
+	<string name="grand_total">GRAND TOTAL</string>
+	<string name="do_you_have_coupon_code">Do You Have A Coupon?</string>
 
-    <string name="temrs_of_service">
+	<string name="temrs_of_service">
         <![CDATA[I have read and accepted MAKSAB\'s <a href="terms_of_service_url">Terms Of Use</a> and <a href="privacy_policy_url">Privacy Policy</a>.]]>
 
     </string>
 
-    <!--Buttons-->
-    <string name="cancel">Cancel</string>
-    <string name="create">Create</string>
-    <string name="store">Store</string>
-    <string name="user">User</string>
-    <string name="next">Next</string>
-    <string name="confirm">Confirm</string>
-    <string name="accept">Accept</string>
-    <string name="decline">Decline</string>
-    <string name="pending">Pending</string>
-    <string name="accepted">Accepted</string>
-    <string name="done">Done</string>
-    <string name="select_all">Select All</string>
-    <string name="unselect_all">Unselect All</string>
-    <string name="resend_otp">Resend OTP</string>
-    <string name="didnt_get_otp">Didn\'t get the otp?</string>
+	<!--Buttons-->
+	<string name="cancel">Cancel</string>
+	<string name="create">Create</string>
+	<string name="store">Store</string>
+	<string name="user">User</string>
+	<string name="next">Next</string>
+	<string name="confirm">Confirm</string>
+	<string name="accept">Accept</string>
+	<string name="decline">Decline</string>
+	<string name="pending">Pending</string>
+	<string name="accepted">Accepted</string>
+	<string name="done">Done</string>
+	<string name="select_all">Select All</string>
+	<string name="unselect_all">Unselect All</string>
+	<string name="resend_otp">Resend OTP</string>
+	<string name="didnt_get_otp">Didn\'t get the otp?</string>
 
-    <!--Home Tab Data-->
-    <string name="update">Update</string>
+	<!--Home Tab Data-->
+	<string name="update">Update</string>
 
-    <!--Notification-->
-    <string name="notification">Notification</string>
+	<!--Notification-->
+	<string name="notification">Notification</string>
 
-    <!--Profile-->
-    <string name="change_passsword">Change Password</string>
-    <string name="profile_photos">Profile Photos</string>
-    <string name="choose_image_source">Choose Image Source.</string>
-    <string name="gallery">Gallery</string>
-    <string name="camera">Camera</string>
-    <string name="choose_image_video">Choose Image and Video Source.</string>
-    <string name="select_picture">Select Picture</string>
-    <string name="cropping_failed">Cropping failed</string>
-    <string name="verify">&#160;Verify&#160;&#160;</string>
-    <string name="verified">Verified</string>
-    <string name="otp">OTP Verification</string>
+	<!--Profile-->
+	<string name="change_passsword">Change Password</string>
+	<string name="profile_photos">Profile Photos</string>
+	<string name="choose_image_source">Choose Image Source.</string>
+	<string name="gallery">Gallery</string>
+	<string name="camera">Camera</string>
+	<string name="choose_image_video">Choose Image and Video Source.</string>
+	<string name="select_picture">Select Picture</string>
+	<string name="cropping_failed">Cropping failed</string>
+	<string name="verify">&#160;Verify&#160;&#160;</string>
+	<string name="verified">Verified</string>
+	<string name="otp">OTP Verification</string>
 
-    <!--Offer Page-->
-    <string name="offer_list">Offer List</string>
-    <string name="search_filter">Search &amp; Filter</string>
-    <string name="sort_by">Sort by</string>
-    <string name="category">Category</string>
-    <string name="price_range">Price Range</string>
-    <string name="search">Search</string>
-    <string name="reset">Reset</string>
-    <string name="search_results">Search Results</string>
+	<!--Offer Page-->
+	<string name="offer_list">Offer List</string>
+	<string name="search_filter">Search &amp; Filter</string>
+	<string name="sort_by">Sort by</string>
+	<string name="category">Category</string>
+	<string name="price_range">Price Range</string>
+	<string name="search">Search</string>
+	<string name="reset">Reset</string>
+	<string name="search_results">Search Results</string>
 
-    <string name="hint_search_msg">Search...</string>
-    <!--    <string name="hint_search_msg">Search Offer &amp; Brand...</string>
+	<string name="hint_search_msg">Search...</string>
+	<!--    <string name="hint_search_msg">Search Offer &amp; Brand...</string>
 -->
 
-    <string name="add_to_wishlist">Add to wishlist</string>
-    <string name="added_wishlist">Added in wishlist</string>
-    <string name="share_this_deal">Share this deal</string>
+	<string name="add_to_wishlist">Add to wishlist</string>
+	<string name="added_wishlist">Added in wishlist</string>
+	<string name="share_this_deal">Share this deal</string>
 
-    <!--Row Data-->
-    <string name="reaming">Reaming</string>
+	<!--Row Data-->
+	<string name="reaming">Reaming</string>
 
-    <!--Massage-->
-    <string name="server_not_response">Server Not Responding</string>
-    <string name="guest_alert">This feature only for user!</string>
-    <string name="guest_login_alert">Please login to use this feature!</string>
-    <string name="subscribe_alert">Please subscribe to be able to redeem offer!</string>
+	<!--Massage-->
+	<string name="server_not_response">Server Not Responding</string>
+	<string name="guest_alert">This feature only for user!</string>
+	<string name="guest_login_alert">Please login to use this feature!</string>
+	<string name="subscribe_alert">Please subscribe to be able to redeem offer!</string>
 
-    <string name="take_photo">Take Photo</string>
-    <string name="take_photo_or_video">Take Photo or Video</string>
-    <string name="required_email_or_phone">Email ID or Phone Number.</string>
-    <string name="wrong">Something went wrong, Please try again.</string>
-    <string name="password_matching">Password Not matching.</string>
-    <string name="all_required">All fields required.</string>
-    <string name="invalid_email">Enter valid email address.</string>
-    <string name="email_pass">Enter your email id and password.</string>
-    <string name="alert">Alert</string>
-    <string name="logout_message">Do you want to logout?</string>
+	<string name="take_photo">Take Photo</string>
+	<string name="take_photo_or_video">Take Photo or Video</string>
+	<string name="required_email_or_phone">Email ID or Phone Number.</string>
+	<string name="wrong">Something went wrong, Please try again.</string>
+	<string name="password_matching">Password Not matching.</string>
+	<string name="all_required">All fields required.</string>
+	<string name="invalid_email">Enter valid email address.</string>
+	<string name="email_pass">Enter your email id and password.</string>
+	<string name="alert">Alert</string>
+	<string name="logout_message">Do you want to logout?</string>
 
-    <string name="remove_favourite_message">Do you want to remove this item from list?</string>
-    <string name="yes">Yes</string>
-    <string name="no">No</string>
-    <string name="home_dialog">Choose Your Sign Up Type</string>
-    <string name="home_login_dialog">Choose Your Login Type</string>
-    <string name="cart_confirm">You Want Purchase this Product</string>
-    <string name="thanking_you">Thanking You</string>
-    <string name="thanking_you_msg">Your Order has been send your store account.\n Please follow your order setion.</string>
+	<string name="remove_favourite_message">Do you want to remove this item from list?</string>
+	<string name="yes">Yes</string>
+	<string name="no">No</string>
+	<string name="home_dialog">Choose Your Sign Up Type</string>
+	<string name="home_login_dialog">Choose Your Login Type</string>
+	<string name="cart_confirm">You Want Purchase this Product</string>
+	<string name="thanking_you">Thanking You</string>
+	<string name="thanking_you_msg">Your Order has been send your store account.\n Please follow your order setion.</string>
 
-    <string name="choose_country_language">Choose City and Language</string>
-    <string name="error_no_internet">Please check your internet connection or try again later</string>
+	<string name="choose_country_language">Choose City and Language</string>
+	<string name="error_no_internet">Please check your internet connection or try again later</string>
 
-    <!--login screen-->
-    <string name="hint_user_name">Username</string>
-    <string name="hint_password">Password</string>
-    <string name="hint_confirm_password">Confirm Password</string>
-    <string name="label_sign_up">Sign Up</string>
-    <string name="label_signin">Sign In</string>
-    <string name="label_register_now">Register Now</string>
-    <string name="label_later">Later</string>
-    <string name="label_submit">SUBMIT</string>
-    <string name="label_cancel">CANCEL</string>
+	<!--login screen-->
+	<string name="hint_user_name">Username</string>
+	<string name="hint_password">Password</string>
+	<string name="hint_confirm_password">Confirm Password</string>
+	<string name="label_sign_up">Sign Up</string>
+	<string name="label_signin">Sign In</string>
+	<string name="label_register_now">Register Now</string>
+	<string name="label_later">Later</string>
+	<string name="label_submit">SUBMIT</string>
+	<string name="label_cancel">CANCEL</string>
 
-    <string name="label_forgot_password">Forgot password?</string>
-    <string name="label_forgot_your_password">Forgot Your Password?</string>
-    <string name="label_no_account">Don\'t have an account yet?</string>
+	<string name="label_forgot_password">Forgot password?</string>
+	<string name="label_forgot_your_password">Forgot Your Password?</string>
+	<string name="label_no_account">Don\'t have an account yet?</string>
 
-    <string name="hint_old_password">Old Password</string>
-    <string name="hint_new_password">New Password</string>
+	<string name="hint_old_password">Old Password</string>
+	<string name="hint_new_password">New Password</string>
 
-    <!--    sign up screen  -->
-    <string name="hint_first_name">First Name</string>
-    <string name="hint_last_name">Last Name</string>
-    <string name="hint_email">Email</string>
-    <string name="hint_email_mobile">Email or Mobile</string>
-    <string name="hint_dob">DOB</string>
-    <string name="hint_city">City/Area</string>
-    <string name="hint_number">Phone Number</string>
-    <string name="hint_mobile">Mobile Number</string>
-    <string name="hint_nationality">Nationality</string>
-    <string name="hint_additional_information">Additional Information</string>
-    <string name="label_login_offer_msg">Complete your profile to access exciting offer in your city</string>
-    <string name="label_login_msg">Already have an account?</string>
-    <string name="label_offer_send">Send me offers and updates via email</string>
-    <string name="label_intro_msg">Speed up your shopping experience by registering with us</string>
+	<!--    sign up screen  -->
+	<string name="hint_first_name">First Name</string>
+	<string name="hint_last_name">Last Name</string>
+	<string name="hint_email">Email</string>
+	<string name="hint_email_mobile">Email or Mobile</string>
+	<string name="hint_dob">DOB</string>
+	<string name="hint_city">City/Area</string>
+	<string name="hint_number">Phone Number</string>
+	<string name="hint_mobile">Mobile Number</string>
+	<string name="hint_nationality">Nationality</string>
+	<string name="hint_additional_information">Additional Information</string>
+	<string name="label_login_offer_msg">Complete your profile to access exciting offer in your city</string>
+	<string name="label_login_msg">Already have an account?</string>
+	<string name="label_offer_send">Send me offers and updates via email</string>
+	<string name="label_intro_msg">Speed up your shopping experience by registering with us</string>
 
-    <string name="hint_dobn">Date of birth</string>
-    <string name="hint_job">Job title</string>
-    <string name="hint_info">Additional Information</string>
+	<string name="hint_dobn">Date of birth</string>
+	<string name="hint_job">Job title</string>
+	<string name="hint_info">Additional Information</string>
 
-    <!--Payment-->
-    <string name="enter_coupon_code">Enter Coupon Code</string>
-    <string name="apply">Apply</string>
+	<!--Payment-->
+	<string name="enter_coupon_code">Enter Coupon Code</string>
+	<string name="apply">Apply</string>
+	<string name="proceed_to_checkout">PROCEED TO CHECKOUT</string>
 
-    <string name="pay_now">Pay Now</string>
-    <string name="billing_address">Billing Address</string>
-    <string name="country">Country</string>
-    <string name="zipcode">Zipcode</string>
-    <string name="city">City</string>
-    <string name="state">State</string>
+	<string name="pay_now">Pay Now</string>
+	<string name="billing_address">Billing Address</string>
+	<string name="country">Country</string>
+	<string name="zipcode">Zipcode</string>
+	<string name="city">City</string>
+	<string name="state">State</string>
 
-    <string name="error_coupon_code">Enter Coupon Code</string>
+	<string name="error_coupon_code">Enter Coupon Code</string>
 
 
-    <!--Become Partner-->
-    <string name="grow_your_business">Grow your business with MAKSAB</string>
-    <string name="grow_your_business_d">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor
+	<!--Become Partner-->
+	<string name="grow_your_business">Grow your business with MAKSAB</string>
+	<string name="grow_your_business_d">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor
         incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam
     </string>
 
 
-    <string name="with_maksab_h1">Attract new customers</string>
-    <string name="with_maksab_d1">Tap into our base of over 4 million subscribers. Put your business on a platform that
+	<string name="with_maksab_h1">Attract new customers</string>
+	<string name="with_maksab_d1">Tap into our base of over 4 million subscribers. Put your business on a platform that
         gets millions of visits per month.
     </string>
 
-    <string name="with_maksab_h2">Get valuable marketing exposure</string>
-    <string name="with_maksab_d2">Ride on Fave’t regular promotions, email marketing, social media, brand partnerships and
+	<string name="with_maksab_h2">Get valuable marketing exposure</string>
+	<string name="with_maksab_d2">Ride on Fave’t regular promotions, email marketing, social media, brand partnerships and
         more
     </string>
 
-    <string name="with_maksab_h3">Get free business tools to help you understand your customers better</string>
-    <string name="with_maksab_d3">Tap into our base of over 4 million subscribers. Put your business on a platform that
+	<string name="with_maksab_h3">Get free business tools to help you understand your customers better</string>
+	<string name="with_maksab_d3">Tap into our base of over 4 million subscribers. Put your business on a platform that
         gets millions of visits per month.Benefit from Fave’s proprietary business tools for partners. Study purchase
         patterns, review your earnings and optimise your revenue with an easy-to-use dashboard
     </string>
 
-    <string name="there_is_more">Wait, there is more...</string>
+	<string name="there_is_more">Wait, there is more...</string>
 
-    <string name="there_is_h1">Dedicated partner support</string>
-    <string name="there_is_d1">Work with a team of Partner Managers that are always available to help you with processes
+	<string name="there_is_h1">Dedicated partner support</string>
+	<string name="there_is_d1">Work with a team of Partner Managers that are always available to help you with processes
         and optimisation
     </string>
 
-    <string name="there_is_d2">Get free, high-quality photos taken by a professional photographer hired by us. Want to use
+	<string name="there_is_d2">Get free, high-quality photos taken by a professional photographer hired by us. Want to use
         these images in your own promotional materials? Simply submit a request to us!
     </string>
 
-    <string name="there_is_h3">Transparent commission</string>
-    <string name="there_is_d3">No upfront fee or setup costs required, listing is absolutely free! We only take a fair,
+	<string name="there_is_h3">Transparent commission</string>
+	<string name="there_is_d3">No upfront fee or setup costs required, listing is absolutely free! We only take a fair,
         flat-rate commission only when a purchase is made
     </string>
 
-    <string name="started_maksab">Become a partner. Get started on MAKSAB now!</string>
+	<string name="started_maksab">Become a partner. Get started on MAKSAB now!</string>
 
-    <string name="get_in_touch_now">Get in touch now</string>
+	<string name="get_in_touch_now">Get in touch now</string>
 
-    <string name="comments">Comments</string>
+	<string name="comments">Comments</string>
 
-    <string name="who_we_are">Who we are?</string>
-    <string name="british1">BRITISH</string>
-    <string name="arabic1">ARABIC</string>
-    <string name="turkey1">TURKEY</string>
-    <string name="with_maksab">With MAKSAB, you can</string>
+	<string name="who_we_are">Who we are?</string>
+	<string name="british1">BRITISH</string>
+	<string name="arabic1">ARABIC</string>
+	<string name="turkey1">TURKEY</string>
+	<string name="with_maksab">With MAKSAB, you can</string>
 
-    <!--Error Massage-->
-    <string name="error_f_name">Enter Name</string>
-    <string name="error_l_name">Enter Last Name</string>
-    <string name="error_pass">Enter Password</string>
-    <string name="error_phone">Enter Phone Number</string>
-    <string name="error_email">Enter Email Id</string>
-    <string name="error_email_or_mobile">Enter Email or Mobile</string>
-    <string name="error_subject">Enter Subject</string>
-    <string name="error_massage">Enter Message</string>
+	<!--Error Massage-->
+	<string name="error_f_name">Enter Name</string>
+	<string name="error_l_name">Enter Last Name</string>
+	<string name="error_pass">Enter Password</string>
+	<string name="error_phone">Enter Phone Number</string>
+	<string name="error_email">Enter Email Id</string>
+	<string name="error_email_or_mobile">Enter Email or Mobile</string>
+	<string name="error_subject">Enter Subject</string>
+	<string name="error_massage">Enter Message</string>
 
-    <string name="hint_note">Write your size and note here</string>
-    <string name="hint_note_kitchen">Write Your Delivery time and notes here</string>
-    <string name="hint_address">Address</string>
-    <string name="hint_price">Price</string>
-    <string name="name">Name</string>
-    <string name="hint_name">Name(Optional)</string>
-    <string name="enable_gps_internet">Please Enable GPS and Internet</string>
+	<string name="hint_note">Write your size and note here</string>
+	<string name="hint_note_kitchen">Write Your Delivery time and notes here</string>
+	<string name="hint_address">Address</string>
+	<string name="hint_price">Price</string>
+	<string name="name">Name</string>
+	<string name="hint_name">Name(Optional)</string>
+	<string name="enable_gps_internet">Please Enable GPS and Internet</string>
 
-    <!--    Home    -->
-    <string name="near_by">Nearby</string>
-    <string name="products">Products</string>
-    <string name="me">Me</string>
-    <string name="change_profile">Change Profile Photo</string>
+	<!--    Home    -->
+	<string name="near_by">Nearby</string>
+	<string name="products">Products</string>
+	<string name="me">Me</string>
+	<string name="change_profile">Change Profile Photo</string>
 
-    <string name="view_all">View All</string>
-    <string name="your_location">Your Location</string>
+	<string name="view_all">View All</string>
+	<string name="your_location">Your Location</string>
 
-    <string name="vat_inclusive">VAT Inclusive</string>
-    <string name="subscribed">Subscribed</string>
-    <string name="already_have_higher_package"> you already have higher package you can\'t downgrade</string>
-    <string name="you_want_to_upgrade">If you want to upgrade you will loss your current subscription package</string>
-    <string name="ok">Ok</string>
+	<string name="vat_inclusive">VAT Inclusive</string>
+	<string name="subscribed">Subscribed</string>
+	<string name="already_have_higher_package"> you already have higher package you can\'t downgrade</string>
+	<string name="you_want_to_upgrade">If you want to upgrade you will loss your current subscription package</string>
+	<string name="ok">Ok</string>
 
-    <!--    Tabs -->
-    <string name="offer_wishlist">Offer wishlist</string>
-    <string name="partners_wishlist">Partners wishlist</string>
+	<!--    Tabs -->
+	<string name="offer_wishlist">Offer wishlist</string>
+	<string name="partners_wishlist">Partners wishlist</string>
 
-    <!--Offer-->
-    <string name="offer_detail">Offer detail</string>
-    <string name="grid">Grid</string>
-    <string name="list">List</string>
-    <string name="restaurant_food">Restaurant and Food</string>
-    <string name="no_data_found">No Data Found</string>
-    <string name="available_facilities">Available facilities</string>
-    <string name="redeem_offer">Redeem offer from Today until</string>
-    <string name="offer">Offer</string>
-    <string name="favorite">Favorite</string>
-    <string name="other_offer_for">Other offer for</string>
-    <string name="bought">Bought</string>
-    <string name="send_as_gift">Send as Gift</string>
-    <string name="offer_capital">OFFERS</string>
-    <string name="off">Off</string>
-    <string name="redeem_now">Redeem Now</string>
-    <string name="call">Call</string>
-    <string name="congratulation">Congratulation!</string>
-    <string name="offer_redeemed">Your offer has been redeemed</string>
+	<!--Offer-->
+	<string name="offer_detail">Offer detail</string>
+	<string name="grid">Grid</string>
+	<string name="list">List</string>
+	<string name="restaurant_food">Restaurant and Food</string>
+	<string name="no_data_found">No Data Found</string>
+	<string name="available_facilities">Available facilities</string>
+	<string name="redeem_offer">Redeem offer from Today until</string>
+	<string name="offer">Offer</string>
+	<string name="favorite">Favorite</string>
+	<string name="other_offer_for">Other offer for</string>
+	<string name="bought">Bought</string>
+	<string name="send_as_gift">Send as Gift</string>
+	<string name="offer_capital">OFFERS</string>
+	<string name="off">Off</string>
+	<string name="redeem_now">Redeem Now</string>
+	<string name="call">Call</string>
+	<string name="congratulation">Congratulation!</string>
+	<string name="offer_redeemed">Your offer has been redeemed</string>
 
-    <string name="secrete_code">Please Enter Your Secrete Code</string>
+	<string name="secrete_code">Please Enter Your Secrete Code</string>
 
-    <!--Brand-->
-    <string name="brand_detail">Partner Details</string>
+	<!--Brand-->
+	<string name="brand_detail">Partner Details</string>
 
-    <string name="view_menu">View Menu</string>
-    <string name="vendor_location">Vendor Location</string>
-    <string name="contact">Contact</string>
-    <string name="location">Location</string>
-    <string name="offers_by">Offers by</string>
+	<string name="view_menu">View Menu</string>
+	<string name="vendor_location">Vendor Location</string>
+	<string name="contact">Contact</string>
+	<string name="location">Location</string>
+	<string name="offers_by">Offers by</string>
 
-    <string name="offers">Offers</string>
+	<string name="offers">Offers</string>
 
 
-    <string name="redeem_offer_at">Redeem Offer At</string>
-    <string name="redeem_deal_at">Redeem Offer At</string>
+	<string name="redeem_offer_at">Redeem Offer At</string>
+	<string name="redeem_deal_at">Redeem Offer At</string>
 
-    <string name="what_you_get">What You Get</string>
-    <string name="redemption_instructions">Redemption Instructions</string>
-    <string name="what_customer_like">What Customer Like</string>
+	<string name="what_you_get">What You Get</string>
+	<string name="redemption_instructions">Redemption Instructions</string>
+	<string name="what_customer_like">What Customer Like</string>
 
-    <!--    Product List -->
-    <string name="remaining">Remaining</string>
-    <string name="line">Not crossed <strike>crossed</strike>
+	<!--    Product List -->
+	<string name="remaining">Remaining</string>
+	<string name="line">Not crossed <strike>crossed</strike>
     </string>
-    <string name="filter">Filter</string>
+	<string name="filter">Filter</string>
 
-    <!--    Progress    -->
-    <string name="loading">Loading</string>
+	<!--    Progress    -->
+	<string name="loading">Loading</string>
 
-    <!--delivery map -->
-    <string name="delivery_map_title">Delivery Map</string>
-    <string name="step_first">Waiting for fazaa to accept the order</string>
-    <string name="step_second">on the store</string>
-    <string name="step_third">in the store</string>
-    <string name="step_fourth">Your order is on the way to you.</string>
-    <string name="call_driver">Call Driver</string>
-    <string name="message_driver">Message Driver</string>
-    <string name="add_tip">Add Tip</string>
+	<!--delivery map -->
+	<string name="delivery_map_title">Delivery Map</string>
+	<string name="step_first">Waiting for fazaa to accept the order</string>
+	<string name="step_second">on the store</string>
+	<string name="step_third">in the store</string>
+	<string name="step_fourth">Your order is on the way to you.</string>
+	<string name="call_driver">Call Driver</string>
+	<string name="message_driver">Message Driver</string>
+	<string name="add_tip">Add Tip</string>
 
-    <!--    pickup map  -->
-    <string name="cancel_order">Cancel Order</string>
-    <string name="view_order_summary">View Order Summary</string>
-    <string name="pickup_first_step">Your order is received and getting prepared.</string>
-    <string name="pickup_second_step">Your order is ready to be pickedup.</string>
+	<!--    pickup map  -->
+	<string name="cancel_order">Cancel Order</string>
+	<string name="view_order_summary">View Order Summary</string>
+	<string name="pickup_first_step">Your order is received and getting prepared.</string>
+	<string name="pickup_second_step">Your order is ready to be pickedup.</string>
 
-    <!--    checkout -->
-    <string name="chekcout_title">Checkout</string>
-    <string name="select_your_address">Select your Address</string>
-    <string name="add_address">Add new address</string>
-    <string name="payments">PAYMENTS:</string>
-    <string name="cash">Cash</string>
-    <string name="credit_card">Credit Card</string>
+	<!--    checkout -->
+	<string name="chekcout_title">Checkout</string>
+	<string name="select_your_address">Select your Address</string>
+	<string name="add_address">Add new address</string>
+	<string name="payments">PAYMENTS:</string>
+	<string name="cash">Cash</string>
+	<string name="credit_card">Credit Card</string>
 
-    <string name="mada_creditcard">MADA / Credit Card</string>
-
-
-    <string name="card_number">Card Number</string>
-    <string name="expiration_date">Expiration Date</string>
-    <string name="security_code">Security Code</string>
-    <string name="confirm_order">Confirm Order</string>
-
-    <string name="details">Details :</string>
-    <string name="price">Price :</string>
-    <string name="buy_now">Buy Now</string>
-    <string name="add_to_cart">Add to Cart</string>
-    <string name="request_product">Request Product</string>
-    <string name="request_information">Request Information</string>
-
-    <!--    My Account  -->
-    <string name="verify_email">Verify Email</string>
-    <string name="deliveries">Deliveries</string>
-    <string name="edit_profile">Edit Profile</string>
-    <string name="profile">profile</string>
-    <string name="my_order">MY ORDER</string>
-    <string name="wishlist_my">WISHLIST</string>
-    <string name="my_account">My Account</string>
-
-    <!--    My Category     -->
-    <string name="delete">Delete</string>
-    <string name="save_for_later">Save for later</string>
-
-    <!--    My Cart    -->
-    <string name="checkout">Checkout</string>
-    <string name="my_cart">My Cart</string>
-    <string name="no_item_cart">No Item in cart.</string>
-
-    <!--Favorites-->
-    <string name="no_photo_available">No Photo Available</string>
-    <string name="data">Get One Month Free From Fitness Time Pro, When You Subscribe For Three Months</string>
-    <string name="my_past_purchase">My Past Purchase</string>
-    <string name="total_purchase">Total purchases</string>
-    <string name="redeme_offers">Redeemed offers</string>
-    <string name="total_savings">Total saving</string>
-    <string name="my_upcoming_purchase">My Upcoming Purchase</string>
-    <string name="points_rewards">Points &amp; Rewards</string>
-    <string name="subscription">Subscription</string>
-    <string name="gift_history">Gift History</string>
-    <string name="received_gifts">Received Gifts</string>
-    <string name="sent_gifts">Sent Gifts</string>
-
-    <string name="my_gifts">My Gifts</string>
-
-    <string name="redeemed">Redeemed</string>
-    <string name="redeem">Redeem</string>
+	<string name="mada_creditcard">MADA / Credit Card</string>
 
 
-    <string name="your_maksab_credit">Your MAKSAB credit balance</string>
-    <string name="maksab_credit_wll_be_deducted">MAKSAB Credit will be deducted on your \n next purchase</string>
-    <string name="invite_friends">Invite Friends</string>
-    <string name="earn_more">Earn More Fave credits by inviting your friends \n to Fave</string>
-    <string name="subscription_details">Subscribtion Details</string>
-    <string name="subscription_id">Subscription Id</string>
-    <string name="subscription_plan">Subscription plan name</string>
-    <string name="subscription_start_date">Subscription Starting date</string>
-    <string name="subscription_expiry">Subscription expiry date</string>
-    <string name="value_shrip_meal">Value Shrimp Meal</string>
+	<string name="card_number">Card Number</string>
+	<string name="expiration_date">Expiration Date</string>
+	<string name="security_code">Security Code</string>
+	<string name="confirm_order">Confirm Order</string>
 
-    <string name="rate_it">Rate It</string>
-    <string name="write_review">Write review</string>
+	<string name="details">Details :</string>
+	<string name="price">Price :</string>
+	<string name="buy_now">Buy Now</string>
+	<string name="add_to_cart">Add to Cart</string>
+	<string name="request_product">Request Product</string>
+	<string name="request_information">Request Information</string>
 
-    <string name="add_member">Add Member</string>
-    <string name="family_tree">Family Tree</string>
-    <string name="activate">Activate</string>
-    <string name="deactivate">Deactivate</string>
+	<!--    My Account  -->
+	<string name="verify_email">Verify Email</string>
+	<string name="deliveries">Deliveries</string>
+	<string name="edit_profile">Edit Profile</string>
+	<string name="profile">profile</string>
+	<string name="my_order">MY ORDER</string>
+	<string name="wishlist_my">WISHLIST</string>
+	<string name="my_account">My Account</string>
 
-    <string name="my_family">My Family</string>
-    <string name="enter_email">Enter email address</string>
-    <string name="add">Add</string>
-    <string name="family_member">Multiple Device Setting</string>
+	<!--    My Category     -->
+	<string name="delete">Delete</string>
+	<string name="save_for_later">Save for later</string>
 
-    <string name="company_name">Company Name</string>
-    <string name="website">Website</string>
+	<!--    My Cart    -->
+	<string name="checkout">Checkout</string>
+	<string name="my_cart">My Cart</string>
+	<string name="no_item_cart">No Item in cart.</string>
 
-    <string-array name="country_list">
-        <item>ARABIC</item>
-        <item>BRITISH</item>
-        <item>TURKEY</item>
-    </string-array>
+	<!--Favorites-->
+	<string name="no_photo_available">No Photo Available</string>
+	<string name="data">Get One Month Free From Fitness Time Pro, When You Subscribe For Three Months</string>
+	<string name="my_past_purchase">My Past Purchase</string>
+	<string name="total_purchase">Total purchases</string>
+	<string name="redeme_offers">Redeemed offers</string>
+	<string name="total_savings">Total saving</string>
+	<string name="my_upcoming_purchase">My Upcoming Purchase</string>
+	<string name="points_rewards">Points &amp; Rewards</string>
+	<string name="subscription">Subscription</string>
+	<string name="gift_history">Gift History</string>
+	<string name="received_gifts">Received Gifts</string>
+	<string name="sent_gifts">Sent Gifts</string>
 
-    <string name="you_have_saved">You have saved</string>
+	<string name="my_gifts">My Gifts</string>
 
-    <string name="redeemption_reference_number">Redeemption Reference Number</string>
-
-    <string name="in">in</string>
-    <string name="about">about</string>
-    <string name="other_deal">Other Deal For Wendy\'s</string>
-
-    <string name="show_all">Show all redeemable location</string>
-    <string name="show_less">Show less</string>
-
-    <string name="please_ask">Please ask</string>
-    <string name="enter_his_secret_code">to enter his secret code</string>
-    <string name="remaining_gift_massage">You don\'t have any remaining gift</string>
-
-    <string name="gift_msg1">You\'ve send</string>
-    <string name="gift_msg2">already, so you can send a further</string>
-    <string name="enter">Enter</string>
-
-    <string name="please_select_language">Please select language</string>
-
-    <string name="hint_otp">Enter OTP</string>
-
-    <string name="verification_code">Verification Code</string>
-
-    <string name="verification_code_msg">Pleaase type the verification code send\n to</string>
-    <string name="referral_code">Referral Code</string>
-    <string name="referral_code_optional">Referral Code (Optional)</string>
+	<string name="redeemed">Redeemed</string>
+	<string name="redeem">Redeem</string>
 
 
-    <string name="expiry_year">Expiry year</string>
-    <string name="expiry_month">Expiry month</string>
-    <string name="card_info">card info</string>
-    <string name="card_holder">Name on card </string>
-    <string name="hint_card_number">16-digit card number</string>
+	<string name="your_maksab_credit">Your MAKSAB credit balance</string>
+	<string name="maksab_credit_wll_be_deducted">MAKSAB Credit will be deducted on your \n next purchase</string>
+	<string name="invite_friends">Invite Friends</string>
+	<string name="earn_more">Earn More Fave credits by inviting your friends \n to Fave</string>
+	<string name="subscription_details">Subscribtion Details</string>
+	<string name="subscription_id">Subscription Id</string>
+	<string name="subscription_plan">Subscription plan name</string>
+	<string name="subscription_start_date">Subscription Starting date</string>
+	<string name="subscription_expiry">Subscription expiry date</string>
+	<string name="value_shrip_meal">Value Shrimp Meal</string>
+
+	<string name="rate_it">Rate It</string>
+	<string name="write_review">Write review</string>
+
+	<string name="add_member">Add Member</string>
+	<string name="family_tree">Family Tree</string>
+	<string name="activate">Activate</string>
+	<string name="deactivate">Deactivate</string>
+
+	<string name="my_family">My Family</string>
+	<string name="enter_email">Enter email address</string>
+	<string name="add">Add</string>
+	<string name="family_member">Multiple Device Setting</string>
+
+	<string name="company_name">Company Name</string>
+	<string name="website">Website</string>
+
+	<string-array name="country_list">
+		<item>ARABIC</item>
+		<item>BRITISH</item>
+		<item>TURKEY</item>
+	</string-array>
+
+	<string name="you_have_saved">You have saved</string>
+
+	<string name="redeemption_reference_number">Redeemption Reference Number</string>
+
+	<string name="in">in</string>
+	<string name="about">about</string>
+	<string name="other_deal">Other Deal For Wendy\'s</string>
+
+	<string name="show_all">Show all redeemable location</string>
+	<string name="show_less">Show less</string>
+
+	<string name="please_ask">Please ask</string>
+	<string name="enter_his_secret_code">to enter his secret code</string>
+	<string name="remaining_gift_massage">You don\'t have any remaining gift</string>
+
+	<string name="gift_msg1">You\'ve send</string>
+	<string name="gift_msg2">already, so you can send a further</string>
+	<string name="enter">Enter</string>
+
+	<string name="please_select_language">Please select language</string>
+
+	<string name="hint_otp">Enter OTP</string>
+
+	<string name="verification_code">Verification Code</string>
+
+	<string name="verification_code_msg">Pleaase type the verification code send\n to</string>
+	<string name="referral_code">Referral Code</string>
+	<string name="referral_code_optional">Referral Code (Optional)</string>
 
 
-    <string name="title_action_reset">Reset</string>
+	<string name="expiry_year">Expiry year</string>
+	<string name="expiry_month">Expiry month</string>
+	<string name="card_info">card info</string>
+	<string name="card_holder">Name on card </string>
+	<string name="hint_card_number">16-digit card number</string>
 
-    <string name="label_expired_date">MM/YY</string>
-    <string name="label_card_holder">CARD HOLDER</string>
-    <string name="label_cvv_code">CVV</string>
+
+	<string name="title_action_reset">Reset</string>
+
+	<string name="label_expired_date">MM/YY</string>
+	<string name="label_card_holder">CARD HOLDER</string>
+	<string name="label_cvv_code">CVV</string>
 
 
+	<string name="label_card_number">Card number</string>
+	<string name="hint_expired_date">EXPIRED DATE</string>
+	<string name="hint_card_holder">CARD HOLDER</string>
+	<string name="hint_cvv_code">CVV CODE</string>
 
-    <string name="label_card_number">Card number</string>
-    <string name="hint_expired_date">EXPIRED DATE</string>
-    <string name="hint_card_holder">CARD HOLDER</string>
-    <string name="hint_cvv_code">CVV CODE</string>
+	<string name="label_secure_submission">Secure Submission</string>
 
-    <string name="label_secure_submission">Secure Submission</string>
-
-    <string name="error_year">Enter valid year</string>
-
-    <string name="grand_total">GRAND TOTAL</string>
-
+	<string name="error_year">Enter valid year</string>
 
 
 </resources>

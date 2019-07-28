@@ -12,13 +12,13 @@ public class PackagesResponse {
     public String responseCode = "";
     public String message = "";
     @SerializedName("plans")
-    private ArrayList<PkgPlans> plansArrayList;
+    private ArrayList<PackagePlan> plansArrayList;
 
-    public ArrayList<PkgPlans> getPlansArrayList() {
+    public ArrayList<PackagePlan> getPlansArrayList() {
         return plansArrayList;
     }
 
-    public void setPlansArrayList(ArrayList<PkgPlans> plansArrayList) {
+    public void setPlansArrayList(ArrayList<PackagePlan> plansArrayList) {
         this.plansArrayList = plansArrayList;
     }
 
@@ -38,7 +38,7 @@ public class PackagesResponse {
         this.message = message;
     }
 
-    public class PkgPlans {
+    public class PackagePlan {
         @SerializedName("plan_id")
         public String planId;
         @SerializedName("plan_name")
@@ -136,6 +136,10 @@ public class PackagesResponse {
 
         public void setFacilitysArrayList(ArrayList<Facilitys> facilitysArrayList) {
             this.facilitysArrayList = facilitysArrayList;
+        }
+
+        public boolean isFree() {
+            return getPlanStatus().equals("1") || getAfterAmount().equals("0");
         }
     }
 
