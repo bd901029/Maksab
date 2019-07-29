@@ -32,6 +32,7 @@ public class FreePackagePlanActivity extends AppCompatActivity {
 
 	public static PackagesResponse.PackagePlan packagePlan = null;
 	public static String currency = "", amount = "";
+	String couponCodeId = "";
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -39,6 +40,8 @@ public class FreePackagePlanActivity extends AppCompatActivity {
 		setContentView(R.layout.activity_free_package_plan);
 
 		initUI();
+
+
 	}
 
 	@Override
@@ -61,7 +64,7 @@ public class FreePackagePlanActivity extends AppCompatActivity {
 
 		int width = (PreferenceConnector.readInteger(this, PreferenceConnector.DEVICE_WIDTH,150)/2);
 		ViewGroup.LayoutParams params = binder.headerView.getLayoutParams();
-		params.height =width-12;
+		params.height = width - 12;
 		// params.width = width;
 		binder.headerView.setLayoutParams(params);
 
@@ -88,6 +91,10 @@ public class FreePackagePlanActivity extends AppCompatActivity {
 	}
 
 	public void applyCouponCode() {
+		if (packagePlan.isFreeAmount()) {
+			return;
+		}
+
 		String couponCode = binder.couponCodeView.getText().toString();
 		if (couponCode.isEmpty()) {
 			binder.couponCodeView.setError(getText(R.string.error_coupon_code));
@@ -135,7 +142,7 @@ public class FreePackagePlanActivity extends AppCompatActivity {
 				Utility.showToast(FreePackagePlanActivity.this, couponCodeResponse.getMessage());
 				finish();
 			} else {
-				String couponCodeId = couponCodeResponse.getCouponCodeId();
+				couponCodeId = couponCodeResponse.getCouponCodeId();
 				// String sDiscount = couponCodeResponse.getDiscountedPrice().replaceAll("[^0-9]", "");
 				// sPayTotal = (Double.parseDouble(sAmount) - Double.parseDouble(sDiscount)) + "";
 				amount = couponCodeResponse.getDiscountedPrice();

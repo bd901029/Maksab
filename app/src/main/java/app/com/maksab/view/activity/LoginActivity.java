@@ -94,6 +94,7 @@ public class LoginActivity extends AppCompatActivity {
 			loginModel.setLanguage("en");
 
 			loginModel.setFcmToken(deviceToken);
+//			loginModel.setFcmToken(null);
 
 			String IMEI = Build.SERIAL;
 			loginModel.setIEMINumber(IMEI);
@@ -134,11 +135,15 @@ public class LoginActivity extends AppCompatActivity {
 				} else {
 					Utility.showToast(LoginActivity.this, loginResponse.getErrorMessage());
 				}
-			}else if (loginResponse.getResponseCode().equals(Api.SUCCESS)) {
+			} else if (loginResponse.getResponseCode().equals(Api.SUCCESS)) {
 				saveDetails(loginResponse);
 				startActivity(new Intent(LoginActivity.this, HomeActivity.class));
 				finish();
-			}else Utility.showToast(LoginActivity.this, loginResponse.getMessage());
+			} else {
+				Utility.showToast(LoginActivity.this, loginResponse.getMessage());
+			}
+		} else {
+			Helper.showErrorToast(this, getString(R.string.wrong));
 		}
 	}
 
@@ -153,12 +158,9 @@ public class LoginActivity extends AppCompatActivity {
 		PreferenceConnector.writeBoolean(LoginActivity.this, PreferenceConnector.IS_LOGIN, true);
 		PreferenceConnector.writeString(LoginActivity.this, PreferenceConnector.CITY, loginResponse.getCityId());
 		PreferenceConnector.writeString(LoginActivity.this, PreferenceConnector.USER_NAME, loginResponse.getUserName());
-		PreferenceConnector.writeString(LoginActivity.this, PreferenceConnector.USER_PIC,
-				loginResponse.getProfilePic());
-		PreferenceConnector.writeString(LoginActivity.this, PreferenceConnector.IS_MEMBER,
-				loginResponse.getIsMember());
-		PreferenceConnector.writeString(LoginActivity.this, PreferenceConnector.MAX_DIVICE_COUNT,
-				loginResponse.getMaxDeviceCount());
+		PreferenceConnector.writeString(LoginActivity.this, PreferenceConnector.USER_PIC, loginResponse.getProfilePic());
+		PreferenceConnector.writeString(LoginActivity.this, PreferenceConnector.IS_MEMBER, loginResponse.getIsMember());
+		PreferenceConnector.writeString(LoginActivity.this, PreferenceConnector.MAX_DIVICE_COUNT, loginResponse.getMaxDeviceCount());
 	}
 
 	/**

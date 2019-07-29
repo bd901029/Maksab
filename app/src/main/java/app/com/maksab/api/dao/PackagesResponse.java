@@ -141,6 +141,10 @@ public class PackagesResponse {
         public boolean isFree() {
             return getPlanStatus().equals("1") || getAfterAmount().equals("0");
         }
+
+        public boolean isFreeAmount() {
+            return getPlanStatus().equals("1") || getAfterAmount().equals("Free");
+        }
     }
 
     public class Facilitys {
