@@ -441,8 +441,7 @@ public class StoreFragment extends Fragment implements BaseSliderView.OnSliderCl
 
 			//add your extra information
 			textSliderView.bundle(new Bundle());
-			textSliderView.getBundle()
-					.putString("extra", name);
+			textSliderView.getBundle().putString("extra", name);
 			//textSliderView.getDescription().
            /* try {
             } catch (Exception e) {
@@ -510,8 +509,7 @@ public class StoreFragment extends Fragment implements BaseSliderView.OnSliderCl
 	}
 
 	public void onClickFoodDrink() {
-		((HomeActivity) getActivity()).addFragment(OfferListFragment.newInstance("1"), "CategoryListFragment",
-				false);
+		((HomeActivity) getActivity()).addFragment(OfferListFragment.newInstance("1"), "CategoryListFragment", false);
 	}
 
 	@Override

@@ -184,7 +184,7 @@
 							android:fontFamily="@string/bold"
 							android:textAlignment="center"
 							android:textColor="@color/black"
-							android:text="@{model.beforeAmount}"/>
+							android:text="@{model.afterAmount}"/>
 
 				</LinearLayout>
 

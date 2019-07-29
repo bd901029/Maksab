@@ -40,8 +40,6 @@ public class FreePackagePlanActivity extends AppCompatActivity {
 		setContentView(R.layout.activity_free_package_plan);
 
 		initUI();
-
-
 	}
 
 	@Override
@@ -61,6 +59,10 @@ public class FreePackagePlanActivity extends AppCompatActivity {
 		}
 
 		binder.setModel(packagePlan);
+
+		if (packagePlan.isFree()) {
+			binder.afterAmount.setText("Free");
+		}
 
 		int width = (PreferenceConnector.readInteger(this, PreferenceConnector.DEVICE_WIDTH,150)/2);
 		ViewGroup.LayoutParams params = binder.headerView.getLayoutParams();

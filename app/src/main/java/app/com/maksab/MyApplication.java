@@ -4,6 +4,8 @@ import android.app.Application;
 import android.content.Context;
 import android.support.multidex.MultiDex;
 import android.support.multidex.MultiDexApplication;
+import android.util.Log;
+import app.com.maksab.util.Utility;
 
 public class MyApplication extends MultiDexApplication {
 
@@ -16,6 +18,8 @@ public class MyApplication extends MultiDexApplication {
 	public void onCreate() {
 		sharedInstance = this;
 		super.onCreate();
+
+		Log.i("dragon", "Device Token: " + Utility.getDeviceToken());
 	}
 
 	@Override

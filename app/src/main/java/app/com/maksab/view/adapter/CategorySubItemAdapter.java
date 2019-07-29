@@ -23,6 +23,7 @@ import app.com.maksab.util.PreferenceConnector;
 import app.com.maksab.util.ProgressDialog;
 import app.com.maksab.util.Utility;
 import app.com.maksab.view.viewmodel.UserOfferIdModel;
+import com.squareup.picasso.Picasso;
 import retrofit2.Call;
 import retrofit2.Callback;
 
@@ -48,6 +49,8 @@ public class CategorySubItemAdapter extends RecyclerView.Adapter<CategorySubItem
 	public void onBindViewHolder(final ViewHolder holder, final int position) {
 		holder.rowHomeBinding.setAdapter(this);
 		holder.rowHomeBinding.setModel(offers.get(position));
+
+		Picasso.with(context).load(offers.get(position).image).into(holder.rowHomeBinding.image);
 
 		if (offers.get(position).reaming.equalsIgnoreCase("0")|| offers.get(position)
 				.reaming.equalsIgnoreCase("Unlimited")){

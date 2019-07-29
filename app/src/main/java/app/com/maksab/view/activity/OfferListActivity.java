@@ -96,7 +96,7 @@ public class OfferListActivity extends AppCompatActivity {
 			activityBinding.gridText.setTextColor(getResources().getColor(R.color.colorAccent));
 			activityBinding.listImg.setImageResource(R.drawable.list3x);
 			activityBinding.listText.setTextColor(getResources().getColor(R.color.gray_dark));
-		}else {
+		} else {
 			activityBinding.gridImg.setImageResource(R.drawable.gridr3x);
 			activityBinding.gridText.setTextColor(getResources().getColor(R.color.gray_dark));
 			activityBinding.listImg.setImageResource(R.drawable.lis_hovert3x);
@@ -236,7 +236,7 @@ public class OfferListActivity extends AppCompatActivity {
 			if (offerListResponse.getResponseCode().equals(Api.SUCCESS)) {
 				if (offerListResponse.getOfferList() != null && offerListResponse.getOfferList().size() != 0) {
 					activityBinding.recyclerViewOffer.setVisibility(View.VISIBLE);
-					setRecyclerViewOfferList(offerListResponse.getOfferList());
+					updateOfferList(offerListResponse.getOfferList());
 				} else {
 					activityBinding.recyclerViewOffer.setVisibility(View.GONE);
 					Utility.showToast(OfferListActivity.this, getString(R.string.no_data_found));
@@ -250,7 +250,7 @@ public class OfferListActivity extends AppCompatActivity {
 	/**
 	 * Set recycler view Adapter
 	 */
-	private void setRecyclerViewOfferList(ArrayList<OfferListResponse.OfferList> myArrayList) {
+	private void updateOfferList(ArrayList<OfferListResponse.OfferList> myArrayList) {
 		OnItemClickListener onItemClickListener = new OnItemClickListener() {
 			@Override
 			public void onClick(int position, Object obj) {
