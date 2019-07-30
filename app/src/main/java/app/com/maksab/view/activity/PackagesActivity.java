@@ -128,43 +128,12 @@ public class PackagesActivity extends AppCompatActivity {
 					sPlanId = packagePlan.planId;
 					sPlanAmount = packagePlan.afterAmount;
 
-					if (packagePlan.isFree()) {
-						FreePackagePlanActivity.packagePlan = packagePlan;
-						FreePackagePlanActivity.currency = sPlanAmount.replaceAll("[^A-Za-z]+", "");
-						FreePackagePlanActivity.amount = sPlanAmount.replaceAll("[^0-9]", "");
-						Intent intent = new Intent(PackagesActivity.this, FreePackagePlanActivity.class);
-						startActivityForResult(intent, 1);
-						return;
-					}
-
-					String planStatus = packagePlan.getPlanStatus();
-					switch (planStatus) {
-						case "0":
-							//showPopupUpgradePackage();  startActivity(new Intent(PaymentActivity.this, SubmitCreditCardActivity.class));
-							Intent intent = new Intent(PackagesActivity.this, PaymentActivity.class);
-							intent.putExtra(PaymentActivity.planId, sPlanId);
-							intent.putExtra(PaymentActivity.planAmount, sPlanAmount);
-							intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
-							startActivityForResult(intent, 1);
-							finish();
-							//2   showPopupUpgradePackage();
-							//3 showPopupLoverPackage();
-							//5 freePackage(sPlanId);
-							break;
-						case "1":
-							break;
-						case "2":
-							showPopupUpgradePackage();
-							break;
-						case "3":
-							showPopupLoverPackage();
-							break;
-						case "4":
-							break;
-						case "5":
-							freePackage(sPlanId);
-							break;
-					}
+					PackageDetailActivity.packagePlan = packagePlan;
+					PackageDetailActivity.currency = sPlanAmount.replaceAll("[^A-Za-z]+", "");
+					PackageDetailActivity.amount = sPlanAmount.replaceAll("[^0-9]", "");
+					Intent intent = new Intent(PackagesActivity.this, PackageDetailActivity.class);
+					startActivityForResult(intent, 1);
+					return;
 				} else {
 					userGuestDialog();
 				}

@@ -280,6 +280,7 @@ public class StoreFragment extends Fragment implements BaseSliderView.OnSliderCl
 		if (isDetached()) {
 			return;
 		}
+
 		OnItemClickListener onItemClickListener = new OnItemClickListener() {
 			@Override
 			public void onClick(int position, Object obj) {

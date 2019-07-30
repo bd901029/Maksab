@@ -54,6 +54,9 @@ public class HomeActivity extends AppCompatActivity {
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
+
+		Utility.saveDeviceHeightWidth(this);
+
 		binding = DataBindingUtil.setContentView(this, R.layout.activity_home);
 		sLanguage = Utility.getLanguage(HomeActivity.this);
 		binding.appBarLayout.setActivity(this);

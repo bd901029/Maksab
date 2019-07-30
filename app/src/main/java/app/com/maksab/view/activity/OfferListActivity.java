@@ -19,6 +19,7 @@ import android.view.Window;
 import android.view.WindowManager;
 import android.widget.Toast;
 import app.com.maksab.engine.country.CountryCityManager;
+import app.com.maksab.engine.offer.Offer;
 import com.crystal.crystalrangeseekbar.interfaces.OnRangeSeekbarChangeListener;
 import com.crystal.crystalrangeseekbar.interfaces.OnRangeSeekbarFinalValueListener;
 
@@ -208,8 +209,7 @@ public class OfferListActivity extends AppCompatActivity {
 		final Call<OfferListResponse> responseCall = api.offerList(offerListModel);
 		responseCall.enqueue(new Callback<OfferListResponse>() {
 			@Override
-			public void onResponse(Call<OfferListResponse> call, retrofit2.Response<OfferListResponse>
-					response) {
+			public void onResponse(Call<OfferListResponse> call, retrofit2.Response<OfferListResponse> response) {
 				if (!isDestroyed()) {
 					activityBinding.swifeRefresh.setRefreshing(false);
 					ProgressDialog.getInstance().dismissDialog();
@@ -230,7 +230,6 @@ public class OfferListActivity extends AppCompatActivity {
 		});
 	}
 
-
 	private void handleResponse() {
 		if (offerListResponse != null) {
 			if (offerListResponse.getResponseCode().equals(Api.SUCCESS)) {
@@ -250,15 +249,15 @@ public class OfferListActivity extends AppCompatActivity {
 	/**
 	 * Set recycler view Adapter
 	 */
-	private void updateOfferList(ArrayList<OfferListResponse.OfferList> myArrayList) {
+	private void updateOfferList(ArrayList<Offer> myArrayList) {
 		OnItemClickListener onItemClickListener = new OnItemClickListener() {
 			@Override
 			public void onClick(int position, Object obj) {
-				OfferListResponse.OfferList offerList = (OfferListResponse.OfferList) obj;
+				Offer offer = (Offer) obj;
 				//((HomeActivity) OfferListActivity.this).addFragment(CategoryListFragment.newInstance(store),
 				// "CategoryListFragment",false);
 				Intent intent = new Intent(OfferListActivity.this, OfferDetailsActivity.class);
-				intent.putExtra(Constant.OFFER_ID,offerList.getOfferId());
+				intent.putExtra(Constant.OFFER_ID,offer.id);
 				startActivity(intent);
 			}
 		};
@@ -266,7 +265,7 @@ public class OfferListActivity extends AppCompatActivity {
 		if (gridView){
 			activityBinding.recyclerViewOffer.setLayoutManager(new GridLayoutManager(OfferListActivity.this,2));
 			activityBinding.recyclerViewOffer.setAdapter(new OfferGridAdapter(OfferListActivity.this, myArrayList, onItemClickListener));
-		}else {
+		} else {
 			activityBinding.recyclerViewOffer.setLayoutManager(new GridLayoutManager(OfferListActivity.this,1));
 			activityBinding.recyclerViewOffer.setAdapter(new OfferListAdapter(OfferListActivity.this, myArrayList, onItemClickListener));
 		}

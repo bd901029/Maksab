@@ -5,7 +5,7 @@
 	<data>
 		<variable
 				name="activity"
-				type="app.com.maksab.view.activity.FreePackagePlanActivity" />
+				type="app.com.maksab.view.activity.PackageDetailActivity" />
 		<variable
 				name="model"
 				type="app.com.maksab.api.dao.PackagesResponse.PackagePlan" />

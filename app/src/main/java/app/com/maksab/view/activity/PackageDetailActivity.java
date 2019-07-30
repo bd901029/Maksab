@@ -16,7 +16,6 @@ import app.com.maksab.api.Api;
 import app.com.maksab.api.dao.CouponCodeResponse;
 import app.com.maksab.api.dao.PackagesResponse;
 import app.com.maksab.databinding.ActivityFreePackagePlanBinding;
-import app.com.maksab.listener.OnItemClickListener;
 import app.com.maksab.util.Helper;
 import app.com.maksab.util.PreferenceConnector;
 import app.com.maksab.util.Utility;
@@ -27,7 +26,7 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class FreePackagePlanActivity extends AppCompatActivity {
+public class PackageDetailActivity extends AppCompatActivity {
 	private ActivityFreePackagePlanBinding binder;
 
 	public static PackagesResponse.PackagePlan packagePlan = null;
@@ -73,7 +72,7 @@ public class FreePackagePlanActivity extends AppCompatActivity {
 
 		if (packagePlan.getPlanStatus().equalsIgnoreCase("1")){
 			binder.subscribed.setVisibility(View.VISIBLE);
-		}else{
+		} else {
 			binder.subscribed.setVisibility(View.GONE);
 		}
 
@@ -90,6 +89,14 @@ public class FreePackagePlanActivity extends AppCompatActivity {
 			binder.recyclerView.setLayoutManager(new GridLayoutManager(this, 1));
 			binder.recyclerView.setAdapter(new SubPackagesAdapter(this, packagePlan.getFacilitysArrayList(), null, packagePlan.planColor));
 		}
+	}
+
+	private void showPaymentActivity() {
+		Intent intent = new Intent(PackageDetailActivity.this, PaymentActivity.class);
+		intent.putExtra(PaymentActivity.planId, packagePlan.planId);
+		intent.putExtra(PaymentActivity.planAmount, amount);
+		intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
+		startActivityForResult(intent, 1);
 	}
 
 	public void applyCouponCode() {
@@ -130,7 +137,7 @@ public class FreePackagePlanActivity extends AppCompatActivity {
 			public void onFailure(Call<CouponCodeResponse> call, Throwable t) {
 				Helper.hideProgress();
 				if (!isDestroyed()) {
-					Utility.showToast(FreePackagePlanActivity.this, t + "");
+					Utility.showToast(PackageDetailActivity.this, t + "");
 					Log.e("", "onFailure: " + t.getLocalizedMessage());
 				}
 			}
@@ -138,27 +145,22 @@ public class FreePackagePlanActivity extends AppCompatActivity {
 	}
 
 	private void handleCouponCodeResponse(CouponCodeResponse couponCodeResponse) {
-		if (couponCodeResponse.getResponseCode().equals(Api.SUCCESS)) {
+		if (!couponCodeResponse.getResponseCode().equals(Api.SUCCESS)) {
+			Utility.showToast(PackageDetailActivity.this, couponCodeResponse.getMessage());
+			return;
+		}
 
-			if (couponCodeResponse.getPaystatus().equalsIgnoreCase("0")) {
-				Utility.showToast(FreePackagePlanActivity.this, couponCodeResponse.getMessage());
-				finish();
-			} else {
-				couponCodeId = couponCodeResponse.getCouponCodeId();
-				// String sDiscount = couponCodeResponse.getDiscountedPrice().replaceAll("[^0-9]", "");
-				// sPayTotal = (Double.parseDouble(sAmount) - Double.parseDouble(sDiscount)) + "";
-				amount = couponCodeResponse.getDiscountedPrice();
-				binder.afterAmount.setText(currency + " " + amount);
-			}
-			// activitySubmitCreditCardBinding.llCoupon.setVisibility(View.GONE);
+		if (couponCodeResponse.getPaystatus().equalsIgnoreCase("0")) {
+			Utility.showToast(PackageDetailActivity.this, couponCodeResponse.getMessage());
+			finish();
 		} else {
-			Utility.showToast(FreePackagePlanActivity.this, couponCodeResponse.getMessage());
+			couponCodeId = couponCodeResponse.getCouponCodeId();
+			amount = couponCodeResponse.getDiscountedPrice();
+			binder.afterAmount.setText(currency + " " + amount);
 		}
 	}
 
 	public void proceedToCheckout() {
-		Intent intent = new Intent(FreePackagePlanActivity.this, PackagesActivity.class);
-		startActivity(intent);
-		finish();
+		showPaymentActivity();
 	}
 }

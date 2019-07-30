@@ -19,6 +19,7 @@ import app.com.maksab.api.Api;
 import app.com.maksab.api.dao.CategoryHomeResponse;
 import app.com.maksab.api.dao.OfferListResponse;
 import app.com.maksab.databinding.FragmentOfferListBinding;
+import app.com.maksab.engine.offer.Offer;
 import app.com.maksab.listener.OnItemClickListener;
 import app.com.maksab.util.Constant;
 import app.com.maksab.util.ProgressDialog;
@@ -200,18 +201,18 @@ public class OfferListFragment extends Fragment {
 	/**
 	 * Set recycler view Adapter
 	 */
-	private void setRecyclerViewOfferList(ArrayList<OfferListResponse.OfferList> myArrayList) {
+	private void setRecyclerViewOfferList(ArrayList<Offer> myArrayList) {
 		if (isDetached()) {
 			return;
 		}
 		OnItemClickListener onItemClickListener = new OnItemClickListener() {
 			@Override
 			public void onClick(int position, Object obj) {
-				OfferListResponse.OfferList offerList = (OfferListResponse.OfferList) obj;
+				Offer offer = (Offer) obj;
 				//((HomeActivity) getActivity()).addFragment(CategoryListFragment.newInstance(store),
 				// "CategoryListFragment",false);
 				Intent intent = new Intent(getActivity(), OfferDetailsActivity.class);
-				intent.putExtra(Constant.OFFER_ID,offerList.getOfferId());
+				intent.putExtra(Constant.OFFER_ID, offer.id);
 				startActivity(intent);
 			}
 		};

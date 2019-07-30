@@ -43,7 +43,6 @@ public class LoginActivity extends AppCompatActivity {
 		binder = DataBindingUtil.setContentView(this, R.layout.activity_login);
 		binder.setActivity(this);
 		this.getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN);
-		Utility.saveDeviceHeightWidth(this);
 
 		LoginModel loginModel = new LoginModel();
 
