@@ -9,7 +9,7 @@
 
         <variable
             name="model"
-            type="app.com.maksab.engine.offer.Category" />
+            type="app.com.maksab.engine.category.Category" />
     </data>
 
     <RelativeLayout

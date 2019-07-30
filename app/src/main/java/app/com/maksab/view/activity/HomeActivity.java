@@ -18,9 +18,10 @@ import android.widget.TextView;
 import app.com.maksab.R;
 import app.com.maksab.api.APIClient;
 import app.com.maksab.api.Api;
-import app.com.maksab.api.dao.CategoryHomeResponse;
 import app.com.maksab.api.dao.SuccessfulResponse;
 import app.com.maksab.databinding.ActivityHomeBinding;
+import app.com.maksab.engine.category.Category;
+import app.com.maksab.engine.category.CategoryHomeResponse;
 import app.com.maksab.listener.DialogListener;
 import app.com.maksab.listener.OnItemClickListener;
 import app.com.maksab.util.Constant;
@@ -46,9 +47,9 @@ public class HomeActivity extends AppCompatActivity {
 	boolean isFirst = true;
 	int tempM = 1;
 	public boolean intFirstVisible = false;
-	public ArrayList<CategoryHomeResponse.Category> categoryLists;
-	public CategoryHomeResponse categoryHomeResponse;
 
+	public CategoryHomeResponse categoryResponse;
+	public ArrayList<Category> categories;
 	NearByFragment nearByFragment = null;
 
 	@Override
@@ -115,6 +116,24 @@ public class HomeActivity extends AppCompatActivity {
 		title[2] = getString(R.string.points_rewards);
 		title[3] = getString(R.string.subscription);
 		// title[4] = getString(R.string.gift_history);
+	}
+
+	@Override
+	public void onRequestPermissionsResult(int requestCode, String permissions[], int[] grantResults) {
+		if (requestCode == Utility.REQUEST_CODE_LOCATION) {
+			for (Integer grantResult : grantResults) {
+				if (grantResult != PackageManager.PERMISSION_GRANTED) {
+					if (nearByFragment != null) nearByFragment.showLocationAlert();
+					return;
+				}
+			}
+
+			if (nearByFragment != null) nearByFragment.setMyLocationEnabled();
+
+			return;
+		}
+
+		super.onRequestPermissionsResult(requestCode, permissions, grantResults);
 	}
 
 	@Override
@@ -519,24 +538,6 @@ public class HomeActivity extends AppCompatActivity {
 		intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
 		startActivity(intent);
 		//finish();
-	}
-
-	@Override
-	public void onRequestPermissionsResult(int requestCode, String permissions[], int[] grantResults) {
-		if (requestCode == Utility.REQUEST_CODE_LOCATION) {
-			for (Integer grantResult : grantResults) {
-				if (grantResult != PackageManager.PERMISSION_GRANTED) {
-					if (nearByFragment != null) nearByFragment.showLocationAlert();
-					return;
-				}
-			}
-
-			if (nearByFragment != null) nearByFragment.setMyLocationEnabled();
-
-			return;
-		}
-
-		super.onRequestPermissionsResult(requestCode, permissions, grantResults);
 	}
 
 	public void UpdateProfilePic() {

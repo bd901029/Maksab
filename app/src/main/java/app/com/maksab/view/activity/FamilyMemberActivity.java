@@ -1,7 +1,6 @@
 package app.com.maksab.view.activity;
 
 import android.app.Activity;
-import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.databinding.DataBindingUtil;
@@ -15,7 +14,6 @@ import android.view.View;
 import app.com.maksab.R;
 import app.com.maksab.api.APIClient;
 import app.com.maksab.api.Api;
-import app.com.maksab.api.dao.CategoryHomeResponse;
 import app.com.maksab.api.dao.GetFamilyMembers;
 import app.com.maksab.api.dao.SuccessfulResponse;
 import app.com.maksab.databinding.ActivityFamilyMembersBinding;

@@ -35,16 +35,18 @@ public class PackagesActivity extends AppCompatActivity {
 		super.onCreate(savedInstanceState);
 		uiBinder = DataBindingUtil.setContentView(this, R.layout.activity_packages);
 		uiBinder.setActivity(this);
-		Extension extension = Extension.getInstance();
-		if (!extension.executeStrategy(PackagesActivity.this, "", ValidationTemplate.INTERNET)) {
-			Utility.setNoInternetPopup(PackagesActivity.this);
-		} else
-			getFavoriteDeals();
 	}
 
 	@Override
 	protected void onResume() {
 		super.onResume();
+
+		Extension extension = Extension.getInstance();
+		if (!extension.executeStrategy(PackagesActivity.this, "", ValidationTemplate.INTERNET)) {
+			Utility.setNoInternetPopup(PackagesActivity.this);
+		} else {
+			getFavoriteDeals();
+		}
 	}
 
 	@Override

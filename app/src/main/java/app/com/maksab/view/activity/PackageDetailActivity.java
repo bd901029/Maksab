@@ -145,6 +145,10 @@ public class PackageDetailActivity extends AppCompatActivity {
 	}
 
 	private void handleCouponCodeResponse(CouponCodeResponse couponCodeResponse) {
+		if (couponCodeResponse == null) {
+			return;
+		}
+
 		if (!couponCodeResponse.getResponseCode().equals(Api.SUCCESS)) {
 			Utility.showToast(PackageDetailActivity.this, couponCodeResponse.getMessage());
 			return;
@@ -152,11 +156,16 @@ public class PackageDetailActivity extends AppCompatActivity {
 
 		if (couponCodeResponse.getPaystatus().equalsIgnoreCase("0")) {
 			Utility.showToast(PackageDetailActivity.this, couponCodeResponse.getMessage());
-			finish();
-		} else {
+
 			couponCodeId = couponCodeResponse.getCouponCodeId();
 			amount = couponCodeResponse.getDiscountedPrice();
-			binder.afterAmount.setText(currency + " " + amount);
+			if (Integer.parseInt(amount) <= 0) {
+				amount = "0";
+				binder.afterAmount.setText("Free");
+				finish();
+			} else {
+				binder.afterAmount.setText(currency + " " + amount);
+			}
 		}
 	}
 

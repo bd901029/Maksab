@@ -13,6 +13,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
 import app.com.maksab.engine.ApiManager;
+import app.com.maksab.engine.category.Category;
+import app.com.maksab.engine.category.CategoryHomeResponse;
 import app.com.maksab.engine.country.CountryCityManager;
 import app.com.maksab.engine.offer.*;
 import app.com.maksab.util.*;
@@ -25,7 +27,6 @@ import java.util.HashMap;
 import app.com.maksab.R;
 import app.com.maksab.api.APIClient;
 import app.com.maksab.api.Api;
-import app.com.maksab.api.dao.CategoryHomeResponse;
 import app.com.maksab.databinding.FragmentHomeBinding;
 import app.com.maksab.listener.OnItemClickListener;
 import app.com.maksab.view.activity.BigBrandActivity;
@@ -81,8 +82,7 @@ public class StoreFragment extends Fragment implements BaseSliderView.OnSliderCl
 	}
 
 	@Override
-	public View onCreateView(LayoutInflater inflater, ViewGroup container,
-							 Bundle savedInstanceState) {
+	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 		binder = DataBindingUtil.inflate(LayoutInflater.from(getActivity()), R.layout.fragment_home, container, false);
 		return binder.getRoot();
 	}
@@ -152,16 +152,16 @@ public class StoreFragment extends Fragment implements BaseSliderView.OnSliderCl
 	 */
 	private void handleStoreListResponse(CategoryHomeResponse categoryHomeResponse) {
 		if (categoryHomeResponse != null) {
-			if (categoryHomeResponse.getResponseCode().equals(Api.SUCCESS)) {
-				if (categoryHomeResponse.getResultList() != null && categoryHomeResponse.getResultList().size() != 0) {
+			if (categoryHomeResponse.responseCode.equals(Api.SUCCESS)) {
+				if (categoryHomeResponse.categories != null && categoryHomeResponse.categories.size() != 0) {
 					try {
-						((HomeActivity)getActivity()).categoryLists = categoryHomeResponse.getResultList();
-						((HomeActivity)getActivity()).categoryHomeResponse = categoryHomeResponse;
+						((HomeActivity)getActivity()).categoryResponse = categoryHomeResponse;
+						((HomeActivity)getActivity()).categories = categoryHomeResponse.categories;
 					} catch (Exception e) {
 						e.printStackTrace();
 					}
 					binder.recyclerView.setVisibility(View.VISIBLE);
-					setRecyclerView(categoryHomeResponse.getResultList());
+					setRecyclerView(categoryHomeResponse.categories);
 				} else {
 					binder.recyclerView.setVisibility(View.GONE);
 				}
@@ -174,24 +174,23 @@ public class StoreFragment extends Fragment implements BaseSliderView.OnSliderCl
 	/**
 	 * Set recycler view Adapter
 	 */
-	private void setRecyclerView(ArrayList<CategoryHomeResponse.Category> categoryListArrayList) {
+	private void setRecyclerView(ArrayList<Category> categories) {
 		if (isDetached()) {
 			return;
 		}
 		OnItemClickListener onItemClickListener = new OnItemClickListener() {
 			@Override
 			public void onClick(int position, Object obj) {
-				CategoryHomeResponse.Category categoryList = (CategoryHomeResponse.Category) obj;
+				Category category = (Category) obj;
 				Intent intent = new Intent(getActivity(), OfferListActivity.class);
-				intent.putExtra(Constant.CATEGORY_ID, categoryList.categoryId);
-				intent.putExtra(Constant.CATEGORY_NAME, categoryList.categoryName);
+				intent.putExtra(Constant.CATEGORY_ID, category.id);
+				intent.putExtra(Constant.CATEGORY_NAME, category.name);
 				startActivity(intent);
 			}
 		};
 		binder.recyclerView.setLayoutManager(new LinearLayoutManager(getActivity(), LinearLayoutManager
 				.HORIZONTAL, false));
-		binder.recyclerView.setAdapter(new CategoryHomeAdapter(getActivity(), categoryListArrayList,
-				onItemClickListener));
+		binder.recyclerView.setAdapter(new CategoryHomeAdapter(getActivity(), categories, onItemClickListener));
 	}
 
 	public void getMyHomeData() {

@@ -3,10 +3,9 @@ package app.com.maksab.engine.offer;
 import app.com.maksab.api.APIClient;
 import app.com.maksab.api.Api;
 import app.com.maksab.engine.ApiManager;
-import app.com.maksab.view.activity.HomeActivity;
+import app.com.maksab.engine.category.Category;
 import app.com.maksab.view.viewmodel.HomeDataModel;
 import retrofit2.Call;
-import retrofit2.Callback;
 import retrofit2.Response;
 
 import java.util.ArrayList;

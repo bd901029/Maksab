@@ -9,7 +9,7 @@
 
         <variable
             name="model"
-            type="app.com.maksab.api.dao.CategoryHomeResponse.Category" />
+            type="app.com.maksab.engine.category.Category" />
     </data>
 
     <LinearLayout
@@ -40,7 +40,7 @@
                 android:layout_margin="5dp"
                 android:scaleType="centerCrop"
                 android:src="@drawable/ic_launcher"
-                app:imageUrl="@{model.categoryImg}" />
+                app:imageUrl="@{model.image}" />
         </RelativeLayout>
 
         <TextView
@@ -50,7 +50,7 @@
             android:gravity="center"
             android:lines="1"
             android:padding="2dp"
-            android:text="@{model.categoryName}"
+            android:text="@{model.name}"
             android:textSize="12sp"
             app:font="@{@string/regular}" />
 

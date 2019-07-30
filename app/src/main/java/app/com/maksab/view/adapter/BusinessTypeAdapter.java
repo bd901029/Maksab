@@ -2,13 +2,11 @@ package app.com.maksab.view.adapter;
 
 import android.app.Activity;
 import android.databinding.DataBindingUtil;
-import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.ViewGroup;
 import java.util.ArrayList;
 import app.com.maksab.R;
-import app.com.maksab.api.dao.CategoryHomeResponse;
 import app.com.maksab.api.dao.NotificationFilterResponse;
 import app.com.maksab.databinding.RowBusinessTypeBinding;
 import app.com.maksab.listener.OnItemClickListener;

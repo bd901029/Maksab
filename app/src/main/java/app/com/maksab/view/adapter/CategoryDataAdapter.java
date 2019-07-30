@@ -10,7 +10,7 @@ import android.view.ViewGroup;
 import java.util.ArrayList;
 import app.com.maksab.R;
 import app.com.maksab.databinding.RowCategoryDataBinding;
-import app.com.maksab.engine.offer.Category;
+import app.com.maksab.engine.category.Category;
 import app.com.maksab.engine.offer.Offer;
 import app.com.maksab.listener.OnItemClickListener;
 import app.com.maksab.util.Constant;

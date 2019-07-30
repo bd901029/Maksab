@@ -18,6 +18,8 @@ import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.Toast;
+import app.com.maksab.engine.category.Category;
+import app.com.maksab.engine.category.CategoryHomeResponse;
 import app.com.maksab.engine.country.CountryCityManager;
 import app.com.maksab.engine.offer.Offer;
 import com.crystal.crystalrangeseekbar.interfaces.OnRangeSeekbarChangeListener;
@@ -27,7 +29,6 @@ import java.util.ArrayList;
 import app.com.maksab.R;
 import app.com.maksab.api.APIClient;
 import app.com.maksab.api.Api;
-import app.com.maksab.api.dao.CategoryHomeResponse;
 import app.com.maksab.api.dao.OfferFilterResponse;
 import app.com.maksab.api.dao.OfferListResponse;
 import app.com.maksab.databinding.ActivityOfferListBinding;
@@ -157,9 +158,9 @@ public class OfferListActivity extends AppCompatActivity {
 	 * @param storeListResponse @StoreListResponse object
 	 */
 	private void handleStoreListResponse(CategoryHomeResponse storeListResponse) {
-		if (storeListResponse.getResponseCode().equals(Api.SUCCESS)) {
-			if (storeListResponse.getResultList() != null && storeListResponse.getResultList().size() != 0) {
-				setRecyclerView(storeListResponse.getResultList());
+		if (storeListResponse.responseCode.equals(Api.SUCCESS)) {
+			if (storeListResponse.categories != null && storeListResponse.categories.size() != 0) {
+				setRecyclerView(storeListResponse.categories);
 			} else {
 
 			}
@@ -171,15 +172,15 @@ public class OfferListActivity extends AppCompatActivity {
 	/**
 	 * Set recycler view Adapter
 	 */
-	private void setRecyclerView(ArrayList<CategoryHomeResponse.Category> categoryListArrayList) {
+	private void setRecyclerView(ArrayList<Category> categoryListArrayList) {
 		OnItemClickListener onItemClickListener = new OnItemClickListener() {
 			@Override
 			public void onClick(int position, Object obj) {
-				CategoryHomeResponse.Category categoryList = (CategoryHomeResponse.Category) obj;
-				sCategoryName = categoryList.categoryName;
+				Category category = (Category) obj;
+				sCategoryName = category.name;
 				//((HomeActivity) OfferListActivity.this).addFragment(CategoryListFragment.newInstance(store),
 				// "CategoryListFragment",false);
-				sCategoryId = categoryList.categoryId;
+				sCategoryId = category.id;
 				activityBinding.catName.setText(sCategoryName+" "+getString(R.string.in) +" "+Utility.getCityName(OfferListActivity.this));
 				getOfferList();
 
@@ -487,7 +488,7 @@ public class OfferListActivity extends AppCompatActivity {
            /* if (categoryLists.get(i).getCategoryStatus().equalsIgnoreCase("1")) {
                 selectNotification.add(categoryLists.get(i).getCategoryId());
             }*/
-			// locationListArrayList.get(i).setCategoryStatus("0");
+			// locationListArrayList.get(i).setStatus("0");
 
 		}
 		OnItemClickCheckUnCheckListener onItemClickCheckUnCheckListener = new OnItemClickCheckUnCheckListener() {
@@ -495,14 +496,14 @@ public class OfferListActivity extends AppCompatActivity {
 			@Override
 			public void onAdd(int id, Object obj) {
 				OfferFilterResponse.LocationList subCategoryList = (OfferFilterResponse.LocationList) obj;
-				// subCategoryList.setCategoryStatus("1");
+				// subCategoryList.setStatus("1");
 				selectLocation.add(subCategoryList.getLocationId());
 			}
 
 			@Override
 			public void onRemove(int id, Object obj) {
 				OfferFilterResponse.LocationList subCategoryList = (OfferFilterResponse.LocationList) obj;
-				// subCategoryList.setCategoryStatus("0");
+				// subCategoryList.setStatus("0");
 				selectLocation.remove(subCategoryList.getLocationId());
 			}
 		};

@@ -41,6 +41,7 @@
 					android:layout_height="40dp"
 					android:layout_centerVertical="true"
 					android:layout_alignParentEnd="true"
+					android:layout_marginRight="10sp"
 					android:orientation="horizontal">
 
 				<ImageView
@@ -48,17 +49,15 @@
 						android:layout_width="40sp"
 						android:layout_height="match_parent"
 						android:layout_alignRight="@+id/filter"
-						android:padding="5sp"
-						android:src="@drawable/search"
-						/>
+						android:layout_marginRight="10sp"
+						android:src="@drawable/search"/>
 
 				<ImageView
 						android:onClick="@{()->fragment.onClickPackages()}"
 						android:id="@+id/filter"
 						android:layout_width="40sp"
 						android:layout_height="match_parent"
-						android:padding="5sp"
-						android:src="@drawable/products_hover3x" />
+						android:src="@drawable/products_hover3x"/>
 			</LinearLayout>
 
 

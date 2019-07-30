@@ -9,9 +9,7 @@ import android.view.ViewGroup;
 import java.util.ArrayList;
 
 import app.com.maksab.R;
-import app.com.maksab.api.dao.CategoryHomeResponse;
 import app.com.maksab.api.dao.OfferDetailsResponse;
-import app.com.maksab.databinding.RowCategoryHomeBinding;
 import app.com.maksab.databinding.RowFacilityBinding;
 import app.com.maksab.listener.OnItemClickListener;
 

@@ -7,18 +7,18 @@ import android.view.LayoutInflater;
 import android.view.ViewGroup;
 import java.util.ArrayList;
 import app.com.maksab.R;
-import app.com.maksab.api.dao.CategoryHomeResponse;
 import app.com.maksab.databinding.RowCategoryHomeBinding;
+import app.com.maksab.engine.category.Category;
 import app.com.maksab.listener.OnItemClickListener;
 
 public class CategoryHomeAdapter extends RecyclerView.Adapter<CategoryHomeAdapter.ViewHolder> {
     private Context context;
-    private ArrayList<CategoryHomeResponse.Category> categoryListArrayList;
+    private ArrayList<Category> categories;
     private OnItemClickListener onItemClickListener;
 
-    public CategoryHomeAdapter(Context context, ArrayList<CategoryHomeResponse.Category> categoryListArrayList, OnItemClickListener onItemClickListener) {
+    public CategoryHomeAdapter(Context context, ArrayList<Category> categories, OnItemClickListener onItemClickListener) {
         this.context = context;
-        this.categoryListArrayList = categoryListArrayList;
+        this.categories = categories;
         this.onItemClickListener = onItemClickListener;
     }
 
@@ -31,12 +31,12 @@ public class CategoryHomeAdapter extends RecyclerView.Adapter<CategoryHomeAdapte
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
         holder.rowHomeBinding.setAdapter(this);
-        holder.rowHomeBinding.setModel(categoryListArrayList.get(position));
+        holder.rowHomeBinding.setModel(categories.get(position));
     }
 
     @Override
     public int getItemCount() {
-        return categoryListArrayList != null ? categoryListArrayList.size() : 0;
+        return categories != null ? categories.size() : 0;
     }
 
     class ViewHolder extends RecyclerView.ViewHolder {
@@ -51,9 +51,9 @@ public class CategoryHomeAdapter extends RecyclerView.Adapter<CategoryHomeAdapte
 
     /**
      * On Item click listener method
-     * @param categoryList Store object of clicked position
+     * @param category Store object of clicked position
      */
-    public void onItemClick(CategoryHomeResponse.Category categoryList) {
-        onItemClickListener.onClick(categoryListArrayList.indexOf(categoryList), categoryList);
+    public void onItemClick(Category category) {
+        onItemClickListener.onClick(categories.indexOf(category), category);
     }
 }

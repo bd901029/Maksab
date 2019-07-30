@@ -1,5 +1,6 @@
 package app.com.maksab.engine.offer;
 
+import app.com.maksab.engine.category.Category;
 import com.google.gson.annotations.SerializedName;
 
 import java.util.ArrayList;

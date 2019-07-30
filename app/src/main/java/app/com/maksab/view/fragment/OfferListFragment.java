@@ -16,9 +16,10 @@ import java.util.ArrayList;
 import app.com.maksab.R;
 import app.com.maksab.api.APIClient;
 import app.com.maksab.api.Api;
-import app.com.maksab.api.dao.CategoryHomeResponse;
 import app.com.maksab.api.dao.OfferListResponse;
 import app.com.maksab.databinding.FragmentOfferListBinding;
+import app.com.maksab.engine.category.Category;
+import app.com.maksab.engine.category.CategoryHomeResponse;
 import app.com.maksab.engine.offer.Offer;
 import app.com.maksab.listener.OnItemClickListener;
 import app.com.maksab.util.Constant;
@@ -120,9 +121,9 @@ public class OfferListFragment extends Fragment {
 	 * @param storeListResponse @StoreListResponse object
 	 */
 	private void handleStoreListResponse(CategoryHomeResponse storeListResponse) {
-		if (storeListResponse.getResponseCode().equals(Api.SUCCESS)) {
-			if (storeListResponse.getResultList() != null && storeListResponse.getResultList().size() != 0) {
-				setRecyclerView(storeListResponse.getResultList());
+		if (storeListResponse.responseCode.equals(Api.SUCCESS)) {
+			if (storeListResponse.categories != null && storeListResponse.categories.size() != 0) {
+				setRecyclerView(storeListResponse.categories);
 			} else {
 			}
 		} else {
@@ -133,25 +134,25 @@ public class OfferListFragment extends Fragment {
 	/**
 	 * Set recycler view Adapter
 	 */
-	private void setRecyclerView(ArrayList<CategoryHomeResponse.Category> categoryListArrayList) {
+	private void setRecyclerView(ArrayList<Category> categories) {
 		if (isDetached()) {
 			return;
 		}
 		OnItemClickListener onItemClickListener = new OnItemClickListener() {
 			@Override
 			public void onClick(int position, Object obj) {
-				CategoryHomeResponse.Category category = (CategoryHomeResponse.Category) obj;
+				Category category = (Category) obj;
 				//((HomeActivity) getActivity()).addFragment(CategoryListFragment.newInstance(store),
 				// "CategoryListFragment",false);
-				Log.i("dragon", category.categoryName);
-				binder.catName.setText(category.categoryName);
-				getOfferList(category.categoryId);
+				Log.i("dragon", category.name);
+				binder.catName.setText(category.name);
+				getOfferList(category.id);
 			}
 		};
 		//binder.recyclerView.setLayoutManager(new GridLayoutManager(getActivity(), 1));
 		binder.recyclerView.setLayoutManager(new LinearLayoutManager(getActivity(), LinearLayoutManager
 				.HORIZONTAL, true));
-		binder.recyclerView.setAdapter(new CategoryHomeAdapter(getActivity(), categoryListArrayList,
+		binder.recyclerView.setAdapter(new CategoryHomeAdapter(getActivity(), categories,
 				onItemClickListener));
 	}
 
